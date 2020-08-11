@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-function Footer(props){
+function TopBar(props){
 
 return (
     <>
@@ -11,4 +11,4 @@ return (
 
 }
 
-export default Footer;
+export default TopBar;
