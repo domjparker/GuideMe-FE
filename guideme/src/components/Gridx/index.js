@@ -1,7 +1,7 @@
 import React from "react";
 
 function Gridx(props) {
-  return <div className={`grid-x${props.full ? " full" : ""}`} {...props} />;
+  return <div className={`grid-x ${props.class}`} {...props} />;
 }
 
 export default Gridx;

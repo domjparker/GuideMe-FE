@@ -8,10 +8,10 @@ function Footer(props){
 
 return (
     <>
-    <div className="grid-container">
-        <Gridx full={true}>
+    <div className="grid-container full">
+        <Gridx>
             <Cell size={''}>
-                <h2>{"copyright 2020"}</h2>
+                <h2 className="text-center">{"copyright 2020"}</h2>
             </Cell>
         </Gridx>
     </div>

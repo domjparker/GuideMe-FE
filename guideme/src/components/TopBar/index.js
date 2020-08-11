@@ -7,16 +7,16 @@ function TopBar(props){
 
 return (
     <>
-    <div className="grid-container">
-        <Gridx full={true}>
+    <div className="grid-container full">
+        <Gridx>
             <Cell size={'small-3'}>
-                <h1>LOGO</h1>
+                <h1 className="text-left">LOGO</h1>
             </Cell>
             <Cell size={'small-6'}>
-                <h1>{props.title}</h1>
+                <h1 className="text-center">{props.title}</h1>
             </Cell>
             <Cell size={'small-3'}>
-                <h1>Icon</h1>
+                <h1 className="text-right">Icon</h1>
             </Cell>
         </Gridx>
     </div>
