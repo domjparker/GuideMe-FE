@@ -15,16 +15,7 @@ function Adventures(){
                 <div className="grid-container full">
                     <Gridx classes={'grid-margin-x'}>
                         <Cell size={'medium-6 large-4'}>
-                            <Card img={''} title={"Adventures 1"} host={"Andrew B."} description={'This is a super cool first ever best ever adventure that takes you far and wide to Neverland'}/>
-                        </Cell>
-                        <Cell size={'medium-6 large-4'}>
-                            <Card img={''} title={"Adventures 2"} host={"Andrew B."} description={'This is a super cool first ever best ever adventure that takes you far and wide to Neverland'}/>
-                        </Cell>
-                        <Cell size={'medium-6 large-4'}>
-                            <Card img={''} title={"Adventures 3"} host={"Andrew B."} description={'This is a super cool first ever best ever adventure that takes you far and wide to Neverland'}/>
-                        </Cell>
-                        <Cell size={'medium-6 large-4'}>
-                            <Card img={''} title={"Adventures 4"} host={"Andrew B."} description={'This is a super cool first ever best ever adventure that takes you far and wide to Neverland'}/>
+                            <Card img={''} title={"Adventures 1"} host={"Andrew B."} description={"No ide what weill be going on here...."}/>
                         </Cell>
                     </Gridx>
                 </div>

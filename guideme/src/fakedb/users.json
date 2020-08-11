@@ -1,0 +1,33 @@
+[
+    {
+        "firstName": "Andrew",
+        "lastName": "Bergstrom",
+        "email":"andrew@email.com",
+        "password": "password",
+        "bio": "bestest greatest ever guide for most amazing spectacular adventures",
+        "location":"Global",
+        "veriifed":"true",
+        "host": "true",
+        "hostedAdventures": [],
+        "completedAdventures": [],
+        "profilePicture": "reference",
+        "bannerPicture": "reference",
+        "tags": ["biking", "hiking", "kayaking", "climbing", "swimming", "flying"]
+      },
+    {
+        "firstName": "Andrew",
+        "lastName": "Bergstrom",
+        "email":"andrew@email.com",
+        "password": "password",
+        "bio": "bestest greatest ever guide for most amazing spectacular adventures",
+        "location":"Global",
+        "veriifed":"true",
+        "host": "true",
+        "hostedAdventures": [],
+        "completedAdventures": [],
+        "profilePicture": "reference",
+        "bannerPicture": "reference",
+        "tags": ["biking", "hiking", "kayaking", "climbing", "swimming", "flying"]
+      }
+
+]
