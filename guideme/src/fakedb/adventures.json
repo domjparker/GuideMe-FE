@@ -1,5 +1,6 @@
 [
     {
+        "_id": "laksjdf",
         "adventureName": "Adventure 1",
         "hostId": "1",
         "usersOnAdventure":[],
@@ -19,8 +20,9 @@
         "tags":["hiking"]
     },
     {
+        "_id": "alskdjf",
         "adventureName": "Adventure 2",
-        "hostId": "1",
+        "hostId": "2",
         "usersOnAdventure":[],
         "description":"This is a super cool first ever best ever adventure that takes you far and wide to Neverland",
         "location": "Seattle,WA",
@@ -38,8 +40,9 @@
         "tags":["hiking"]
     },
     {
+        "_id": "aöskjdfölkajsf",
         "adventureName": "Adventure 3",
-        "hostId": "1",
+        "hostId": "3",
         "usersOnAdventure":[],
         "description":"This is a super cool first ever best ever adventure that takes you far and wide to Neverland",
         "location": "Seattle,WA",
