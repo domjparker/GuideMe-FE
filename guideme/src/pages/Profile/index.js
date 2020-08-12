@@ -1,18 +1,16 @@
 import React from 'react'
 import './style.css'
-import TopBar from '../../components/TopBar'
 import Wrapper from '../../components/Wrapper'
-import Footer from '../../components/Footer'
 
-function Profile () {
 
+function Profile (props) {
+    const {handlePageChange}=props
+    handlePageChange("Profile")
     return(
         <>
-        <TopBar title={'User profile'}/>
         <Wrapper>
             <p>Here be profile page</p>
         </Wrapper>
-        <Footer/>
         </>
     )    
 }
