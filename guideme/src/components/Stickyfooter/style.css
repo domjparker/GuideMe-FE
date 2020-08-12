@@ -1,0 +1,17 @@
+.sticky-footer-css {
+    height: 100vh;
+  }
+  
+
+  .sticky-footer-css .footer {
+    height: 2rem;
+    background-color: #2c3840;
+    color: #fff;
+  
+  }
+  
+  .sticky-footer-css .footer .menu a {
+    color: #fff;
+    
+  }
+  

@@ -4,6 +4,7 @@ import './App.css';
 import Adventures from './pages/Adventures'
 import Profile from './pages/Profile'
 import Homepage from './pages/Homepage'
+import Stickyfooter from './components/Stickyfooter'
 import NotFound from './pages/NotFound'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -12,10 +13,10 @@ function App() {
     <Router>
     <>
     <Switch>
-      {/* <Route exact path='/'>
+      <Route exact path='/'>
 
           <Homepage/>
-      </Route> */}
+      </Route>
       <Route exact path='/adventures'>
 
         <Adventures/>
@@ -29,6 +30,7 @@ function App() {
         <NotFound/>
       </Route>
     </Switch>
+    <Stickyfooter />
     </>
     </Router>
   );
