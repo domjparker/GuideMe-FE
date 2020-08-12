@@ -5,7 +5,7 @@ import Wrapper from '../../components/Wrapper'
 import Footer from '../../components/Footer'
 import Gridx from '../../components/Gridx'
 import Cell from '../../components/Cell'
-import Card from '../../components/Card'
+import FlipCard from '../../components/FlipCard'
 import adventureList from '../../fakedb/adventures.json'
 
 
@@ -19,6 +19,9 @@ function Adventures(){
     const loadAdventures = () => {
         setadventures(adventureList)
     }
+    const toggleClass = (e) => {
+
+    }
 
     return (
         <>
@@ -27,8 +30,8 @@ function Adventures(){
                 <div className="grid-container full">
                     <Gridx classes={'grid-margin-x'}>
                         {adventures.map(adventure => 
-                        <Cell size={'medium-6 large-4'}>
-                            <Card key={adventure.id} img={''} title={adventure.adventureName} host={adventure.hostId} description={adventure.description}/>
+                        <Cell key={adventure.hostId} size={'medium-6 large-4'}>
+                            <FlipCard key={adventure.id} toggleClass={toggleClass} location={adventure.location} difficulty={adventure.difficulty} duration={adventure.duration} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.imageId} title={adventure.adventureName} host={adventure.hostId} description={adventure.description}/>
                         </Cell>
                             )}
                     </Gridx>

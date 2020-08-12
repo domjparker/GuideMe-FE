@@ -9,14 +9,14 @@
         "itinerary": "Meet up and then fun fun fun",
         "duration": {
             "number": 1,
-            "length": "days"
+            "unit": "days"
         },
         "difficulty": "extra advanced",
         "minGroupSize":1,
         "maxGroupSize":4,
         "price":1000,
         "gearList":"shoes, clothes, smile",
-        "imageId":1,
+        "imageId":"https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg",
         "tags":["hiking"]
     },
     {
@@ -29,7 +29,7 @@
         "itinerary": "Meet up and then fun fun fun",
         "duration": {
             "number": 1,
-            "length": "days"
+            "unit": "days"
         },
         "difficulty": "extra advanced",
         "minGroupSize":1,
@@ -49,7 +49,7 @@
         "itinerary": "Meet up and then fun fun fun",
         "duration": {
             "number": 1,
-            "length": "days"
+            "unit": "days"
         },
         "difficulty": "extra advanced",
         "minGroupSize":1,
