@@ -1,0 +1,59 @@
+[
+    {
+        "adventureName": "Adventure 1",
+        "hostId": "1",
+        "usersOnAdventure":[],
+        "description":"This is a super cool first ever best ever adventure that takes you far and wide to Neverland",
+        "location": "Seattle,WA",
+        "itinerary": "Meet up and then fun fun fun",
+        "duration": {
+            "number": 1,
+            "length": "days"
+        },
+        "difficulty": "extra advanced",
+        "minGroupSize":1,
+        "maxGroupSize":4,
+        "price":1000,
+        "gearList":"shoes, clothes, smile",
+        "imageId":1,
+        "tags":["hiking"]
+    },
+    {
+        "adventureName": "Adventure 2",
+        "hostId": "1",
+        "usersOnAdventure":[],
+        "description":"This is a super cool first ever best ever adventure that takes you far and wide to Neverland",
+        "location": "Seattle,WA",
+        "itinerary": "Meet up and then fun fun fun",
+        "duration": {
+            "number": 1,
+            "length": "days"
+        },
+        "difficulty": "extra advanced",
+        "minGroupSize":1,
+        "maxGroupSize":4,
+        "price":1000,
+        "gearList":"shoes, clothes, smile",
+        "imageId":1,
+        "tags":["hiking"]
+    },
+    {
+        "adventureName": "Adventure 3",
+        "hostId": "1",
+        "usersOnAdventure":[],
+        "description":"This is a super cool first ever best ever adventure that takes you far and wide to Neverland",
+        "location": "Seattle,WA",
+        "itinerary": "Meet up and then fun fun fun",
+        "duration": {
+            "number": 1,
+            "length": "days"
+        },
+        "difficulty": "extra advanced",
+        "minGroupSize":1,
+        "maxGroupSize":4,
+        "price":1000,
+        "gearList":"shoes, clothes, smile",
+        "imageId":1,
+        "tags":["hiking"]
+    }
+]

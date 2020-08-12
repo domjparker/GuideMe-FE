@@ -18,15 +18,12 @@ function App() {
           <Homepage/>
       </Route>
       <Route exact path='/adventures'>
-
         <Adventures/>
       </Route>
       <Route exact path='/profile'>
-
         <Profile/>
       </Route>
       <Route path='*'>
-
         <NotFound/>
       </Route>
     </Switch>
