@@ -36,7 +36,7 @@
         "maxGroupSize":4,
         "price":1000,
         "gearList":"shoes, clothes, smile",
-        "imageId":1,
+        "imageId":"https://images.pexels.com/photos/1497585/pexels-photo-1497585.jpeg?cs=srgb&dl=pexels-spencer-gurley-1497585.jpg&fm=jpg",
         "tags":["hiking"]
     },
     {
@@ -56,7 +56,7 @@
         "maxGroupSize":4,
         "price":1000,
         "gearList":"shoes, clothes, smile",
-        "imageId":1,
+        "imageId":"https://images.pexels.com/photos/258045/pexels-photo-258045.jpeg?cs=srgb&dl=pexels-pixabay-258045.jpg&fm=jpg",
         "tags":["hiking"]
     }
 ]
