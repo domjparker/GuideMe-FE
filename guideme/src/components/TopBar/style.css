@@ -1,9 +1,17 @@
-#profileIcon {
+.fas {
     padding-right: 1rem;
+    color: darkorange;
+    font-size: 3rem;
+    padding-top: 1rem;
 }
 
 #logo {
     padding-left: 1rem
+}
+
+.loggedIn .fas {
+    color: darkgreen;
+    font-size: 3rem;
 }
 
 #topBar.grid-container.full {
