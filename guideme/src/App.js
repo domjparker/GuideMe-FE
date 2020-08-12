@@ -1,36 +1,49 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Adventures from './pages/Adventures'
 import Profile from './pages/Profile'
 import Homepage from './pages/Homepage'
 import Stickyfooter from './components/Stickyfooter'
+import TopBar from './components/TopBar'
+import Footer from './components/Footer'
 import NotFound from './pages/NotFound'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
+  const [page, setpage] = useState('Homepage')
+  const [user, setuser] = useState({
+    loggedIn:true,
+    host:false
+  })
+
+  const setLoginState = () => setuser({...user, loggedIn: !user.loggedIn})
+  const setHostState = () => setuser({...user, host:!user.host})
+
+
+  const handlePageChange = (pageName) => {
+      setpage(pageName);
+  }
   return (
     <Router>
     <>
+    <TopBar title={page} loggedIn={user.loggedIn} host={user.host}/>
     <Switch>
       <Route exact path='/'>
-
-          <Homepage/>
+          <Homepage handlePageChange={handlePageChange}/>
       </Route>
-      <Route exact path='/adventures'>
-
-        <Adventures/>
+      <Route exact path='/adventures'>    
+        <Adventures handlePageChange={handlePageChange}/>
       </Route>
       <Route exact path='/profile'>
-
-        <Profile/>
+        <Profile handlePageChange={handlePageChange} loggedIn={user.loggedIn} host={user.host} setLoginState={setLoginState} setHostState={setHostState}/>
       </Route>
       <Route path='*'>
-
-        <NotFound/>
+        <NotFound handlePageChange={handlePageChange}/>
       </Route>
     </Switch>
     <Stickyfooter />
+    <Footer/>
     </>
     </Router>
   );

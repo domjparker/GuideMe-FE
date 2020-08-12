@@ -1,0 +1,21 @@
+.fas {
+    padding-right: 1rem;
+    color: darkorange;
+    font-size: 3rem;
+    padding-top: 1rem;
+}
+
+#logo {
+    padding-left: 1rem
+}
+
+.loggedIn .fas {
+    color: darkgreen;
+    font-size: 3rem;
+}
+
+#topBar.grid-container.full {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    box-shadow: 0px 3px 3px darkgreen;
+}

@@ -1,0 +1,62 @@
+[
+    {
+        "_id": "laksjdf",
+        "adventureName": "Adventure 1",
+        "hostId": "1",
+        "usersOnAdventure":[],
+        "description":"This is a super cool first ever best ever adventure that takes you far and wide to Neverland",
+        "location": "Seattle,WA",
+        "itinerary": "Meet up and then fun fun fun",
+        "duration": {
+            "number": 1,
+            "unit": "days"
+        },
+        "difficulty": "extra advanced",
+        "minGroupSize":1,
+        "maxGroupSize":4,
+        "price":1000,
+        "gearList":"shoes, clothes, smile",
+        "imageId":"https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg",
+        "tags":["hiking"]
+    },
+    {
+        "_id": "alskdjf",
+        "adventureName": "Adventure 2",
+        "hostId": "2",
+        "usersOnAdventure":[],
+        "description":"This is a super cool first ever best ever adventure that takes you far and wide to Neverland",
+        "location": "Seattle,WA",
+        "itinerary": "Meet up and then fun fun fun",
+        "duration": {
+            "number": 1,
+            "unit": "days"
+        },
+        "difficulty": "extra advanced",
+        "minGroupSize":1,
+        "maxGroupSize":4,
+        "price":1000,
+        "gearList":"shoes, clothes, smile",
+        "imageId":"https://images.pexels.com/photos/1497585/pexels-photo-1497585.jpeg?cs=srgb&dl=pexels-spencer-gurley-1497585.jpg&fm=jpg",
+        "tags":["hiking"]
+    },
+    {
+        "_id": "aöskjdfölkajsf",
+        "adventureName": "Adventure 3",
+        "hostId": "3",
+        "usersOnAdventure":[],
+        "description":"This is a super cool first ever best ever adventure that takes you far and wide to Neverland",
+        "location": "Seattle,WA",
+        "itinerary": "Meet up and then fun fun fun",
+        "duration": {
+            "number": 1,
+            "unit": "days"
+        },
+        "difficulty": "extra advanced",
+        "minGroupSize":1,
+        "maxGroupSize":4,
+        "price":1000,
+        "gearList":"shoes, clothes, smile",
+        "imageId":"https://images.pexels.com/photos/258045/pexels-photo-258045.jpeg?cs=srgb&dl=pexels-pixabay-258045.jpg&fm=jpg",
+        "tags":["hiking"]
+    }
+]
