@@ -8,8 +8,7 @@
   opacity: 90%;
   height: 10vh;
 }
-.logo{
-
+.logo {
   display: flex;
   justify-content:space-around;
   color: whitesmoke;
@@ -32,6 +31,8 @@
 }
 
 #logofooter {
+  display: flex;
+  justify-content:space-around;
   color: whitesmoke;
   padding-top: 1rem;
   padding-left: 1rem
