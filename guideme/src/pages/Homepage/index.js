@@ -12,7 +12,6 @@ function Homepage(props) {
 
                 <div className="hero-section homepage">
                     <h1 className="hpTitle"><strong>GuideMe </strong></h1>
-
                     <div className="hero-section-text hpHeader">
                         <div className="callout">
                             {/* <input className="findAdventure" type="search" placeholder="ie:Hiking" /> */}
