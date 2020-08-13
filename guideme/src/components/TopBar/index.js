@@ -11,7 +11,7 @@ return (
     <div className="grid-container full" id="topBar">
         <Gridx>
             <Cell size={'small-3'}id="logo">
-                <h1 className="text-left">LOGO</h1>
+               <a href="/"> <h1 className="text-left">LOGO</h1></a>
             </Cell>
             <Cell size={'small-6'} id="pageTitle">
                 <h1 className="text-center">{props.title}</h1>
