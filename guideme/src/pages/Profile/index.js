@@ -15,8 +15,8 @@ function Profile (props) {
     
     useEffect(() => {
         loadUserData("5f358340de3d0897c09a397a")
-    }, [])
-    
+    })
+
     const loadUserData = async (id) => {
         const {data} = await API.getUserbyId(id);
         setUserData(data);

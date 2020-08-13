@@ -22,8 +22,14 @@ export default {
     getUserbyId: (id) => {
         return axios.get(`${prefix}/api/user/` + id, {withCredentials:true})
     },
+    //POST new user
+    postNewUser: (userObj) => {
+        return axios.post(`${prefix}/api/user/signup`, userObj, {withCredentials:true} )
+    },
     //GET tag by id
     getTagbyId: (id) => {
         return axios.get(`${prefix}/api/tag/` + id, {withCredentials:true})
     }
+
+
 }
