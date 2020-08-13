@@ -13,9 +13,11 @@ const Stickyfooter = (props) => (
             <Cell size={'small-3'}id="logofooter">
                 <h4 className="text-left">LOGO</h4>
             </Cell>
-            <Cell size={'small-6'} id="pageTitle">
-                <h1 className="text-center">{props.title}</h1>
+            <Cell size={'small-3'} >
                 <i className="fas fa-search search"></i>
+            </Cell>
+            <Cell size={'small-3'} id="messages">
+            <Link to={'#'} ><i className="far fa-envelope"></i></Link>
             </Cell>
             <Cell size={'small-3 text-right' + (props.loggedIn ? ' loggedIn' : '')} id="profileIcon">
                 <Link to={'/profile'} ><i className="fas fa-hiking hiking"></i></Link>
