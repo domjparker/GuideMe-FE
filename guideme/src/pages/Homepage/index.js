@@ -6,6 +6,8 @@ import './style.css'
 function Homepage(props) {
     const { handlePageChange } = props
     handlePageChange("GuideMe")
+
+    
     return (
         <>
             <Wrapper>
