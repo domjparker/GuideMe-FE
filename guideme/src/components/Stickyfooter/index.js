@@ -11,10 +11,10 @@ const Stickyfooter = (props) => (
     <div className="grid-container full" id="stickyFooter">
         <Gridx>
             <Cell size={'small-3'}id="logofooter">
-                <h4 className="text-left">LOGO</h4>
+                <Link to="/"><h4 className="text-left">LOGO</h4></Link>
             </Cell>
             <Cell size={'small-3'} >
-                <i className="fas fa-search search"></i>
+              <Link to="/adventures"><i className="fas fa-search search"></i></Link>  
             </Cell>
             <Cell size={'small-3'} id="messages">
             <Link to={'#'} ><i className="far fa-envelope"></i></Link>
