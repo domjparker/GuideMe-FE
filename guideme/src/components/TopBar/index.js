@@ -17,7 +17,7 @@ return (
                 <h1 className="text-center">{props.title}</h1>
             </Cell>
             <Cell size={'small-3 text-right' + (props.loggedIn ? ' loggedIn' : '')} id="profileIcon">
-                <Link to={'/profile'} ><i className="fas fa-hiking"></i></Link>
+                <Link to={'/profile'} ><i className="fas fa-hiking hikeicon"></i></Link>
             </Cell>
         </Gridx>
     </div>

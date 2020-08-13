@@ -1,17 +1,36 @@
-.sticky-footer-css {
-    height: 100vh;
-  }
-  
+#stickyFooter{
+  padding:5px;
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 90%;
+}
 
-  .sticky-footer-css .footer {
-    height: 2rem;
-    background-color: #2c3840;
-    color: #fff;
-  
-  }
-  
-  .sticky-footer-css .footer .menu a {
-    color: #fff;
-    
-  }
-  
+.search {
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  color: whitesmoke;
+ 
+}
+.hiking {
+  padding-top: 0.5rem;
+  padding-right: 1rem;
+  color: whitesmoke;
+ font-size: 2rem;
+ display: flex;
+ justify-content: flex-end;
+}
+
+#logofooter {
+  color: whitesmoke;
+  padding-top: 1rem;
+  padding-left: 1rem
+}
+
+.loggedIn .fas {
+  color: darkgreen;
+  font-size: 3rem;
+}

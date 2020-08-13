@@ -8,7 +8,7 @@ function Footer(props){
 
 return (
     <>
-    <div className="grid-container full">
+    <div className="grid-container copyright full">
         <Gridx>
             <Cell size={''}>
                 <h2 className="text-center">{"copyright 2020"}</h2>
