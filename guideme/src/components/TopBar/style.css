@@ -1,13 +1,28 @@
-#profileIcon {
+.hikeicon {
     padding-right: 1rem;
+    color: darkorange;
+    font-size: 3rem;
+    padding-top: 1rem;
 }
 
 #logo {
     padding-left: 1rem
 }
 
+.loggedIn .fas {
+    color: darkgreen;
+    font-size: 3rem;
+}
+
 #topBar.grid-container.full {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
     box-shadow: 0px 3px 3px darkgreen;
+    height: 10vh;
+    width: 100%;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: whitesmoke;
 }

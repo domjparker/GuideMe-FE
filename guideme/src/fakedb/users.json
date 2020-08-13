@@ -1,18 +1,18 @@
 [
     {
-        "firstName": "Andrew",
-        "lastName": "Bergstrom",
-        "email":"andrew@email.com",
+        "firstName": "Andrea",
+        "lastName": "Berg",
+        "email":"andrea@email.com",
         "password": "password",
-        "bio": "bestest greatest ever guide for most amazing spectacular adventures",
+        "bio": "fearless explorer",
         "location":"Global",
-        "veriifed":"true",
-        "host": "true",
+        "veriifed":"false",
+        "host": "false",
         "hostedAdventures": [],
         "completedAdventures": [],
-        "profilePicture": "reference",
-        "bannerPicture": "reference",
-        "tags": ["biking", "hiking", "kayaking", "climbing", "swimming", "flying"]
+        "profilePicture": "https://images.pexels.com/photos/4503592/pexels-photo-4503592.jpeg?cs=srgb&dl=pexels-mateusz-sa%C5%82aciak-4503592.jpg&fm=jpg",
+        "bannerPicture": "https://images.pexels.com/photos/4177561/pexels-photo-4177561.jpeg?cs=srgb&dl=pexels-retha-ferguson-4177561.jpg&fm=jpg",
+        "tags": []
       },
     {
         "firstName": "Andrew",
@@ -25,8 +25,8 @@
         "host": "true",
         "hostedAdventures": [],
         "completedAdventures": [],
-        "profilePicture": "reference",
-        "bannerPicture": "reference",
+        "profilePicture": "https://images.pexels.com/photos/732632/pexels-photo-732632.jpeg?cs=srgb&dl=pexels-lalu-fatoni-732632.jpg&fm=jpg",
+        "bannerPicture": "https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?cs=srgb&dl=pexels-roberto-nickson-2559941.jpg&fm=jpg",
         "tags": ["biking", "hiking", "kayaking", "climbing", "swimming", "flying"]
       }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './style.css'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
@@ -17,8 +18,8 @@ return (
             <Cell size={'small-6'} id="pageTitle">
                 <h1 className="text-center">{props.title}</h1>
             </Cell>
-            <Cell size={'small-3'} id="profileIcon">
-                <h1 className="text-right"><i className="fas fa-hiking"></i></h1>
+            <Cell size={'small-3 text-right' + (props.loggedIn ? ' loggedIn' : '')} id="profileIcon">
+                <Link to={'/profile'} ><i className="fas fa-hiking hikeicon"></i></Link>
             </Cell>
         </Gridx>
     </div>
