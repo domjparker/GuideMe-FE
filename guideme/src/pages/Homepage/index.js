@@ -8,6 +8,8 @@ import HomepageImg from '../../images/homepage.jpg'
 function Homepage(props){
     const {handlePageChange}=props
     handlePageChange("GuideMe")
+
+    
     return (
         <>
             <Wrapper>
