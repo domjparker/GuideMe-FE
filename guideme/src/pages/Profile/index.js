@@ -4,6 +4,8 @@ import TopBar from '../../components/TopBar'
 import Wrapper from '../../components/Wrapper'
 import Footer from '../../components/Footer'
 
+
+
 function Profile () {
 
     return(

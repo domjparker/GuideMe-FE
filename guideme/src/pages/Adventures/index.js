@@ -7,6 +7,7 @@ import Gridx from '../../components/Gridx'
 import Cell from '../../components/Cell'
 import Card from '../../components/Card'
 
+
 function Adventures(){
     return (
         <>
@@ -26,3 +27,6 @@ function Adventures(){
 }
 
 export default Adventures;
+
+
+
