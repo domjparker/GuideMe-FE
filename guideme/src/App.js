@@ -42,8 +42,8 @@ function App() {
         <NotFound handlePageChange={handlePageChange}/>
       </Route>
     </Switch>
-    <Stickyfooter />
     <Footer/>
+    <Stickyfooter />
     </>
     </Router>
   );
