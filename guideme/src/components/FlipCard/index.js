@@ -40,7 +40,7 @@ return (
                                     <h6>Details</h6>
                                     <ul>
                                         <li>Group size: {props.minGroupSize}-{props.maxGroupSize} </li>
-                                        <li>Duration: {props.duration.number} {props.duration.unit} </li>
+                                        <li>Duration: {props.number} {props.unit} </li>
                                         <li>Difficulty: {props.difficulty} </li>
                                     </ul>
                                 </Cell>
