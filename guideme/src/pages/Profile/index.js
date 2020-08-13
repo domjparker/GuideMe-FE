@@ -5,22 +5,36 @@ import Gridx from '../../components/Gridx'
 import Cell from '../../components/Cell'
 import TagRow from '../../components/TagRow'
 import FlipCard from '../../components/FlipCard'
-
-import usersInfo from '../../fakedb/users.json'
+import API from '../../util/API'
 
 function Profile (props) {
     const [userData, setUserData] = useState({})
 
     const {handlePageChange}=props
     handlePageChange("Profile")
-       
-    const loadUserData = () => {
-        setUserData(usersInfo[1])
-    }
-    useEffect(() => {
-        loadUserData()
     
-    }, [])
+    useEffect(() => {
+        loadUserData("5f358340de3d0897c09a397a")
+    })
+
+    const loadUserData = async (id) => {
+        const {data} = await API.getUserbyId(id);
+        setUserData(data);
+        const tagsArr = await loadTagsArr(data.tags)
+        setUserData({...userData, tags: tagsArr})
+    }
+
+
+    const loadTagsArr = async (idArr) => {
+        let tagsArr = []
+        let word
+        for (let tag in idArr) {
+            word = await API.getTagbyId(tag)
+            tagsArr.push(word)
+        }
+        return tagsArr
+    }
+    
 
 
     return(
@@ -34,7 +48,7 @@ function Profile (props) {
                 </Gridx>
                 <Gridx>
                     <Cell size={"small-6 medium-4"}>
-                        <img id="profilePic" src={userData.profilePicture} alt={userData.firstName + " " + userData.lastName} />
+                        <img id="profilePic" src="https://images.pexels.com/photos/732632/pexels-photo-732632.jpeg?cs=srgb&dl=pexels-lalu-fatoni-732632.jpg&fm=jpg" alt={userData.firstName + " " + userData.lastName} />
                     </Cell>
                     <Cell size={"small-6 medium-8"}>
                         <p>{userData.bio}</p>
