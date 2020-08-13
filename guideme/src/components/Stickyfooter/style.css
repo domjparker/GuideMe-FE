@@ -6,6 +6,7 @@
   left: 0;
   width: 100%;
   opacity: 90%;
+  height: 10vh;
 }
 
 .search, .fa-envelope {
