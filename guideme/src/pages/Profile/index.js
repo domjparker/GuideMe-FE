@@ -14,7 +14,7 @@ function Profile (props) {
     handlePageChange("Profile")
     
     useEffect(() => {
-        loadUserData("5f358340de3d0897c09a397a")
+        loadUserData()
     }, [])
 
     const loadUserData = async (id) => {
@@ -25,8 +25,6 @@ function Profile (props) {
             // loadUserAdventures(data._id)
         }
     }
-<<<<<<< HEAD
-=======
 
     const loadUserAdventures = async (id)=>{
         const {data} = await API.getAdventurebyHost(id);
@@ -34,9 +32,10 @@ function Profile (props) {
         setUserData({...userData, adventures: data})
     }
     
->>>>>>> Dev
     return(
         <>
+        {
+            props.loggedIn ?
         <Wrapper>
             <div className="grid-container full">
                 <Gridx>
@@ -73,6 +72,7 @@ function Profile (props) {
                 )}
             </div>
         </Wrapper>
+        : null}
         </>
     )    
 }

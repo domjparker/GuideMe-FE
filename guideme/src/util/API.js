@@ -31,6 +31,9 @@ export default {
     postNewUser: (userObj) => {
         return axios.post(`${prefix}/api/user/signup`, userObj, {withCredentials:true} )
     },
+    loginUser : (loginObj) => {
+        return axios.post(`${prefix}/api/user/login`, loginObj, {withCredentials:true} )
+    },
     //============TAGS==================
     //GET tag by id
     getTagbyId: (id) => {

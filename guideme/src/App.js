@@ -8,13 +8,15 @@ import Stickyfooter from './components/Stickyfooter'
 import TopBar from './components/TopBar'
 import Footer from './components/Footer'
 import NotFound from './pages/NotFound'
+import Login from './pages/Login'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   const [page, setpage] = useState('Homepage')
   const [user, setuser] = useState({
-    loggedIn:true,
-    host:false
+    loggedIn:false,
+    host:false,
+    id:"5f358340de3d0897c09a397a"
   })
 
   const setLoginState = () => setuser({...user, loggedIn: !user.loggedIn})
@@ -36,7 +38,9 @@ function App() {
         <Adventures handlePageChange={handlePageChange}/>
       </Route>
       <Route exact path='/profile'>
+        {user.loggedIn ? 
         <Profile handlePageChange={handlePageChange} loggedIn={user.loggedIn} host={user.host} setLoginState={setLoginState} setHostState={setHostState}/>
+        : <Login handlePageChange={handlePageChange} loginSuccess={setLoginState}/>  }
       </Route>
       <Route path='*'>
         <NotFound handlePageChange={handlePageChange}/>

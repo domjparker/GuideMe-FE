@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import API from "../util/API";
+import API from "../../util/API";
 import { Input, TextArea, FormBtn } from "../Form";
-
+import Gridx from '../Gridx'
+import Cell from '../Cell'
 
 function Adventure() {
     // Setting our component's initial state
@@ -23,7 +24,7 @@ function Adventure() {
       event.preventDefault();
        API.postNewAdventure(formObject)
         .then(data => {
-          getAllAdventures();
+          // getAllAdventures();
         })
     }
     
