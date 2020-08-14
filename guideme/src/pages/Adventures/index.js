@@ -3,9 +3,9 @@ import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'
 import Cell from '../../components/Cell'
-
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
+import Adventure from '../../components/Adventure'
 
 
 function Adventures(props){
@@ -21,9 +21,6 @@ function Adventures(props){
         const result = await API.getAllAdventures()
         setAdventures(result.data)
     }
-    
-    
-
     return (
         <>
             <Wrapper>
@@ -42,3 +39,6 @@ function Adventures(props){
 }
 
 export default Adventures;
+
+
+
