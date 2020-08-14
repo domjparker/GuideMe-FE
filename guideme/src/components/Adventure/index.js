@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import API from "../util/API";
+import API from "../../util/API";
 import { Input, TextArea, FormBtn } from "../Form";
+import Cell from '../Cell'
+import Gridx from '../Gridx'
 
 
 function Adventure() {
@@ -23,7 +25,7 @@ function Adventure() {
       event.preventDefault();
        API.postNewAdventure(formObject)
         .then(data => {
-          getAllAdventures();
+          // getAllAdventures();
         })
     }
     
