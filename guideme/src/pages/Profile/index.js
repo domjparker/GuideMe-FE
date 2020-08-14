@@ -25,8 +25,6 @@ function Profile (props) {
             // loadUserAdventures(data._id)
         }
     }
-<<<<<<< HEAD
-=======
 
     const loadUserAdventures = async (id)=>{
         const {data} = await API.getAdventurebyHost(id);
@@ -34,7 +32,6 @@ function Profile (props) {
         setUserData({...userData, adventures: data})
     }
     
->>>>>>> Dev
     return(
         <>
         <Wrapper>
