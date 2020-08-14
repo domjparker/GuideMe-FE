@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import {Redirect} from 'react-router-dom'
 import "./style.css";
-import {Input, TextArea, FormBtn} from "../Form"
+import {Input, FormBtn} from "../Form"
 import API from '../../util/API'
 
 function SignIn(props) {
@@ -31,12 +32,13 @@ function SignIn(props) {
       API.loginUser(loginObj).then(res=>{
         console.log(res)
         props.logMeIn()
-        setloginObj({
-          email: "",
-          password: ""
-        });
+        // setloginObj({
+        //   email: "",
+        //   password: ""
+        // });
+        return <Redirect to='/profile' />
       }
-      )
+      ).catch(err=>console.log(err))
     };
   
     

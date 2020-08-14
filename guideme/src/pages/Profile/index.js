@@ -15,27 +15,28 @@ function Profile (props) {
     
     useEffect(() => {
         loadUserData()
+        API.getSessionData().then(res => {
+            let id = res.data.id
+            loadUserAdventures(id)
+        }).catch(err => console.log(err))
     }, [])
 
     const loadUserData = async (id) => {
-        const {data} = await API.getUserbyId(id);
-        setUserData({...userData, data});
-
-        if (data.host===true){
-            // loadUserAdventures(data._id)
-        }
+        const {data} = await API.getUserbyId();
+        console.log(data)
+        setUserData(data);
     }
 
     const loadUserAdventures = async (id)=>{
         const {data} = await API.getAdventurebyHost(id);
-        console.log(data)
-        setUserData({...userData, adventures: data})
+        if (data.length>0){
+            console.log('why are we here, this user does not have hosted adventures?')
+            setUserData({...userData, adventures: data})
+        }
     }
     
     return(
         <>
-        {
-            props.loggedIn ?
         <Wrapper>
             <div className="grid-container full">
                 <Gridx>
@@ -72,7 +73,6 @@ function Profile (props) {
                 )}
             </div>
         </Wrapper>
-        : null}
         </>
     )    
 }

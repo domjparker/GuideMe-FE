@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
-import { Input, TextArea, FormBtn } from "../Form"
+import { Input, FormBtn } from "../Form"
 import API from '../../util/API'
 function SignUp() {
 

@@ -5,7 +5,6 @@ import Gridx from '../../components/Gridx'
 import Cell from '../../components/Cell'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
-import Adventure from '../../components/Adventure'
 
 
 function Adventures(props){

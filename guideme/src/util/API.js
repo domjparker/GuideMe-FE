@@ -24,13 +24,18 @@ export default {
     },
     //============USERS==================
     //GET user by id
-    getUserbyId: (id) => {
-        return axios.get(`${prefix}/api/user/profile` + id, {withCredentials:true})
+    getUserbyId: () => {
+        return axios.get(`${prefix}/api/user/profile`, {withCredentials:true})
+    },
+    //GET session data
+    getSessionData : () => {
+        return axios.get(`${prefix}/api/user/getSession`, {withCredentials:true})
     },
     //POST new user
     postNewUser: (userObj) => {
         return axios.post(`${prefix}/api/user/signup`, userObj, {withCredentials:true} )
     },
+    //POST user login
     loginUser : (loginObj) => {
         return axios.post(`${prefix}/api/user/login`, loginObj, {withCredentials:true} )
     },
@@ -39,6 +44,4 @@ export default {
     getTagbyId: (id) => {
         return axios.get(`${prefix}/api/tag/` + id, {withCredentials:true})
     }
-
-
 }

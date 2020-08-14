@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Wrapper from '../../components/Wrapper'
 import SignUp from '../../components/SignUp'
 import SignIn from '../../components/SignIn'
@@ -15,6 +15,7 @@ function Login (props) {
         </Wrapper>
         </>
     )
+
 }
 
 export default Login
