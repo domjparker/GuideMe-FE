@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import { Redirect, useHistory } from 'react-router-dom'
