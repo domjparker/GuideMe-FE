@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import API from "../../util/API";
 import { Input, TextArea, FormBtn } from "../Form";
 import Cell from '../Cell'
@@ -26,7 +26,7 @@ function Adventure() {
        API.postNewAdventure(formObject)
         .then(data => {
           // getAllAdventures();
-        })
+        }).catch(err=>console.log(err))
     }
     
     // function deleteAdventure(id) {

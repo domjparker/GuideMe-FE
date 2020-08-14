@@ -39,12 +39,16 @@ function Profile (props) {
     }
 
     const handleDeleteUser = () => {
-        API.deleteUser().then(res=>{
-            console.log(res)
+        API.deleteUser().then(()=>{
+            props.setLoginState()
             return <Redirect to='/'/>
-        })
+        }).catch(err => console.log(err))
     }
     
+    const handleCreateAdventureClick = () => {
+        console.log('yes sir, you clicked!')
+    }
+
     return(
         <>
         <Wrapper>
@@ -82,7 +86,16 @@ function Profile (props) {
                 </>
                 )}
                 <Gridx>
-                    <Cell size={''}>
+                    {props.host ? 
+                    <Cell size={'medium-6'}>
+                        <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'}/>
+                    </Cell>
+                    :
+                    <Cell size={'medium-6'}>
+                        <Btn classes={'button'} handleClick={props.setHostState} text={'Become a guide'}/>
+                    </Cell>
+                    }
+                    <Cell size={'medium-6'}>
                         <Btn classes={'alert button'} handleClick={handleDeleteUser} text={'Delete my account'}/>
                     </Cell>
                 </Gridx>
