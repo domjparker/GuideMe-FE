@@ -6,7 +6,6 @@ import Cell from '../../components/Cell'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import{useParams} from 'react-router-dom'
-import Adventure from '../../components/Adventure'
 
 
 function Adventures(props){

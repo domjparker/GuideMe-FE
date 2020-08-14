@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
+import {Redirect} from 'react-router-dom'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'
 import Cell from '../../components/Cell'
 import TagRow from '../../components/TagRow'
+import Btn from '../../components/Btn'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 
@@ -35,6 +37,13 @@ function Profile (props) {
             // setUserData({...userData, adventures: data})
         }
     }
+
+    const handleDeleteUser = () => {
+        API.deleteUser().then(res=>{
+            console.log(res)
+            return <Redirect to='/'/>
+        })
+    }
     
     return(
         <>
@@ -42,7 +51,7 @@ function Profile (props) {
             <div className="grid-container full">
                 <Gridx>
                     <Cell size={''}>
-                        <h2>{userData.firstName} {userData.lastName}</h2>
+                        <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                     </Cell>
                 </Gridx>
                 <Gridx>
@@ -72,6 +81,11 @@ function Profile (props) {
                 </Gridx>
                 </>
                 )}
+                <Gridx>
+                    <Cell size={''}>
+                        <Btn classes={'alert button'} handleClick={handleDeleteUser} text={'Delete my account'}/>
+                    </Cell>
+                </Gridx>
             </div>
         </Wrapper>
         </>
