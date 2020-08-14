@@ -1,14 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
-import './style.css'
+import { Redirect, useHistory } from 'react-router-dom'
+
+
 
 function Homepage(props) {
-    const { handlePageChange } = props
+    let history = useHistory()
+    const  {handlePageChange}  = props
     handlePageChange("GuideMe")
 
-    
+    const [searchTerm, setSearchTerm] = React.useState('');
 
+
+    const handleSubmit = (event) =>{
+        event.preventDefault()
+        history.push(`/adventures/${searchTerm.toLowerCase()}`)
+    }
+    
     return (
         <>
             <Wrapper>
@@ -17,24 +26,29 @@ function Homepage(props) {
                     <h1 className="hpTitle"><strong>GuideMe </strong></h1>
                     <div className="hero-section-text hpHeader">
                         <div className="callout">
-                            {/* <input className="findAdventure" type="search" placeholder="ie:Hiking" /> */}
-                            <div className="container">
-                                <form className="findAdventure">
+                          
+                            <div className="container searchBox">
+                            
+                                <select onSubmit={handleSubmit} className="findAdventure">
+                                
                                     <input
-                                        onChange={props.handleInputChange}
-                                        value={props.value}
-                                        name="search"
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="ie:Hiking"
+                                        onChange={(e)=>{setSearchTerm(e.target.value)}}
+                                        value={searchTerm}
+                                        name={searchTerm}
                                         id="search"
                                     />
-                                </form>
+                                        <option>Adventure awaits</option>
+                                        <option value="hiking">Hiking</option>
+                                        <option value="mountain biking">Mountain Biking</option>
+                                        <option value="rock climbing">Rock climbing</option>
+                                        <option value="backpacking">Backpacking</option>
+                                </select>
+                                <button onClick={handleSubmit} className="button searchAdventure" > Search</button>
                             </div>
-                            <button className="button searchAdventure" href="#"> Search</button>
-                            {/* <>
-                            <button className="button hostAdventure" href="#"> Host Adventure</button>
-                           </> */}
+                           
+                            
+                            <button className="button hostAdventure"> Host Adventure</button>
+                           
                         </div>
                     </div>
                 </div>

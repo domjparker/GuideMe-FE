@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import API from "../../util/API";
 import { Input, TextArea, FormBtn } from "../Form";
-import Gridx from '../Gridx'
 import Cell from '../Cell'
+import Gridx from '../Gridx'
+
 
 function Adventure() {
     // Setting our component's initial state
