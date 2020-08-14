@@ -3,12 +3,14 @@ import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'
 import Cell from '../../components/Cell'
-
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
+import{useParams} from 'react-router-dom'
 
 
 function Adventures(props){
+    let {tag} =  useParams()
+    console.log(tag)
     const [adventures, setAdventures] = useState([])
     const {handlePageChange}=props
     handlePageChange("Adventures")
@@ -22,8 +24,6 @@ function Adventures(props){
         setAdventures(result.data)
     }
     
-    
-
     return (
         <>
             <Wrapper>

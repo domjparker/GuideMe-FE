@@ -17,6 +17,9 @@ function App() {
     host:false
   })
 
+
+
+
   const setLoginState = () => setuser({...user, loggedIn: !user.loggedIn})
   const setHostState = () => setuser({...user, host:!user.host})
 
@@ -24,6 +27,8 @@ function App() {
   const handlePageChange = (pageName) => {
       setpage(pageName);
   }
+  
+
   return (
     <Router>
     <>
@@ -32,7 +37,11 @@ function App() {
       <Route exact path='/'>
           <Homepage handlePageChange={handlePageChange}/>
       </Route>
-      <Route exact path='/adventures'>    
+      {/* keep an eye out for edge case. Might need to delete 'exact' */}
+      <Route exact path='/adventures/:tag'>    
+        <Adventures handlePageChange={handlePageChange}/>
+      </Route>
+      <Route exact path='/adventures/'>    
         <Adventures handlePageChange={handlePageChange}/>
       </Route>
       <Route exact path='/profile'>

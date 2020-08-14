@@ -19,6 +19,10 @@ export default {
     getAdventurebyLocation: (location) => {
         return axios.get(`${prefix}/api/adventure/location/` + location, {withCredentials:true})
     },
+    getAdventurebyTag: (tag) => {
+        return axios.get(`${prefix}/api/adventure/tags/` + tag, {withCredentials:true})
+    },
+
     postNewAdventure: (advObj) => {
         return axios.post(`${prefix}/api/adventure`, advObj, {withCredentials:true} )
     },
