@@ -1,14 +1,12 @@
 import React from 'react'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
-import './style.css'
 
 function Homepage(props) {
     const { handlePageChange } = props
     handlePageChange("GuideMe")
 
     
-
     return (
         <>
             <Wrapper>
@@ -17,24 +15,25 @@ function Homepage(props) {
                     <h1 className="hpTitle"><strong>GuideMe </strong></h1>
                     <div className="hero-section-text hpHeader">
                         <div className="callout">
-                            {/* <input className="findAdventure" type="search" placeholder="ie:Hiking" /> */}
-                            <div className="container">
+                          
+                            <div className="container searchBox">
                                 <form className="findAdventure">
                                     <input
                                         onChange={props.handleInputChange}
                                         value={props.value}
                                         name="search"
                                         type="text"
-                                        className="form-control"
+                                        className="form-control searchBarShadow "
                                         placeholder="ie:Hiking"
                                         id="search"
                                     />
                                 </form>
+                                <button className="button searchAdventure" href="#"> Search</button>
                             </div>
-                            <button className="button searchAdventure" href="#"> Search</button>
-                            {/* <>
+                           
+                            
                             <button className="button hostAdventure" href="#"> Host Adventure</button>
-                           </> */}
+                           
                         </div>
                     </div>
                 </div>

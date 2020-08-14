@@ -12,13 +12,9 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    /* -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center; */
+ 
   }
-  .button{
-    background-color: teal;
-  }
+ 
   .hpTitle {
     margin:1rem;
     display: flex;
@@ -29,34 +25,45 @@
   }
   .callout{
     margin-top: 20vh;
-    width: 80vw;
+    
     opacity: 98%;
     display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
     box-shadow: 1px 1px 2px whitesmoke;
-
+    max-width: 80vw;
   }
 
-.callout>:last-child {
-    margin-bottom: 1rem;
-    margin-top: .4rem;
+
+.searchBox{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 .findAdventure  {
+  width: 60%;
    margin: 0.4rem;
-   box-shadow: 1px 1px 2px black;
+   
+  }
+  .searchBarShadow {
+    box-shadow: 1px 1px 2px black;
   }
   .searchAdventure{
-    border-radius: 10%;
+    width: 35%;
+    border-radius: 5%;
     box-shadow: 1px 1px 2px black;
+    background-color: teal;
   }
 
-  /* .hostAdventure{
+  .hostAdventure{
     display: flex;
-    
-    border-radius: 10%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
     box-shadow: 1px 1px 2px black;
-
+    background-color: rgb(197, 146, 6);
  
-  } */
+  }
  
   [class*="homepage"] {
     width: 100%;
