@@ -29,7 +29,7 @@ export default {
     //============USERS==================
     //GET user by id
     getUserbyId: (id) => {
-        return axios.get(`${prefix}/api/user/` + id, {withCredentials:true})
+        return axios.get(`${prefix}/api/user/profile` + id, {withCredentials:true})
     },
     //POST new user
     postNewUser: (userObj) => {

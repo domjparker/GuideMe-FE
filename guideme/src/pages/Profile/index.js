@@ -15,28 +15,26 @@ function Profile (props) {
     
     useEffect(() => {
         loadUserData("5f358340de3d0897c09a397a")
-    })
+    }, [])
 
     const loadUserData = async (id) => {
         const {data} = await API.getUserbyId(id);
-        setUserData(data);
-        const tagsArr = await loadTagsArr(data.tags)
-        setUserData({...userData, tags: tagsArr})
-    }
+        setUserData({...userData, data});
 
-
-    const loadTagsArr = async (idArr) => {
-        let tagsArr = []
-        let word
-        for (let tag in idArr) {
-            word = await API.getTagbyId(tag)
-            tagsArr.push(word)
+        if (data.host===true){
+            // loadUserAdventures(data._id)
         }
-        return tagsArr
+    }
+<<<<<<< HEAD
+=======
+
+    const loadUserAdventures = async (id)=>{
+        const {data} = await API.getAdventurebyHost(id);
+        console.log(data)
+        setUserData({...userData, adventures: data})
     }
     
-
-
+>>>>>>> Dev
     return(
         <>
         <Wrapper>
@@ -66,8 +64,8 @@ function Profile (props) {
                 </Gridx>
                 <Gridx classes="grid-margin-x">
                     {(userData.hopstedAdventures)? userData.hostedAdventures.map(adventure => (
-                        <Cell key={adventure.id} size={'medium-6 large-4'}>
-                            <FlipCard key={adventure.id} location={adventure.location} difficulty={adventure.difficulty} duration={adventure.duration} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.imageId} title={adventure.adventureName} host={adventure.hostId} description={adventure.description}/>
+                        <Cell key={adventure._id} size={'medium-6 large-4'}>
+                            <FlipCard key={adventure._id} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={"https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description}/>
                         </Cell>
                     )) : null}
                 </Gridx>

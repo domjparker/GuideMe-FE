@@ -3,6 +3,7 @@ import './style.css'
 import {Link} from 'react-router-dom'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
+import LOGO from '../../images/logo.jpg'
 
 
 const Stickyfooter = (props) => (
@@ -11,7 +12,7 @@ const Stickyfooter = (props) => (
     <div className="grid-container full" id="stickyFooter">
         <Gridx>
             <Cell size={'small-3'}id="logofooter">
-                <Link to="/"><h4 className="text-left logo">LOGO</h4></Link>
+                <Link to="/"><h4 className="text-left"><img src = {LOGO}></img></h4></Link>
             </Cell>
             <Cell size={'small-3'} >
               <Link to="/adventures"><i className="fas fa-search search"></i></Link>  
