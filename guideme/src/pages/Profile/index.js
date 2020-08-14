@@ -14,22 +14,26 @@ function Profile (props) {
     handlePageChange("Profile")
     
     useEffect(() => {
-        loadUserData("5f358340de3d0897c09a397a")
+        loadUserData()
+        API.getSessionData().then(res => {
+            let id = res.data.id
+            loadUserAdventures(id)
+        }).catch(err => console.log(err))
     }, [])
 
-    const loadUserData = async (id) => {
-        const {data} = await API.getUserbyId(id);
-        setUserData({...userData, data});
-
-        if (data.host===true){
-            // loadUserAdventures(data._id)
-        }
+    const loadUserData = async () => {
+        const {data} = await API.getUserbyId();
+        console.log(data)
+        setUserData(data);
     }
 
     const loadUserAdventures = async (id)=>{
         const {data} = await API.getAdventurebyHost(id);
-        console.log(data)
-        setUserData({...userData, adventures: data})
+        if (data.length>0){
+            console.log('why are we here, this user does not have hosted adventures?')
+            console.log(data)
+            // setUserData({...userData, adventures: data})
+        }
     }
     
     return(
