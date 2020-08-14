@@ -54,7 +54,7 @@ function Adventure() {
               <Input
                 onChange={handleInputChange}
                 name="hostId"
-                placeholder="Host"
+                placeholder="Host ID"
                 value={formObject.hostId}
               />
               <Input
@@ -114,7 +114,7 @@ function Adventure() {
               <Input
                 onChange={handleInputChange}
                 name="gearList"
-                placeholder="Gear Needed:"
+                placeholder="Gear Need:"
                 value={formObject.gearList}
               />
               <Input
