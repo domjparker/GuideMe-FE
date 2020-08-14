@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
-import "../../components/Form"
+import { Input, TextArea, FormBtn } from "../Form"
 
-class SignUp extends Component {
+function SignUp() {
   // Setting the component's initial state
   state = {
     firstName: "",
@@ -47,43 +47,42 @@ class SignUp extends Component {
     });
   };
 
-  render() {
-    // Notice how each input has a `value`, `name`, and `onChange` prop
+  render(); {
     return (
       <div>
         <p>
           Hello {this.state.firstName} {this.state.lastName}
         </p>
         <form className="signup">
-          <input
+          <Input
             value={this.state.firstName}
             name="firstName"
             onChange={this.handleInputChange}
             type="text"
             placeholder="First Name"
           />
-          <input
+          <Input
             value={this.state.lastName}
             name="lastName"
             onChange={this.handleInputChange}
             type="text"
             placeholder="Last Name"
           />
-          <input
+          <Input
             value={this.state.email}
             name="email"
             onChange={this.handleInputChange}
             type="text"
             placeholder="Email"
           />
-          <input
+          <Input
             value={this.state.password}
             name="password"
             onChange={this.handleInputChange}
             type="password"
             placeholder="Password"
           />
-          <button onClick={this.handleFormSubmit}>Submit</button>
+          <FormBtn onClick={this.handleFormSubmit}>Submit</FormBtn>
         </form>
       </div>
     );

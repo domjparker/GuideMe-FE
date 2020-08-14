@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
-import "../../components/Form"
+import {Input, TextArea, FormBtn} from "../Form"
 
 class SignIn extends Component {
     // Setting the component's initial state
@@ -48,21 +48,21 @@ class SignIn extends Component {
             Welcome Back!
           </p>
           <form className="signin">
-            <input
+            <Input
               value={this.state.email}
               name="email"
               onChange={this.handleInputChange}
               type="text"
               placeholder="Email"
             />
-            <input
+            <Input
               value={this.state.password}
               name="password"
               onChange={this.handleInputChange}
               type="password"
               placeholder="Password"
             />
-            <button onClick={this.handleFormSubmit}>Submit</button>
+            <FormBtn onClick={this.handleFormSubmit}>Submit</FormBtn>
           </form>
         </div>
       );

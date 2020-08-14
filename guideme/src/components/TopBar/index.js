@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import './style.css'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
-import LogoImg from '../../images/rsz_logo.jpg'
 
 function TopBar(props){
 
@@ -13,7 +12,7 @@ return (
         <Gridx>
             <Cell size={'small-3'}id="logo">
                 {/* <h1 className="text-left">LOGO</h1> */}
-                <img className="logo"src={LogoImg} alt="logopic"/>
+                {/* <img className="logo"src={LogoImg} alt="logopic"/> */}
             </Cell>
             <Cell size={'small-6'} id="pageTitle">
                 <h1 className="text-center">{props.title}</h1>
