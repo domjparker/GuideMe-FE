@@ -21,7 +21,7 @@ function Profile (props) {
         }).catch(err => console.log(err))
     }, [])
 
-    const loadUserData = async (id) => {
+    const loadUserData = async () => {
         const {data} = await API.getUserbyId();
         console.log(data)
         setUserData(data);
@@ -31,7 +31,8 @@ function Profile (props) {
         const {data} = await API.getAdventurebyHost(id);
         if (data.length>0){
             console.log('why are we here, this user does not have hosted adventures?')
-            setUserData({...userData, adventures: data})
+            console.log(data)
+            // setUserData({...userData, adventures: data})
         }
     }
     
