@@ -53,8 +53,8 @@ function Profile (props) {
         <>
         <Wrapper>
             <div className="grid-container full">
-                <Gridx>
-                    <Cell size={''}>
+                <Gridx classes={'hero-section'}>
+                    <Cell size={'hero-section-text'}>
                         <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                     </Cell>
                 </Gridx>

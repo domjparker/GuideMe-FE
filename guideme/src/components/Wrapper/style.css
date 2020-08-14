@@ -3,4 +3,17 @@
     padding-bottom: 100px;
     margin-top:10vh;
   }
-  
+
+@media screen and (min-width: 600px) {
+  .wrapper {
+    margin-left: 10vw;
+  margin-right:10vw}
+
+}
+
+@media screen and (min-width: 1000px) {
+  .wrapper {
+    margin-left: 20vw;
+  margin-right:20vw}
+
+}

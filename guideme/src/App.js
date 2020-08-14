@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Adventures from './pages/Adventures'
@@ -17,9 +17,6 @@ function App() {
     loggedIn:false,
     host:false
   })
-
-
-
 
   const setLoginState = () => setuser({...user, loggedIn: !user.loggedIn})
   const setHostState = () => setuser({...user, host:!user.host})

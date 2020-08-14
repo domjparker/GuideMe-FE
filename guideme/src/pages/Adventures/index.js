@@ -27,7 +27,7 @@ function Adventures(props){
         <>
             <Wrapper>
                 <div className="grid-container full">
-                    <Gridx classes={'grid-margin-x'}>
+                    <Gridx classes={'grid-margin-x grid-margin-y'}>
                         {adventures.map(adventure => 
                         <Cell key={adventure.hostId + " " + adventure._id} size={'medium-6 large-4'}>
                             <FlipCard key={adventure._id} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={"https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description}/>
