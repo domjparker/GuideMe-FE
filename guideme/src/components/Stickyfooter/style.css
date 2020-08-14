@@ -8,7 +8,11 @@
   opacity: 90%;
   height: 10vh;
 }
-
+.logo {
+  display: flex;
+  justify-content:space-around;
+  color: whitesmoke;
+}
 .search, .fa-envelope {
   font-size: 1.5rem;
   padding-top: 1rem;
@@ -23,10 +27,12 @@
   color: whitesmoke;
  font-size: 1.5rem;
  display: flex;
- justify-content: flex-end;
+ justify-content: space-around;
 }
 
 #logofooter {
+  display: flex;
+  justify-content:space-around;
   color: whitesmoke;
   padding-top: 1rem;
   padding-left: 1rem
