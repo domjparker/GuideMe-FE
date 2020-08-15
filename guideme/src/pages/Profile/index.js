@@ -63,7 +63,7 @@ function Profile (props) {
                 </Gridx>
                 <Gridx>
                     <Cell size={"small-6 medium-4"}>
-                        <img id="profilePic" src="https://images.pexels.com/photos/732632/pexels-photo-732632.jpeg?cs=srgb&dl=pexels-lalu-fatoni-732632.jpg&fm=jpg" alt={userData.firstName + " " + userData.lastName} />
+                        <img id="profilePic" src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName} />
                     </Cell>
                     <Cell size={"small-6 medium-8"}>
                         <p>{userData.bio}</p>
