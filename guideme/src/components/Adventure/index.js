@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import API from "../../util/API";
-import { Input, FormBtn } from "../Form";
+import { Input, TextArea, FormBtn } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
+import Btn from '../Btn'
 
 
-function Adventure() {
+function Adventure(props) {
   // Setting our component's initial state
-
+  let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
   // update the initial state to provide values for
   // the controls in the form (use empty strings)
+  const handleModalClose = () => {
+    showHideModal = 'reveal d-none'
+  }
 
   const [formObject, setFormObject] = useState({ 
     adventureName: '', 
@@ -77,9 +81,12 @@ function Adventure() {
   // }
 
   return (
+    <div className={showHideModal} id="exampleModal1">
+      <h1>Create an Adventure</h1>
+      <p className="lead">publish an adventrue for the masses to enjoy</p>
     <div className="grid-container fluid">
       <Gridx>
-        <Cell size="medium-6">
+        <Cell size="">
           <form>
             <Input
               onChange={handleInputChange}
@@ -87,7 +94,7 @@ function Adventure() {
               placeholder="Adventure:"
               value={formObject.adventureName}
             />
-            <Input
+            <TextArea
               onChange={handleInputChange}
               name="description"
               placeholder="Description:"
@@ -99,7 +106,7 @@ function Adventure() {
               placeholder="Location:"
               value={formObject.location}
             />
-            <Input
+            <TextArea
               onChange={handleInputChange}
               name="itinerary"
               placeholder="Itinerary:"
@@ -152,9 +159,11 @@ function Adventure() {
               onClick={handleFormSubmit}>
                 Publish Adventure
                 </FormBtn>
+                <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/>
           </form>
         </Cell>
       </Gridx>
+    </div>
     </div>
   );
 }

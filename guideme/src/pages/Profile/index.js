@@ -8,6 +8,7 @@ import TagRow from '../../components/TagRow'
 import Btn from '../../components/Btn'
 import FlipCard from '../../components/FlipCard'
 import Adventure from '../../components/Adventure'
+import UserUpdate from '../../components/UserUpdate'
 import Modal from '../../components/Modal'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
@@ -97,7 +98,7 @@ function Profile (props) {
                 </Gridx>
                 </>
                 )}
-                <Gridx>
+                <Gridx classes={''}>
                     {props.host ? 
                     <Cell size={'medium-6'}>
                         <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'}/>
@@ -112,13 +113,17 @@ function Profile (props) {
                     </Cell>
                 </Gridx>
                 <Modal/>
-                <Gridx>
+                <Gridx classes={''}>
                     <Cell size={'medium-6'}>
-                        <Modal show={modal}>
-                            <Adventure/>
-                        </Modal>
+                        {/* <Modal show={modal}> */}
+                            
+                        {/* </Modal> */}
+                    </Cell>
+                    <Cell size={'medium-6'}>
+                            <UserUpdate/>
                     </Cell>
                 </Gridx>
+                <Adventure show={modal}/>
             </div>
         </Wrapper>
         </>

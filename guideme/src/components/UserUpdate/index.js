@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import API from "../../util/API";
-import { Input, FormBtn } from "../Form";
+import { Input, TextArea, FormBtn } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
 
@@ -39,14 +39,14 @@ function UserUpdate() {
     //TODO: change to update user
     //  API.postNewAdventure(postObj)
     //   .then(data => {
-    //     alert('UserUpdate created!')
-    //     setFormObject({ 
-    //       firstName: '', 
-    //       lastName: '', 
-    //       email: '', 
-    //       bio: '',  
-    //       location: '', 
-    //       tags: []  })
+        alert('UserUpdate created!')
+        setFormObject({ 
+          firstName: '', 
+          lastName: '', 
+          email: '', 
+          bio: '',  
+          location: '', 
+          tags: []  })
     //   }).catch(err=> console.log(err))
   }
 
@@ -62,7 +62,7 @@ function UserUpdate() {
   return (
     <div className="grid-container fluid">
       <Gridx>
-        <Cell size="medium-6">
+        <Cell size="">
           <form>
             <Input
               onChange={handleInputChange}
@@ -94,10 +94,10 @@ function UserUpdate() {
               placeholder="Duration:"
               value={formObject.duration}
             /> */}
-            <Input
+            <TextArea
               onChange={handleInputChange}
               name="bio"
-              placeholder="Difficulty:"
+              placeholder="Bio:"
               value={formObject.difficulty}
             />
             <Input
@@ -107,7 +107,6 @@ function UserUpdate() {
               value={formObject.tags}
             />
             <FormBtn
-              disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary)}
               onClick={handleFormSubmit}>
                 Save changes
                 </FormBtn>

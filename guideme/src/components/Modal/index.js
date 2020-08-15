@@ -1,19 +1,26 @@
 import React from 'react'
+import './style.css'
+import Btn from '../Btn'
+import Adventure from '../Adventure'
 
 
 function Modal(props) {
-    const showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+    
+    let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+    
+    const handleModalClose = () => {
+        showHideModal = 'reveal d-none'
+    }
 
     return (
-        <div className={showHideModal} id="exampleModal1" data-reveal>
-            <h1>Awesome. I Have It.</h1>
-            <p className="lead">Your couch. It is mine.</p>
-            <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-            <button className="close-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div className={showHideModal} id="exampleModal1">
+            <Adventure/>
         </div>
-    )
+        )
+        {/* <h1>{props.title}</h1>
+        <p className="lead">{props.intro}</p> */}
+        {/* <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/> */}
+    {/* </div> */}
 }
 
 export default Modal
