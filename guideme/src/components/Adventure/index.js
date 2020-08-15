@@ -11,22 +11,60 @@ function Adventure() {
   // update the initial state to provide values for
   // the controls in the form (use empty strings)
 
-  const [formObject, setFormObject] = useState({ adventureName: '', hostId: '', usersOnAdventure: '[]', description: '', location: '', itinerary: '', duration: '', difficulty: '', minGroupSize: '', maxGroupSize: '', price: '', gearList: '', tags: '' })
+  const [formObject, setFormObject] = useState({ 
+    adventureName: '', 
+    hostId: '', 
+    description: '', 
+    location: '', 
+    itinerary: '',  
+    difficulty: '', 
+    minGroupSize: '', 
+    maxGroupSize: '', 
+    price: '', 
+    gearList: '', 
+    tags: '' })
 
 
 
   function handleInputChange(event) {
     // add code to control the components here
-    setFormObject({ ...formObject, [event.target.name]: event.target.value })
+    let name = event.target.name
+    let value
+    if (name==="minGroupSize" || name==="maxGroupSize" || name==="price" ){
+      value = parseInt(event.target.value)
+    } else {
+      value=event.target.value
+    }
+    setFormObject({ ...formObject, [name]: value })
   }
 
-  function handleFormSubmit(event) {
+  async function handleFormSubmit(event) {
     // add code here to post a new adventure to the api
     event.preventDefault();
-    API.postNewAdventure(formObject)
+    let postObj = {...formObject}
+    if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
+    postObj.tags=[]
+    const {data} = await API.getSessionData()
+    postObj.hostId = data.id
+    console.log(postObj)
+    postObj.duration= {time: 3, unit: 'hours'}
+    console.log(postObj)
+    API.postNewAdventure(postObj)
       .then(data => {
-        // getAllAdventures();
-      })
+        alert('Adventure created!')
+        setFormObject({ 
+          adventureName: '', 
+          hostId: '', 
+          description: '', 
+          location: '', 
+          itinerary: '',  
+          difficulty: '', 
+          minGroupSize: '', 
+          maxGroupSize: '', 
+          price: '', 
+          gearList: '', 
+          tags: '' })
+      }).catch(err=> console.log(err))
   }
 
   // function deleteAdventure(id) {
@@ -42,25 +80,12 @@ function Adventure() {
     <div className="grid-container fluid">
       <Gridx>
         <Cell size="medium-6">
-
           <form>
             <Input
               onChange={handleInputChange}
               name="adventureName"
               placeholder="Adventure:"
               value={formObject.adventureName}
-            />
-            <Input
-              onChange={handleInputChange}
-              name="hostId"
-              placeholder="Host ID"
-              value={formObject.hostId}
-            />
-            <Input
-              onChange={handleInputChange}
-              name="usersOnAdventure"
-              placeholder="Users"
-              value={formObject.usersOnAdventure}
             />
             <Input
               onChange={handleInputChange}
@@ -80,12 +105,12 @@ function Adventure() {
               placeholder="Itinerary:"
               value={formObject.itinerary}
             />
-            <Input
+            {/* <Input
               onChange={handleInputChange}
               name="duration"
               placeholder="Duration:"
               value={formObject.duration}
-            />
+            /> */}
             <Input
               onChange={handleInputChange}
               name="difficulty"
@@ -123,10 +148,9 @@ function Adventure() {
               value={formObject.tags}
             />
             <FormBtn
-              disabled={!(formObject.author && formObject.title)}
-              onClick={handleFormSubmit}
-            >
-              Search Adventure
+              disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary)}
+              onClick={handleFormSubmit}>
+                Publish Adventure
                 </FormBtn>
           </form>
         </Cell>
