@@ -9,14 +9,14 @@ import Btn from '../../components/Btn'
 import FlipCard from '../../components/FlipCard'
 import Adventure from '../../components/Adventure'
 import UserUpdate from '../../components/UserUpdate'
-import Modal from '../../components/Modal'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
 
 function Profile (props) {
     const [userData, setUserData] = useState({})
     const [adventureData, setAdventureData] = useState([])
-    const [modal, setModal]= useState(false)
+    const [modalAdventure, setModalAdventure]= useState(false)
+    const [modalUser, setModalUser]= useState(false)
 
     const {handlePageChange}=props
     handlePageChange("Profile")
@@ -53,20 +53,29 @@ function Profile (props) {
     
     const handleCreateAdventureClick = () => {
         console.log('yes sir, you clicked "create adventure"!')
-        setModal(true);
+        setModalAdventure(true);
+
+    }
+    const handleUpdateUserClick = () => {
+        console.log('user update clicked!')
+        setModalUser(true);
 
     }
     
-     const  handleModalClose = () => {
-        setModal(false)
-      }
+    const  handleModalAdventureClose = () => {
+    setModalAdventure(false)
+    }
+    
+    const  handleModalUserClose = () => {
+    setModalUser(false)
+    }
     
 
     return(
         <>
         <Wrapper>
             <div className="grid-container full">
-                <Gridx classes={'hero-section'}>
+                <Gridx classes={'hero-section'} >
                     <Cell size={'hero-section-text'}>
                         <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                     </Cell>
@@ -100,30 +109,23 @@ function Profile (props) {
                 )}
                 <Gridx classes={''}>
                     {props.host ? 
-                    <Cell size={'medium-6'}>
+                    <Cell size={'medium-4'}>
                         <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'}/>
                     </Cell>
                     :
-                    <Cell size={'medium-6'}>
+                    <Cell size={'medium-4'}>
                         <Btn classes={'button'} handleClick={props.setHostState} text={'Become a guide'}/>
                     </Cell>
                     }
-                    <Cell size={'medium-6'}>
+                    <Cell size={'medium-4'}>
+                        <Btn classes={'button'} handleClick={handleUpdateUserClick} text={'Update my data'}/>
+                    </Cell>
+                    <Cell size={'medium-4'}>
                         <Btn classes={'alert button'} handleClick={handleDeleteUser} text={'Delete my account'}/>
                     </Cell>
                 </Gridx>
-                <Modal/>
-                <Gridx classes={''}>
-                    <Cell size={'medium-6'}>
-                        {/* <Modal show={modal}> */}
-                            
-                        {/* </Modal> */}
-                    </Cell>
-                    <Cell size={'medium-6'}>
-                            <UserUpdate/>
-                    </Cell>
-                </Gridx>
-                <Adventure show={modal}/>
+                <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose}/>
+                <UserUpdate show={modalUser} handleModalClose={handleModalUserClose}/>
             </div>
         </Wrapper>
         </>

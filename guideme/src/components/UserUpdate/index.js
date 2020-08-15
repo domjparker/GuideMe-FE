@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import API from "../../util/API";
+import './style.css'
 import { Input, TextArea, FormBtn } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
+import Btn from '../Btn'
 
-
-function UserUpdate() {
+function UserUpdate(props) {
   // Setting our component's initial state
-
+  let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
   // update the initial state to provide values for
   // the controls in the form (use empty strings)
+  const handleModalClose = () => {
+    props.handleModalClose()
+  }
 
   const [formObject, setFormObject] = useState({ 
     firstName: '', 
@@ -47,6 +51,7 @@ function UserUpdate() {
           bio: '',  
           location: '', 
           tags: []  })
+         handleModalClose();
     //   }).catch(err=> console.log(err))
   }
 
@@ -60,6 +65,9 @@ function UserUpdate() {
   // }
 
   return (
+    <div className={showHideModal} id="exampleModal1">
+      <h1>Update your profile</h1>
+      <p className="lead">Add new info here</p>
     <div className="grid-container fluid">
       <Gridx>
         <Cell size="">
@@ -110,9 +118,11 @@ function UserUpdate() {
               onClick={handleFormSubmit}>
                 Save changes
                 </FormBtn>
+                <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/>
           </form>
         </Cell>
       </Gridx>
+    </div>
     </div>
   );
 }

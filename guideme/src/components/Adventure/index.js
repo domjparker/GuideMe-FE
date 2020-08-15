@@ -4,6 +4,7 @@ import { Input, TextArea, FormBtn } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
+import './style.css'
 
 
 function Adventure(props) {
@@ -12,7 +13,7 @@ function Adventure(props) {
   // update the initial state to provide values for
   // the controls in the form (use empty strings)
   const handleModalClose = () => {
-    showHideModal = 'reveal d-none'
+    props.handleModalClose()
   }
 
   const [formObject, setFormObject] = useState({ 
@@ -68,6 +69,7 @@ function Adventure(props) {
           price: '', 
           gearList: '', 
           tags: '' })
+          handleModalClose();
       }).catch(err=> console.log(err))
   }
 
@@ -81,7 +83,7 @@ function Adventure(props) {
   // }
 
   return (
-    <div className={showHideModal} id="exampleModal1">
+    <div className={showHideModal} id="adventureModal1">
       <h1>Create an Adventure</h1>
       <p className="lead">publish an adventrue for the masses to enjoy</p>
     <div className="grid-container fluid">
