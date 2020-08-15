@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './style.css'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
+import Btn from '../Btn'
 
 
 function FlipCard(props){
@@ -46,10 +47,14 @@ return (
                                 </Cell>
                             </Gridx>
                             <Gridx>
-                                <Cell size={"small-12"}>
+                                <Cell size={"small-6"}>
                                     <hr />
                                     <h6><strong>Location</strong></h6>
                                     <p> {props.location} </p>
+                                </Cell>
+                                <Cell size={'small-6'}>
+                                    {props.edit ? <Btn data-id={props.id} classes={'button'} handleClick={props.editClick} text={'update me'}/> :null}
+                                    {props.delete ? <Btn data-id={props.id} classes={'alert button'} handleClick={props.deleteClick} text={'delete me'}/> : null}
                                 </Cell>
                             </Gridx>
                         </div>

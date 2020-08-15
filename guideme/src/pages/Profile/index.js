@@ -16,12 +16,13 @@ function Profile (props) {
     const [userData, setUserData] = useState({})
     const [adventureData, setAdventureData] = useState([])
     const [modalAdventure, setModalAdventure]= useState(false)
+    const [modalAdventureUpdate, setModalAdventureUpdate]= useState(false)
     const [modalUser, setModalUser]= useState(false)
     const [modalImage, setModalImage]= useState(false)
 
     const {handlePageChange}=props
     handlePageChange("Profile")
-    
+    //set up page with data
     useEffect(() => {
         loadUserData()
         API.getSessionData().then(res => {
@@ -29,13 +30,13 @@ function Profile (props) {
             loadUserAdventures(id)
         }).catch(err => console.log(err))
     }, [])
-
+//get the user data
     const loadUserData = async () => {
         const {data} = await API.getUserbyId();
         if (data.host) {props.setHostState()} 
         setUserData(data);
     }
-
+//get the advetures data, if the user is a host
     const loadUserAdventures = async (id)=>{
         const {data} = await API.getAdventurebyHost(id);
         if (data.length>0){
@@ -44,34 +45,40 @@ function Profile (props) {
             setAdventureData(data)
         }
     }
-
+    //delete this user account
     const handleDeleteUser = () => {
         API.deleteUser().then(()=>{
             props.setLoginState()
             return <Redirect to='/'/>
         }).catch(err => console.log(err))
     }
-    
-    const handleCreateAdventureClick = () => {
+    //delete the adventure
+    const handleDeleteAdventure = (e) => {
+        e.stopPropagation()
         
+        let id = e.target.getAttribute('data-id')
+        
+        API.deleteAdventure(id)
+       
+    }
+    //open modals
+    const handleCreateAdventureClick = () => {
         setModalAdventure(true);
-
+    }
+    const handleUpdateAdventureClick = () => {
+        setModalAdventureUpdate(true);
+        
     }
     const handleUpdateUserClick = () => {
-        
         setModalUser(true);
-
     }
     const handleUpdateImageClick = () => {
-        
         setModalImage(true);
-
     }
-    
+    //close modals
     const  handleModalAdventureClose = () => {
     setModalAdventure(false)
     }
-    
     const  handleModalUserClose = () => {
     setModalUser(false)
     }
@@ -110,7 +117,8 @@ function Profile (props) {
                 <Gridx classes="grid-margin-x">
                     {(adventureData)? adventureData.map(adventure => (
                         <Cell key={adventure._id} size={'medium-6 large-4'}>
-                            <FlipCard key={adventure._id} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={"https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description}/>
+                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={"https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description}/>
+                            
                         </Cell>
                     )) : null}
                 </Gridx>
