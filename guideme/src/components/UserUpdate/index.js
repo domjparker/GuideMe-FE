@@ -15,14 +15,7 @@ function UserUpdate(props) {
     props.handleModalClose()
   }
 
-  const [formObject, setFormObject] = useState({ 
-    firstName: '', 
-    lastName: '', 
-    email: '', 
-    bio: '',  
-    location: '', 
-    tags: [] 
-    })
+  const [formObject, setFormObject] = useState({tags:[]})
 
 
 
@@ -40,9 +33,8 @@ function UserUpdate(props) {
     if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
     console.log(postObj)
 
-    //TODO: change to update user
-    //  API.postNewAdventure(postObj)
-    //   .then(data => {
+     API.updateUser(postObj)
+      .then(data => {
         alert('UserUpdate created!')
         setFormObject({ 
           firstName: '', 
@@ -52,7 +44,7 @@ function UserUpdate(props) {
           location: '', 
           tags: []  })
          handleModalClose();
-    //   }).catch(err=> console.log(err))
+      }).catch(err=> console.log(err))
   }
 
   // function deleteAdventure(id) {
