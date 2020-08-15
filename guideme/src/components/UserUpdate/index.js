@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import API from "../../util/API";
+import './style.css'
 import { Input, TextArea, FormBtn } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
-import './style.css'
 
-
-function Adventure(props) {
+function UserUpdate(props) {
   // Setting our component's initial state
   let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
   // update the initial state to provide values for
@@ -16,30 +15,14 @@ function Adventure(props) {
     props.handleModalClose()
   }
 
-  const [formObject, setFormObject] = useState({ 
-    adventureName: '', 
-    hostId: '', 
-    description: '', 
-    location: '', 
-    itinerary: '',  
-    difficulty: '', 
-    minGroupSize: '', 
-    maxGroupSize: '', 
-    price: '', 
-    gearList: '', 
-    tags: '' })
+  const [formObject, setFormObject] = useState({tags:[]})
 
 
 
   function handleInputChange(event) {
     // add code to control the components here
     let name = event.target.name
-    let value
-    if (name==="minGroupSize" || name==="maxGroupSize" || name==="price" ){
-      value = parseInt(event.target.value)
-    } else {
-      value=event.target.value
-    }
+    let value=event.target.value
     setFormObject({ ...formObject, [name]: value })
   }
 
@@ -48,28 +31,19 @@ function Adventure(props) {
     event.preventDefault();
     let postObj = {...formObject}
     if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
-    postObj.tags=[]
-    const {data} = await API.getSessionData()
-    postObj.hostId = data.id
     console.log(postObj)
-    postObj.duration= {time: 3, unit: 'hours'}
-    console.log(postObj)
-    API.postNewAdventure(postObj)
+
+     API.updateUser(postObj)
       .then(data => {
-        alert('Adventure created!')
+        alert('UserUpdate created!')
         setFormObject({ 
-          adventureName: '', 
-          hostId: '', 
-          description: '', 
+          firstName: '', 
+          lastName: '', 
+          email: '', 
+          bio: '',  
           location: '', 
-          itinerary: '',  
-          difficulty: '', 
-          minGroupSize: '', 
-          maxGroupSize: '', 
-          price: '', 
-          gearList: '', 
-          tags: '' })
-          handleModalClose();
+          tags: []  })
+         handleModalClose();
       }).catch(err=> console.log(err))
   }
 
@@ -83,23 +57,23 @@ function Adventure(props) {
   // }
 
   return (
-    <div className={showHideModal} id="adventureModal1">
-      <h1>Create an Adventure</h1>
-      <p className="lead">publish an adventrue for the masses to enjoy</p>
+    <div className={showHideModal} id="exampleModal1">
+      <h1>Update your profile</h1>
+      <p className="lead">Add new info here</p>
     <div className="grid-container fluid">
       <Gridx>
         <Cell size="">
           <form>
             <Input
               onChange={handleInputChange}
-              name="adventureName"
-              placeholder="Adventure:"
+              name="firstName"
+              placeholder="first name here"
               value={formObject.adventureName}
             />
-            <TextArea
+            <Input
               onChange={handleInputChange}
-              name="description"
-              placeholder="Description:"
+              name="lastName"
+              placeholder="last name here"
               value={formObject.description}
             />
             <Input
@@ -108,10 +82,10 @@ function Adventure(props) {
               placeholder="Location:"
               value={formObject.location}
             />
-            <TextArea
+            <Input
               onChange={handleInputChange}
-              name="itinerary"
-              placeholder="Itinerary:"
+              name="email"
+              placeholder="email"
               value={formObject.itinerary}
             />
             {/* <Input
@@ -120,35 +94,11 @@ function Adventure(props) {
               placeholder="Duration:"
               value={formObject.duration}
             /> */}
-            <Input
+            <TextArea
               onChange={handleInputChange}
-              name="difficulty"
-              placeholder="Difficulty:"
+              name="bio"
+              placeholder="Bio:"
               value={formObject.difficulty}
-            />
-            <Input
-              onChange={handleInputChange}
-              name="minGroupSize"
-              placeholder="Min. Group Size:"
-              value={formObject.minGroupSize}
-            />
-            <Input
-              onChange={handleInputChange}
-              name="maxGroupSize"
-              placeholder="Max. Group Size:"
-              value={formObject.maxGroupSize}
-            />
-            <Input
-              onChange={handleInputChange}
-              name="price"
-              placeholder="Price:"
-              value={formObject.price}
-            />
-            <Input
-              onChange={handleInputChange}
-              name="gearList"
-              placeholder="Gear Need:"
-              value={formObject.gearList}
             />
             <Input
               onChange={handleInputChange}
@@ -157,9 +107,8 @@ function Adventure(props) {
               value={formObject.tags}
             />
             <FormBtn
-              disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary)}
               onClick={handleFormSubmit}>
-                Publish Adventure
+                Save changes
                 </FormBtn>
                 <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/>
           </form>
@@ -171,4 +120,4 @@ function Adventure(props) {
 }
 
 
-export default Adventure;
+export default UserUpdate;

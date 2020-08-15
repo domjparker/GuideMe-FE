@@ -7,7 +7,7 @@ import Btn from '../Btn'
 import './style.css'
 
 
-function Adventure(props) {
+function AdventureUpdate(props) {
   // Setting our component's initial state
   let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
   // update the initial state to provide values for
@@ -17,16 +17,6 @@ function Adventure(props) {
   }
 
   const [formObject, setFormObject] = useState({ 
-    adventureName: '', 
-    hostId: '', 
-    description: '', 
-    location: '', 
-    itinerary: '',  
-    difficulty: '', 
-    minGroupSize: '', 
-    maxGroupSize: '', 
-    price: '', 
-    gearList: '', 
     tags: '' })
 
 
@@ -46,20 +36,15 @@ function Adventure(props) {
   async function handleFormSubmit(event) {
     // add code here to post a new adventure to the api
     event.preventDefault();
+
     let postObj = {...formObject}
-    if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
-    postObj.tags=[]
-    const {data} = await API.getSessionData()
-    postObj.hostId = data.id
+    // if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
     console.log(postObj)
-    postObj.duration= {time: 3, unit: 'hours'}
-    console.log(postObj)
-    API.postNewAdventure(postObj)
+    API.updateAdventure(postObj, props.id)
       .then(data => {
-        alert('Adventure created!')
+        alert('Adventure updated!')
         setFormObject({ 
           adventureName: '', 
-          hostId: '', 
           description: '', 
           location: '', 
           itinerary: '',  
@@ -84,8 +69,8 @@ function Adventure(props) {
 
   return (
     <div className={showHideModal} id="adventureModal1">
-      <h1>Create an Adventure</h1>
-      <p className="lead">publish an adventrue for the masses to enjoy</p>
+      <h1>Update your Adventure</h1>
+      <p className="lead">You can update features here</p>
     <div className="grid-container fluid">
       <Gridx>
         <Cell size="">
@@ -157,9 +142,8 @@ function Adventure(props) {
               value={formObject.tags}
             />
             <FormBtn
-              disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary)}
               onClick={handleFormSubmit}>
-                Publish Adventure
+                Update Adventure
                 </FormBtn>
                 <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/>
           </form>
@@ -171,4 +155,4 @@ function Adventure(props) {
 }
 
 
-export default Adventure;
+export default AdventureUpdate;
