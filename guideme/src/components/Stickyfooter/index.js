@@ -18,7 +18,7 @@ const Stickyfooter = (props) => (
               <Link to="/adventures"><i className="fas fa-search search"></i></Link>  
             </Cell>
             <Cell size={'small-3'} id="messages">
-            <Link to={'#'} ><i className="far fa-envelope"></i></Link>
+            <button className="button expanded"><i className="far fa-envelope"></i></button>
             </Cell>
             <Cell size={'small-3 text-right' + (props.loggedIn ? ' loggedIn' : '')} id="profileIcon">
                 <Link to={'/profile'} ><i className="fas fa-hiking hiking"></i></Link>
