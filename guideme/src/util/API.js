@@ -43,6 +43,10 @@ export default {
     loginUser : (loginObj) => {
         return axios.post(`${prefix}/api/user/login`, loginObj, {withCredentials:true} )
     },
+
+    updatePicture : (pictureObj) => {
+        return axios.put(`${prefix}/api/user/profile`, pictureObj, {withCredentials:true} )
+    },
     //============TAGS==================
     //GET tag by id
     getTagbyId: (id) => {
