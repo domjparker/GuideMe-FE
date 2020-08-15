@@ -2,5 +2,27 @@
     max-width: 20vw;
     max-height: 20vh;
     border-radius: 50%;
+    box-shadow: 0px 0px 15px whitesmoke;
+    position:relative;
+    top:-50px;
 }
 
+.hero-section {
+    background: url("https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?cs=srgb&dl=pexels-roberto-nickson-2559941.jpg&fm=jpg") 50% no-repeat;
+    background-size: cover;
+    height: 30vh;
+    text-align: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+.hero-section .hero-section-text {
+    color: whitesmoke;
+}
