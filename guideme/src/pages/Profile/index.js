@@ -17,6 +17,7 @@ function Profile (props) {
     const [adventureData, setAdventureData] = useState([])
     const [modalAdventure, setModalAdventure]= useState(false)
     const [modalUser, setModalUser]= useState(false)
+    const [modalImage, setModalImage]= useState(false)
 
     const {handlePageChange}=props
     handlePageChange("Profile")
@@ -52,13 +53,18 @@ function Profile (props) {
     }
     
     const handleCreateAdventureClick = () => {
-        console.log('yes sir, you clicked "create adventure"!')
+        
         setModalAdventure(true);
 
     }
     const handleUpdateUserClick = () => {
-        console.log('user update clicked!')
+        
         setModalUser(true);
+
+    }
+    const handleUpdateImageClick = () => {
+        
+        setModalImage(true);
 
     }
     
@@ -68,6 +74,9 @@ function Profile (props) {
     
     const  handleModalUserClose = () => {
     setModalUser(false)
+    }
+    const  handleModalImageClose = () => {
+    setModalImage(false)
     }
     
 
@@ -82,7 +91,7 @@ function Profile (props) {
                 </Gridx>
                 <Gridx>
                     <Cell size={"small-6 medium-4"}>
-                        <img id="profilePic" src="https://images.pexels.com/photos/732632/pexels-photo-732632.jpeg?cs=srgb&dl=pexels-lalu-fatoni-732632.jpg&fm=jpg" alt={userData.firstName + " " + userData.lastName} />
+                        <img id="profilePic" onClick={handleUpdateImageClick} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName} />
                     </Cell>
                     <Cell size={"small-6 medium-8"}>
                         <p>{userData.bio}</p>
@@ -91,7 +100,7 @@ function Profile (props) {
                         <p>{userData.location}</p>
                     </Cell>
                 </Gridx>
-                <ImageForm></ImageForm>
+                <ImageForm show={modalImage}  handleModalClose={handleModalImageClose}/>
                 {(userData.host=== false) ? null 
                 :(
                     <>
