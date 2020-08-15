@@ -19,12 +19,17 @@ export default {
     getAdventurebyLocation: (location) => {
         return axios.get(`${prefix}/api/adventure/location/` + location, {withCredentials:true})
     },
+    //GET adventures by tag
     getAdventurebyTag: (tag) => {
         return axios.get(`${prefix}/api/adventure/tags/` + tag, {withCredentials:true})
     },
-
+    //POST new adventure
     postNewAdventure: (advObj) => {
-        return axios.post(`${prefix}/api/adventure`, advObj, {withCredentials:true} )
+        return axios.post(`${prefix}/api/adventure`, advObj, {withCredentials:true})
+    },
+    //DELETE an adventure
+    deleteAdventure: (id) => {
+        return axios.delete(`${prefix}/api/adventure/` + id, {withCredentials:true})
     },
     //============USERS==================
     //GET user by id
@@ -44,8 +49,14 @@ export default {
         return axios.post(`${prefix}/api/user/login`, loginObj, {withCredentials:true} )
     },
 
+    //PUT profile picture
     updatePicture : (pictureObj) => {
         return axios.put(`${prefix}/api/user/profile`, pictureObj, {withCredentials:true} )
+    },
+
+    //DELETE userprofile
+    deleteUser : () => {
+        return axios.delete(`${prefix}/api/user/profile`, {withCredentials:true})
     },
     //============TAGS==================
     //GET tag by id

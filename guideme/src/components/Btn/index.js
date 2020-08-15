@@ -4,7 +4,7 @@ import './style.css'
 function Btn (props) {
 
     return (
-        <button onClick={props.handleClick}>{props.text}</button>
+        <button className={props.classes} onClick={props.handleClick}>{props.text}</button>
     )
 
 }

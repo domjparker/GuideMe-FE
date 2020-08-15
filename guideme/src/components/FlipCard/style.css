@@ -31,7 +31,14 @@
 }
 .card__back {
     transform: rotateY(180deg);
+    overflow:scroll;
+    overflow-x: hidden;
 }
+
+.card__back::-webkit-scrollbar {
+    display: none;
+    }
+
 
 .card__inner {
     transition: transform .25s ease-in-out;
