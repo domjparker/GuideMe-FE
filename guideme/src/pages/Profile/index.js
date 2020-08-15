@@ -8,11 +8,13 @@ import TagRow from '../../components/TagRow'
 import Btn from '../../components/Btn'
 import FlipCard from '../../components/FlipCard'
 import Adventure from '../../components/Adventure'
+import Modal from '../../components/Modal'
 import API from '../../util/API'
 
 function Profile (props) {
     const [userData, setUserData] = useState({})
     const [adventureData, setAdventureData] = useState([])
+    const [modal, setModal]= useState(false)
 
     const {handlePageChange}=props
     handlePageChange("Profile")
@@ -49,7 +51,14 @@ function Profile (props) {
     
     const handleCreateAdventureClick = () => {
         console.log('yes sir, you clicked "create adventure"!')
+        setModal(true);
+
     }
+    
+     const  handleModalClose = () => {
+        setModal(false)
+      }
+    
 
     return(
         <>
@@ -101,8 +110,13 @@ function Profile (props) {
                         <Btn classes={'alert button'} handleClick={handleDeleteUser} text={'Delete my account'}/>
                     </Cell>
                 </Gridx>
+                <Modal/>
                 <Gridx>
-                    <Adventure/>
+                    <Cell size={'medium-6'}>
+                        <Modal show={modal}>
+                            <Adventure/>
+                        </Modal>
+                    </Cell>
                 </Gridx>
             </div>
         </Wrapper>
