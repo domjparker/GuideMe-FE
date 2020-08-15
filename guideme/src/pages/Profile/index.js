@@ -9,6 +9,7 @@ import Btn from '../../components/Btn'
 import FlipCard from '../../components/FlipCard'
 import Adventure from '../../components/Adventure'
 import API from '../../util/API'
+import ImageForm from '../../components/ImageForm'
 
 function Profile (props) {
     const [userData, setUserData] = useState({})
@@ -71,7 +72,7 @@ function Profile (props) {
                         <p>{userData.location}</p>
                     </Cell>
                 </Gridx>
-                
+                <ImageForm></ImageForm>
                 {(userData.host=== false) ? null 
                 :(
                     <>

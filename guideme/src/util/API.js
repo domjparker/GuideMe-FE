@@ -48,6 +48,12 @@ export default {
     loginUser : (loginObj) => {
         return axios.post(`${prefix}/api/user/login`, loginObj, {withCredentials:true} )
     },
+
+    //PUT profile picture
+    updatePicture : (pictureObj) => {
+        return axios.put(`${prefix}/api/user/profile`, pictureObj, {withCredentials:true} )
+    },
+
     //DELETE userprofile
     deleteUser : () => {
         return axios.delete(`${prefix}/api/user/profile`, {withCredentials:true})
