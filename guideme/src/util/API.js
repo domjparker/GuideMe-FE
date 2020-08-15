@@ -51,7 +51,7 @@ export default {
 
     //PUT profile picture
     updatePicture : (pictureObj) => {
-        return axios.put(`${prefix}/api/user/profile`, pictureObj, {withCredentials:true} )
+        return axios.put(`${prefix}/api/user/profile/picture`, pictureObj, {withCredentials:true} )
     },
 
     //DELETE userprofile
