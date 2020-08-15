@@ -27,6 +27,10 @@ export default {
     postNewAdventure: (advObj) => {
         return axios.post(`${prefix}/api/adventure`, advObj, {withCredentials:true})
     },
+    //PUT adventure update
+    updateAdventure: (adventureObj, id) => {
+        return axios.put(`${prefix}/api/adventure/` + id ,adventureObj, {withCredentials:true})
+    },
     //DELETE an adventure
     deleteAdventure: (id) => {
         return axios.delete(`${prefix}/api/adventure/` + id, {withCredentials:true})

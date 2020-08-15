@@ -8,6 +8,7 @@ import TagRow from '../../components/TagRow'
 import Btn from '../../components/Btn'
 import FlipCard from '../../components/FlipCard'
 import Adventure from '../../components/Adventure'
+import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
@@ -16,7 +17,7 @@ function Profile (props) {
     const [userData, setUserData] = useState({})
     const [adventureData, setAdventureData] = useState([])
     const [modalAdventure, setModalAdventure]= useState(false)
-    const [modalAdventureUpdate, setModalAdventureUpdate]= useState(false)
+    const [modalAdventureUpdate, setModalAdventureUpdate]= useState({visible:false, id:''})
     const [modalUser, setModalUser]= useState(false)
     const [modalImage, setModalImage]= useState(false)
 
@@ -65,8 +66,9 @@ function Profile (props) {
     const handleCreateAdventureClick = () => {
         setModalAdventure(true);
     }
-    const handleUpdateAdventureClick = () => {
-        setModalAdventureUpdate(true);
+    const handleUpdateAdventureClick = (e) => {
+        let id = e.target.getAttribute('data-id')
+        setModalAdventureUpdate({visible:true, id:id});
         
     }
     const handleUpdateUserClick = () => {
@@ -78,6 +80,9 @@ function Profile (props) {
     //close modals
     const  handleModalAdventureClose = () => {
     setModalAdventure(false)
+    }
+    const  handleModalAdventureUpdateClose = () => {
+    setModalAdventureUpdate({...modalAdventureUpdate, visible:false})
     }
     const  handleModalUserClose = () => {
     setModalUser(false)
@@ -143,6 +148,7 @@ function Profile (props) {
                 </Gridx>
                 <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose}/>
                 <UserUpdate show={modalUser} handleModalClose={handleModalUserClose}/>
+                <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id}/>
             </div>
         </Wrapper>
         </>

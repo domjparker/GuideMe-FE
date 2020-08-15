@@ -7,7 +7,7 @@ import Btn from '../Btn'
 
 function FlipCard(props){
   const [classToggle, setClassToggle] = useState('');
-
+  
   const handleClassToggle = () => {
       if (classToggle === 'card--flipped') {
           setClassToggle('')
