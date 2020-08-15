@@ -10,7 +10,7 @@ function TagRow(props) {
         <>
         <Cell size={""}>
             <Gridx classes={"grid-padding-x align-center"}>
-                {tags? tags.map(tag => (<Cell  size="small-3 medium-2 tagDiv" key={props.tags.indexOf(tag)}>{tag}</Cell>)):null}
+                {tags? tags.map(tag => (<Cell  size="small-3 medium-2 tagDiv" key={props.tags.indexOf(tag)}>{tag.tagName}</Cell>)):null}
             </Gridx>
         </Cell>
         </>        

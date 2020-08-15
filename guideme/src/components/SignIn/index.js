@@ -1,46 +1,47 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import {Redirect} from 'react-router-dom'
 import "./style.css";
-import {Input, TextArea, FormBtn} from "../Form"
+import {Input, FormBtn} from "../Form"
+import API from '../../util/API'
 
-class SignIn extends Component {
-    // Setting the component's initial state
-    state = {
-      email: "",
-      password: ""
-    };
+function SignIn(props) {
+    const [loginObj, setloginObj] = useState({email:'', password:''})
   
-    handleInputChange = event => {
+    const handleInputChange = event => {
       // Getting the value and name of the input which triggered the change
       let value = event.target.value;
       const name = event.target.name;
-  
-      if (name === "password") {
-        value = value.substring(0, 15);
-      }
       // Updating the input's state
-      this.setState({
+      setloginObj({...loginObj,
         [name]: value
       });
     };
   
-    handleFormSubmit = event => {
+    const handleFormSubmit = event => {
       // Preventing the default behavior of the form submit (which is to refresh the page)
       event.preventDefault();
-      if (!this.state.email) {
+      if (!loginObj.email) {
         alert("Fill out email!");
-      } else if (this.state.password.length < 6) {
+        return;
+      } else if (loginObj.password.length < 1) {
         alert(
-          `Fill out password ${this.state.email}`
+          `Fill out password!`
         );
-      } 
-  
-      this.setState({
-        email: "",
-        password: ""
-      });
+      return;
+      }
+      API.loginUser(loginObj).then(res=>{
+        console.log(res)
+        props.logMeIn()
+        // setloginObj({
+        //   email: "",
+        //   password: ""
+        // });
+        return <Redirect to='/profile' />
+      }
+      ).catch(err=>console.log(err))
     };
   
-    render() {
+    
       // Notice how each input has a `value`, `name`, and `onChange` prop
       return (
         <div>
@@ -49,24 +50,23 @@ class SignIn extends Component {
           </p>
           <form className="signin">
             <Input
-              value={this.state.email}
+              value={loginObj.email}
               name="email"
-              onChange={this.handleInputChange}
+              onChange={handleInputChange}
               type="text"
               placeholder="Email"
             />
             <Input
-              value={this.state.password}
+              value={loginObj.password}
               name="password"
-              onChange={this.handleInputChange}
+              onChange={handleInputChange}
               type="password"
               placeholder="Password"
             />
-            <FormBtn onClick={this.handleFormSubmit}>Submit</FormBtn>
+            <FormBtn onClick={handleFormSubmit} children={'Sign in'}/>
           </form>
         </div>
       );
-    }
   }
   
   export default SignIn;
