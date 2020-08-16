@@ -14,8 +14,8 @@ function AdventureUpdate(props) {
   const handleModalClose = () => {
     props.handleModalClose()
   }
+  
   //set initial state of the form Obje.
-  //TODO: we need to make this initial state populate with existing data!!!!
   const [formObject, setFormObject] = useState({})
   //checks for data when modal visibility setting changes
   useEffect(() => {
