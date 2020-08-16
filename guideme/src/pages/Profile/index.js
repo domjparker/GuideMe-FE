@@ -25,6 +25,8 @@ function Profile (props) {
     const [userData, setUserData] = useState({})
     //state holds user's hosted adventures as pulled from database
     const [adventureData, setAdventureData] = useState([])
+    //state to check for changes in data to call useEffect and reload data
+    const [change, setChange] = useState(false)
     //all the below states are boolean states to control modals opening and closong, when true, modal is visible, when false modal is hidden
     const [modalAdventure, setModalAdventure]= useState(false)
     const [modalAdventureUpdate, setModalAdventureUpdate]= useState({visible:false, id:''})
@@ -33,7 +35,6 @@ function Profile (props) {
     //modal states end ================================================
 
     //set up page with data
-    //TODO: look into this more, to see how to reload the info when a new adventure is created, an adventure is updated, userprofile is updated etc
     useEffect(() => {
         //user info
         loadUserData()
@@ -44,7 +45,7 @@ function Profile (props) {
             //pull up hosted adventures
             loadUserAdventures(id)
         }).catch(err => console.log(err))
-    }, [])
+    }, [change])
 
     //get the user data from database
     const loadUserData = async () => {
@@ -57,8 +58,6 @@ function Profile (props) {
     const loadUserAdventures = async (id)=>{
         const {data} = await API.getAdventurebyHost(id);
         if (data.length>0){
-            
-            console.log(data)
             setAdventureData(data)
         }
     }
@@ -67,6 +66,8 @@ function Profile (props) {
     const handleDeleteUser = () => {
         API.deleteUser().then(()=>{
             props.setLoginState()
+            props.setHostState()
+            setChange(!change)
             return <Redirect to='/'/>
         }).catch(err => console.log(err))
     }
@@ -75,15 +76,14 @@ function Profile (props) {
     const handleDeleteAdventure = (e) => {
         e.stopPropagation()
         let id = e.target.getAttribute('data-id')
-        API.deleteAdventure(id)
+        API.deleteAdventure(id).then(()=>setChange(!change)).catch(err=>console.log(err))
     }
     
     //become host button just currently updates status on database,this is what happens here
-    //TODO:reload page when this change happens to check for adventures and tags
     const handleBecomeHost= () => {
         props.setHostState()
         let hostObj = {host:true, verified:true}
-        API.updateUser(hostObj).then(res=>console.log(res)).catch(err=>console.log(err))
+        API.updateUser(hostObj).then(()=>setChange(!change)).catch(err=>console.log(err))
     }
 
     //start of modals section ============================================================
@@ -110,18 +110,22 @@ function Profile (props) {
     const  handleModalAdventureClose = () => {
         //create adventure modal close
     setModalAdventure(false)
+    setChange(!change)
     }
     const  handleModalAdventureUpdateClose = () => {
         //update adventure modal close
     setModalAdventureUpdate({...modalAdventureUpdate, visible:false})
+    setChange(!change)
     }
     const  handleModalUserClose = () => {
         //update user modal close
     setModalUser(false)
+    setChange(!change)
     }
     const  handleModalImageClose = () => {
         //update image modal close
     setModalImage(false)
+    setChange(!change)
     }
     //end of modals section =============================================================
     
@@ -173,7 +177,7 @@ function Profile (props) {
 
                 {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
                 <Gridx classes={''}>
-                    {props.host ? 
+                    {userData.host ? 
                     <Cell size={'medium-4'}>
                         <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'}/>
                     </Cell>
