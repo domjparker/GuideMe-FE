@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+//component to update user info -- member of the Profile page
+import React, { useEffect, useState } from "react";
 import API from "../../util/API";
 import './style.css'
 import { Input, TextArea, FormBtn } from "../Form";
@@ -7,34 +8,49 @@ import Gridx from '../Gridx'
 import Btn from '../Btn'
 
 function UserUpdate(props) {
-  // Setting our component's initial state
+  //handles bodal visibility state as input from parent element
   let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
-  // update the initial state to provide values for
-  // the controls in the form (use empty strings)
   const handleModalClose = () => {
     props.handleModalClose()
   }
 
-  const [formObject, setFormObject] = useState({tags:[]})
+  //handles form object data
+  const [formObject, setFormObject] = useState({})
+//checks for data when modal visibility setting changes
+useEffect(() => {
+  loadInitialData();
+}, [props.show])
 
-
-
+//populate update form with existing data of that adventure
+async function loadInitialData () {
+  let {data} = await API.getUserbyId()
+  console.log(data)
+    setFormObject({
+      firstName:data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      bio:data.bio,
+      location:data.location,
+      tags:data.tags? data.tags.join(", "):''
+    })
+}
+//control input field changes
   function handleInputChange(event) {
     // add code to control the components here
     let name = event.target.name
     let value=event.target.value
     setFormObject({ ...formObject, [name]: value })
   }
-
+//make put request to update user info
   async function handleFormSubmit(event) {
     // add code here to post a new adventure to the api
     event.preventDefault();
     let postObj = {...formObject}
-    if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
-    console.log(postObj)
+    postObj.tags.lenght? postObj.tags=postObj.tags.split(', ') : postObj.tags=[]
 
      API.updateUser(postObj)
       .then(data => {
+        //TODO:use something other than an alert here
         alert('UserUpdate created!')
         setFormObject({ 
           firstName: '', 
@@ -46,15 +62,6 @@ function UserUpdate(props) {
          handleModalClose();
       }).catch(err=> console.log(err))
   }
-
-  // function deleteAdventure(id) {
-  // add code here to remove a adventures using API
-  //  API.deleteAdventure(id)
-  //   .then(data => {
-  //     loadAdventures();
-  //     setFormObject({adventureName: '', hostId: '', usersOnAdventure: '[]', description: '', location: '', itinerary: '', duration: '', difficulty: '', minGroupSize: '', maxGroupSize: '', price: '', gearList: '', tags: ''})
-  //   })
-  // }
 
   return (
     <div className={showHideModal} id="exampleModal1">
@@ -68,13 +75,13 @@ function UserUpdate(props) {
               onChange={handleInputChange}
               name="firstName"
               placeholder="first name here"
-              value={formObject.adventureName}
+              value={formObject.firstName}
             />
             <Input
               onChange={handleInputChange}
               name="lastName"
               placeholder="last name here"
-              value={formObject.description}
+              value={formObject.lastName}
             />
             <Input
               onChange={handleInputChange}
@@ -86,19 +93,13 @@ function UserUpdate(props) {
               onChange={handleInputChange}
               name="email"
               placeholder="email"
-              value={formObject.itinerary}
+              value={formObject.email}
             />
-            {/* <Input
-              onChange={handleInputChange}
-              name="duration"
-              placeholder="Duration:"
-              value={formObject.duration}
-            /> */}
             <TextArea
               onChange={handleInputChange}
               name="bio"
               placeholder="Bio:"
-              value={formObject.difficulty}
+              value={formObject.bio}
             />
             <Input
               onChange={handleInputChange}
@@ -110,6 +111,7 @@ function UserUpdate(props) {
               onClick={handleFormSubmit}>
                 Save changes
                 </FormBtn>
+                {/* close modal button */}
                 <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/>
           </form>
         </Cell>

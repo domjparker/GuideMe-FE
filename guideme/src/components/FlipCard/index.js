@@ -1,25 +1,28 @@
-import React, { useState } from 'react'
+//FlipCard, used for adventures in both search results and profile page
+import React, {useState} from 'react'
 import './style.css'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Btn from '../Btn'
 import Messages from '../../components/Messages'
 
+//this component takes ina  ton of adventure information
+function FlipCard(props){
+    //flip effect is done in CSS with classes, this toggle between those classes
+  const [classToggle, setClassToggle] = useState('');
+  
+  const handleClassToggle = () => {
+      if (classToggle === 'card--flipped') {
+          setClassToggle('')
+      } else {
+          setClassToggle('card--flipped')
+      }
+  }
 
-function FlipCard(props) {
-    const [classToggle, setClassToggle] = useState('');
-
-    const handleClassToggle = () => {
-        if (classToggle === 'card--flipped') {
-            setClassToggle('')
-        } else {
-            setClassToggle('card--flipped')
-        }
-    }
-
-    return (
-        <>
-            <div className={"flipcard " + classToggle} onClick={handleClassToggle}>
+return (
+    <>
+    {/* TODO: needs a little better thought through layout */}
+     <div className={"flipcard " + classToggle } onClick={handleClassToggle}>
                 <div className="card__inner">
                     <div className="card__back">
                         <div className=" grid-container">

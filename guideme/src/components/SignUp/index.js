@@ -1,12 +1,14 @@
+//Signup form --- member of the Login page component
 import React, { useState } from "react";
 import "./style.css";
 import { Input, FormBtn } from "../Form"
 import API from '../../util/API'
-function SignUp() {
 
+function SignUp() {
+  //signup iobject, holds values of the input fields
   const [signupObj, setSignupObj] = useState({firstName:'', lastName:'', email:'', password:''})
 
-
+//control input field values
   const handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -15,20 +17,24 @@ function SignUp() {
     setSignupObj({...signupObj, [name]:value})
   };
 
+  // makes a POST request to database for new user
   const handleFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+
     if (!signupObj.firstName || !signupObj.lastName) {
+      //TODO: use smth other than an alert here
       alert("Fill out your first and last name please!");
     } else if (signupObj.password.length < 6) {
+      //TODO: use smth other than an alert here
       alert(
         `Choose a longer password!`
       );
     } else {
+      //TODO: use smth other than an alert here
       alert(`Hello ${signupObj.firstName} ${signupObj.lastName}`);
       API.postNewUser(signupObj).then(res=> console.log(res)).catch(err=> console.log(err))
     }
-
+    //reset form to empty
     setSignupObj({firstName:'', lastName:'', email:'', password:''})
   };
 

@@ -1,5 +1,4 @@
-// sticky footer will show on every page/screen change. You will be able to navigate to your profile, messages, search adventures, and return from to the home page from the sticky footer.
-
+//the bottom nav bar on the bottom of your page
 import React from 'react'
 import './style.css'
 import {Link} from 'react-router-dom'

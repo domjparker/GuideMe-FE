@@ -1,3 +1,4 @@
+//New adventure create form
 import React, { useState } from "react";
 import API from "../../util/API";
 import { Input, TextArea, FormBtn } from "../Form";
@@ -8,14 +9,13 @@ import './style.css'
 
 
 function Adventure(props) {
-  // Setting our component's initial state
+  // this state dictates whether form is visible, the values are passed in fromn parent element
   let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
-  // update the initial state to provide values for
-  // the controls in the form (use empty strings)
   const handleModalClose = () => {
     props.handleModalClose()
   }
 
+  //state to control input values
   const [formObject, setFormObject] = useState({ 
     adventureName: '', 
     hostId: '', 
@@ -30,32 +30,38 @@ function Adventure(props) {
     tags: '' })
 
 
-
+    //control form input values
   function handleInputChange(event) {
-    // add code to control the components here
     let name = event.target.name
     let value
+    //some fields must be numbers for db, so change that here
     if (name==="minGroupSize" || name==="maxGroupSize" || name==="price" ){
       value = parseInt(event.target.value)
     } else {
       value=event.target.value
     }
+    //set new state with input
     setFormObject({ ...formObject, [name]: value })
   }
 
+  //handle form submit function
   async function handleFormSubmit(event) {
-    // add code here to post a new adventure to the api
+
     event.preventDefault();
+    //make a copy of the state object for manipulation
     let postObj = {...formObject}
+    //if tags were entered then turn them into array
     if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
-    postObj.tags=[]
+    //get user id from session data to add hostID to the new adventure
     const {data} = await API.getSessionData()
     postObj.hostId = data.id
-    console.log(postObj)
+    //TODO:change the input field to increment adn drop-down and then incorporate here to the post object in the proper format
     postObj.duration= {time: 3, unit: 'hours'}
     console.log(postObj)
+    //add the edited object to database
     API.postNewAdventure(postObj)
       .then(data => {
+        //TODO: change this from alert to smth else
         alert('Adventure created!')
         setFormObject({ 
           adventureName: '', 
@@ -72,15 +78,6 @@ function Adventure(props) {
           handleModalClose();
       }).catch(err=> console.log(err))
   }
-
-  // function deleteAdventure(id) {
-  // add code here to remove a adventures using API
-  //  API.deleteAdventure(id)
-  //   .then(data => {
-  //     loadAdventures();
-  //     setFormObject({adventureName: '', hostId: '', usersOnAdventure: '[]', description: '', location: '', itinerary: '', duration: '', difficulty: '', minGroupSize: '', maxGroupSize: '', price: '', gearList: '', tags: ''})
-  //   })
-  // }
 
   return (
     <div className={showHideModal} id="adventureModal1">
@@ -114,6 +111,7 @@ function Adventure(props) {
               placeholder="Itinerary:"
               value={formObject.itinerary}
             />
+            {/* TODO: make this an increment and drop-down combo to only get the right data */}
             {/* <Input
               onChange={handleInputChange}
               name="duration"
@@ -161,6 +159,7 @@ function Adventure(props) {
               onClick={handleFormSubmit}>
                 Publish Adventure
                 </FormBtn>
+                {/* close modal button */}
                 <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/>
           </form>
         </Cell>

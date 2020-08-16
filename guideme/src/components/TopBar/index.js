@@ -1,3 +1,4 @@
+//the top bar, displaying logo and page name
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './style.css'
@@ -5,7 +6,7 @@ import Gridx from '../Gridx'
 import Cell from '../Cell'
 
 function TopBar(props){
-
+//TODO: remove the hiker from the right corner, duplicate
 return (
     <>
     <div className="grid-container full" id="topBar">

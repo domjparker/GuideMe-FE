@@ -1,3 +1,5 @@
+//generic card component
+//TODO: check if unused adn delete!!!!
 import React from 'react'
 import './style.css'
 
