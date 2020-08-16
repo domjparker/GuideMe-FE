@@ -1,29 +1,27 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './style.css'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
+import LOGO from '../../images/logo.jpg'
 
-function TopBar(props){
 
-return (
-    <>
-    <div className="grid-container full" id="topBar">
-        <Gridx>
-            <Cell size={'small-3'}id="logo">
-                {/* <h1 className="text-left">LOGO</h1> */}
-                {/* <img className="logo"src={LogoImg} alt="logopic"/> */}
-            </Cell>
-            <Cell size={'small-6'} id="pageTitle">
-                <h1 className="text-center">{props.title}</h1>
-            </Cell>
-            <Cell size={'small-3 text-right' + (props.loggedIn ? ' loggedIn' : '')} id="profileIcon">
-                <Link to={'/profile'} ><i className="fas fa-hiking hikeicon"></i></Link>
-            </Cell>
-        </Gridx>
-    </div>
-    </>
-)
+function TopBar(props) {
+
+    return (
+        <>
+            <div className="grid-container full" id="topBar">
+                <Gridx>
+                    <Cell size={'small-3'} id="logo">
+                        <Link to="/"><h4 className="text-left"><img src={LOGO} alt="logo"></img></h4></Link>
+                    </Cell>
+                    <Cell size={'small-6'} id="pageTitle">
+                        <h1 className="text-center">{props.title}</h1>
+                    </Cell>
+                </Gridx>
+            </div>
+        </>
+    )
 
 }
 
