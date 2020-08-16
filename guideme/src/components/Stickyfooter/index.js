@@ -1,3 +1,4 @@
+//the bottom nav bar on the bottom of your page
 import React from 'react'
 import './style.css'
 import {Link} from 'react-router-dom'

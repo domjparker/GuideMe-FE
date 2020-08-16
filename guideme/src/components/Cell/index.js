@@ -1,4 +1,4 @@
-//generic Foundation building block component
+//generic Foundation building block component Cell
 import React from "react";
 
 function Cell(props) {
