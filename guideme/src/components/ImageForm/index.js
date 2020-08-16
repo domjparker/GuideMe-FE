@@ -1,3 +1,4 @@
+//Image upload component to update new image to database --at the moment member of Profile page component
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API from '../../util/API'
@@ -9,16 +10,17 @@ const url = 'https://api.cloudinary.com/v1_1/yestoskydiving/image/upload';
 const preset = 'm5k8tql6';
 
 function ImageForm(props) {
+//handles visibility of this form
+  let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+  const handleModalClose = () => {
+     props.handleModalClose()
+   }
 
     const [image, setImage] = useState('');
     const [loading, setLoading] = useState(false);
     const onChange = e => {
         setImage(e.target.files[0]);
     };
- let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
- const handleModalClose = () => {
-    props.handleModalClose()
-  }
 
     const onSubmit = async () => {
         console.log("we got here 1")
@@ -59,6 +61,7 @@ function ImageForm(props) {
                 </button>
             </div>
         </div>
+        {/* close modal button */}
         <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/>
         </div>
     )
