@@ -68,5 +68,12 @@ export default {
     //GET tag by id
     getTagbyId: (id) => {
         return axios.get(`${prefix}/api/tag/` + id, {withCredentials:true})
+    },
+  //============MESSAGES==================
+    //GET message
+
+    getSentMessage: (id) =>{
+        return axios.get(`${prefix}/api/message/` + id, {withCredentials:true})
     }
+
 }

@@ -12,6 +12,8 @@ import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
+import Messages from '../../components/Messages'
+
 
 function Profile (props) {
     const [userData, setUserData] = useState({})
@@ -96,7 +98,8 @@ function Profile (props) {
         <>
         <Wrapper>
             <div className="grid-container full">
-                <Gridx classes={'hero-section'} >
+                <Messages />
+                <Gridx classes={'hero-section'}>
                     <Cell size={'hero-section-text'}>
                         <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                     </Cell>
