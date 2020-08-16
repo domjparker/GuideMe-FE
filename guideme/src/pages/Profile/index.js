@@ -56,14 +56,14 @@ function Profile (props) {
         <>
         <Wrapper>
             <div className="grid-container full">
-                <Gridx classes={'hero-section'}>
+                <Gridx classes={'hero-section'} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}>
                     <Cell size={'hero-section-text'}>
                         <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                     </Cell>
                 </Gridx>
                 <Gridx>
                     <Cell size={"small-6 medium-4"}>
-                        <img id="profilePic" src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName} />
+                        <img id="profilePic" src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} />
                     </Cell>
                     <Cell size={"small-6 medium-8"}>
                         <p>{userData.bio}</p>
@@ -72,7 +72,8 @@ function Profile (props) {
                         <p>{userData.location}</p>
                     </Cell>
                 </Gridx>
-                <ImageForm></ImageForm>
+                <ImageForm axiosUrl={API.updatePicture({profilePictureUrl: imageUrl})}></ImageForm>
+                <ImageForm axiosUrl={API.updateBanner({profileBannerUrl: imageUrl})}></ImageForm>
                 {(userData.host=== false) ? null 
                 :(
                     <>

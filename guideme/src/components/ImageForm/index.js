@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API from '../../util/API'
-// import loadingGif from './spinner.gif';
 
 const url = 'https://api.cloudinary.com/v1_1/yestoskydiving/image/upload';
 const preset = 'm5k8tql6';
 
-function ImageForm() {
+function ImageForm(props) {
     const [image, setImage] = useState('');
     const [loading, setLoading] = useState(false);
+    const [uploadBtn, setUploadBtn] = useState('');
     const onChange = e => {
         setImage(e.target.files[0]);
     };
@@ -24,7 +24,10 @@ function ImageForm() {
           console.log("we got here 2")
           const imageUrl = res.data.secure_url;
           console.log(imageUrl)
-          const image = await API.updatePicture({profilePictureUrl: imageUrl})
+
+            const image = await props.axiosURL
+            setUploadBtn('Update Profile Pic')
+
           setLoading(false);
           setImage(image.data);
         } catch (err) {
@@ -34,7 +37,7 @@ function ImageForm() {
 
     return (
         <div className='container'>
-            <h1 className='center red-text'>React Image Upload</h1>
+            <h1 className='center red-text'>{uploadBtn}</h1>
             <div className='file-field input-field'>
                 <div className='btn'>
                     <span>Browse</span>
