@@ -31,7 +31,7 @@ async function loadInitialData () {
       email: data.email,
       bio:data.bio,
       location:data.location,
-      tags:data.tags? data.tags.join(", "):null
+      tags:data.tags? data.tags.join(", "):''
     })
 }
 //control input field changes

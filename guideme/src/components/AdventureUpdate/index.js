@@ -14,7 +14,7 @@ function AdventureUpdate(props) {
   const handleModalClose = () => {
     props.handleModalClose()
   }
-  
+
   //set initial state of the form Obje.
   const [formObject, setFormObject] = useState({})
   //checks for data when modal visibility setting changes
@@ -36,7 +36,7 @@ function AdventureUpdate(props) {
           maxGroupSize:data.maxGroupSize,
           price:data.price,
           gearList:data.gearList,
-          tags:data.tags? data.tags.join(", "):null
+          tags:data.tags? data.tags.join(", "):''
         })
     }
 

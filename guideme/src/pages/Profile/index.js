@@ -25,7 +25,7 @@ function Profile (props) {
     const [userData, setUserData] = useState({})
     //state holds user's hosted adventures as pulled from database
     const [adventureData, setAdventureData] = useState([])
-    //state to check for changes in data
+    //state to check for changes in data to call useEffect and reload data
     const [change, setChange] = useState(false)
     //all the below states are boolean states to control modals opening and closong, when true, modal is visible, when false modal is hidden
     const [modalAdventure, setModalAdventure]= useState(false)
@@ -35,7 +35,6 @@ function Profile (props) {
     //modal states end ================================================
 
     //set up page with data
-    //TODO: look into this more, to see how to reload the info when a new adventure is created, an adventure is updated, userprofile is updated etc
     useEffect(() => {
         //user info
         loadUserData()
@@ -59,8 +58,6 @@ function Profile (props) {
     const loadUserAdventures = async (id)=>{
         const {data} = await API.getAdventurebyHost(id);
         if (data.length>0){
-            
-            console.log(data)
             setAdventureData(data)
         }
     }
@@ -83,7 +80,6 @@ function Profile (props) {
     }
     
     //become host button just currently updates status on database,this is what happens here
-    //TODO:reload page when this change happens to check for adventures and tags
     const handleBecomeHost= () => {
         props.setHostState()
         let hostObj = {host:true, verified:true}
@@ -181,7 +177,7 @@ function Profile (props) {
 
                 {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
                 <Gridx classes={''}>
-                    {props.host ? 
+                    {userData.host ? 
                     <Cell size={'medium-4'}>
                         <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'}/>
                     </Cell>
