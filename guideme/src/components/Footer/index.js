@@ -1,3 +1,4 @@
+//generic footer component, will be at the bottom of every page and include info about the site in general
 import React from 'react'
 import './style.css'
 import Gridx from '../Gridx'
@@ -34,7 +35,6 @@ function Footer(props) {
             </div>
         </>
     )
-
 }
 
 export default Footer;

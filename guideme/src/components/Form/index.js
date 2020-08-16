@@ -1,7 +1,8 @@
+//generic form building blocks live here
 import React from 'react';
 
-// This file exports the Input, TextArea, and FormBtn components
 
+//TODO: need dropdown, number increment etc components too!
 export function Input(props) {
     return (
       <div className="form-group">
@@ -20,7 +21,7 @@ export function Input(props) {
   
   export function FormBtn(props) {
     return (
-      <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
+      <button {...props} style={{ float: "right", marginBottom: 10 }} className="button success">
         {props.children}
       </button>
     );

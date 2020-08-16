@@ -14,8 +14,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
   const [page, setpage] = useState('Homepage')
   const [user, setuser] = useState({
-    loggedIn:false,
-    host:false
+    //TODO:for some reason sometimes these states get reset to false half way through a session, must fix that. Maybe the host state shouldn't live here....
+    loggedIn:false
   })
 
   const setLoginState = () => setuser({...user, loggedIn: !user.loggedIn})
