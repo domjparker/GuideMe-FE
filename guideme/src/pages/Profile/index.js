@@ -15,6 +15,7 @@ import ImageForm from '../../components/ImageForm'
 import Messages from '../../components/Messages'
 
 
+
 function Profile (props) {
     const [userData, setUserData] = useState({})
     const [adventureData, setAdventureData] = useState([])
@@ -79,6 +80,7 @@ function Profile (props) {
     const handleUpdateImageClick = () => {
         setModalImage(true);
     }
+
     //close modals
     const  handleModalAdventureClose = () => {
     setModalAdventure(false)
