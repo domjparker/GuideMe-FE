@@ -18,7 +18,6 @@ function App() {
     loggedIn:false
   })
 
-
   const setLoginState = () => setuser({...user, loggedIn: !user.loggedIn})
   const setHostState = () => setuser({...user, host:!user.host})
 
