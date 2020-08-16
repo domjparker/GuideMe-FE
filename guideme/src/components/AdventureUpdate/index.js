@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+//update existing adventure details
+import React, {useEffect, useState } from "react";
 import API from "../../util/API";
 import { Input, TextArea, FormBtn } from "../Form";
 import Cell from '../Cell'
@@ -8,23 +9,43 @@ import './style.css'
 
 
 function AdventureUpdate(props) {
-  // Setting our component's initial state
+// modal show hide controls as passed in from parent
   let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
-  // update the initial state to provide values for
-  // the controls in the form (use empty strings)
   const handleModalClose = () => {
     props.handleModalClose()
   }
 
-  const [formObject, setFormObject] = useState({ 
-    tags: '' })
+  //set initial state of the form Obje.
+  const [formObject, setFormObject] = useState({})
+  //checks for data when modal visibility setting changes
+  useEffect(() => {
+    loadInitialData();
+  }, [props.show])
 
+  //populate update form with existing data of that adventure
+    async function loadInitialData () {
+      let {data} = await API.getAdventurebyId(props.id)
+      console.log(data)
+        setFormObject({
+          adventureName:data.adventureName,
+          description: data.description,
+          location: data.location,
+          itinerary:data.itinerary,
+          difficulty:data.difficulty,
+          minGroupSize:data.minGroupSize,
+          maxGroupSize:data.maxGroupSize,
+          price:data.price,
+          gearList:data.gearList,
+          tags:data.tags? data.tags.join(", "):''
+        })
+    }
 
+    //input field value controls
+    function handleInputChange(event) {
 
-  function handleInputChange(event) {
-    // add code to control the components here
     let name = event.target.name
     let value
+    //some db fields need to be numbers
     if (name==="minGroupSize" || name==="maxGroupSize" || name==="price" ){
       value = parseInt(event.target.value)
     } else {
@@ -34,14 +55,17 @@ function AdventureUpdate(props) {
   }
 
   async function handleFormSubmit(event) {
-    // add code here to post a new adventure to the api
-    event.preventDefault();
 
+    event.preventDefault();
+    //make copy of state object to edit before post request
     let postObj = {...formObject}
-    // if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
-    console.log(postObj)
+    //TODO:update tags somehow better, so you can delete individual ones and add others etc
+    //turn tags back into array
+    if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
+    //TODO:need to set up duration updating in a way similar to create adventure, where we have the incrementing and the drop-down
     API.updateAdventure(postObj, props.id)
       .then(data => {
+        //TODO: make this something other than an alert
         alert('Adventure updated!')
         setFormObject({ 
           adventureName: '', 
@@ -57,15 +81,6 @@ function AdventureUpdate(props) {
           handleModalClose();
       }).catch(err=> console.log(err))
   }
-
-  // function deleteAdventure(id) {
-  // add code here to remove a adventures using API
-  //  API.deleteAdventure(id)
-  //   .then(data => {
-  //     loadAdventures();
-  //     setFormObject({adventureName: '', hostId: '', usersOnAdventure: '[]', description: '', location: '', itinerary: '', duration: '', difficulty: '', minGroupSize: '', maxGroupSize: '', price: '', gearList: '', tags: ''})
-  //   })
-  // }
 
   return (
     <div className={showHideModal} id="adventureModal1">
@@ -99,7 +114,8 @@ function AdventureUpdate(props) {
               placeholder="Itinerary:"
               value={formObject.itinerary}
             />
-            {/* <Input
+            {/* TODO:make this field more precise with incrementing and dropdown fields
+            <Input
               onChange={handleInputChange}
               name="duration"
               placeholder="Duration:"
@@ -145,6 +161,7 @@ function AdventureUpdate(props) {
               onClick={handleFormSubmit}>
                 Update Adventure
                 </FormBtn>
+                {/* close modal */}
                 <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/>
           </form>
         </Cell>

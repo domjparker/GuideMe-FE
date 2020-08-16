@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
+//PROFILE page where user info is displayed, edited, deleted depending on host status
+import React, {useState, useEffect} from 'react'
+import {Redirect} from 'react-router-dom'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'
@@ -12,99 +13,145 @@ import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
+import Messages from '../../components/Messages'
 
-function Profile(props) {
-    const [userData, setUserData] = useState({})
-    const [adventureData, setAdventureData] = useState([])
-    const [modalAdventure, setModalAdventure] = useState(false)
-    const [modalAdventureUpdate, setModalAdventureUpdate] = useState({ visible: false, id: '' })
-    const [modalUser, setModalUser] = useState(false)
-    const [modalImage, setModalImage] = useState(false)
-    const [picOrBanner, setPicOrBanner] = useState("")
-    const { handlePageChange } = props
+
+
+function Profile (props) {
+    //tells the TopBar what page to display at top
+    const {handlePageChange}=props
     handlePageChange("Profile")
+    //state holds user data pulled from database
+    const [userData, setUserData] = useState({})
+    //state holds user's hosted adventures as pulled from database
+    const [adventureData, setAdventureData] = useState([])
+    //state to check for changes in data to call useEffect and reload data
+    const [change, setChange] = useState(false)
+    //all the below states are boolean states to control modals opening and closong, when true, modal is visible, when false modal is hidden
+    const [modalAdventure, setModalAdventure]= useState(false)
+    const [modalAdventureUpdate, setModalAdventureUpdate]= useState({visible:false, id:''})
+    const [modalUser, setModalUser]= useState(false)
+    const [modalImage, setModalImage]= useState(false)
+    const [picOrBanner, setPicOrBanner] = useState("")
+    // TODO: Maria, what is the line below doing? Error: handlePageChange has already been declared.
+    // const { handlePageChange } = props
+    handlePageChange("Profile")
+    //modal states end ================================================
+
     //set up page with data
     useEffect(() => {
+        //user info
         loadUserData()
+        //get user id from session data to pull up hosted adventures
+        //TODO:check if host first and then pull up adventures? useEffect for that?
         API.getSessionData().then(res => {
             let id = res.data.id
+            //pull up hosted adventures
             loadUserAdventures(id)
         }).catch(err => console.log(err))
-    }, [])
-    //get the user data
+    }, [change])
+
+    //get the user data from database
     const loadUserData = async () => {
         const { data } = await API.getUserbyId();
         if (data.host) { props.setHostState() }
         setUserData(data);
     }
-    //get the advetures data, if the user is a host
-    const loadUserAdventures = async (id) => {
-        const { data } = await API.getAdventurebyHost(id);
-        if (data.length > 0) {
 
-            console.log(data)
+    //get the adventures data from database
+    const loadUserAdventures = async (id)=>{
+        const {data} = await API.getAdventurebyHost(id);
+        if (data.length>0){
             setAdventureData(data)
         }
     }
+    
     //delete this user account
     const handleDeleteUser = () => {
         API.deleteUser().then(() => {
             props.setLoginState()
-            return <Redirect to='/' />
+            props.setHostState()
+            setChange(!change)
+            return <Redirect to='/'/>
         }).catch(err => console.log(err))
     }
-    //delete the adventure
+    
+    //delete the adventure -- this method is passed into the FlipCard component because the delete button lives on the FlipCard
     const handleDeleteAdventure = (e) => {
         e.stopPropagation()
-
         let id = e.target.getAttribute('data-id')
-
-        API.deleteAdventure(id)
-
+        API.deleteAdventure(id).then(()=>setChange(!change)).catch(err=>console.log(err))
     }
-    //open modals
+    
+    //become host button just currently updates status on database,this is what happens here
+    const handleBecomeHost= () => {
+        props.setHostState()
+        let hostObj = {host:true, verified:true}
+        API.updateUser(hostObj).then(()=>setChange(!change)).catch(err=>console.log(err))
+    }
+
+    //start of modals section ============================================================
+    //methods to open all the various modals
     const handleCreateAdventureClick = () => {
+        //create adventure modal open
         setModalAdventure(true);
     }
     const handleUpdateAdventureClick = (e) => {
+        //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
-        setModalAdventureUpdate({ visible: true, id: id });
-
+        //this state includes the adventure id of the adventure whoes FLipCard was clicked to know which adventure we are updating
+        setModalAdventureUpdate({visible:true, id:id});   
     }
     const handleUpdateUserClick = () => {
+        //update user info modal open
         setModalUser(true);
     }
-    const handleUpdateImageClick = (event) => {
+    const handleUpdateBannerPicClick = () => {
         setModalImage(true);
-        setPicOrBanner(event.target.getAttribute("type))
+        setPicOrBanner("bannerPic")
     }
-    //close modals
-    const handleModalAdventureClose = () => {
-        setModalAdventure(false)
+    const handleUpdateProfilePicClick = () => {
+        setModalImage(true);
+        setPicOrBanner("profilePic")
     }
-    const handleModalAdventureUpdateClose = () => {
-        setModalAdventureUpdate({ ...modalAdventureUpdate, visible: false })
+    //methods to close the various modals
+    const  handleModalAdventureClose = () => {
+        //create adventure modal close
+    setModalAdventure(false)
+    setChange(!change)
     }
-    const handleModalUserClose = () => {
-        setModalUser(false)
+    const  handleModalAdventureUpdateClose = () => {
+        //update adventure modal close
+    setModalAdventureUpdate({...modalAdventureUpdate, visible:false})
+    setChange(!change)
     }
-    const handleModalImageClose = () => {
-        setModalImage(false)
+    const  handleModalUserClose = () => {
+        //update user modal close
+    setModalUser(false)
+    setChange(!change)
     }
+    const  handleModalImageClose = () => {
+        //update image modal close
+    setModalImage(false)
+    setChange(!change)
+    }
+    //end of modals section =============================================================
+    
 
     return (
         <>
             <Wrapper>
                 <div className="grid-container full">
                     {/* need to make a second modal?? */}
-                    <Gridx classes={'hero-section'} type="bannerPic" onClick={handleUpdateImageClick("bannerPic")} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}>
+                    <Gridx classes={'hero-section'} onClick={handleUpdateBannerPicClick()} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic">
                         <Cell size={'hero-section-text'}>
                             <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                         </Cell>
                     </Gridx>
                     <Gridx>
+                        {/* User data section */}
                         <Cell size={"small-6 medium-4"}>
-                            <img id="profilePic" type="profilePic" onClick={handleUpdateImageClick(this.type)} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} />
+                            <img id="profilePic" onClick={handleUpdateProfilePicClick()} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic"/>
                         </Cell>
                         <Cell size={"small-6 medium-8"}>
                             <p>{userData.bio}</p>
@@ -114,7 +161,10 @@ function Profile(props) {
                         </Cell>
                     </Gridx>
 
+                    {/* Image update modal ============================== */}
                     <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner}/>
+                    {/* Image update modal ============================== */}
+
                     {/* <ImageForm show={modalImage} axiosUrl={API.updatePicture({profilePictureUrl: imageUrl})} handleModalClose={handleModalImageClose} />
                     <ImageForm show={modalImage} axiosUrl={API.updateBanner({profileBannerUrl: imageUrl})} handleModalClose={handleModalImageClose} /> */}
 
@@ -134,6 +184,9 @@ function Profile(props) {
                                 </Gridx>
                             </>
                         )}
+                        {/* END Display tags and adventures related to user, if the user is a host */}
+
+                        {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
                     <Gridx classes={''}>
                         {props.host ?
                             <Cell size={'medium-4'}>
@@ -148,12 +201,18 @@ function Profile(props) {
                             <Btn classes={'button'} handleClick={handleUpdateUserClick} text={'Update my data'} />
                         </Cell>
                         <Cell size={'medium-4'}>
+                            {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
                             <Btn classes={'alert button'} handleClick={handleDeleteUser} text={'Delete my account'} />
                         </Cell>
                     </Gridx>
+                    {/* END CRUD buttons for user and adventure */}
+
+                    {/* Modals live here */}
                     <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
+                    {/* END Modals live here */}
+                    
                 </div>
             </Wrapper>
         </>

@@ -1,3 +1,4 @@
+//generic Foundation 'row' component
 import React from "react";
 
 function Gridx(props) {
