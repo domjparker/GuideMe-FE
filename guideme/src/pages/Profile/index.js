@@ -31,6 +31,7 @@ function Profile (props) {
     //modal states end ================================================
 
     //set up page with data
+    //TODO: look into this more, to see how to reload the info when a new adventure is created, an adventure is updated, userprofile is updated etc
     useEffect(() => {
         //user info
         loadUserData()
@@ -74,7 +75,9 @@ function Profile (props) {
         let id = e.target.getAttribute('data-id')
         API.deleteAdventure(id)
     }
-
+    
+    //become host button just currently updates status on database,this is what happens here
+    //TODO:reload page when this change happens to check for adventures and tags
     const handleBecomeHost= () => {
         props.setHostState()
         let hostObj = {host:true, verified:true}
