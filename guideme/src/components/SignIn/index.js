@@ -36,7 +36,7 @@ function SignIn(props) {
       API.loginUser(loginObj).then(res=>{
         console.log(res)
         props.logMeIn()
-        //upon successfule login, send me to profile page
+        //upon successful login, send me to profile page
         //TODO:make it so that it sends you back to where you came from
         return <Redirect to='/profile' />
       }

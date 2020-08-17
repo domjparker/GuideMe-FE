@@ -19,7 +19,6 @@ function ImageForm(props) {
 
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [uploadBtn, setUploadBtn] = useState('');
   const onChange = e => {
     setImage(e.target.files[0]);
   };
@@ -48,9 +47,6 @@ function ImageForm(props) {
       else {
         API.updateBanner({ profileBannerUrl: imageUrl })
       }
-
-      // const image = await props.axiosURL
-      // setUploadBtn('Update Profile Pic')
 
       setLoading(false);
       setImage(image.data);
