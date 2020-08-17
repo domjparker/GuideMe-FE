@@ -12,7 +12,9 @@ import Login from './pages/Login'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
+  
   const [page, setpage] = useState('Homepage')
+  //use context for this
   const [user, setuser] = useState({
     //TODO:for some reason sometimes these states get reset to false half way through a session, must fix that. Maybe the host state shouldn't live here....
     loggedIn:false, 
@@ -22,7 +24,7 @@ function App() {
   const setLoginState = () => setuser({loggedIn: !user.loggedIn})
   
 
-
+//TODO: switch to context
   const handlePageChange = (pageName) => {
       setpage(pageName);
   }
@@ -31,6 +33,7 @@ function App() {
   return (
     <Router>
     <>
+    {/* useLocation to display page name */}
     <TopBar title={page} loggedIn={user.loggedIn}/>
     <Switch>
       <Route exact path='/'>
@@ -39,14 +42,16 @@ function App() {
       {/* keep an eye out for edge case. Might need to delete 'exact' */}
       <Route exact path='/adventures/:tag'>    
         <Adventures handlePageChange={handlePageChange}/>
+
       </Route>
       <Route exact path='/adventures/'>    
         <Adventures handlePageChange={handlePageChange}/>
       </Route>
       <Route exact path='/profile'>
-        {user.loggedIn ? 
+        <h1>Log in here</h1>
+        {/* {user.loggedIn ? 
         <Profile handlePageChange={handlePageChange} loggedIn={user.loggedIn} setLoginState={setLoginState}/>
-        : <Login handlePageChange={handlePageChange} loginSuccess={setLoginState}/>  }
+        : <Login handlePageChange={handlePageChange} loginSuccess={setLoginState}/>  } */}
       </Route>
       <Route path='*'>
         <NotFound handlePageChange={handlePageChange}/>

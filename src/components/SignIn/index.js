@@ -37,7 +37,7 @@ function SignIn(props) {
         console.log(res)
         props.logMeIn()
         //upon successful login, send me to profile page
-        //TODO:make it so that it sends you back to where you came from
+        //TODO:history.push('/profile) import useHistroy from react-router-dom
         // return <Redirect to='/profile' />
       }
       ).catch(err=>console.log(err))
