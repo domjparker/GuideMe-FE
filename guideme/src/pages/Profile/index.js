@@ -33,6 +33,7 @@ function Profile (props) {
     const [modalAdventureUpdate, setModalAdventureUpdate]= useState({visible:false, id:''})
     const [modalUser, setModalUser]= useState(false)
     const [modalImage, setModalImage]= useState(false)
+    const [picOrBanner, setPicOrBanner] = useState("")
     //modal states end ================================================
 
     //set up page with data
@@ -54,7 +55,7 @@ function Profile (props) {
         setUserData(data);
     }
 
-    //get the advetures data from database
+    //get the adventures data from database
     const loadUserAdventures = async (id)=>{
         const {data} = await API.getAdventurebyHost(id);
         if (data.length>0){
@@ -64,7 +65,7 @@ function Profile (props) {
     
     //delete this user account
     const handleDeleteUser = () => {
-        API.deleteUser().then(()=>{
+        API.deleteUser().then(() => {
             props.setLoginState()
             setChange(!change)
             return <Redirect to='/'/>
@@ -91,7 +92,7 @@ function Profile (props) {
         setModalAdventure(true);
     }
     const handleUpdateAdventureClick = (e) => {
-        //update adventuer modal open -- this method is passed into the FlipCard since the update adventure btn lives there
+        //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
         //this state includes the adventure id of the adventure whoes FLipCard was clicked to know which adventure we are updating
         setModalAdventureUpdate({visible:true, id:id});   
@@ -100,9 +101,13 @@ function Profile (props) {
         //update user info modal open
         setModalUser(true);
     }
-    const handleUpdateImageClick = () => {
-        //update image modal open
+    const handleUpdateBannerPicClick = () => {
         setModalImage(true);
+        setPicOrBanner("bannerPic")
+    }
+    const handleUpdateProfilePicClick = () => {
+        setModalImage(true);
+        setPicOrBanner("profilePic")
     }
     //methods to close the various modals
     const  handleModalAdventureClose = () => {
@@ -128,82 +133,85 @@ function Profile (props) {
     //end of modals section =============================================================
     
 
-    return(
+    return (
         <>
-        <Wrapper>
-            <div className="grid-container full">
-                <Mailbox />
-                <Gridx classes={'hero-section'}>
-                    <Cell size={'hero-section-text'}>
-                        <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
-                    </Cell>
-                </Gridx>
-                <Gridx>
-                    {/* User data section */}
-                    <Cell size={"small-6 medium-4"}>
-                        <img id="profilePic" onClick={handleUpdateImageClick} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName} />
-                    </Cell>
-                    <Cell size={"small-6 medium-8"}>
-                        <p>{userData.bio}</p>
-                    </Cell>
-                    <Cell size={""}>
-                        <p>{userData.location}</p>
-                    </Cell>
-                </Gridx>
-                
-                {/* Image update modal ============================== */}
-                <ImageForm show={modalImage}  handleModalClose={handleModalImageClose}/>
-                {/* END Image update modal ============================== */}
-
-                {/* Display tags and adventures related to user, if the user is a host */}
-                {(userData.host=== false) ? null 
-                :(
-                    <>
-                <Gridx classes="grid-margin-x">
-                    <TagRow tags={userData.tags}/>
-                </Gridx>
-                <Gridx classes="grid-margin-x">
-                    {(adventureData)? adventureData.map(adventure => (
-                        <Cell key={adventure._id} size={'medium-6 large-4'}>
-                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={"https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description}/>
+            <Wrapper>
+                <div className="grid-container full">
+                    {/* need to make a second modal?? */}
+                    <Gridx classes={'hero-section'} onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic">
+                        <Cell size={'hero-section-text'}>
+                            <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                         </Cell>
-                    )) : null}
-                </Gridx>
-                </>
-                )}
-                {/* END Display tags and adventures related to user, if the user is a host */}
+                    </Gridx>
+                    <Gridx>
+                        {/* User data section */}
+                        <Cell size={"small-6 medium-4"}>
+                            <img id="profilePic" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic"/>
+                        </Cell>
+                        <Cell size={"small-6 medium-8"}>
+                            <p>{userData.bio}</p>
+                        </Cell>
+                        <Cell size={""}>
+                            <p>{userData.location}</p>
+                        </Cell>
+                    </Gridx>
 
-                {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
-                <Gridx classes={''}>
-                    {userData.host ? 
-                    <Cell size={'medium-4'}>
-                        <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'}/>
-                    </Cell>
-                    :
-                    <Cell size={'medium-4'}>
-                        <Btn classes={'button'} handleClick={handleBecomeHost} text={'Become a guide'}/>
-                    </Cell>
-                    }
-                    <Cell size={'medium-4'}>
-                        <Btn classes={'button'} handleClick={handleUpdateUserClick} text={'Update my data'}/>
-                    </Cell>
-                    <Cell size={'medium-4'}>
-                        {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
-                        <Btn classes={'alert button'} handleClick={handleDeleteUser} text={'Delete my account'}/>
-                    </Cell>
-                </Gridx>
-                {/* END CRUD buttons for user and adventure */}
+                    {/* Image update modal ============================== */}
+                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner}/>
+                    {/* Image update modal ============================== */}
 
-                {/* Modals live here */}
-                <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose}/>
-                <UserUpdate show={modalUser} handleModalClose={handleModalUserClose}/>
-                <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id}/>
-                {/* END Modals live here */}
+                    {/* <ImageForm show={modalImage} axiosUrl={API.updatePicture({profilePictureUrl: imageUrl})} handleModalClose={handleModalImageClose} />
+                    <ImageForm show={modalImage} axiosUrl={API.updateBanner({profileBannerUrl: imageUrl})} handleModalClose={handleModalImageClose} /> */}
 
-            </div>
-        </Wrapper>
+                    {(userData.host === false) ? null
+                        : (
+                            <>
+                                <Gridx classes="grid-margin-x">
+                                    <TagRow tags={userData.tags} />
+                                </Gridx>
+                                <Gridx classes="grid-margin-x">
+                                    {(adventureData) ? adventureData.map(adventure => (
+                                        <Cell key={adventure._id} size={'medium-6 large-4'}>
+                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={"https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
+
+                                        </Cell>
+                                    )) : null}
+                                </Gridx>
+                            </>
+                        )}
+                        {/* END Display tags and adventures related to user, if the user is a host */}
+
+                        {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
+                    <Gridx classes={''}>
+                        {props.host ?
+                            <Cell size={'medium-4'}>
+                                <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'} />
+                            </Cell>
+                            :
+                            <Cell size={'medium-4'}>
+                                <Btn classes={'button'} handleClick={props.setHostState} text={'Become a guide'} />
+                            </Cell>
+                        }
+                        <Cell size={'medium-4'}>
+                            <Btn classes={'button'} handleClick={handleUpdateUserClick} text={'Update my data'} />
+                        </Cell>
+                        <Cell size={'medium-4'}>
+                            {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
+                            <Btn classes={'alert button'} handleClick={handleDeleteUser} text={'Delete my account'} />
+                        </Cell>
+                    </Gridx>
+                    {/* END CRUD buttons for user and adventure */}
+
+                    {/* Modals live here */}
+                    <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
+                    <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
+                    <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
+                    {/* END Modals live here */}
+                    
+                </div>
+            </Wrapper>
         </>
-    )    
+    )
 }
 
 export default Profile

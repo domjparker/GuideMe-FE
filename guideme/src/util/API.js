@@ -35,7 +35,7 @@ export default {
     deleteAdventure: (id) => {
         return axios.delete(`${prefix}/api/adventure/` + id, {withCredentials:true})
     },
-    //============USERS==================
+    //============USER==================
     //GET user by id
     getUserbyId: () => {
         return axios.get(`${prefix}/api/user/profile`, {withCredentials:true})
@@ -56,6 +56,12 @@ export default {
     updatePicture : (pictureObj) => {
         return axios.put(`${prefix}/api/user/profile/picture`, pictureObj, {withCredentials:true} )
     },
+
+    //PUT profile banner
+    updateBanner : (pictureObj) => {
+        return axios.put(`${prefix}/api/user/profile/banner`, pictureObj, {withCredentials:true} )
+    },
+
     //PUT user profile info
     updateUser : (userObj) => {
         return axios.put(`${prefix}/api/user/profile`, userObj,{withCredentials:true})

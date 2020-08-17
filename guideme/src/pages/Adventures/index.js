@@ -26,7 +26,7 @@ function Adventures(props){
         loadAdventures()
     }, [])
     //API call to adventures db
-    //TODO:here we need to implement the actual search functionality so not alla dventures are alwasy shown
+    //TODO:here we need to implement the actual search functionality so not all adventures are alwasy shown
     const loadAdventures = async () => {
         const result = await API.getAllAdventures()
 
