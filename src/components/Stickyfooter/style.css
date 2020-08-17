@@ -13,12 +13,23 @@
   justify-content:space-around;
   color: whitesmoke;
 }
-.search, .fa-envelope {
+.search{
   font-size: 1.5rem;
   padding-top: 1rem;
   display: flex;
   justify-content:space-around;
   color: whitesmoke;
+}
+#messages{
+  display: flex;
+  justify-content:space-around;
+  
+}
+.messageBtn{
+  color: whitesmoke;
+  padding-top: 0.8rem;
+  padding-right: 1rem;
+  font-size: 1.5rem;
 }
 
 .hiking {
