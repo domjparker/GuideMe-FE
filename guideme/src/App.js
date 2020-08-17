@@ -19,8 +19,8 @@ function App() {
     host: false
   })
 
-  const setLoginState = () => setuser({...user, loggedIn: !user.loggedIn})
-  const setHostState = () => setuser({...user, host:!user.host})
+  const setLoginState = () => setuser({loggedIn: !user.loggedIn})
+  
 
 
   const handlePageChange = (pageName) => {
@@ -31,7 +31,7 @@ function App() {
   return (
     <Router>
     <>
-    <TopBar title={page} loggedIn={user.loggedIn} host={user.host}/>
+    <TopBar title={page} loggedIn={user.loggedIn}/>
     <Switch>
       <Route exact path='/'>
           <Homepage handlePageChange={handlePageChange}/>
@@ -45,7 +45,7 @@ function App() {
       </Route>
       <Route exact path='/profile'>
         {user.loggedIn ? 
-        <Profile handlePageChange={handlePageChange} loggedIn={user.loggedIn} host={user.host} setLoginState={setLoginState} setHostState={setHostState}/>
+        <Profile handlePageChange={handlePageChange} loggedIn={user.loggedIn} setLoginState={setLoginState}/>
         : <Login handlePageChange={handlePageChange} loginSuccess={setLoginState}/>  }
       </Route>
       <Route path='*'>

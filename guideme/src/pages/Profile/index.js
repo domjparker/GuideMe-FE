@@ -53,8 +53,7 @@ function Profile (props) {
 
     //get the user data from database
     const loadUserData = async () => {
-        const { data } = await API.getUserbyId();
-        if (data.host) { props.setHostState() }
+        const {data} = await API.getUserbyId();
         setUserData(data);
     }
 
@@ -70,7 +69,6 @@ function Profile (props) {
     const handleDeleteUser = () => {
         API.deleteUser().then(() => {
             props.setLoginState()
-            props.setHostState()
             setChange(!change)
             return <Redirect to='/'/>
         }).catch(err => console.log(err))
@@ -85,7 +83,6 @@ function Profile (props) {
     
     //become host button just currently updates status on database,this is what happens here
     const handleBecomeHost= () => {
-        props.setHostState()
         let hostObj = {host:true, verified:true}
         API.updateUser(hostObj).then(()=>setChange(!change)).catch(err=>console.log(err))
     }
