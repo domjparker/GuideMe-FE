@@ -1,5 +1,5 @@
 import axios from 'axios'
-const prefix = "http://localhost:3001"
+const prefix = "https://guidemebe.herokuapp.com/"
 
 export default {
     //============ADVENTURES==================
