@@ -160,9 +160,6 @@ function Profile (props) {
                     <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner}/>
                     {/* Image update modal ============================== */}
 
-                    {/* <ImageForm show={modalImage} axiosUrl={API.updatePicture({profilePictureUrl: imageUrl})} handleModalClose={handleModalImageClose} />
-                    <ImageForm show={modalImage} axiosUrl={API.updateBanner({profileBannerUrl: imageUrl})} handleModalClose={handleModalImageClose} /> */}
-
                     {(userData.host === false) ? null
                         : (
                             <>
@@ -189,7 +186,7 @@ function Profile (props) {
                             </Cell>
                             :
                             <Cell size={'medium-4'}>
-                                <Btn classes={'button'} handleClick={props.setHostState} text={'Become a guide'} />
+                                <Btn classes={'button'} handleClick={handleBecomeHost} text={'Become a guide'} />
                             </Cell>
                         }
                         <Cell size={'medium-4'}>

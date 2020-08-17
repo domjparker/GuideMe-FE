@@ -15,7 +15,12 @@ function UserUpdate(props) {
   }
 
   //handles form object data
-  const [formObject, setFormObject] = useState({})
+  const [formObject, setFormObject] = useState({  firstName: '', 
+  lastName: '', 
+  email: '', 
+  bio: '',  
+  location: '', 
+  tags: [] })
 //checks for data when modal visibility setting changes
 useEffect(() => {
   loadInitialData();

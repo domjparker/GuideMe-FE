@@ -17,8 +17,7 @@ function App() {
   //use context for this
   const [user, setuser] = useState({
     //TODO:for some reason sometimes these states get reset to false half way through a session, must fix that. Maybe the host state shouldn't live here....
-    loggedIn:false, 
-    host: false
+    loggedIn:false
   })
 
   const setLoginState = () => setuser({loggedIn: !user.loggedIn})
@@ -49,9 +48,9 @@ function App() {
       </Route>
       <Route exact path='/profile'>
         <h1>Log in here</h1>
-        {/* {user.loggedIn ? 
+        {user.loggedIn ? 
         <Profile handlePageChange={handlePageChange} loggedIn={user.loggedIn} setLoginState={setLoginState}/>
-        : <Login handlePageChange={handlePageChange} loginSuccess={setLoginState}/>  } */}
+        : <Login handlePageChange={handlePageChange} loginSuccess={setLoginState}/>  }
       </Route>
       <Route path='*'>
         <NotFound handlePageChange={handlePageChange}/>
