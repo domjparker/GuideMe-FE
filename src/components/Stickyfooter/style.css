@@ -1,0 +1,44 @@
+#stickyFooter{
+  padding:5px;
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 90%;
+  height: 10vh;
+}
+.logo {
+  display: flex;
+  justify-content:space-around;
+  color: whitesmoke;
+}
+.search, .fa-envelope {
+  font-size: 1.5rem;
+  padding-top: 1rem;
+  display: flex;
+  justify-content:space-around;
+  color: whitesmoke;
+}
+
+.hiking {
+  padding-top: 0.8rem;
+  padding-right: 1rem;
+  color: whitesmoke;
+ font-size: 1.5rem;
+ display: flex;
+ justify-content: space-around;
+}
+
+#logofooter {
+  display: flex;
+  justify-content:space-around;
+  color: whitesmoke;
+  padding-top: 1rem;
+  padding-left: 1rem
+}
+
+.loggedIn .fas {
+  color: darkgreen;
+  font-size: 3rem;
+}
