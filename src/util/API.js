@@ -1,5 +1,5 @@
 import axios from 'axios'
-const prefix = "https://guidemebe.herokuapp.com/"
+const prefix = "https://guidemebe.herokuapp.com"
 
 export default {
     //============ADVENTURES==================
