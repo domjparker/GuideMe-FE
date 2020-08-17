@@ -14,6 +14,7 @@ import UserUpdate from '../../components/UserUpdate'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
 import Messages from '../../components/Messages'
+import Mailbox from '../../components/Mailbox'
 
 
 
@@ -134,7 +135,7 @@ function Profile (props) {
         <>
         <Wrapper>
             <div className="grid-container full">
-                <Messages />
+                <Mailbox />
                 <Gridx classes={'hero-section'}>
                     <Cell size={'hero-section-text'}>
                         <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>

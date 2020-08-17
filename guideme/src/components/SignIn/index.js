@@ -67,56 +67,6 @@ function SignIn(props) {
           </form>
         </div>
       );
-      return;
+      
     }
-    API.loginUser(loginObj).then(res => {
-      console.log(res)
-      props.logMeIn()
-      // setloginObj({
-      //   email: "",
-      //   password: ""
-      // });
-      return <Redirect to='/profile' />
-    }
-    ).catch(err => console.log(err))
-  
-
-const handleSignInOpen = event => {
-  event.preventDefault();
-
-  
-
-}
-
-
-  // Notice how each input has a `value`, `name`, and `onChange` prop
-  return (
-    <div>
-      <p>
-        Welcome Back!
-      </p>
-      <button onClick={handleSignInOpen} className="accordion">Sign In</button>
-      <div className="panel">
-        <form className="signin">
-          <Input
-            value={loginObj.email}
-            name="email"
-            onChange={handleInputChange}
-            type="text"
-            placeholder="Email"
-          />
-          <Input
-            value={loginObj.password}
-            name="password"
-            onChange={handleInputChange}
-            type="password"
-            placeholder="Password"
-          />
-          <FormBtn onClick={handleFormSubmit} children={'Sign in'} />
-        </form>
-      </div>
-    </div>
-  );
-
-
 export default SignIn;
