@@ -6,6 +6,8 @@ import Gridx from '../Gridx'
 import Cell from '../Cell'
 import LOGO from '../../images/logo.jpg'
 import Messages from '../Messages'
+// import PopupChat from '../PopupChat'
+
 
 
 const Stickyfooter = (props) => (
@@ -20,7 +22,8 @@ const Stickyfooter = (props) => (
               <Link to="/adventures"><i className="fas fa-search search"></i></Link>  
             </Cell>
             <Cell size={'small-3'} id="messages">
-               <i className="far fa-envelope"></i>
+                <button className="messageBtn">
+                <i className="far fa-envelope"></i></button>
             </Cell>
             <Cell size={'small-3 text-right' + (props.loggedIn ? ' loggedIn' : '')} id="profileIcon">
                 <Link to={'/profile'} ><i className="fas fa-hiking hiking"></i></Link>

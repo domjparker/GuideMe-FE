@@ -1,8 +1,8 @@
 //signin form -- member of the Login page component
 import React, { useState } from "react";
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import "./style.css";
-import {Input, FormBtn} from "../Form"
+import { Input, FormBtn } from "../Form"
 import API from '../../util/API'
 
 function SignIn(props) {
@@ -67,6 +67,6 @@ function SignIn(props) {
           </form>
         </div>
       );
-  }
-  
-  export default SignIn;
+      
+    }
+export default SignIn;

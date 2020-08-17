@@ -4,6 +4,7 @@ import './style.css'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Btn from '../Btn'
+import Messages from '../../components/Messages'
 
 //this component takes ina  ton of adventure information
 function FlipCard(props){
@@ -33,13 +34,20 @@ return (
                                     <h6><strong>{props.host}</strong></h6>
                                     <p>{props.description}</p>
                                     <p>{props.itinerary}</p>
+                                   
                                 </Cell>
                             </Gridx>
                             <Gridx>
                                 <Cell size={"small-7"}>
                                     <h6><strong>Smth goes here</strong></h6>
                                     <p>i am not sure yet what</p>
+                                    
+                                    {/* Message Button */}
+                                    <div>
+                                        <Messages />
+                                    </div>
                                 </Cell>
+                                
                                 <Cell size={"small-5 p-1"}>
                                     <h6>Details</h6>
                                     <ul>
@@ -56,8 +64,8 @@ return (
                                     <p> {props.location} </p>
                                 </Cell>
                                 <Cell size={'small-6'}>
-                                    {props.edit ? <Btn data-id={props.id} classes={'button'} handleClick={props.editClick} text={'update me'}/> :null}
-                                    {props.delete ? <Btn data-id={props.id} classes={'alert button'} handleClick={props.deleteClick} text={'delete me'}/> : null}
+                                    {props.edit ? <Btn data-id={props.id} classes={'button'} handleClick={props.editClick} text={'update me'} /> : null}
+                                    {props.delete ? <Btn data-id={props.id} classes={'alert button'} handleClick={props.deleteClick} text={'delete me'} /> : null}
                                 </Cell>
                             </Gridx>
                         </div>
@@ -66,19 +74,20 @@ return (
                         <Gridx>
                             <Cell size={"small-12"}>
                                 <div className="card-section">
-                                <img src={props.img} alt={props.title}/>
+                                    <img src={props.img} alt={props.title} />
                                 </div>
                                 <div className="card-section">
-                                  <h4>{props.title}</h4>
-                                  <h5>{props.host}</h5>
+                                    <h4>{props.title}</h4>
+                                    <h5>{props.host}</h5>
                                     <p>{props.description}</p>
-                                  </div>
+                                </div>
                             </Cell>
                         </Gridx>
                     </div>
                 </div>
             </div>
-    </>
-)}
+        </>
+    )
+}
 
 export default FlipCard;
