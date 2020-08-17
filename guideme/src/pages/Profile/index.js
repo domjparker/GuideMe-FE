@@ -33,9 +33,6 @@ function Profile (props) {
     const [modalUser, setModalUser]= useState(false)
     const [modalImage, setModalImage]= useState(false)
     const [picOrBanner, setPicOrBanner] = useState("")
-    // TODO: Maria, what is the line below doing? Error: handlePageChange has already been declared.
-    // const { handlePageChange } = props
-    handlePageChange("Profile")
     //modal states end ================================================
 
     //set up page with data
@@ -140,7 +137,7 @@ function Profile (props) {
             <Wrapper>
                 <div className="grid-container full">
                     {/* need to make a second modal?? */}
-                    <Gridx classes={'hero-section'} onClick={handleUpdateBannerPicClick()} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic">
+                    <Gridx classes={'hero-section'} onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic">
                         <Cell size={'hero-section-text'}>
                             <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                         </Cell>
@@ -148,7 +145,7 @@ function Profile (props) {
                     <Gridx>
                         {/* User data section */}
                         <Cell size={"small-6 medium-4"}>
-                            <img id="profilePic" onClick={handleUpdateProfilePicClick()} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic"/>
+                            <img id="profilePic" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic"/>
                         </Cell>
                         <Cell size={"small-6 medium-8"}>
                             <p>{userData.bio}</p>

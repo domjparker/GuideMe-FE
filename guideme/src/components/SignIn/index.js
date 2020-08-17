@@ -38,7 +38,7 @@ function SignIn(props) {
         props.logMeIn()
         //upon successful login, send me to profile page
         //TODO:make it so that it sends you back to where you came from
-        return <Redirect to='/profile' />
+        // return <Redirect to='/profile' />
       }
       ).catch(err=>console.log(err))
     };
