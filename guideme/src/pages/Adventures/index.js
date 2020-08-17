@@ -7,7 +7,7 @@ import Gridx from '../../components/Gridx'
 import Cell from '../../components/Cell'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
-import{useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 
 function Adventures(props){
@@ -29,10 +29,9 @@ function Adventures(props){
     //TODO:here we need to implement the actual search functionality so not alla dventures are alwasy shown
     const loadAdventures = async () => {
         const result = await API.getAllAdventures()
-        
+
         setAdventures(result.data)
     }
-
 
     return (
         <>
@@ -46,6 +45,7 @@ function Adventures(props){
                         </Cell>
                             ) : null}
                     </Gridx>
+                 
                 </div>
             </Wrapper>
         </>
