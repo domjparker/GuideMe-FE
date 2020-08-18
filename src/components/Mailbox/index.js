@@ -11,10 +11,10 @@ import API from '../../util/API'
 function Mailbox(props) {
     const [mailbox, setMailbox] = useState([]);
     const [showMessage, setShowMessage] = useState(false);
-    const [intendedUser, setIntendedUser] = useState({})
 
     const handleMailboxOpen = async (e) => {
         const { data } = await API.getMailbox();
+        console.log(data)
         setMailbox(data.mailbox)
     }
 
@@ -25,9 +25,7 @@ return (
         {(showMessage === false) ?
             <ul>
                 {
-                    (mailbox.length > 0) ? mailbox.map(item => <li><PopupChat name={item.converser.firstName} id={item.converser._id} /></li>)
-
-                        : null
+                    (mailbox.length > 0) ? mailbox.map(item => <li><PopupChat name={item.converser.firstName} id={item.converser._id} /></li>): null
                 }
 
             </ul>

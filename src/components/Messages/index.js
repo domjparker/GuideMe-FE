@@ -19,6 +19,9 @@ function Messages(props) {
         setMessages(data)
         console.log(data)
     }
+    {/* socket.on('chat-message', data =>{
+                    
+        }) */}
     return (
        
         <div>

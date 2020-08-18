@@ -23,11 +23,13 @@ function PopupChat(props) {
     const sendMessages = (e)=>{
         e.preventDefault()
         const messageObj = {
+            name: props.name,
             recieverId: props.id,
             messageText: "This is a test"
         }
         console.log(messageObj)
         API.sendMessage(messageObj)
+        // Socket.emit('send-chat-message', messageObj)
     }
     let showHide = chatBox ? "visible" : "invisible";
 
