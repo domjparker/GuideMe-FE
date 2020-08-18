@@ -1,7 +1,7 @@
 //New adventure create form
 import React, { useState } from "react";
 import API from "../../util/API";
-import { Input, TextArea, FormBtn } from "../Form";
+import { Input, TextArea, FormBtn, Dropdown, NumberInput } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
@@ -120,11 +120,11 @@ function Adventure(props) {
               placeholder="Duration:"
               value={formObject.duration}
             /> */}
-            <Input
+            <Dropdown
               onChange={handleInputChange}
               name="difficulty"
-              placeholder="Difficulty:"
               value={formObject.difficulty}
+              options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
             />
             <Input
               onChange={handleInputChange}
