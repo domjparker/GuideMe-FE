@@ -17,7 +17,7 @@ display: none;
   border: none;
   cursor: pointer;
   opacity: 0.8;
-  position: fixed;
+  position: relative;
   bottom: 100px;
   right: 28px;
   width: 280px;
@@ -48,7 +48,8 @@ display: none;
   border: none;
   background: #f1f1f1;
   resize: none;
-  min-height: 200px;
+  min-height: 3vh;
+  max-height: 5vh;
 }
 
 /* When the textarea gets focus, do something */
