@@ -104,10 +104,10 @@ function Adventure(props) {
           itinerary: '',
           time:1,
           unit:'hours',  
-          difficulty: '', 
-          minGroupSize: '', 
-          maxGroupSize: '', 
-          price: '', 
+          difficulty: 'Easy', 
+          minGroupSize: 1, 
+          maxGroupSize: 2, 
+          price: 50, 
           gearList: '', 
           tags: [] })
           handleModalClose();
