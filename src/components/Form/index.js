@@ -1,5 +1,6 @@
 //generic form building blocks live here
 import React from 'react';
+import './style.css'
 
 
 //TODO: need dropdown, number increment etc components too!

@@ -25,7 +25,6 @@ function AdventureUpdate(props) {
   //populate update form with existing data of that adventure
     async function loadInitialData () {
       let {data} = await API.getAdventurebyId(props.id)
-      console.log(data)
         setFormObject({
           adventureName:data.adventureName,
           description: data.description,
@@ -36,7 +35,7 @@ function AdventureUpdate(props) {
           maxGroupSize:data.maxGroupSize,
           price:data.price,
           gearList:data.gearList,
-          tags:data.tags? data.tags.join(", "):''
+          tags:data.tags? data.tags.map(tag=>tag.tagName).join(", "):[]
         })
     }
 
@@ -60,8 +59,9 @@ function AdventureUpdate(props) {
     //make copy of state object to edit before post request
     let postObj = {...formObject}
     //TODO:update tags somehow better, so you can delete individual ones and add others etc
-    //turn tags back into array
-    if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
+    //TODO: Tags: you can only pick froma pre-defined list of tags!!! And here we just include the ids of the chosen ones
+    // if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
+    postObj.tags=[]
     //TODO:need to set up duration updating in a way similar to create adventure, where we have the incrementing and the drop-down
     API.updateAdventure(postObj, props.id)
       .then(data => {
@@ -77,7 +77,7 @@ function AdventureUpdate(props) {
           maxGroupSize: '', 
           price: '', 
           gearList: '', 
-          tags: '' })
+          tags: [] })
           handleModalClose();
       }).catch(err=> console.log(err))
   }

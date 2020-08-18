@@ -1,38 +1,49 @@
 #stickyFooter{
   padding:5px;
-  background-color: black;
+  background-color: rgba(39, 36, 27, 100%);
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  opacity: 90%;
   height: 10vh;
 }
-.search, .fa-envelope {
+.logo {
+  display: flex;
+  justify-content:space-around;
+  color: rgba(243, 236, 216,100%);
+}
+.search{
   font-size: 1.5rem;
   padding-top: 1rem;
   display: flex;
   justify-content:space-around;
-  color: whitesmoke;
+  color: rgba(243, 236, 216,100%);
 }
-
+#messages{
+  display: flex;
+  justify-content:space-around;
+}
+.messageBtn{
+  color: whitesmoke;
+  padding-top: 0.8rem;
+  padding-right: 1rem;
+  font-size: 1.5rem;
+}
 .hiking {
   padding-top: 0.8rem;
   padding-right: 1rem;
-  color: whitesmoke;
+  color: rgba(243, 236, 216,100%);
  font-size: 1.5rem;
  display: flex;
  justify-content: space-around;
 }
-
 #logofooter {
   display: flex;
   justify-content:space-around;
-  color: whitesmoke;
+  color: rgba(243, 236, 216,100%);
   padding-top: 1rem;
   padding-left: 1rem
 }
-
 .loggedIn .fas {
   color: darkgreen;
   font-size: 3rem;

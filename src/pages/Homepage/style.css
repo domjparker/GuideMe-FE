@@ -1,7 +1,7 @@
 
 .homepage {
    
-    opacity: 90%;
+    opacity: 0.9;
     background: url("../../images/homepage.jpg") 50% no-repeat;
     background-size: cover;
     height: 60vh;
@@ -19,18 +19,19 @@
     margin:1rem;
     display: flex;
     justify-content: center;
-    color: whitesmoke;
-    text-shadow: 1px 1px 2px #0a0a0a;
+    color: rgba(243, 236, 216,100%);
+    text-shadow: 1px 1px 2px rgba(39, 36, 27, 100%);
    
   }
   .callout{
     margin-top: 20vh;
     max-width: 80vw;
-    opacity: 98%;
+    opacity: 0.98;
     display: flex;
     flex-wrap: wrap;
     justify-content:center;
-    box-shadow: 1px 1px 2px whitesmoke;
+    border-radius: 5%;
+    background-color: rgba(39, 36, 27, 100%);
   }
 
 
@@ -44,16 +45,14 @@
    margin: 0.4rem;
    
   }
-  .searchBarShadow {
-    box-shadow: 1px 1px 2px black;
-  }
+  
   .searchAdventure{
     max-width: 35%;
     max-height: 60%;
-    margin-top: .3rem;
+    margin-top: 0.5rem;
     border-radius: 5%;
-    box-shadow: 1px 1px 2px black;
-    background-color: teal;
+    color:rgba(39, 36, 27, 100%);
+    background-color: rgba(225, 215, 205, 100%);
   }
 
   .hostAdventure{
@@ -61,8 +60,8 @@
     justify-content: center;
     align-items: center;
     border-radius: 5%;
-    box-shadow: 1px 1px 2px black;
-    background-color: rgb(197, 146, 6);
+    color:rgba(39, 36, 27, 100%);
+    background-color: rgba(207, 162, 66, 100%);
  
   }
  
