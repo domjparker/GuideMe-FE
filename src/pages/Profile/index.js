@@ -104,6 +104,7 @@ function Profile(props) {
         //update user info modal open
         setModalUser(true);
     }
+    // 
     const handleUpdateBannerPicClick = () => {
         setModalImage(true);
         setPicOrBanner("bannerPic")
@@ -149,8 +150,8 @@ function Profile(props) {
                         <Cell size={'hero-section-text'}>
                             <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                         </Cell>
-                    {/* </Gridx> */}
-                    {/* <Gridx> */}
+                    </Gridx> 
+                    <Gridx>
                         {/* User data section */}
                         <Cell size={"small-6 medium-4"}>
                             <img id="profilePic" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
@@ -162,10 +163,6 @@ function Profile(props) {
                             <p>{userData.location}</p>
                         </Cell>
                     </Gridx>
-
-                    {/* Image update modal ============================== */}
-                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
-                    {/* Image update modal ============================== */}
 
                     {(userData.host === false) ? null
                         : (
@@ -207,6 +204,7 @@ function Profile(props) {
                     {/* END CRUD buttons for user and adventure */}
 
                     {/* Modals live here */}
+                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
                     <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
