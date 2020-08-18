@@ -2,15 +2,14 @@
     margin-bottom: 85px;
 }
 
-#grid-container.copyright {
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    box-shadow: 0px 3px 3px darkgreen;
-    height: 10vh;
-    width: 100%;
-    z-index: 2;
-    position: fixed;
-    top: 0;
+#Footer{
+    padding:5px;
+    background-color: whitesmoke;
+    color: black;
+    position: relative;
+    bottom: 0;
     left: 0;
-    background-color:black;
-}
+    width: auto;
+    opacity: 90%;
+    height: 25vh;
+  }

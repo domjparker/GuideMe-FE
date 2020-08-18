@@ -10,25 +10,36 @@ function Footer(props) {
 
     return (
         <>
-            <div className="grid-container copyright ">
+            <div className="grid-container copyright" id="Footer">
                 <Gridx>
-                    <Cell size={''}>
-                        <h6 className="text-left">{"Built With:"}
-                        <li><a href="https://socket.io/">Socket.io</a></li>
-                        <li><a href="https://createjs.com/">Create.js</a></li>
-                        <li><a href="https://github.com/indyminhas/project2">GitHub</a></li>
+                    <Cell size={'medium-6'}>
+                        <h6 className="text-center">{"Built By:"}
+                        <ul>
+                            <a href="https://github.com/domjparker" target="_blank" >Dominic Parker</a>
+                            <br></br>
+                            <a href="https://github.com/maria-helbling" target="_blank" >Maria Helbling</a>
+                            <br></br>
+                            <a href="https://github.com/MegaGrega" target="_blank" >Matthew Grega</a>
+                            <br></br>
+                            <a href="https://github.com/indyminhas" target="_blank" >Indy Minhas</a>
+                            <br></br>
+                            <a href="https://github.com/AndrewBergstrom" target="_blank" >Andrew Bergstrom</a>
+                        </ul>   
                         </h6>
                     </Cell>
-                    <Cell size={''}>
-                        <h6 className="text-right">{"Built By:"}
-                        <li><a href="https://github.com/domjparker" >Dominic Parker</a></li>
-                        <li><a href="https://github.com/maria-helbling" >Maria Helbling</a></li>
-                        <li><a href="https://github.com/MegaGrega" >Matthew Grega</a></li>
-                        <li><a href="https://github.com/indyminhas" >Indy Minhas</a></li>
-                        <li><a href="https://github.com/AndrewBergstrom" >Andrew Bergstrom</a></li>
+
+                    <Cell size={'medium-6'}>
+                        <h6 className="text-center">{"Built With:"}
+                        <ul>
+                            <a href="https://socket.io/" target="_blank" >Socket.io</a>
+                            <br></br>
+                            <a href="https://createjs.com/" target="_blank" >Create.js</a>
+                            <br></br>
+                            <a href="https://github.com/domjparker/GuideMe-FE" target="_blank"><i class="fa fa-github"></i></a>
+                        </ul>
                         </h6>
                     </Cell>
-                    <Cell size={''}>
+                    <Cell size={'medium-12'}>
                         <h6 className="text-center">{"© 2020 GuideMe"}</h6>
                     </Cell>
                 </Gridx>

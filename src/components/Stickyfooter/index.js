@@ -16,7 +16,7 @@ const Stickyfooter = (props) => (
             <Cell size={'small-4 text-left'} >
               <Link to="/adventures"><i className="fas fa-search search"></i></Link>  
             </Cell>
-            <Cell size={'small-4'} id="messages">
+            <Cell size={'small-4 text-center'} id="messages">
                 <button className="messageBtn">
                 <i className="far fa-envelope"></i></button>
             </Cell>

@@ -6,7 +6,8 @@
 }
 
 #logo {
-    padding-left: 1rem
+    padding-left: 1rem;
+    postion: fixed;
 }
 
 .loggedIn .fas {
