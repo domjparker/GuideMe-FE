@@ -6,26 +6,28 @@ import API from "../../util/API"
 
 function PopupChat(props) {
 
-    const [chatBox, setChatBox] = useState(false)
+    const [chatBox, setChatBox] = useState(true)
     const [messageText, setMessageText] = useState("")
 
-    // open chat window
-    const handleOpenChat = (e) => {
-        e.stopPropagation();
-        setChatBox(true);
-        
-    }
 
     // close chat window
     const handleCloseChat = (e) =>{
         e.stopPropagation();
         setChatBox(false)
+        props.hide()
     }
     const handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         let value = event.target.value;
         setMessageText(value)
       };
+    const updateMail = async ()=> {
+        const converserObj = {
+            converser: props.id
+        }
+        await API.updateMailbox(converserObj)
+        props.handleOpen()
+    }
     const sendMessages = (e)=>{
         e.preventDefault()
         const messageObj = {
@@ -33,7 +35,13 @@ function PopupChat(props) {
             recieverId: props.id,
             messageText: messageText
         }
-        console.log(messageObj)
+        debugger
+        if(props.mailbox.map(function(e) { return e.converser._id; }).indexOf(props.id) !== -1){
+            console.log("They are in the mailbox")
+        }else{
+            console.log("They are not in the mailbox")
+            updateMail()
+        }
         API.sendMessage(messageObj)
         setMessageText("")
         // Socket.emit('send-chat-message', messageObj)
@@ -42,8 +50,7 @@ function PopupChat(props) {
 
     return (
         <>
-            <button className="open-button" onClick={handleOpenChat}>{props.name}</button>
-            <div className={"chat-popup " + showHide } id="myForm">
+            <div onClick= {(e)=>e.stopPropagation()}className={"chat-popup " + showHide } id="myForm">
                 <form action="/action_page.php" className="form-container" onSubmit={sendMessages}>
                     <h1>{props.name}</h1>
                     <Messages id={props.id}/>
