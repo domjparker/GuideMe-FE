@@ -6,6 +6,9 @@
     display:none;
 }
 
+.reveal label {
+    color:rgba(243, 236, 216,100%);
+}
 #adventureModal1{
     border-radius:20px;
 }
