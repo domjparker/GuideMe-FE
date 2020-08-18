@@ -19,9 +19,6 @@ import Mailbox from '../../components/Mailbox'
 
 
 function Profile(props) {
-    //tells the TopBar what page to display at top
-    const { handlePageChange } = props
-    handlePageChange("Profile")
     //state holds user data pulled from database
     const [userData, setUserData] = useState({})
     //state holds user's hosted adventures as pulled from database
@@ -184,13 +181,13 @@ function Profile(props) {
 
                     {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
                     <Gridx classes={''}>
-                        {props.host ?
+                        {userData.host ?
                             <Cell size={'medium-4'}>
                                 <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'} />
                             </Cell>
                             :
                             <Cell size={'medium-4'}>
-                                <Btn classes={'button'} handleClick={props.setHostState} text={'Become a guide'} />
+                                <Btn classes={'button'} handleClick={handleBecomeHost} text={'Become a guide'} />
                             </Cell>
                         }
                         <Cell size={'medium-4'}>
