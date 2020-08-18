@@ -1,6 +1,6 @@
 //PROFILE page where user info is displayed, edited, deleted depending on host status
-import React, {useState, useEffect} from 'react'
-import {Redirect} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'
@@ -18,10 +18,7 @@ import Mailbox from '../../components/Mailbox'
 
 
 
-function Profile (props) {
-    //tells the TopBar what page to display at top
-    const {handlePageChange}=props
-    handlePageChange("Profile")
+function Profile(props) {
     //state holds user data pulled from database
     const [userData, setUserData] = useState({})
     //state holds user's hosted adventures as pulled from database
@@ -29,11 +26,13 @@ function Profile (props) {
     //state to check for changes in data to call useEffect and reload data
     const [change, setChange] = useState(false)
     //all the below states are boolean states to control modals opening and closong, when true, modal is visible, when false modal is hidden
-    const [modalAdventure, setModalAdventure]= useState(false)
-    const [modalAdventureUpdate, setModalAdventureUpdate]= useState({visible:false, id:''})
-    const [modalUser, setModalUser]= useState(false)
-    const [modalImage, setModalImage]= useState(false)
+    const [modalAdventure, setModalAdventure] = useState(false)
+    const [modalAdventureUpdate, setModalAdventureUpdate] = useState({ visible: false, id: '' })
+    const [modalUser, setModalUser] = useState(false)
+    const [modalImage, setModalImage] = useState(false)
     const [picOrBanner, setPicOrBanner] = useState("")
+    const [modalTitle, setModalTitle] = useState('')
+
     //modal states end ================================================
 
     //set up page with data
@@ -51,38 +50,38 @@ function Profile (props) {
 
     //get the user data from database
     const loadUserData = async () => {
-        const {data} = await API.getUserbyId();
+        const { data } = await API.getUserbyId();
         setUserData(data);
     }
 
     //get the adventures data from database
-    const loadUserAdventures = async (id)=>{
-        const {data} = await API.getAdventurebyHost(id);
-        if (data.length>0){
+    const loadUserAdventures = async (id) => {
+        const { data } = await API.getAdventurebyHost(id);
+        if (data.length > 0) {
             setAdventureData(data)
         }
     }
-    
+
     //delete this user account
     const handleDeleteUser = () => {
         API.deleteUser().then(() => {
             props.setLoginState()
             setChange(!change)
-            return <Redirect to='/'/>
+            return <Redirect to='/' />
         }).catch(err => console.log(err))
     }
-    
+
     //delete the adventure -- this method is passed into the FlipCard component because the delete button lives on the FlipCard
     const handleDeleteAdventure = (e) => {
         e.stopPropagation()
         let id = e.target.getAttribute('data-id')
-        API.deleteAdventure(id).then(()=>setChange(!change)).catch(err=>console.log(err))
+        API.deleteAdventure(id).then(() => setChange(!change)).catch(err => console.log(err))
     }
-    
+
     //become host button just currently updates status on database,this is what happens here
-    const handleBecomeHost= () => {
-        let hostObj = {host:true, verified:true}
-        API.updateUser(hostObj).then(()=>setChange(!change)).catch(err=>console.log(err))
+    const handleBecomeHost = () => {
+        let hostObj = { host: true, verified: true }
+        API.updateUser(hostObj).then(() => setChange(!change)).catch(err => console.log(err))
     }
 
     //start of modals section ============================================================
@@ -95,7 +94,7 @@ function Profile (props) {
         //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
         //this state includes the adventure id of the adventure whoes FLipCard was clicked to know which adventure we are updating
-        setModalAdventureUpdate({visible:true, id:id});   
+        setModalAdventureUpdate({ visible: true, id: id });
     }
     const handleUpdateUserClick = () => {
         //update user info modal open
@@ -104,41 +103,43 @@ function Profile (props) {
     const handleUpdateBannerPicClick = () => {
         setModalImage(true);
         setPicOrBanner("bannerPic")
+        setModalTitle("Banner Picture")
     }
     const handleUpdateProfilePicClick = () => {
         setModalImage(true);
         setPicOrBanner("profilePic")
+        setModalTitle("Profile Picture")
     }
     //methods to close the various modals
-    const  handleModalAdventureClose = () => {
+    const handleModalAdventureClose = () => {
         //create adventure modal close
-    setModalAdventure(false)
-    setChange(!change)
+        setModalAdventure(false)
+        setChange(!change)
     }
-    const  handleModalAdventureUpdateClose = () => {
+    const handleModalAdventureUpdateClose = () => {
         //update adventure modal close
-    setModalAdventureUpdate({...modalAdventureUpdate, visible:false})
-    setChange(!change)
+        setModalAdventureUpdate({ ...modalAdventureUpdate, visible: false })
+        setChange(!change)
     }
-    const  handleModalUserClose = () => {
+    const handleModalUserClose = () => {
         //update user modal close
-    setModalUser(false)
-    setChange(!change)
+        setModalUser(false)
+        setChange(!change)
     }
-    const  handleModalImageClose = () => {
+    const handleModalImageClose = () => {
         //update image modal close
-    setModalImage(false)
-    setChange(!change)
+        setModalImage(false)
+        setChange(!change)
     }
     //end of modals section =============================================================
-    
+
 
     return (
         <>
             <Wrapper>
                 <div className="grid-container full">
-                    {/* need to make a second modal?? */}
-                    <Gridx classes={'hero-section'} onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic">
+                    <Gridx classes={'hero-section'} >
+                        <img onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic"></img>
                         <Cell size={'hero-section-text'}>
                             <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                         </Cell>
@@ -146,7 +147,7 @@ function Profile (props) {
                     <Gridx>
                         {/* User data section */}
                         <Cell size={"small-6 medium-4"}>
-                            <img id="profilePic" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic"/>
+                            <img id="profilePic" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                         </Cell>
                         <Cell size={"small-6 medium-8"}>
                             <p>{userData.bio}</p>
@@ -157,11 +158,8 @@ function Profile (props) {
                     </Gridx>
 
                     {/* Image update modal ============================== */}
-                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner}/>
+                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
                     {/* Image update modal ============================== */}
-
-                    {/* <ImageForm show={modalImage} axiosUrl={API.updatePicture({profilePictureUrl: imageUrl})} handleModalClose={handleModalImageClose} />
-                    <ImageForm show={modalImage} axiosUrl={API.updateBanner({profileBannerUrl: imageUrl})} handleModalClose={handleModalImageClose} /> */}
 
                     {(userData.host === false) ? null
                         : (
@@ -179,17 +177,17 @@ function Profile (props) {
                                 </Gridx>
                             </>
                         )}
-                        {/* END Display tags and adventures related to user, if the user is a host */}
+                    {/* END Display tags and adventures related to user, if the user is a host */}
 
-                        {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
+                    {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
                     <Gridx classes={''}>
-                        {props.host ?
+                        {userData.host ?
                             <Cell size={'medium-4'}>
                                 <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'} />
                             </Cell>
                             :
                             <Cell size={'medium-4'}>
-                                <Btn classes={'button'} handleClick={props.setHostState} text={'Become a guide'} />
+                                <Btn classes={'button'} handleClick={handleBecomeHost} text={'Become a guide'} />
                             </Cell>
                         }
                         <Cell size={'medium-4'}>
@@ -207,7 +205,7 @@ function Profile (props) {
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
                     {/* END Modals live here */}
-                    
+
                 </div>
             </Wrapper>
         </>
