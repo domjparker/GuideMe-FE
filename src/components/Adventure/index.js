@@ -45,7 +45,7 @@ function Adventure(props) {
     //set new state with input
     setFormObject({ ...formObject, [name]: value })
   }
-
+//===========handle incrementing for number input components=================
   const handleGroupDec = (e) => {
     let name = e.target.name
     let num = formObject[name]
@@ -73,6 +73,7 @@ function Adventure(props) {
     num += 10
     setFormObject({...formObject, [name]:num})
   }
+  //===========END handle incrementing for number input components=================
 
   //handle form submit function
   async function handleFormSubmit(event) {
@@ -145,8 +146,7 @@ function Adventure(props) {
               placeholder="Itinerary:"
               value={formObject.itinerary}
             />
-            {/* TODO: make this an increment and drop-down combo to only get the right data */}
-            <label for="duration.time" >Duration info</label>
+            <label for="time" >Duration info</label>
             <NumberInput
               decrement={handleGroupDec}
               increment={handleGroupInc}
