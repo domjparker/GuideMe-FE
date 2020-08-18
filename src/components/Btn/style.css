@@ -1,0 +1,18 @@
+button.button {
+    background-color: rgba(207, 162, 66, 100%);
+    color: rgba(39, 36, 27, 100%);
+}
+
+button.button:hover {
+    background-color: rgba(207, 162, 66, 70%);
+}
+
+button.button.alert {
+    background-color: rgba(204, 75, 55, 100%);
+    color: rgba(39, 36, 27, 100%);
+}
+
+button.button.alert {
+    background-color: rgba(204, 75, 55, 100%);
+    color: rgba(39, 36, 27, 100%);
+}

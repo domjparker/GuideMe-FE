@@ -1,0 +1,14 @@
+button.button.success {
+    background-color: rgba(207, 162, 66, 100%);
+    color: rgba(39, 36, 27, 100%);
+}
+
+button.button.success:hover {
+    background-color: rgba(207, 162, 66, 70%);
+}
+
+.form-group .form-control {
+    border:none;
+    background:rgba(85, 91, 87, 100%);
+    border-radius: 5%;
+}
