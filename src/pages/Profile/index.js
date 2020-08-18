@@ -93,7 +93,7 @@ function Profile(props) {
     const handleUpdateAdventureClick = (e) => {
         //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
-        //this state includes the adventure id of the adventure whoes FLipCard was clicked to know which adventure we are updating
+        //this state includes the adventure id of the adventure whose FLipCard was clicked to know which adventure we are updating
         setModalAdventureUpdate({ visible: true, id: id });
     }
     const handleUpdateUserClick = () => {
@@ -139,12 +139,14 @@ function Profile(props) {
             <Wrapper>
                 <div className="grid-container full">
                     <Gridx classes={'hero-section'} >
+                        <Cell size={"small-12 medium-12"}>
                         <img onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic"></img>
+                        </Cell>
                         <Cell size={'hero-section-text'}>
                             <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                         </Cell>
-                    </Gridx>
-                    <Gridx>
+                    {/* </Gridx> */}
+                    {/* <Gridx> */}
                         {/* User data section */}
                         <Cell size={"small-6 medium-4"}>
                             <img id="profilePic" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
