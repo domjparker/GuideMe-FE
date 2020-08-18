@@ -7,8 +7,6 @@ import './style.css'
 
 // base url for Cloudinary query needed to upload images
 const url = 'https://api.cloudinary.com/v1_1/yestoskydiving/image/upload';
-// preset code needed for image upload
-const preset = 'm5k8tql6';
 
 function ImageForm(props) {
   //handles visibility of this form
@@ -22,6 +20,12 @@ function ImageForm(props) {
   const onChange = e => {
     setImage(e.target.files[0]);
   };
+
+  // preset codes needed for image upload, depending on which picture uploading
+  let preset = "";
+  if (props.type === "profilePic") {
+    preset = 'guidemeprofilepic';
+  } else { preset = 'guidemebannerpic' };
 
   // on submit, a new FormData object is constructed
   const onSubmit = async () => {
@@ -43,9 +47,11 @@ function ImageForm(props) {
       //IF base on the props.type this call depend of the props.type API.updateBanner(imageUrl)
       if (props.type === "profilePic") {
         API.updatePicture({ profilePictureUrl: imageUrl })
+        console.log("imageUrl was sent to backend profilePictureUrl")
       }
       else {
         API.updateBanner({ profileBannerUrl: imageUrl })
+        console.log("imageUrl was sent to backend profileBannerUrl")
       }
 
       setLoading(false);
@@ -58,7 +64,7 @@ function ImageForm(props) {
 
   return (
     <div className={showHideModal} id="exampleModal1">
-      <h1>Upload picture</h1>
+      <h2>Upload {props.modalTitle}</h2>
       <div className='container'>
         {/* <h1 className='center red-text'>{uploadBtn}</h1> */}
         <div className='file-field input-field'>
