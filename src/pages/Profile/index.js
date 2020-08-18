@@ -75,7 +75,11 @@ function Profile(props) {
     const handleDeleteAdventure = (e) => {
         e.stopPropagation()
         let id = e.target.getAttribute('data-id')
-        API.deleteAdventure(id).then(() => setChange(!change)).catch(err => console.log(err))
+        API.deleteAdventure(id)
+        .then(() => {
+            setModalAdventure(false)
+            setChange(!change)})
+        .catch(err => console.log(err))
     }
 
     //become host button just currently updates status on database,this is what happens here

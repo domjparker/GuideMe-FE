@@ -33,8 +33,8 @@ async function loadInitialData () {
       firstName:data.firstName,
       lastName: data.lastName,
       email: data.email,
-      bio:data.bio,
-      location:data.location,
+      bio:data.bio? data.bio:'',
+      location:data.location? data.location:'',
       tags:data.tags? data.tags.map(tag=>tag.tagName).join(", "):''
     })
 }
@@ -52,7 +52,8 @@ async function loadInitialData () {
     let postObj = {...formObject}
     //TODO: Tags: you can only pick froma pre-defined list of tags!!! And here we just include the ids of the chosen ones
     // postObj.tags.length? postObj.tags=postObj.tags.split(', ') : postObj.tags=[]
-
+    postObj.tags=[]
+    console.log(postObj)
      API.updateUser(postObj)
       .then(data => {
         //TODO:use something other than an alert here
