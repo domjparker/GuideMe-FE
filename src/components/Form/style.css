@@ -12,3 +12,21 @@ button.button.success:hover {
     background:rgba(85, 91, 87, 100%);
     border-radius: 5%;
 }
+
+.input-group-button .button {
+    border:none;
+    background:rgba(85, 91, 87, 100%);
+    border-radius: 5%;
+    color: rgba(243, 236, 216,100%);
+}
+
+.input-group-button:hover {
+    background:rgba(85, 91, 87, 70%);
+}
+
+.select {
+    border:none;
+    background:rgba(85, 91, 87, 100%);
+    border-radius: 5%;
+    border-radius: 5px;
+}

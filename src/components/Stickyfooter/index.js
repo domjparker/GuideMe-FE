@@ -37,6 +37,4 @@ function Stickyfooter(props) {
     </>)
 }
 
-
-
 export default Stickyfooter;
