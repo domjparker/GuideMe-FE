@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Adventures from './pages/Adventures'
@@ -9,52 +9,60 @@ import TopBar from './components/TopBar'
 import Footer from './components/Footer'
 import NotFound from './pages/NotFound'
 import Login from './pages/Login'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import API from './util/API'
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 function App() {
-  const [page, setpage] = useState('Homepage')
+  let page='Find your way'
+  //use context for this
   const [user, setuser] = useState({
     //TODO:for some reason sometimes these states get reset to false half way through a session, must fix that. Maybe the host state shouldn't live here....
-    loggedIn:false, 
-    host: false
+    loggedIn:false
   })
 
-  const setLoginState = () => setuser({loggedIn: !user.loggedIn})
-  
+  const setLoginState = (value) => setuser({loggedIn: value})
 
-
-  const handlePageChange = (pageName) => {
-      setpage(pageName);
-  }
-  
+useEffect(()=>{
+  API.getSessionData().then((res)=>{
+    if(res.id){
+      setLoginState(true)
+    } else {
+      setLoginState(false)
+    }
+  }).catch(err=>console.log(err))
+}, [])
 
   return (
     <Router>
     <>
-    <TopBar title={page} loggedIn={user.loggedIn}/>
+    {/* useLocation to display page name */}
+    <TopBar title={page}/>
     <Switch>
       <Route exact path='/'>
-          <Homepage handlePageChange={handlePageChange}/>
+          <Homepage/>
       </Route>
       {/* keep an eye out for edge case. Might need to delete 'exact' */}
       <Route exact path='/adventures/:tag'>    
-        <Adventures handlePageChange={handlePageChange}/>
+        <Adventures/>
+
       </Route>
       <Route exact path='/adventures/'>    
-        <Adventures handlePageChange={handlePageChange}/>
+        <Adventures/>
       </Route>
       <Route exact path='/profile'>
+        <h1>Log in here</h1>
         {user.loggedIn ? 
-        <Profile handlePageChange={handlePageChange} loggedIn={user.loggedIn} setLoginState={setLoginState}/>
-        : <Login handlePageChange={handlePageChange} loginSuccess={setLoginState}/>  }
+        <Profile  loggedIn={user.loggedIn} setLoginState={setLoginState}/>
+        : <Login loginSuccess={setLoginState}/>  }
       </Route>
       <Route path='*'>
-        <NotFound handlePageChange={handlePageChange}/>
+        <NotFound/>
       </Route>
     </Switch>
     <Footer/>
     <Stickyfooter />
     </>
+ 
     </Router>
   );
 }

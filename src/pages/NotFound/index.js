@@ -4,13 +4,12 @@ import './style.css'
 import Wrapper from '../../components/Wrapper'
 
 
-function NotFound (props) {
-     //tells the TopBar what page to display at top
-    const {handlePageChange}=props
-    handlePageChange("Lost in the woods")
+function NotFound () {
     
     return(
         <>
+        <br></br>
+        <br></br>
         <Wrapper>
             <p>404 not found</p>
         </Wrapper>

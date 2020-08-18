@@ -1,7 +1,7 @@
 //New adventure create form
 import React, { useState } from "react";
 import API from "../../util/API";
-import { Input, TextArea, FormBtn } from "../Form";
+import { Input, TextArea, FormBtn, Dropdown, NumberInput } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
@@ -17,17 +17,19 @@ function Adventure(props) {
 
   //state to control input values
   const [formObject, setFormObject] = useState({ 
-    adventureName: '', 
+    adventureName: 'New Adventure', 
     hostId: '', 
-    description: '', 
-    location: '', 
-    itinerary: '',  
-    difficulty: '', 
-    minGroupSize: '', 
-    maxGroupSize: '', 
-    price: '', 
-    gearList: '', 
-    tags: '' })
+    description: 'Very interesting adventure', 
+    location: 'Unknown', 
+    itinerary: 'Itinerary here',
+    time:1, 
+    unit:'hours',  
+    difficulty: 'Easy', 
+    minGroupSize: 1, 
+    maxGroupSize: 1, 
+    price: 50, 
+    gearList: 'No specialty gear needed', 
+    tags: [] })
 
 
     //control form input values
@@ -43,6 +45,35 @@ function Adventure(props) {
     //set new state with input
     setFormObject({ ...formObject, [name]: value })
   }
+//===========handle incrementing for number input components=================
+  const handleGroupDec = (e) => {
+    let name = e.target.name
+    let num = formObject[name]
+    if (num>1) num--
+    setFormObject({...formObject, [name]:num})
+  }
+  
+  const handleGroupInc = (e) => {
+    let name = e.target.name
+    let num = formObject[name]
+    if (num<30) num++
+    setFormObject({...formObject, [name]:num})
+  }
+  
+  const handlePriceDec = (e) => {
+    let name = e.target.name
+    let num = formObject[name]
+    if (num>9) num-=10
+    setFormObject({...formObject, [name]:num})
+  }
+  
+  const handlePriceInc = (e) => {
+    let name = e.target.name
+    let num = formObject[name]
+    num += 10
+    setFormObject({...formObject, [name]:num})
+  }
+  //===========END handle incrementing for number input components=================
 
   //handle form submit function
   async function handleFormSubmit(event) {
@@ -51,13 +82,15 @@ function Adventure(props) {
     //make a copy of the state object for manipulation
     let postObj = {...formObject}
     //if tags were entered then turn them into array
-    if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
+    //TODO: Tags: you can only pick froma pre-defined list of tags!!! And here we just include the ids of the chosen ones
+    // if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
     //get user id from session data to add hostID to the new adventure
+    
     const {data} = await API.getSessionData()
     postObj.hostId = data.id
     //TODO:change the input field to increment adn drop-down and then incorporate here to the post object in the proper format
-    postObj.duration= {time: 3, unit: 'hours'}
-    console.log(postObj)
+    postObj.duration= {time:formObject.time , unit:formObject.unit}
+    if(postObj.maxGroupSize<postObj.minGroupSize) postObj.maxGroupSize=postObj.minGroupSize
     //add the edited object to database
     API.postNewAdventure(postObj)
       .then(data => {
@@ -68,13 +101,15 @@ function Adventure(props) {
           hostId: '', 
           description: '', 
           location: '', 
-          itinerary: '',  
-          difficulty: '', 
-          minGroupSize: '', 
-          maxGroupSize: '', 
-          price: '', 
+          itinerary: '',
+          time:1,
+          unit:'hours',  
+          difficulty: 'Easy', 
+          minGroupSize: 1, 
+          maxGroupSize: 2, 
+          price: 50, 
           gearList: '', 
-          tags: '' })
+          tags: [] })
           handleModalClose();
       }).catch(err=> console.log(err))
   }
@@ -111,35 +146,46 @@ function Adventure(props) {
               placeholder="Itinerary:"
               value={formObject.itinerary}
             />
-            {/* TODO: make this an increment and drop-down combo to only get the right data */}
-            {/* <Input
+            <label for="time" >Duration info</label>
+            <NumberInput
+              decrement={handleGroupDec}
+              increment={handleGroupInc}
+              name="time"
+              value={formObject.time}
+            />
+            <Dropdown
               onChange={handleInputChange}
-              name="duration"
-              placeholder="Duration:"
-              value={formObject.duration}
-            /> */}
-            <Input
+              name="unit"
+              value={formObject.unit}
+              options={["hours", "days", "weeks", "months", "eternity"]}
+            />
+            <label for="difficulty" >Difficulty</label>
+            <Dropdown
               onChange={handleInputChange}
               name="difficulty"
-              placeholder="Difficulty:"
               value={formObject.difficulty}
+              options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
             />
-            <Input
-              onChange={handleInputChange}
+            <label for="minGroupSize" >Min Group Size</label>
+            <NumberInput
+              decrement={handleGroupDec}
+              increment={handleGroupInc}
               name="minGroupSize"
               placeholder="Min. Group Size:"
               value={formObject.minGroupSize}
             />
-            <Input
-              onChange={handleInputChange}
+            <label for="maxGroupSize" >Max Group Size</label>
+            <NumberInput
+              decrement={handleGroupDec}
+              increment={handleGroupInc}
               name="maxGroupSize"
-              placeholder="Max. Group Size:"
-              value={formObject.maxGroupSize}
+              value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
             />
-            <Input
-              onChange={handleInputChange}
+            <label for="price" >Price in $</label>
+            <NumberInput
+              decrement={handlePriceDec}
+              increment={handlePriceInc}
               name="price"
-              placeholder="Price:"
               value={formObject.price}
             />
             <Input

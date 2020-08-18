@@ -15,7 +15,12 @@ function UserUpdate(props) {
   }
 
   //handles form object data
-  const [formObject, setFormObject] = useState({})
+  const [formObject, setFormObject] = useState({  firstName: '', 
+  lastName: '', 
+  email: '', 
+  bio: '',  
+  location: '', 
+  tags: [] })
 //checks for data when modal visibility setting changes
 useEffect(() => {
   loadInitialData();
@@ -24,14 +29,13 @@ useEffect(() => {
 //populate update form with existing data of that adventure
 async function loadInitialData () {
   let {data} = await API.getUserbyId()
-  console.log(data)
     setFormObject({
       firstName:data.firstName,
       lastName: data.lastName,
       email: data.email,
-      bio:data.bio,
-      location:data.location,
-      tags:data.tags? data.tags.join(", "):''
+      bio:data.bio? data.bio:'',
+      location:data.location? data.location:'',
+      tags:data.tags? data.tags.map(tag=>tag.tagName).join(", "):''
     })
 }
 //control input field changes
@@ -46,8 +50,10 @@ async function loadInitialData () {
     // add code here to post a new adventure to the api
     event.preventDefault();
     let postObj = {...formObject}
-    postObj.tags.lenght? postObj.tags=postObj.tags.split(', ') : postObj.tags=[]
-
+    //TODO: Tags: you can only pick froma pre-defined list of tags!!! And here we just include the ids of the chosen ones
+    // postObj.tags.length? postObj.tags=postObj.tags.split(', ') : postObj.tags=[]
+    postObj.tags=[]
+    console.log(postObj)
      API.updateUser(postObj)
       .then(data => {
         //TODO:use something other than an alert here

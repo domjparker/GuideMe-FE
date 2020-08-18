@@ -1,5 +1,5 @@
 .card-section, .card-divider {
-    background-color: hsl(45, 52%, 90%);
+    background-color: rgba(39, 36, 27, 90%);
 }
 
 .flipcard {
@@ -9,11 +9,11 @@
 .details-heading {
     margin-top: 1rem;
     font-weight: bold;
-    color: hsl(202, 100%, 38%)
+    color: rgba(207, 162, 66, 100%);
 }
 
 .resources {
-    background-color: hsl(45, 52%, 75%);
+    background-color: rgba(85, 91, 87, 90%);
 }
 
 /* Card flip animation CSS */
@@ -53,8 +53,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    color:black;
-    background-color: hsl(45, 52%, 90%); 
+    color:rgba(243, 236, 216,100%);
+    background-color: rgba(39, 36, 27, 90%); 
     justify-content: center;
     align-items: center;
     backface-visibility: hidden;
@@ -67,8 +67,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    color:black;
-    background-color: hsl(45, 52%, 90%); 
+    color:rgba(243, 236, 216,100%);
+    background-color: rgba(39, 36, 27, 90%); 
     justify-content: center;
     align-items: center;
     backface-visibility: hidden;
