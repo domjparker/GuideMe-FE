@@ -10,6 +10,7 @@ import Messages from '../Messages'
 
 
 const Stickyfooter = (props) => (
+    
     <>
     <div className="grid-container full" id="stickyFooter">
         <Gridx>
