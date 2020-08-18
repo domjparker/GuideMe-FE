@@ -1,11 +1,12 @@
 //signin form -- member of the Login page component
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import "./style.css";
 import { Input, FormBtn } from "../Form"
 import API from '../../util/API'
 
 function SignIn(props) {
+  let history = useHistory();
   //set state of input field values  
   const [loginObj, setloginObj] = useState({email:'', password:''})
   //control form input field values
@@ -38,7 +39,7 @@ function SignIn(props) {
         props.logMeIn()
         //upon successful login, send me to profile page
         //TODO:history.push('/profile) import useHistroy from react-router-dom
-        // return <Redirect to='/profile' />
+        history.push("/profile")
       }
       ).catch(err=>console.log(err))
     };
