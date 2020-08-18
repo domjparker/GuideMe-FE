@@ -30,16 +30,24 @@ export function FormBtn(props) {
   
 export function Dropdown(props) {
   return (
-    <select onChange={props.onChange} name={props.name}>
-      <option>Difficulty selector</option>
+    <select onChange={props.onChange} name={props.name} className="select">
+      {props.intro? <option>{props.intro}</option>:null}
       {props.options.map(opt => <option value={opt}>{opt}</option>)}
     </select>
   )
 }
 
-export function NumberImput(props) {
+export function NumberInput(props) {
   return(
-    <input type='number'></input>
+    <div className="input-group">
+      <div className="input-group-button">
+        <input onClick={props.decrement} name={props.name} type="button" className="button" value="-" />
+      </div>
+      <input name={props.name} className="input-group-field" type="number" min="0" value={props.value}  />
+      <div className="input-group-button">
+        <input onClick={props.increment} name={props.name} type="button" className="button" value="+" />
+      </div>
+    </div>
   )
 }
 

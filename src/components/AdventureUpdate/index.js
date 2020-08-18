@@ -1,7 +1,7 @@
 //update existing adventure details
 import React, {useEffect, useState } from "react";
 import API from "../../util/API";
-import { Input, TextArea, FormBtn } from "../Form";
+import { Input, TextArea, FormBtn, Dropdown } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
@@ -121,10 +121,10 @@ function AdventureUpdate(props) {
               placeholder="Duration:"
               value={formObject.duration}
             /> */}
-            <Input
+            <Dropdown
               onChange={handleInputChange}
               name="difficulty"
-              placeholder="Difficulty:"
+              options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
               value={formObject.difficulty}
             />
             <Input
