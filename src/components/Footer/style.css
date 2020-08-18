@@ -4,12 +4,12 @@
 
 #Footer{
     padding:5px;
-    background-color: whitesmoke;
+    background-color: rgba(225, 215, 205, 100%);
     color: black;
     position: relative;
     bottom: 0;
     left: 0;
     width: auto;
     opacity: 90%;
-    height: 25vh;
+    height: auto;
   }

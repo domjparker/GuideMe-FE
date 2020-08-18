@@ -10,7 +10,7 @@ function Footer(props) {
 
     return (
         <>
-            <div className="grid-container copyright" id="Footer">
+            <div className="grid-container copyright full" id="Footer">
                 <Gridx>
                     <Cell size={'medium-6'}>
                         <h6 className="text-center">{"Built By:"}
