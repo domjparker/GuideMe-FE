@@ -7,6 +7,7 @@ import API from "../../util/API"
 function PopupChat(props) {
 
     const [chatBox, setChatBox] = useState(false)
+    const [messageText, setMessageText] = useState("")
 
     // open chat window
     const handleOpenChat = (e) => {
@@ -20,15 +21,21 @@ function PopupChat(props) {
         e.stopPropagation();
         setChatBox(false)
     }
+    const handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        let value = event.target.value;
+        setMessageText(value)
+      };
     const sendMessages = (e)=>{
         e.preventDefault()
         const messageObj = {
             name: props.name,
             recieverId: props.id,
-            messageText: "This is a test"
+            messageText: messageText
         }
         console.log(messageObj)
         API.sendMessage(messageObj)
+        setMessageText("")
         // Socket.emit('send-chat-message', messageObj)
     }
     let showHide = chatBox ? "visible" : "invisible";
@@ -41,7 +48,7 @@ function PopupChat(props) {
                     <h1>{props.name}</h1>
                     <Messages id={props.id}/>
                     <label for="msg"><b>Message</b></label>
-                    <textarea placeholder="Type message.." name="msg" required></textarea>
+                    <textarea placeholder="Type message.." name="msg" value={messageText} onChange={handleInputChange} required></textarea>
                     <button type="submit" className="btn">Send</button>
                     <button type="button" className="btn cancel" onClick={handleCloseChat}>Close </button>
                 </form>
