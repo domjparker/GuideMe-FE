@@ -36,9 +36,9 @@ function SignIn(props) {
       }
       API.loginUser(loginObj).then(res=>{
         console.log(res)
-        props.logMeIn()
+        props.logMeIn(true)
         //upon successful login, send me to profile page
-        //TODO:history.push('/profile) import useHistroy from react-router-dom
+        //TODO:make this take me back to where i came from
         history.push("/profile")
       }
       ).catch(err=>console.log(err))

@@ -10,27 +10,30 @@ import API from '../../util/API'
 import { useParams } from 'react-router-dom'
 
 
-function Adventures(props){
-    //tells the TopBar what page to display at top
-    const {handlePageChange}=props
-    handlePageChange("Adventures")
-
+function Adventures(){
     //tags that show what was searched
     let {tag} =  useParams()
-    console.log(tag)
+    
     //list of relevant adventures
     const [adventures, setAdventures] = useState([])
     //load adventures on page load
 
     useEffect(() => {
-        loadAdventures()
+        loadAdventures(tag)
     }, [])
     //API call to adventures db
     //TODO:here we need to implement the actual search functionality so not all adventures are alwasy shown
-    const loadAdventures = async () => {
-        const result = await API.getAllAdventures()
+    const loadAdventures = async (criteria) => {
 
-        setAdventures(result.data)
+        const {data} = await API.getAllAdventures()
+        let adventureArr = [...data]
+        if (criteria) {
+         console.log(adventureArr)
+         console.log(criteria)
+         console.log(adventureArr[0].tags)   
+            adventureArr=adventureArr.filter(adventure=> adventure.tags.map(tag=>tag=tag.tagName).indexOf(criteria)>=0)
+        }
+        setAdventures(adventureArr)
     }
 
     return (
