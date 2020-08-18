@@ -5,9 +5,6 @@ import SignUp from '../../components/SignUp'
 import SignIn from '../../components/SignIn'
 
 function Login (props) {
-    //tells the TopBar what page to display at top
-    const {handlePageChange}=props
-    handlePageChange("Login")
 
     return (
         <>

@@ -27,7 +27,7 @@ function Adventure(props) {
     maxGroupSize: '', 
     price: '', 
     gearList: '', 
-    tags: '' })
+    tags: [] })
 
 
     //control form input values
@@ -51,10 +51,12 @@ function Adventure(props) {
     //make a copy of the state object for manipulation
     let postObj = {...formObject}
     //if tags were entered then turn them into array
-    if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
+    //TODO: Tags: you can only pick froma pre-defined list of tags!!! And here we just include the ids of the chosen ones
+    // if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
     //get user id from session data to add hostID to the new adventure
     const {data} = await API.getSessionData()
     postObj.hostId = data.id
+
     //TODO:change the input field to increment adn drop-down and then incorporate here to the post object in the proper format
     postObj.duration= {time: 3, unit: 'hours'}
     console.log(postObj)
@@ -74,7 +76,7 @@ function Adventure(props) {
           maxGroupSize: '', 
           price: '', 
           gearList: '', 
-          tags: '' })
+          tags: [] })
           handleModalClose();
       }).catch(err=> console.log(err))
   }
