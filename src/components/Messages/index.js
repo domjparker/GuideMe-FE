@@ -11,20 +11,19 @@ function Messages(props) {
     const [messages,setMessages ] = useState([]);
 
     useEffect(() => {
-        blah()
+        loadMessages()
 
     }, [])
-    const blah = async () => {
+    const loadMessages = async () => {
         const {data} = await API.getSentMessage(id)
         setMessages(data)
-        console.log(data)
     }
     {/* socket.on('chat-message', data =>{
                     
         }) */}
     return (
        
-        <div>
+        <div className="messageBox">
             <ul>
                 {
                 (messages.length > 0 )?  messages.map(item =><li>{item.senderId.firstName}: {item.messageText}</li>)

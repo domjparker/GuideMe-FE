@@ -1,28 +1,50 @@
 //FlipCard, used for adventures in both search results and profile page
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './style.css'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Btn from '../Btn'
-import Messages from '../../components/Messages'
+import PopupChat from '../../components/PopupChat'
+import API from '../../util/API'
 
 //this component takes ina  ton of adventure information
-function FlipCard(props){
+function FlipCard(props) {
     //flip effect is done in CSS with classes, this toggle between those classes
-  const [classToggle, setClassToggle] = useState('');
-  
-  const handleClassToggle = () => {
-      if (classToggle === 'card--flipped') {
-          setClassToggle('')
-      } else {
-          setClassToggle('card--flipped')
-      }
-  }
+    const [mailbox, setMailbox] = useState([]);
+    const [classToggle, setClassToggle] = useState('');
+    const [converser, setConverser] = useState({
+        firstName: "",
+        id: ""
+    })
+    const [showMessage, setShowMessage] = useState(false);
 
-return (
-    <>
-    {/* TODO: needs a little better thought through layout */}
-     <div className={"flipcard " + classToggle } onClick={handleClassToggle}>
+    const handleClassToggle = () => {
+        if (classToggle === 'card--flipped') {
+            setClassToggle('')
+        } else {
+            setClassToggle('card--flipped')
+        }
+    }
+    const handleOpenChat = async (id, name) => {
+        await setConverser({
+            firstName: name,
+            id: id
+        })
+        handleMailboxOpen()
+        setShowMessage(true)
+    }
+    const hideMessage = ()=>{
+        setShowMessage(false)
+    }
+    const handleMailboxOpen = async (e) => {
+        const { data } = await API.getMailbox();
+        setMailbox(data.mailbox)
+    }
+
+    return (
+        <>
+            {/* TODO: needs a little better thought through layout */}
+            <div className={"flipcard " + classToggle} onClick={handleClassToggle}>
                 <div className="card__inner">
                     <div className="card__back">
                         <div className=" grid-container">
@@ -34,20 +56,20 @@ return (
                                     <h6><strong>{props.host}</strong></h6>
                                     <p>{props.description}</p>
                                     <p>{props.itinerary}</p>
-                                   
+
                                 </Cell>
                             </Gridx>
                             <Gridx>
                                 <Cell size={"small-7"}>
                                     <h6><strong>Smth goes here</strong></h6>
                                     <p>i am not sure yet what</p>
-                                    
+
                                     {/* Message Button */}
                                     <div>
-                                        <Messages />
+                                        {props.edit ? null:<button onClick={(e) => {e.stopPropagation();handleOpenChat(props.hostId, props.host)}}>Contact Host</button>}
                                     </div>
                                 </Cell>
-                                
+
                                 <Cell size={"small-5 p-1"}>
                                     <h6>Details</h6>
                                     <ul>
@@ -86,6 +108,7 @@ return (
                     </div>
                 </div>
             </div>
+            {(showMessage === false)?null:<PopupChat name={converser.firstName} id={converser.id} hide={hideMessage} mailbox = {mailbox} handleOpen={handleMailboxOpen} />}
         </>
     )
 }
