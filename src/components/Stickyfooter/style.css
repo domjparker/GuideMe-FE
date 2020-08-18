@@ -19,6 +19,10 @@
   justify-content:space-around;
 }
 .messageBtn{
+<<<<<<< HEAD
+=======
+  color:rgba(243, 236, 216,100%);
+>>>>>>> Dev
   padding-top: 0.8rem;
   padding-right: 1rem;
   color: rgba(243, 236, 216,100%);

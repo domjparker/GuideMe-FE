@@ -62,6 +62,7 @@ useEffect(()=>{
     <Footer/>
     <Stickyfooter />
     </>
+ 
     </Router>
   );
 }
