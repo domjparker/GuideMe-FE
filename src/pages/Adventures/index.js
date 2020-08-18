@@ -28,9 +28,6 @@ function Adventures(){
         const {data} = await API.getAllAdventures()
         let adventureArr = [...data]
         if (criteria) {
-         console.log(adventureArr)
-         console.log(criteria)
-         console.log(adventureArr[0].tags)   
             adventureArr=adventureArr.filter(adventure=> adventure.tags.map(tag=>tag=tag.tagName).indexOf(criteria)>=0)
         }
         setAdventures(adventureArr)
