@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import API from '../../util/API'
@@ -7,28 +7,26 @@ import API from '../../util/API'
 
 function Messages(props) {
 
-    const id = "5f3832b3f5c5042d3f855798"
+    const id = props.id
     const [messages,setMessages ] = useState([]);
 
-    const onClick = async (e) => {
-        e.stopPropagation()
+    useEffect(() => {
+        blah()
+
+    }, [])
+    const blah = async () => {
         const {data} = await API.getSentMessage(id)
         setMessages(data)
+        console.log(data)
     }
-
     return (
        
         <div>
-
-            <button onClick={onClick}><strong>Book this adventure</strong></button>
-            
-            {/* <ul>
+            <ul>
                 {
-                (messages.length > 0 )?  messages.map(item =><li>{item.messageText}</li>)
-               
+                (messages.length > 0 )?  messages.map(item =><li>{item.senderId.firstName}: {item.messageText}</li>)
                 :null }
-
-            </ul> */}
+            </ul>
         </div>
     )
     

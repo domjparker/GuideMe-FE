@@ -3,6 +3,7 @@
 // Make array in users called mailbox
 import React, { useState } from 'react'
 import Messages from '../../components/Messages'
+import PopupChat from '../../components/PopupChat'
 // import './style.css'
 // import Wrapper from '../../components/Wrapper'
 import API from '../../util/API'
@@ -10,34 +11,27 @@ import API from '../../util/API'
 function Mailbox(props) {
     const [mailbox, setMailbox] = useState([]);
     const [showMessage, setShowMessage] = useState(false);
-    const [intendedUser, setIntendedUser] = useState('')
+    const [intendedUser, setIntendedUser] = useState({})
 
     const handleMailboxOpen = async (e) => {
-
         const { data } = await API.getMailbox();
         setMailbox(data.mailbox)
     }
-    const messageOpen = function (id) {
-       
-        setIntendedUser(id);
-        
-    }
 
-
+    
 return (
     <>
-        <button onClick={handleMailboxOpen}>MailBox</button>
-
+        <button className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
         {(showMessage === false) ?
             <ul>
                 {
-                    (mailbox.length > 0) ? mailbox.map(item => <button onClick={messageOpen(item.converser._id)}>{item.converser.firstName}</button>)
+                    (mailbox.length > 0) ? mailbox.map(item => <li><PopupChat name={item.converser.firstName} id={item.converser._id} /></li>)
 
                         : null
                 }
 
             </ul>
-            : <Messages id={intendedUser} />}
+            : null}
     </>
 )
 

@@ -83,8 +83,10 @@ export default {
     },
 
     getMailbox: () =>{
-        return axios.get(`${prefix}/api/user/mailbox/`, {withCredentials:true})
-        
+        return axios.get(`${prefix}/api/user/mailbox/`, {withCredentials:true})  
+    },
+    sendMessage: (messageObj)=>{
+        return axios.post(`${prefix}/api/message/`, messageObj, {withCredentials:true})
     }
 
 }
