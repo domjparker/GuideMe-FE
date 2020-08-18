@@ -10,5 +10,5 @@ button.button.success:hover {
 .form-group .form-control {
     border:none;
     background:rgba(85, 91, 87, 100%);
-    border-radius: 5%;
+    border-radius: 5px;
 }
