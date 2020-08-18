@@ -66,8 +66,7 @@ function FlipCard(props) {
 
                                     {/* Message Button */}
                                     <div>
-                                        <button onClick={(e) => {e.stopPropagation();handleOpenChat(props.hostId, props.host)}}>Contact Host</button>
-                                        
+                                        {props.edit ? null:<button onClick={(e) => {e.stopPropagation();handleOpenChat(props.hostId, props.host)}}>Contact Host</button>}
                                     </div>
                                 </Cell>
 
