@@ -11,6 +11,7 @@ import Mailbox from '../Mailbox'
 
 
 const Stickyfooter = (props) => (
+    
     <>
     <div className="grid-container full" id="stickyFooter">
         <Gridx>
