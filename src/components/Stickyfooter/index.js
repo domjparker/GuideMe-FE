@@ -4,7 +4,6 @@ import './style.css'
 import { Link } from 'react-router-dom'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
-import Messages from '../Messages'
 import Mailbox from '../Mailbox'
 // import PopupChat from '../PopupChat'
 

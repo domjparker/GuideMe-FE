@@ -96,6 +96,7 @@ function Profile(props) {
         setModalAdventure(true);
     }
     const handleUpdateAdventureClick = (e) => {
+        e.stopPropagation()
         //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
         //this state includes the adventure id of the adventure whose FLipCard was clicked to know which adventure we are updating
@@ -158,7 +159,7 @@ function Profile(props) {
                             <p>{userData.bio}</p>
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
-                        <Cell size={"small-12 medium-6"}>
+                        <Cell size={"small-12 medium-6"}  className="createBtnColum">
                             {userData.host ?
                                 <Cell size={'medium-4'} >
                                     <Btn classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Create an adventure'} />
