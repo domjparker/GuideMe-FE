@@ -13,10 +13,10 @@ function TopBar(props) {
         <>
             <div className="grid-container full" id="topBar">
                 <Gridx>
-                    <Cell size={'small-3'} id="logo">
+                    <Cell size={'small-2'} id="logo">
                         <Link to="/"><h6 className="text-left"><img src={LOGO} alt="logo"></img></h6></Link>
                     </Cell>
-                    <Cell size={'small-6'} id="pageTitle">
+                    <Cell size={'small-8'} id="pageTitle">
                         <h1 className="text-center">{props.title}</h1>
                     </Cell>
                 </Gridx>

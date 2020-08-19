@@ -42,10 +42,10 @@
   padding-top: 1rem;
   padding-left: 1rem
 }
-.loggedIn .fas {
+/* .loggedIn .fas {
   color: darkgreen;
   font-size: 3rem;
-}
+} */
 
 .signout {
   padding-top: 0.8rem;
