@@ -1,6 +1,7 @@
 #profilePic {
-    height: 15vh;
+    height: 20vh;
     border-radius: 50%;
+    margin-left: 40px;
     /* box-shadow: 0px 0px 15px whitesmoke; */
 
 }
@@ -34,7 +35,7 @@
 }
 .bannerName {
     position:relative;
-    top: -5vh;
+    top: -10vh;
 }
 .bannerNegate{
     top: 5vh;
