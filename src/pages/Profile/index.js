@@ -97,13 +97,14 @@ function Profile(props) {
     const handleUpdateAdventureClick = (e) => {
         //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
-        //this state includes the adventure id of the adventure whoes FLipCard was clicked to know which adventure we are updating
+        //this state includes the adventure id of the adventure whose FLipCard was clicked to know which adventure we are updating
         setModalAdventureUpdate({ visible: true, id: id });
     }
     const handleUpdateUserClick = () => {
         //update user info modal open
         setModalUser(true);
     }
+    // 
     const handleUpdateBannerPicClick = () => {
         setModalImage(true);
         setPicOrBanner("bannerPic")
@@ -161,10 +162,6 @@ function Profile(props) {
                         </Cell>
                     </Gridx>
 
-                    {/* Image update modal ============================== */}
-                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
-                    {/* Image update modal ============================== */}
-
                     {(userData.host === false) ? null
                         : (
                             <>
@@ -205,6 +202,7 @@ function Profile(props) {
                     {/* END CRUD buttons for user and adventure */}
 
                     {/* Modals live here */}
+                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
                     <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />

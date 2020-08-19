@@ -25,7 +25,10 @@ function ImageForm(props) {
   let preset = "";
   if (props.type === "profilePic") {
     preset = 'guidemeprofilepic';
-  } else { preset = 'guidemebannerpic' };
+  } else if ( props.type === "bannerPic") { 
+    preset = 'guidemebannerpic'
+  } else { 
+    preset = 'guidemeadventurepic'}
 
   // on submit, a new FormData object is constructed
   const onSubmit = async () => {
@@ -49,10 +52,15 @@ function ImageForm(props) {
         API.updatePicture({ profilePictureUrl: imageUrl })
         console.log("imageUrl was sent to backend profilePictureUrl")
       }
-      else {
+      else if (props.type === "bannerPic"){
         API.updateBanner({ profileBannerUrl: imageUrl })
         console.log("imageUrl was sent to backend profileBannerUrl")
+      }else{
+        console.log("No api calls!");
+        props.urlUpdate(imageUrl)
+       
       }
+      
 
       setLoading(false);
       setImage(image.data);
@@ -64,22 +72,18 @@ function ImageForm(props) {
 
   return (
     <div className={showHideModal} id="exampleModal1">
-      <h2>Upload {props.modalTitle}</h2>
+      <h3>Upload {props.modalTitle}</h3>
       <div className='container'>
-        {/* <h1 className='center red-text'>{uploadBtn}</h1> */}
         <div className='file-field input-field'>
-          <div className='button'>
-            <span>Browse</span>
+          <div className='button small expanded'>
+            {/* <span>Browse</span> */}
             <input type='file' name='image' onChange={onChange} />
-          </div>
-          <div className='file-path-wrapper'>
-            <input className='file-path validate' type='text' />
           </div>
         </div>
         <div className='center'>
-          <button onClick={onSubmit} className='button expanded'>
+          <button onClick={onSubmit} className='button small expanded'>
             upload
-                </button>
+          </button>
         </div>
       </div>
       {/* close modal button */}
