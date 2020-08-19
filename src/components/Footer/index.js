@@ -33,8 +33,6 @@ function Footer(props) {
                         <ul>
                             <a href="https://socket.io/" target="_blank" >Socket.io</a>
                             <br></br>
-                            <a href="https://createjs.com/" target="_blank" >Create.js</a>
-                            <br></br>
                             <a href="https://github.com/domjparker/GuideMe-FE" target="_blank"><i class="fa fa-github"></i></a>
                         </ul>
                         </h6>

@@ -72,7 +72,7 @@ function ImageForm(props) {
 
   return (
     <div className={showHideModal} id="exampleModal1">
-      <h3>Upload {props.modalTitle}</h3>
+      <h3>{props.modalTitle}</h3>
       <div className='container'>
         <div className='file-field input-field'>
           <div className='button small expanded '>

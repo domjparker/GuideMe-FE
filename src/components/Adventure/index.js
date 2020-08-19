@@ -246,7 +246,7 @@ const handleUrlUpdate= data =>{
       </div>
 
       {/* Upload Adventure Image Modal lives here */}
-      <ImageForm show={modalAdventureImage} handleModalClose={handleModalImageClose} urlUpdate={handleUrlUpdate} type={typeOfUploadImage} modalTitle={modalTitle} />
+      <ImageForm show="true" handleModalClose={handleModalImageClose} urlUpdate={handleUrlUpdate} type={typeOfUploadImage}  />
 
     </div>
   );

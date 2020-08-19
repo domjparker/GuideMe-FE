@@ -96,6 +96,7 @@ function Profile(props) {
         setModalAdventure(true);
     }
     const handleUpdateAdventureClick = (e) => {
+        e.stopPropagation()
         //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
         //this state includes the adventure id of the adventure whose FLipCard was clicked to know which adventure we are updating
@@ -109,12 +110,12 @@ function Profile(props) {
     const handleUpdateBannerPicClick = () => {
         setModalImage(true);
         setPicOrBanner("bannerPic")
-        setModalTitle("Banner Picture")
+        setModalTitle("Upload Banner Picture")
     }
     const handleUpdateProfilePicClick = () => {
         setModalImage(true);
         setPicOrBanner("profilePic")
-        setModalTitle("Profile Picture")
+        setModalTitle("Upload Profile Picture")
     }
     //methods to close the various modals
     const handleModalAdventureClose = () => {
@@ -200,10 +201,8 @@ function Profile(props) {
                         )}
                     {/* END Display tags and adventures related to user, if the user is a host */}
 
-
-
                     {/* Modals live here */}
-                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
+                    <ImageForm show={modalImage} className="imageModals" handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
                     <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
