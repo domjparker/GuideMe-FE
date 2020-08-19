@@ -96,6 +96,7 @@ function Profile(props) {
         setModalAdventure(true);
     }
     const handleUpdateAdventureClick = (e) => {
+        e.stopPropagation()
         //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
         //this state includes the adventure id of the adventure whose FLipCard was clicked to know which adventure we are updating
