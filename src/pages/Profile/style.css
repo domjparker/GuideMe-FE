@@ -1,5 +1,5 @@
-#profilePic {
-    height: 20vh;
+.profilePicture {
+    height: 15vh;
     border-radius: 50%;
     margin-left: 40px;
     /* box-shadow: 0px 0px 15px whitesmoke; */
