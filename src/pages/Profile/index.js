@@ -159,7 +159,7 @@ function Profile(props) {
                             <p>{userData.bio}</p>
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
-                        <Cell size={"small-12 medium-6"}>
+                        <Cell size={"small-12 medium-6"}  className="createBtnColum">
                             {userData.host ?
                                 <Cell size={'medium-4'} >
                                     <Btn classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Create an adventure'} />
