@@ -1,9 +1,10 @@
 .card-section, .card-divider {
-    background-color: rgba(39, 36, 27, 90%);
+    background-color: rgba(39, 36, 27, 100%);
 }
 
 .flipcard {
     margin: 10px;
+    border-radius: 5px;
 }
 
 .details-heading {
@@ -13,7 +14,7 @@
 }
 
 .resources {
-    background-color: rgba(85, 91, 87, 90%);
+    background-color: rgba(85, 91, 87, 100%);
 }
 
 /* Card flip animation CSS */
@@ -28,11 +29,13 @@
     position: relative;
     width: 100%;
     height: 100%;
+    border-radius: 5px;
 }
 .card__back {
     transform: rotateY(180deg);
     overflow:scroll;
     overflow-x: hidden;
+    border-radius: 5px;
 }
 
 .card__back::-webkit-scrollbar {
@@ -54,10 +57,11 @@
     width: 100%;
     height: 100%;
     color:rgba(243, 236, 216,100%);
-    background-color: rgba(39, 36, 27, 90%); 
+    background-color: rgba(39, 36, 27, 100%); 
     justify-content: center;
     align-items: center;
     backface-visibility: hidden;
+    border-radius: 5px;
 }
 
 .card__back  {
@@ -68,12 +72,19 @@
     width: 100%;
     height: 100%;
     color:rgba(243, 236, 216,100%);
-    background-color: rgba(39, 36, 27, 90%); 
+    background-color: rgba(39, 36, 27, 100%); 
     justify-content: center;
     align-items: center;
     backface-visibility: hidden;
+    border-radius: 5px;
 }
 
+.card__front .grid-x {
+    height:100%;
+}
+.card__back .grid-container {
+    height:100%
+}
 @media only screen and (max-width: 600px) {
     .grid-container {
         padding-left: 0;

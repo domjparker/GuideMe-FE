@@ -144,23 +144,21 @@ function Profile(props) {
             <Wrapper>
                 <div className="grid-container full">
                     <Gridx classes={'hero-section'} >
-                        <Cell size={"small-12 medium-12"}>
-                        <img onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic"></img>
+                        <Cell size="small-12 bannerdiv">
+                        <img className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl ? userData.profileBannerUrl:"https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?cs=srgb&dl=pexels-veeterzy-38136.jpg&fm=jpg" } alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic"></img>
                         </Cell>
-                        <Cell size={'hero-section-text'}>
-                            <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
-                        </Cell>
-                    </Gridx> 
-                    <Gridx>
+                    </Gridx>
+                    <Gridx classes={'align-bottom bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-6 medium-4"}>
-                            <img id="profilePic" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <img id="profilePic" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl? userData.profilePictureUrl :"https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                         </Cell>
                         <Cell size={"small-6 medium-8"}>
+                            <h2>{userData.firstName} {userData.lastName}</h2>
                             <p>{userData.bio}</p>
                         </Cell>
                         <Cell size={""}>
-                            <p>{userData.location}</p>
+                            <p className='text-center'>{userData.location}</p>
                         </Cell>
                     </Gridx>
 
@@ -173,7 +171,7 @@ function Profile(props) {
                                 <Gridx classes="grid-margin-x">
                                     {(adventureData) ? adventureData.map(adventure => (
                                         <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
+                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.imageUrl? adventure.imageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
 
                                         </Cell>
                                     )) : null}
@@ -186,19 +184,19 @@ function Profile(props) {
                     <Gridx classes={''}>
                         {userData.host ?
                             <Cell size={'medium-4'}>
-                                <Btn classes={'button'} handleClick={handleCreateAdventureClick} text={'Create an adventure'} />
+                                <Btn classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Create an adventure'} />
                             </Cell>
                             :
                             <Cell size={'medium-4'}>
-                                <Btn classes={'button'} handleClick={handleBecomeHost} text={'Become a guide'} />
+                                <Btn classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
                             </Cell>
                         }
                         <Cell size={'medium-4'}>
-                            <Btn classes={'button'} handleClick={handleUpdateUserClick} text={'Update my data'} />
+                            <Btn classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Update my data'} />
                         </Cell>
                         <Cell size={'medium-4'}>
                             {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
-                            <Btn classes={'alert button'} handleClick={handleDeleteUser} text={'Delete my account'} />
+                            <Btn classes={'alert button expanded'} handleClick={handleDeleteUser} text={'Delete my account'} />
                         </Cell>
                     </Gridx>
                     {/* END CRUD buttons for user and adventure */}
