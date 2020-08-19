@@ -7,11 +7,6 @@
   width: 100%;
   height: 10vh;
 }
-.logo {
-  display: flex;
-  justify-content:space-around;
-  color: rgba(243, 236, 216,100%);
-}
 .search{
   font-size: 1.5rem;
   padding-top: 1rem;
@@ -24,18 +19,21 @@
   justify-content:space-around;
 }
 .messageBtn{
-  color: whitesmoke;
+  color:rgba(243, 236, 216,100%);
   padding-top: 0.8rem;
   padding-right: 1rem;
+  color: rgba(243, 236, 216,100%);
   font-size: 1.5rem;
+  display: flex;
+  justify-content: space-around;
 }
 .hiking {
   padding-top: 0.8rem;
   padding-right: 1rem;
   color: rgba(243, 236, 216,100%);
- font-size: 1.5rem;
- display: flex;
- justify-content: space-around;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-around;
 }
 #logofooter {
   display: flex;
@@ -47,4 +45,13 @@
 .loggedIn .fas {
   color: darkgreen;
   font-size: 3rem;
+}
+
+.signout {
+  padding-top: 0.8rem;
+  padding-right: 1rem;
+  color: rgba(243, 236, 216,100%);
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-around;
 }

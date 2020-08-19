@@ -8,6 +8,8 @@ function NotFound () {
     
     return(
         <>
+        <br></br>
+        <br></br>
         <Wrapper>
             <p>404 not found</p>
         </Wrapper>

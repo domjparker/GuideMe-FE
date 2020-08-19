@@ -90,6 +90,8 @@ export default {
     },
     sendMessage: (messageObj)=>{
         return axios.post(`${prefix}/api/message/`, messageObj, {withCredentials:true})
+    },
+    updateMailbox: (converserObj) => {
+        return axios.put(`${prefix}/api/user/mailbox/`,converserObj, {withCredentials:true})
     }
-
 }
