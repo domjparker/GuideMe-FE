@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import API from '../../util/API'
@@ -8,31 +8,33 @@ import API from '../../util/API'
 function Messages(props) {
 
     const id = props.id
-    const [messages,setMessages ] = useState([]);
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
         loadMessages()
 
     }, [])
     const loadMessages = async () => {
-        const {data} = await API.getSentMessage(id)
+        const { data } = await API.getSentMessage(id)
         setMessages(data)
     }
     {/* socket.on('chat-message', data =>{
                     
         }) */}
     return (
-       
+
         <div className="messageBox">
-            <ul>
+            <div>
                 {
-                (messages.length > 0 )?  messages.map(item =><li>
-                    {item.senderId.profilePictureUrl}: {item.messageText}</li>)
-                :null }
-            </ul>
+                    (messages.length > 0) ? messages.map(item =>
+                        <div>
+                            <img className="sender-thumbnail" src={item.senderId.profilePictureUrl}></img>  {item.messageText}
+                        </div>)
+                        : null}
+            </div>
         </div>
     )
-    
+
 }
 
 export default Messages;
