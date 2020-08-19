@@ -5,3 +5,7 @@
 .reveal.d-none {
     display:none;
 }
+
+#exampleModal1{
+    border-radius: 5px;
+}

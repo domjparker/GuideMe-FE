@@ -6,6 +6,7 @@ import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
 import './style.css'
+import ImageForm from '../ImageForm'
 
 
 function Adventure(props) {
@@ -29,22 +30,44 @@ function Adventure(props) {
     maxGroupSize: 1, 
     price: 50, 
     gearList: 'No specialty gear needed', 
-    tags: [] })
+    tags: [],
+    adventureImageUrl: ''
+  })
 
+  // state to facilitate adventure image upload
+  const [modalAdventureImage, setModalAdventureImage] = useState(false)
+  const [typeOfUploadImage, setTypeOfUploadImage] = useState("")
+  const [modalTitle, setModalTitle] = useState('')
 
-    //control form input values
+  //control form input values
   function handleInputChange(event) {
     let name = event.target.name
     let value
     //some fields must be numbers for db, so change that here
-    if (name==="minGroupSize" || name==="maxGroupSize" || name==="price" ){
+    if (name === "minGroupSize" || name === "maxGroupSize" || name === "price") {
       value = parseInt(event.target.value)
     } else {
-      value=event.target.value
+      value = event.target.value
     }
     //set new state with input
     setFormObject({ ...formObject, [name]: value })
   }
+const handleModalImageClose = ()=>{
+setModalAdventureImage(false)
+
+}
+const handleUrlUpdate= data =>{
+  setFormObject({...formObject,adventureImageUrl:data})
+}
+  // when Add Adventure Image is clicked
+  const handleAdventurePicClick = (e) => {
+    e.preventDefault()
+    console.log("adventure pick click was clicked")
+    setModalAdventureImage(true)
+    setTypeOfUploadImage("adventurePic")
+    setModalTitle("Adventure Image") 
+  }
+
 //===========handle incrementing for number input components=================
   const handleGroupDec = (e) => {
     let name = e.target.name
@@ -80,10 +103,10 @@ function Adventure(props) {
 
     event.preventDefault();
     //make a copy of the state object for manipulation
-    let postObj = {...formObject}
+    let postObj = { ...formObject }
     //if tags were entered then turn them into array
-    //TODO: Tags: you can only pick froma pre-defined list of tags!!! And here we just include the ids of the chosen ones
-    // if (postObj.tags.lenght) {postObj.tags=postObj.tags.split(', ')}
+    //TODO: Tags: you can only pick from a pre-defined list of tags!!! And here we just include the ids of the chosen ones
+    // if (postObj.tags.length) {postObj.tags=postObj.tags.split(', ')}
     //get user id from session data to add hostID to the new adventure
     
     const {data} = await API.getSessionData()
@@ -91,6 +114,7 @@ function Adventure(props) {
     //TODO:change the input field to increment adn drop-down and then incorporate here to the post object in the proper format
     postObj.duration= {time:formObject.time , unit:formObject.unit}
     if(postObj.maxGroupSize<postObj.minGroupSize) postObj.maxGroupSize=postObj.minGroupSize
+    console.log(postObj.adventureImageUrl)
     //add the edited object to database
     API.postNewAdventure(postObj)
       .then(data => {
@@ -109,7 +133,9 @@ function Adventure(props) {
           maxGroupSize: 2, 
           price: 50, 
           gearList: '', 
-          tags: [] })
+          tags: [],
+          adventureImageUrl: '' 
+        })
           handleModalClose();
       }).catch(err=> console.log(err))
   }
@@ -117,7 +143,7 @@ function Adventure(props) {
   return (
     <div className={showHideModal} id="adventureModal1">
       <h1>Create an Adventure</h1>
-      <p className="lead">publish an adventrue for the masses to enjoy</p>
+      <p className="lead">publish an adventure for the masses to enjoy</p>
     <div className="grid-container fluid">
       <Gridx>
         <Cell size="">
@@ -200,17 +226,28 @@ function Adventure(props) {
               placeholder="Tags:"
               value={formObject.tags}
             />
+            <Btn
+                className={"button small add-adventure-image"}
+                onClick={handleAdventurePicClick}
+                name="Upload Adventure Image"
+                type={"adventureImagePic"}
+                text={"Add Adventure Image"}
+              />
             <FormBtn
               disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary)}
               onClick={handleFormSubmit}>
                 Publish Adventure
                 </FormBtn>
-                {/* close modal button */}
-                <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>}/>
-          </form>
-        </Cell>
-      </Gridx>
-    </div>
+              {/* close modal button */}
+              <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
+            </form>
+          </Cell>
+        </Gridx>
+      </div>
+
+      {/* Upload Adventure Image Modal lives here */}
+      <ImageForm show={modalAdventureImage} handleModalClose={handleModalImageClose} urlUpdate={handleUrlUpdate} type={typeOfUploadImage} modalTitle={modalTitle} />
+
     </div>
   );
 }
