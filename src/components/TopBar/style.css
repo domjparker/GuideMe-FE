@@ -16,3 +16,7 @@
     background-color:rgba(225, 215, 205, 100%);
     
 }
+
+.fixingHeight{
+    height: 5rem;
+}
