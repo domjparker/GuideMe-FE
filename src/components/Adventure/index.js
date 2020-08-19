@@ -114,6 +114,7 @@ const handleUrlUpdate= data =>{
     //TODO:change the input field to increment adn drop-down and then incorporate here to the post object in the proper format
     postObj.duration= {time:formObject.time , unit:formObject.unit}
     if(postObj.maxGroupSize<postObj.minGroupSize) postObj.maxGroupSize=postObj.minGroupSize
+    console.log(postObj.adventureImageUrl)
     //add the edited object to database
     API.postNewAdventure(postObj)
       .then(data => {
