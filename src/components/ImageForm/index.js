@@ -75,7 +75,7 @@ function ImageForm(props) {
       <h3>Upload {props.modalTitle}</h3>
       <div className='container'>
         <div className='file-field input-field'>
-          <div className='button small expanded'>
+          <div className='button small expanded '>
             {/* <span>Browse</span> */}
             <input type='file' name='image' onChange={onChange} />
           </div>
