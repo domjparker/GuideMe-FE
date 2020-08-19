@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
-import Wrapper from '../../components/Wrapper'
+
 import API from '../../util/API'
 // import PopupChat from '../PopupChat'
 

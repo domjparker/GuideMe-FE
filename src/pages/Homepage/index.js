@@ -68,7 +68,7 @@ function Homepage() {
                             <li> Creating an account is easy, just click  the hiker icon at the bottom and fill out the required fields
                             </li>
                            </ul>
-                           <h2><strong>Guides,</strong></h2>
+                           <h2 className="guideTitle"><strong>Guides,</strong></h2>
                            <ul>
                            <li>
                                     Host an adventure! After logging in you will be redirected to your profile page. 
@@ -82,7 +82,7 @@ function Homepage() {
                            </li>
                 
                            <br />
-                           <h2> <strong>If you need to get back to the homepage from anywhere on the site, just click the logo on the top left.</strong></h2>
+                           <h3> <strong>If you need to get back to the homepage from anywhere on the site, just click the logo on the top left.</strong></h3>
                             </ul>
                         </div>
             
