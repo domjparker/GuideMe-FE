@@ -1,6 +1,5 @@
 #profilePic {
-    max-width: 30vw;
-    max-height: 30vh;
+    height: 15vh;
     border-radius: 50%;
     /* box-shadow: 0px 0px 15px whitesmoke; */
 
@@ -9,7 +8,6 @@
 .hero-section {
     background: 50% no-repeat;
     /* background-size: cover; */
-    height: 30vh;
     text-align: center;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -36,5 +34,11 @@
 }
 .bannerName {
     position:relative;
-    top:-15vh;
+    top: -5vh;
+}
+.bannerNegate{
+    top: 5vh;
+}
+.Matthew-Stuff{
+    padding:3px;
 }
