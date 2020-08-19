@@ -14,6 +14,7 @@ function SignUp() {
     let value = event.target.value;
     const name = event.target.name;
     // Updating the input's state
+    if (name === 'email') value=value.toLowerCase()
     setSignupObj({...signupObj, [name]:value})
   };
 

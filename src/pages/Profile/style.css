@@ -3,14 +3,13 @@
     max-height: 30vh;
     border-radius: 50%;
     /* box-shadow: 0px 0px 15px whitesmoke; */
-    position:relative;
-    top:-50px;
+
 }
 
 .hero-section {
     background: 50% no-repeat;
     /* background-size: cover; */
-    height: 40vh;
+    height: 30vh;
     text-align: center;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -25,4 +24,17 @@
 
 .hero-section .hero-section-text {
     color: rgba(243, 236, 216,100%);
+}
+
+.bannerimage {
+    width: 100%;
+
+}
+.bannerdiv {
+    overflow:hidden;
+    height:30vh;
+}
+.bannerName {
+    position:relative;
+    top:-15vh;
 }
