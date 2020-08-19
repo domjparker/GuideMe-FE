@@ -26,7 +26,8 @@ function Messages(props) {
         <div className="messageBox">
             <ul>
                 {
-                (messages.length > 0 )?  messages.map(item =><li>{item.senderId.firstName}: {item.messageText}</li>)
+                (messages.length > 0 )?  messages.map(item =><li>
+                    {item.senderId.profilePictureUrl}: {item.messageText}</li>)
                 :null }
             </ul>
         </div>
