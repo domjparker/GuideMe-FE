@@ -32,7 +32,7 @@ function Stickyfooter(props) {
                 <Cell size={'small-3'} id="messages">
                     <button className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
                 </Cell>
-                <Cell size={'small-3'} id="signout">
+                <Cell size={'small-3'+ (props.loggedOut ? ' loggedOut' : '')} id="signout">
                     <Link to={'/'} ><i className="fas fa-sign-out-alt signout"></i></Link>
                 </Cell>
             </Gridx>
