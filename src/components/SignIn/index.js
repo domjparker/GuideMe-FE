@@ -14,6 +14,7 @@ function SignIn(props) {
       // Getting the value and name of the input which triggered the change
       let value = event.target.value;
       const name = event.target.name;
+      if (name === 'email') value=value.toLowerCase()
       // Updating the input's state
       setloginObj({...loginObj,
         [name]: value
