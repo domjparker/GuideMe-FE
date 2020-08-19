@@ -50,7 +50,6 @@ useEffect(()=>{
         <Adventures/>
       </Route>
       <Route exact path='/profile'>
-        <h1>Log in here</h1>
         {user.loggedIn ? 
         <Profile  loggedIn={user.loggedIn} setLoginState={setLoginState}/>
         : <Login loginSuccess={setLoginState}/>  }
