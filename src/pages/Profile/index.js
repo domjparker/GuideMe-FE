@@ -97,13 +97,14 @@ function Profile(props) {
     const handleUpdateAdventureClick = (e) => {
         //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
-        //this state includes the adventure id of the adventure whoes FLipCard was clicked to know which adventure we are updating
+        //this state includes the adventure id of the adventure whose FLipCard was clicked to know which adventure we are updating
         setModalAdventureUpdate({ visible: true, id: id });
     }
     const handleUpdateUserClick = () => {
         //update user info modal open
         setModalUser(true);
     }
+    // 
     const handleUpdateBannerPicClick = () => {
         setModalImage(true);
         setPicOrBanner("bannerPic")
@@ -143,11 +144,13 @@ function Profile(props) {
             <Wrapper>
                 <div className="grid-container full">
                     <Gridx classes={'hero-section'} >
+                        <Cell size={"small-12 medium-12"}>
                         <img onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic"></img>
+                        </Cell>
                         <Cell size={'hero-section-text'}>
                             <h2 className="text-center">{userData.firstName} {userData.lastName}</h2>
                         </Cell>
-                    </Gridx>
+                    </Gridx> 
                     <Gridx>
                         {/* User data section */}
                         <Cell size={"small-6 medium-4"}>
@@ -161,10 +164,6 @@ function Profile(props) {
                         </Cell>
                     </Gridx>
 
-                    {/* Image update modal ============================== */}
-                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
-                    {/* Image update modal ============================== */}
-
                     {(userData.host === false) ? null
                         : (
                             <>
@@ -174,7 +173,7 @@ function Profile(props) {
                                 <Gridx classes="grid-margin-x">
                                     {(adventureData) ? adventureData.map(adventure => (
                                         <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={"https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
+                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
 
                                         </Cell>
                                     )) : null}
@@ -205,6 +204,7 @@ function Profile(props) {
                     {/* END CRUD buttons for user and adventure */}
 
                     {/* Modals live here */}
+                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
                     <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
