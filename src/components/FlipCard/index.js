@@ -48,52 +48,45 @@ function FlipCard(props) {
                 <div className="card__inner">
                     <div className="card__back">
                         <div className=" grid-container">
-                            <Gridx>
-                                <Cell size={"text-center details-heading"}>
+                            <Gridx classes={''}>
+                                <Cell size={"small-12 text-center details-heading"}>
                                     <h5>{props.title}</h5>
                                 </Cell>
                                 <Cell size={"small-12"}>
                                     <h6><strong>{props.host}</strong></h6>
                                     <p>{props.description}</p>
-                                    <p>{props.itinerary}</p>
-
                                 </Cell>
                             </Gridx>
-                            <Gridx>
-                                <Cell size={"small-7"}>
-                                    <h6><strong>Smth goes here</strong></h6>
-                                    <p>i am not sure yet what</p>
-
-                                    {/* Message Button */}
-                                    <div>
-                                        {props.edit ? null:<button onClick={(e) => {e.stopPropagation();handleOpenChat(props.hostId, props.host)}}>Contact Host</button>}
-                                    </div>
+                            <Gridx classes={''}>
+                                <Cell size={"small-12 medium-6"}>
+                                    <h6><strong>Itinerary</strong></h6>
+                                        <p>{props.itinerary}</p>
                                 </Cell>
 
-                                <Cell size={"small-5 p-1"}>
-                                    <h6>Details</h6>
+                                <Cell size={"small-12 medium-6"}>
+                                    <h6><strong>Details</strong></h6>
                                     <ul>
+                                        <li>Location: {props.location}</li>
                                         <li>Group size: {props.minGroupSize}-{props.maxGroupSize} </li>
                                         <li>Duration: {props.number} {props.unit} </li>
                                         <li>Difficulty: {props.difficulty} </li>
                                     </ul>
                                 </Cell>
                             </Gridx>
-                            <Gridx>
-                                <Cell size={"small-6"}>
-                                    <hr />
-                                    <h6><strong>Location</strong></h6>
-                                    <p> {props.location} </p>
-                                </Cell>
-                                <Cell size={'small-6'}>
-                                    {props.edit ? <Btn data-id={props.id} classes={'button'} handleClick={props.editClick} text={'update me'} /> : null}
-                                    {props.delete ? <Btn data-id={props.id} classes={'alert button'} handleClick={props.deleteClick} text={'delete me'} /> : null}
+                            <Gridx classes={''}>
+                                <Cell size={'small-12'}>
+                                    {/* Message Button */}
+                                    {props.edit ? null : <Btn classes="button expanded" handleClick={(e) => {e.stopPropagation();handleOpenChat(props.hostId, props.host)}} text={'Contact host'}/>}
+                                    {/* Update Button */}
+                                    {props.edit ? <Btn data-id={props.id} classes={'button expanded'} handleClick={props.editClick} text={'update me'} /> : null}
+                                    {/* Delete Button */}
+                                    {props.delete ? <Btn data-id={props.id} classes={'alert button expanded'} handleClick={props.deleteClick} text={'delete me'} /> : null}
                                 </Cell>
                             </Gridx>
                         </div>
                     </div>
                     <div className="card__front">
-                        <Gridx>
+                        <Gridx classes={""}>
                             <Cell size={"small-12"}>
                                 <div className="card-section">
                                     <img src={props.img} alt={props.title} />
