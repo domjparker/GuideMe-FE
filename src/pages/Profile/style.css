@@ -1,9 +1,9 @@
 /* .profilePicture {
-    height: 15vh;
+    height: 20vh;
     border-radius: 50%;
     box-shadow: 0px 0px 15px whitesmoke;
 
-}*/
+} */
 
 .hero-section {
     background: 50% no-repeat;
@@ -34,7 +34,7 @@
 }
 .bannerName {
     position:relative;
-    top: -5vh;
+    top: -10vh;
 }
 .bannerNegate{
     top: 5vh;

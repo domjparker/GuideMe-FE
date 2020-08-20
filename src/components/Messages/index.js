@@ -30,7 +30,7 @@ function Messages(props) {
                 {
                     (messages.length > 0) ? messages.map(item =>
                         <div>
-                            <img className="sender-thumbnail" src={item.senderId.profilePictureUrl}></img>  {item.messageText}
+                            <img className="sender-thumbnail" src={item.senderId.profilePictureUrl} alt={item.senderId.firstName}></img>  {item.messageText}
                         </div>)
                         : null}
             </div>
