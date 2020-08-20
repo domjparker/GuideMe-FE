@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Mailbox from '../Mailbox'
+import Btn from '../Btn'
+
 // import PopupChat from '../PopupChat'
 import API from '../../util/API'
 import {loginContext} from '../LoginContext'
