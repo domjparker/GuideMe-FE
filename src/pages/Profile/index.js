@@ -147,13 +147,15 @@ function Profile(props) {
                 <div className="grid-container full">
                     <Gridx classes={'hero-section'} >
                         <Cell size="small-12 bannerdiv">
-                            <img className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl ? userData.profileBannerUrl : "https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?cs=srgb&dl=pexels-veeterzy-38136.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic"></img>
+                            {/* When user clicks on their profile banner picture, a modal is activated to that they can update it */}
+                            <img className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl ? userData.profileBannerUrl : "https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?cs=srgb&dl=pexels-veeterzy-38136.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
                         </Cell>
                     </Gridx>
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img className="profilePicture" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            {/* When user clicks on their profile picture, a modal is activated to that they can update it */}
+                            <img className="profilePicture" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} />
                             <h2>{userData.firstName} {userData.lastName}</h2>
                             <p>{userData.location}</p>
                             <p>{userData.bio}</p>
@@ -177,7 +179,7 @@ function Profile(props) {
                                 <Btn classes={'alert button expanded'} handleClick={handleDeleteUser} text={'Delete my account'} />
                             </Cell>
                         </Cell >
-                        
+
 
 
                         {/* END CRUD buttons for user and adventure */}

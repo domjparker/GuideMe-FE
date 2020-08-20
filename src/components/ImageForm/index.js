@@ -27,8 +27,7 @@ function ImageForm(props) {
     preset = 'guidemeprofilepic';
   } else if ( props.type === "bannerPic") { 
     preset = 'guidemebannerpic'
-  } else { 
-    preset = 'guidemeadventurepic'}
+  } 
 
   // on submit, a new FormData object is constructed
   const onSubmit = async () => {
@@ -55,13 +54,8 @@ function ImageForm(props) {
       else if (props.type === "bannerPic"){
         API.updateBanner({ profileBannerUrl: imageUrl })
         console.log("imageUrl was sent to backend profileBannerUrl")
-      }else{
-        console.log("No api calls!");
-        props.urlUpdate(imageUrl)
-       
       }
-      
-
+    
       setLoading(false);
       setImage(image.data);
       handleModalClose()
@@ -73,21 +67,14 @@ function ImageForm(props) {
   return (
     <div className={showHideModal} id="exampleModal1">
       <h3>{props.modalTitle}</h3>
-      <div className='container'>
-        <div className='file-field input-field'>
-          <div className='button small expanded '>
-            {/* <span>Browse</span> */}
+          <div className='button expanded'>
             <input type='file' name='image' onChange={onChange} />
           </div>
-        </div>
-        <div className='center'>
           <button onClick={onSubmit} className='button small expanded'>
             upload
           </button>
-        </div>
-      </div>
       {/* close modal button */}
-      <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
+    <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
     </div>
   )
 };
