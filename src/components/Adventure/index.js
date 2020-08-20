@@ -46,15 +46,19 @@ function Adventure(props) {
   const [modalAdventureImage, setModalAdventureImage] = useState(false)
   const [typeOfUploadImage, setTypeOfUploadImage] = useState("")
   const [modalTitle, setModalTitle] = useState('')
+  //state to facilitate tags adding
   const [dropdownArr, setDropdownArr] = useState([])
   const [dropdownValue, setDropdownValue] = useState('')
-
+  const [tagArr, setTagArr] = useState([])
+  const [allTags, setAllTags] = useState([])
   useEffect(() => {
-    API.getTags().then(result=>
-      console.log(result)
-      // setDropdownArr(result.data)
-    )
-    
+    //get all tags for tags dropDown and grab just the names of the tags
+    API.getTags().then(result=>{
+      let newArr = result.data
+      setAllTags(newArr)
+      newArr=newArr.map(item=>item=item.tagName)
+      setDropdownArr(newArr)
+    }).catch(err=>console.log(err))
   }, [])
 
   //control form input values
@@ -68,9 +72,19 @@ function Adventure(props) {
       value = event.target.value
     }
     //set new state with input
-    setFormObject({ ...formObject, [name]: value })
-  }
+    if (name !== 'tags') {
 
+      setFormObject({ ...formObject, [name]: value })
+    } else if (tagArr.indexOf(event.target.value)<0) {
+      //if this tag is not already in the tags array, then put it there
+      setTagArr([...tagArr, event.target.value])
+    }
+  }
+  //tag handling
+  const handleFilterTags = (e) => {
+    let deletedTag= e.target.getAttribute('value')
+    setTagArr(tagArr.filter(tag=> tag !== deletedTag))
+  }
   //===========handle incrementing for number input components=================
   const handleGroupDec = (e) => {
     let name = e.target.name
@@ -124,16 +138,16 @@ function Adventure(props) {
       //make a copy of the state object for manipulation and add the imageUrl
       let postObj = { ...formObject, adventureImageUrl: imageUrl }
 
-      //if tags were entered then turn them into array
-      //TODO: Tags: you can only pick from a pre-defined list of tags!!! And here we just include the ids of the chosen ones
-      // if (postObj.tags.length) {postObj.tags=postObj.tags.split(', ')}
+      
       //get user id from session data to add hostID to the new adventure
-
       const { data } = await API.getSessionData()
       postObj.hostId = data.id
-      //TODO:change the input field to increment and drop-down and then incorporate here to the post object in the proper format
+      //set duration info in a format that is needed for database
       postObj.duration = { time: formObject.time, unit: formObject.unit }
+      //logic check for group sizing
       if (postObj.maxGroupSize < postObj.minGroupSize) postObj.maxGroupSize = postObj.minGroupSize
+      //handle tags
+      postObj.tags = allTags.filter(tag => tagArr.indexOf(tag.tagName)>-1 ).map(tag=>tag._id)
       console.log('postObj.adventureImageUrl = ' + postObj.adventureImageUrl)
       //add the edited object to database
       API.postNewAdventure(postObj)
@@ -243,13 +257,14 @@ function Adventure(props) {
               placeholder="Gear Need:"
               value={formObject.gearList}
             />
-            <TagRow edit={true} tags={formObject.tags}/>
-            {/* <Dropdown
+            <TagRow edit={true} tags={tagArr} filterTags={handleFilterTags}/>
+             <Dropdown
+             intro={'Select tags for your adventure'}
               onChange={handleInputChange}
               name="tags"
               options={dropdownArr}
               value={dropdownValue}
-            /> */}
+            /> 
               <Input
                 onChange={onSubmit}
                 classes={"button adventure-image-upload"}
