@@ -139,7 +139,9 @@ function Profile(props) {
         setChange(!change)
     }
     //end of modals section =============================================================
-
+    const signOut = ()=> {
+        API.logOutUser()
+    }
 
     return (
         <>

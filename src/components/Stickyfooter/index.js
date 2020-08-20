@@ -6,7 +6,7 @@ import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Mailbox from '../Mailbox'
 // import PopupChat from '../PopupChat'
-
+import API from '../../util/API'
 
 function Stickyfooter(props) {
     const [showMailbox, setShowMailbox] = useState(false)
@@ -16,6 +16,9 @@ function Stickyfooter(props) {
     }
     const handleMailboxClose = () => {
         setShowMailbox(false)
+    }
+    const signOut = ()=> {
+        API.logOutUser()
     }
     return (<>
 
@@ -32,7 +35,7 @@ function Stickyfooter(props) {
                     <button className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
                 </Cell>
                 <Cell size={'small-3'} id="signout">
-                    <Link to={'/'} ><i className="fas fa-sign-out-alt signout"></i></Link>
+                <Link to={'/profile'} ><i className="fas fa-sign-out-alt signout" onClick ={signOut} ></i></Link>
                 </Cell>
             </Gridx>
         </div>
