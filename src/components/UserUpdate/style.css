@@ -7,7 +7,9 @@
 }
 .reveal {
     border:none;
-    background-color:  rgba(39, 36, 27, 100%);
+    position: absolute;
+    top:10vh;
+    background-color:  rgb(120, 105, 61);
     color: rgba(243, 236, 216,100%);
     border-radius: 5px;
 }
