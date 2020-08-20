@@ -1,5 +1,5 @@
 //New adventure create form
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../../util/API";
 import { Input, TextArea, FormBtn, Dropdown, NumberInput } from "../Form";
 import Cell from '../Cell'
@@ -7,6 +7,7 @@ import Gridx from '../Gridx'
 import Btn from '../Btn'
 import './style.css'
 import ImageForm from '../ImageForm'
+import TagRow from '../TagRow'
 
 
 function Adventure(props) {
@@ -15,6 +16,7 @@ function Adventure(props) {
   const handleModalClose = () => {
     props.handleModalClose()
   }
+
 
   //state to control input values
   const [formObject, setFormObject] = useState({ 
@@ -38,6 +40,16 @@ function Adventure(props) {
   const [modalAdventureImage, setModalAdventureImage] = useState(false)
   const [typeOfUploadImage, setTypeOfUploadImage] = useState("")
   const [modalTitle, setModalTitle] = useState('')
+  const [dropdownArr, setDropdownArr] = useState([])
+  const [dropdownValue, setDropdownValue] = useState('')
+
+  useEffect(() => {
+    API.getTags().then(result=>
+      console.log(result)
+      // setDropdownArr(result.data)
+    )
+    
+  }, [])
 
   //control form input values
   function handleInputChange(event) {
@@ -220,12 +232,13 @@ const handleUrlUpdate= data =>{
               placeholder="Gear Need:"
               value={formObject.gearList}
             />
-            <Input
+            <TagRow edit={true} tags={formObject.tags}/>
+            {/* <Dropdown
               onChange={handleInputChange}
               name="tags"
-              placeholder="Tags:"
-              value={formObject.tags}
-            />
+              options={dropdownArr}
+              value={dropdownValue}
+            /> */}
             <Btn
                 className={"button small add-adventure-image"}
                 onClick={handleAdventurePicClick}

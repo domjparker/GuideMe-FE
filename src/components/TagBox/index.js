@@ -1,13 +1,13 @@
 import React from 'react'
 import './style.css'
-import API from '../../util/API'
+import Btn from '../Btn'
 
 function TagBox(props){
 
     return (
-        <div>
-            <p>tag</p>
-            {props.delete && <Btn classes={"close-button"} handleClick={handleDeleteTag} type={"button"} text={<span aria-hidden="true">&times;</span>}/>}
+        <div className="tagBox" >
+            <p>{props.text}</p>
+            {props.edit && <Btn  classes={"x-button"} handleClick={props.handledeletedag} type={"button"} text={<span data-id={props.dataId} aria-hidden="true">&times;</span>}/>}
         </div>
     )
 

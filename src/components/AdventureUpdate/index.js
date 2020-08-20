@@ -32,7 +32,7 @@ function AdventureUpdate(props) {
           description: data.description,
           location: data.location,
           itinerary:data.itinerary,
-          time:data.duration ? parseInt(data.duration.time):1,
+          time:data.duration && parseInt(data.duration.time),
           unit:data.duration? data.duration.unit: 'hours',
           difficulty:data.difficulty,
           minGroupSize:parseInt(data.minGroupSize),
