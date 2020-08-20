@@ -15,13 +15,13 @@ function Adventure(props) {
     props.handleModalClose()
   }
 
-  // *
+  // state to control
   const [image, setImage] = useState('');
   const onSubmit = e => {
     setImage(e.target.files[0]);
   };
 
-  //state to control input values
+  // state to control input values
   const [formObject, setFormObject] = useState({
     adventureName: 'New Adventure',
     hostId: '',
