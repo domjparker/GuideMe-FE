@@ -1,20 +1,26 @@
-import React, {useState}from 'react'
+import React, {useState, useEffect}from 'react'
 import './style.css'
 import Messages from "../Messages"
 import API from "../../util/API"
-
+import io from "socket.io-client";
 
 function PopupChat(props) {
-
     const [chatBox, setChatBox] = useState(true)
     const [messageText, setMessageText] = useState("")
+    const [chat, setChat] = useState([])
 
+    useEffect(() => { 
+        // socket.on('message',(data) =>{
+        //     console.log(data)
+        // })
+      }, []);
 
     // close chat window
     const handleCloseChat = (e) =>{
         e.stopPropagation();
         setChatBox(false)
         props.hide()
+       
     }
     const handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
@@ -28,14 +34,13 @@ function PopupChat(props) {
         await API.updateMailbox(converserObj)
         props.handleOpen()
     }
-    const sendMessages = (e)=>{
+    const sendMessages = async (e)=>{
         e.preventDefault()
         const messageObj = {
             name: props.name,
             recieverId: props.id,
             messageText: messageText
         }
-        debugger
         if(props.mailbox.map(function(e) { return e.converser._id; }).indexOf(props.id) !== -1){
             console.log("They are in the mailbox")
         }else{
@@ -44,6 +49,7 @@ function PopupChat(props) {
         }
         API.sendMessage(messageObj)
         setMessageText("")
+
         // Socket.emit('send-chat-message', messageObj)
     }
     let showHide = chatBox ? "visible" : "invisible";
