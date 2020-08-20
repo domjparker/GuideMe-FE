@@ -11,13 +11,17 @@ import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import API from './util/API'
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import io from "socket.io-client";
+
+const ENDPOINT = "http://localhost:3001";
+const socket = io.connect(ENDPOINT)
 
 function App() {
   let page='Find your way'
   //use context for this
   const [user, setuser] = useState({
     //TODO:for some reason sometimes these states get reset to false half way through a session, must fix that. Maybe the host state shouldn't live here....
-    loggedIn:false
+    loggedIn:true
   })
 
   const setLoginState = (value) => setuser({loggedIn: value})
