@@ -6,7 +6,7 @@ import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Mailbox from '../Mailbox'
 import API from "../../util/API"
-// import PopupChat from '../PopupChat'
+import PopupChat from '../PopupChat'
 
 function Stickyfooter(props) {
     const [showMailbox, setShowMailbox] = useState(false)
