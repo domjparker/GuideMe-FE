@@ -3,15 +3,17 @@ import './style.css'
 
 import API from '../../util/API'
 // import PopupChat from '../PopupChat'
-
+import io from "socket.io-client";
 
 function Messages(props) {
 
     const id = props.id
+
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
         loadMessages()
+
 
     }, [])
     const loadMessages = async () => {
