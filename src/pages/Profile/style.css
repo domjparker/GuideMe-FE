@@ -5,6 +5,12 @@
 
 }*/
 
+/* .imageModal {
+    position: relative;
+    margin: 10% auto;
+    z-index: 99999;
+} */
+
 .hero-section {
     background: 50% no-repeat;
     /* background-size: cover; */
@@ -34,7 +40,7 @@
 }
 .bannerName {
     position:relative;
-    top: -5vh;
+    top: -10vh;
 }
 .bannerNegate{
     top: 5vh;
