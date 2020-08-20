@@ -110,12 +110,12 @@ function Profile(props) {
     const handleUpdateBannerPicClick = () => {
         setModalImage(true);
         setPicOrBanner("bannerPic")
-        setModalTitle("Banner Picture")
+        setModalTitle("Upload Banner Picture")
     }
     const handleUpdateProfilePicClick = () => {
         setModalImage(true);
         setPicOrBanner("profilePic")
-        setModalTitle("Profile Picture")
+        setModalTitle("Upload Profile Picture")
     }
     //methods to close the various modals
     const handleModalAdventureClose = () => {
@@ -139,7 +139,9 @@ function Profile(props) {
         setChange(!change)
     }
     //end of modals section =============================================================
-
+    const signOut = ()=> {
+        API.logOutUser()
+    }
 
     return (
         <>
@@ -147,7 +149,8 @@ function Profile(props) {
                 <div className="grid-container full">
                     <Gridx classes={'hero-section'} >
                         <Cell size="small-12 bannerdiv">
-                            <img className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl ? userData.profileBannerUrl : "https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?cs=srgb&dl=pexels-veeterzy-38136.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"} type="bannerPic"></img>
+                            {/* When user clicks on their profile banner picture, a modal is activated to that they can update it */}
+                            <img className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl ? userData.profileBannerUrl : "https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?cs=srgb&dl=pexels-veeterzy-38136.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
                         </Cell>
                     </Gridx>
                     <Gridx classes={'bannerName'}>
@@ -177,7 +180,7 @@ function Profile(props) {
                                 <Btn className="profileIcons" icon={<i class="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
                             </Cell>
                         </Cell >
-                        
+
 
 
                         {/* END CRUD buttons for user and adventure */}
@@ -201,10 +204,8 @@ function Profile(props) {
                         )}
                     {/* END Display tags and adventures related to user, if the user is a host */}
 
-
-
                     {/* Modals live here */}
-                    <ImageForm show={modalImage} handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
+                    <ImageForm show={modalImage} className="imageModals" handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
                     <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />

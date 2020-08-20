@@ -11,9 +11,14 @@ import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import API from './util/API'
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import io from "socket.io-client";
+
 import {loginContext} from './components/LoginContext'
 
 function App() {
+  
+  // const ENDPOINT = "http://localhost:3001";
+  // const socket = io.connect(ENDPOINT)
   let page='Find your way'
   //use context for this
   const [user, setuser] = useState({
@@ -29,6 +34,8 @@ useEffect(()=>{
   API.getSessionData().then((res)=>{
     if(res.data.id){
       setLoginState(true)
+      // Sets Nickname to database ID
+      // socket.emit('login', res.data.id)
     } else {
       setLoginState(false)
     }
