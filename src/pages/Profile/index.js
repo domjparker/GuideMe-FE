@@ -96,6 +96,7 @@ function Profile(props) {
         setModalAdventure(true);
     }
     const handleUpdateAdventureClick = (e) => {
+        e.stopPropagation()
         //update adventure modal open -- this method is passed into the FlipCard since the update adventure btn lives there
         let id = e.target.getAttribute('data-id')
         //this state includes the adventure id of the adventure whose FLipCard was clicked to know which adventure we are updating
@@ -152,13 +153,13 @@ function Profile(props) {
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img id="profilePic" onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <img style={{height: '15vh',width: '15vh', borderRadius: '50%'}} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                             <h2>{userData.firstName} {userData.lastName}</h2>
                             <p>{userData.location}</p>
                             <p>{userData.bio}</p>
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
-                        <Cell size={"small-12 medium-6"}>
+                        <Cell size={"small-12 medium-6 "} className="createBtnColum">
                             {userData.host ?
                                 <Cell size={'medium-4'} >
                                     <Btn classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Create an adventure'} />

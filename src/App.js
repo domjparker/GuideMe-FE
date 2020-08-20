@@ -15,26 +15,38 @@ import io from "socket.io-client";
 
 const ENDPOINT = "http://localhost:3001";
 const socket = io.connect(ENDPOINT)
+import {loginContext} from './components/LoginContext'
 
 function App() {
   let page='Find your way'
   //use context for this
   const [user, setuser] = useState({
     //TODO:for some reason sometimes these states get reset to false half way through a session, must fix that. Maybe the host state shouldn't live here....
-    loggedIn:true
+    
   })
+  const [haveData, setHaveData]=useState(false)
 
   const setLoginState = (value) => setuser({loggedIn: value})
+  const loginState = {loggedIn: user.loggedIn, changeLoginState:setLoginState}
 
 useEffect(()=>{
   API.getSessionData().then((res)=>{
-    if(res.id){
+    if(res.data.id){
       setLoginState(true)
     } else {
       setLoginState(false)
     }
+    setHaveData(true)
   }).catch(err=>console.log(err))
 }, [])
+
+const renderLogIn = () => {
+  if (haveData && user.loggedIn) {
+    return <Profile/>
+  } else if (haveData) {
+   return <Login/>
+  }
+}
 
   return (
     <Router>
@@ -54,9 +66,10 @@ useEffect(()=>{
         <Adventures/>
       </Route>
       <Route exact path='/profile'>
-        {user.loggedIn ? 
-        <Profile  loggedIn={user.loggedIn} setLoginState={setLoginState}/>
-        : <Login loginSuccess={setLoginState}/>  }
+        
+        <loginContext.Provider value={loginState}>
+          {renderLogIn()}
+        </loginContext.Provider>
       </Route>
       <Route path='*'>
         <NotFound/>
@@ -69,5 +82,6 @@ useEffect(()=>{
     </Router>
   );
 }
+
 
 export default App;

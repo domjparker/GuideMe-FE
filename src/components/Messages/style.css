@@ -1,8 +1,14 @@
-.messageBox{
-    max-height: 40vh;
-    overflow: scroll;
-    overflow-x:hidden;
+.messageBox {
+  max-height: 40vh;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 .messageBox::-webkit-scrollbar {
-    display: none;
-    }
+  display: none;
+}
+
+.sender-thumbnail {
+    border-radius: 50%;
+    width: 50px;
+    height: auto;
+};
