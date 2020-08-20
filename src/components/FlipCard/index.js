@@ -59,12 +59,9 @@ function FlipCard(props) {
                                 </Cell>
                             </Gridx>
                             <Gridx classes={''}>
-                                <Cell size={"small-12 medium-6"}>
-                                    <h6><strong>Itinerary</strong></h6>
-                                        <p>{props.itinerary}</p>
-                                </Cell>
+                                
 
-                                <Cell size={"small-12 medium-6"}>
+                                <Cell size={"small-12 medium-12"}>
                                     <h6><strong>Details</strong></h6>
                                     <ul>
                                         <li>Location: {props.location}</li>
@@ -73,15 +70,21 @@ function FlipCard(props) {
                                         <li>Difficulty: {props.difficulty} </li>
                                     </ul>
                                 </Cell>
+
+                                <Cell size={"small-12 medium-12"}>
+                                    <h6><strong>Itinerary</strong></h6>
+                                        <p>{props.itinerary}</p>
+                                </Cell>
+
                             </Gridx>
                             <Gridx classes={''}>
                                 <Cell size={'small-12'}>
                                     {/* Message Button */}
                                     {props.edit ? null : <Btn classes="button expanded" handleClick={(e) => {e.stopPropagation();handleOpenChat(props.hostId, props.host)}} text={'Contact host'}/>}
                                     {/* Update Button */}
-                                    {props.edit && <Btn data-id={props.id} classes={'button expanded'} handleClick={props.editClick} text={'update me'} />}
+                                    {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update me'} /> : null}
                                     {/* Delete Button */}
-                                    {props.delete && <Btn data-id={props.id} classes={'alert button expanded'} handleClick={props.deleteClick} text={'delete me'} />}
+                                    {props.delete ? <Btn data-id={props.id} className="editFlipcard"icon={<i class="far fa-trash-alt"></i>} classes={'alert button expanded'} handleClick={props.deleteClick} text={'delete me'} /> : null}
                                 </Cell>
                                 
                             </Gridx>

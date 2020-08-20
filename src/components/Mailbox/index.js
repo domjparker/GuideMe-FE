@@ -1,11 +1,8 @@
-// *Check if you're logged in, prompts log in if not already logged in.
-// If logged in, get request based on session ID
-// Make array in users called mailbox
 import React, { useState, useEffect } from 'react'
 import PopupChat from '../../components/PopupChat'
 import './style.css'
-// import Wrapper from '../../components/Wrapper'
 import API from '../../util/API'
+import Btn from '../Btn'
 
 function Mailbox(props) {
     const [mailbox, setMailbox] = useState([]);
@@ -38,7 +35,7 @@ return (
     <>
         {(showMessage === false) ?
             <ul className="fixer">
-                <button className="open-button" onClick={props.close}>Close</button>
+                <Btn className="open-button" onClick={props.close} text="Close"/>
                 {
                     (mailbox.length > 0) ? mailbox.map(item => <li><button className="open-button" onClick={()=>handleOpenChat(item.converser._id, item.converser.firstName)}>{item.converser.firstName}</button></li>): null
                 }
