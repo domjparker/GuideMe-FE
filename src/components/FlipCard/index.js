@@ -78,9 +78,9 @@ function FlipCard(props) {
                                     {/* Message Button */}
                                     {props.edit ? null : <Btn classes="button expanded" handleClick={(e) => {e.stopPropagation();handleOpenChat(props.hostId, props.host)}} text={'Contact host'}/>}
                                     {/* Update Button */}
-                                    {props.edit ? <Btn data-id={props.id} classes={'button expanded'} handleClick={props.editClick} text={'update me'} /> : null}
+                                    {props.edit && <Btn data-id={props.id} classes={'button expanded'} handleClick={props.editClick} text={'update me'} />}
                                     {/* Delete Button */}
-                                    {props.delete ? <Btn data-id={props.id} classes={'alert button expanded'} handleClick={props.deleteClick} text={'delete me'} /> : null}
+                                    {props.delete && <Btn data-id={props.id} classes={'alert button expanded'} handleClick={props.deleteClick} text={'delete me'} />}
                                 </Cell>
                             </Gridx>
                         </div>
