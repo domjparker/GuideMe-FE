@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Mailbox from '../Mailbox'
+import API from "../../util/API"
 // import PopupChat from '../PopupChat'
 
 
@@ -16,6 +17,11 @@ function Stickyfooter(props) {
     }
     const handleMailboxClose = () => {
         setShowMailbox(false)
+    }
+    const handleLogout = (e) => {
+        // change logout state
+        e.preventDefault();
+        API.logoutUser()
     }
     return (<>
 
@@ -31,8 +37,8 @@ function Stickyfooter(props) {
                 <Cell size={'small-3'} id="messages">
                     <button className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
                 </Cell>
-                <Cell size={'small-3'+ (props.loggedOut ? ' loggedOut' : '')} id="signout">
-                    <Link to={'/'} ><i className="fas fa-sign-out-alt signout"></i></Link>
+                <Cell size={'small-3' + (props.loggedOut ? ' loggedOut' : '')} id="signout">
+                    <Link to={'/login'} ><i className="fas fa-sign-out-alt signout" onClick={handleLogout}></i></Link>
                 </Cell>
             </Gridx>
         </div>

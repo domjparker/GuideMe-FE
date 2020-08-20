@@ -59,7 +59,7 @@ useEffect(()=>{
       </Route>
     </Switch>
     <Footer/>
-    <Stickyfooter />
+    <Stickyfooter/>
     </>
  
     </Router>
