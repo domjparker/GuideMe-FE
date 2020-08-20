@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Mailbox from '../Mailbox'
-// import PopupChat from '../PopupChat'
+import Btn from '../Btn'
 
 
 function Stickyfooter(props) {

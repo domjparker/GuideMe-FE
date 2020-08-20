@@ -5,7 +5,7 @@ import './style.css'
 function Btn (props) {
 
     return (
-        <button className={props.classes} onClick={props.handleClick} {...props}>{props.text}</button>
+    <button  className={props.classes} onClick={props.handleClick} {...props}>{props.icon}  {props.text}</button>
     )
 
 }

@@ -159,10 +159,10 @@ function Profile(props) {
                             <p>{userData.bio}</p>
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
-                        <Cell size={"small-12 medium-6 "} className="createBtnColum">
+                        <Cell size={"small-12 medium-6 "} className="createBtnColumn">
                             {userData.host ?
                                 <Cell size={'medium-4'} >
-                                    <Btn classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Create an adventure'} />
+                                    <Btn className="profileIcons"icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
                                 </Cell>
                                 :
                                 <Cell size={'medium-4'}>
@@ -170,11 +170,11 @@ function Profile(props) {
                                 </Cell>
                             }
                             <Cell size={'medium-4'}>
-                                <Btn classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Update my data'} />
+                                <Btn className="profileIcons" icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
                             </Cell>
                             <Cell size={'medium-4'}>
                                 {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
-                                <Btn classes={'alert button expanded'} handleClick={handleDeleteUser} text={'Delete my account'} />
+                                <Btn className="profileIcons" icon={<i class="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
                             </Cell>
                         </Cell >
                         
@@ -216,4 +216,4 @@ function Profile(props) {
     )
 }
 
-export default Profile
+export default Profile;
