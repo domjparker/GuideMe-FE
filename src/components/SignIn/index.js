@@ -1,12 +1,15 @@
 //signin form -- member of the Login page component
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom'
 import "./style.css";
 import { Input, FormBtn } from "../Form"
 import API from '../../util/API'
+import {loginContext} from '../LoginContext'
+
 
 function SignIn(props) {
   let history = useHistory();
+  const loginState = useContext(loginContext)
   //set state of input field values  
   const [loginObj, setloginObj] = useState({email:'', password:''})
   //control form input field values
@@ -37,7 +40,7 @@ function SignIn(props) {
       }
       API.loginUser(loginObj).then(res=>{
         console.log(res)
-        props.logMeIn(true)
+        loginState.changeLoginState(true)
         //upon successful login, send me to profile page
         //TODO:make this take me back to where i came from
         history.push("/profile")
