@@ -1,10 +1,7 @@
-.card-section, .card-divider {
-    background-color: rgba(39, 36, 27, 100%);
-}
 
 .flipcard {
     margin: 10px;
-    
+
 }
 
 .details-heading {
@@ -85,6 +82,11 @@
 }
 .card__back .grid-container {
     height:100%
+}
+.editFlipcard{
+    margin-right: 15px;
+    color: rgba(207, 162, 66, 100%);
+
 }
 @media only screen and (max-width: 600px) {
     .grid-container {
