@@ -23,6 +23,8 @@ function Profile(props) {
     const [userData, setUserData] = useState({})
     //state holds user's hosted adventures as pulled from database
     const [adventureData, setAdventureData] = useState([])
+    // handling showing of tags
+    const [tagArr, setTagArr] = useState([])
     //state to check for changes in data to call useEffect and reload data
     const [change, setChange] = useState(false)
     //all the below states are boolean states to control modals opening and closong, when true, modal is visible, when false modal is hidden
@@ -32,7 +34,6 @@ function Profile(props) {
     const [modalImage, setModalImage] = useState(false)
     const [picOrBanner, setPicOrBanner] = useState("")
     const [modalTitle, setModalTitle] = useState('')
-
     //modal states end ================================================
 
     //set up page with data
@@ -52,6 +53,7 @@ function Profile(props) {
     const loadUserData = async () => {
         const { data } = await API.getUserbyId();
         setUserData(data);
+        setTagArr(data.tags.map(tag=>tag.tagName))
     }
 
     //get the adventures data from database
@@ -190,7 +192,7 @@ function Profile(props) {
                         : (
                             <>
                                 <Gridx classes="grid-margin-x">
-                                    <TagRow tags={userData.tags} />
+                                    <TagRow tags={tagArr} />
                                 </Gridx>
                                 <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
                                     {(adventureData) ? adventureData.map(adventure => (
