@@ -1,5 +1,5 @@
-// * New adventure create form
-import React, { useState } from "react";
+//New adventure create form
+import React, { useState, useEffect } from "react";
 import API from "../../util/API";
 import axios from 'axios';
 import { Input, TextArea, FormBtn, Dropdown, NumberInput } from "../Form";
@@ -7,6 +7,9 @@ import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
 import './style.css'
+import ImageForm from '../ImageForm'
+import TagRow from '../TagRow'
+
 
 function Adventure(props) {
   // this state dictates whether form is visible, the values are passed in from parent element
@@ -39,6 +42,25 @@ function Adventure(props) {
     adventureImageUrl: ''
   })
 
+  // state to facilitate adventure image upload
+  const [modalAdventureImage, setModalAdventureImage] = useState(false)
+  const [typeOfUploadImage, setTypeOfUploadImage] = useState("")
+  const [modalTitle, setModalTitle] = useState('')
+  //state to facilitate tags adding
+  const [dropdownArr, setDropdownArr] = useState([])
+  const [dropdownValue, setDropdownValue] = useState('')
+  const [tagArr, setTagArr] = useState([])
+  const [allTags, setAllTags] = useState([])
+  useEffect(() => {
+    //get all tags for tags dropDown and grab just the names of the tags
+    API.getTags().then(result=>{
+      let newArr = result.data
+      setAllTags(newArr)
+      newArr=newArr.map(item=>item=item.tagName)
+      setDropdownArr(newArr)
+    }).catch(err=>console.log(err))
+  }, [])
+
   //control form input values
   function handleInputChange(event) {
     let name = event.target.name
@@ -50,9 +72,19 @@ function Adventure(props) {
       value = event.target.value
     }
     //set new state with input
-    setFormObject({ ...formObject, [name]: value })
-  }
+    if (name !== 'tags') {
 
+      setFormObject({ ...formObject, [name]: value })
+    } else if (tagArr.indexOf(event.target.value)<0) {
+      //if this tag is not already in the tags array, then put it there
+      setTagArr([...tagArr, event.target.value])
+    }
+  }
+  //tag handling
+  const handleFilterTags = (e) => {
+    let deletedTag= e.target.getAttribute('value')
+    setTagArr(tagArr.filter(tag=> tag !== deletedTag))
+  }
   //===========handle incrementing for number input components=================
   const handleGroupDec = (e) => {
     let name = e.target.name
@@ -106,16 +138,16 @@ function Adventure(props) {
       //make a copy of the state object for manipulation and add the imageUrl
       let postObj = { ...formObject, adventureImageUrl: imageUrl }
 
-      //if tags were entered then turn them into array
-      //TODO: Tags: you can only pick from a pre-defined list of tags!!! And here we just include the ids of the chosen ones
-      // if (postObj.tags.length) {postObj.tags=postObj.tags.split(', ')}
+      
       //get user id from session data to add hostID to the new adventure
-
       const { data } = await API.getSessionData()
       postObj.hostId = data.id
-      //TODO:change the input field to increment and drop-down and then incorporate here to the post object in the proper format
+      //set duration info in a format that is needed for database
       postObj.duration = { time: formObject.time, unit: formObject.unit }
+      //logic check for group sizing
       if (postObj.maxGroupSize < postObj.minGroupSize) postObj.maxGroupSize = postObj.minGroupSize
+      //handle tags
+      postObj.tags = allTags.filter(tag => tagArr.indexOf(tag.tagName)>-1 ).map(tag=>tag._id)
       console.log('postObj.adventureImageUrl = ' + postObj.adventureImageUrl)
       //add the edited object to database
       API.postNewAdventure(postObj)
@@ -149,88 +181,90 @@ function Adventure(props) {
     <div className={showHideModal} id="adventureModal1">
       <h1>Create an Adventure</h1>
       <p className="lead">publish an adventure for the masses to enjoy</p>
-      <div className="grid-container fluid">
-        <Gridx>
-          <Cell size="">
-            <form>
-              <Input
-                onChange={handleInputChange}
-                name="adventureName"
-                placeholder="Adventure:"
-                value={formObject.adventureName}
-              />
-              <TextArea
-                onChange={handleInputChange}
-                name="description"
-                placeholder="Description:"
-                value={formObject.description}
-              />
-              <Input
-                onChange={handleInputChange}
-                name="location"
-                placeholder="Location:"
-                value={formObject.location}
-              />
-              <TextArea
-                onChange={handleInputChange}
-                name="itinerary"
-                placeholder="Itinerary:"
-                value={formObject.itinerary}
-              />
-              <label for="time" >Duration info</label>
-              <NumberInput
-                decrement={handleGroupDec}
-                increment={handleGroupInc}
-                name="time"
-                value={formObject.time}
-              />
-              <Dropdown
-                onChange={handleInputChange}
-                name="unit"
-                value={formObject.unit}
-                options={["hours", "days", "weeks", "months", "eternity"]}
-              />
-              <label for="difficulty" >Difficulty</label>
-              <Dropdown
-                onChange={handleInputChange}
-                name="difficulty"
-                value={formObject.difficulty}
-                options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
-              />
-              <label for="minGroupSize" >Min Group Size</label>
-              <NumberInput
-                decrement={handleGroupDec}
-                increment={handleGroupInc}
-                name="minGroupSize"
-                placeholder="Min. Group Size:"
-                value={formObject.minGroupSize}
-              />
-              <label for="maxGroupSize" >Max Group Size</label>
-              <NumberInput
-                decrement={handleGroupDec}
-                increment={handleGroupInc}
-                name="maxGroupSize"
-                value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
-              />
-              <label for="price" >Price in $</label>
-              <NumberInput
-                decrement={handlePriceDec}
-                increment={handlePriceInc}
-                name="price"
-                value={formObject.price}
-              />
-              <Input
-                onChange={handleInputChange}
-                name="gearList"
-                placeholder="Gear Need:"
-                value={formObject.gearList}
-              />
-              <Input
-                onChange={handleInputChange}
-                name="tags"
-                placeholder="Tags:"
-                value={formObject.tags}
-              />
+    <div className="grid-container fluid">
+      <Gridx>
+        <Cell size="">
+          <form>
+            <Input
+              onChange={handleInputChange}
+              name="adventureName"
+              placeholder="Adventure:"
+              value={formObject.adventureName}
+            />
+            <TextArea
+              onChange={handleInputChange}
+              name="description"
+              placeholder="Description:"
+              value={formObject.description}
+            />
+            <Input
+              onChange={handleInputChange}
+              name="location"
+              placeholder="Location:"
+              value={formObject.location}
+            />
+            <TextArea
+              onChange={handleInputChange}
+              name="itinerary"
+              placeholder="Itinerary:"
+              value={formObject.itinerary}
+            />
+            <label for="time" >Duration info</label>
+            <NumberInput
+              decrement={handleGroupDec}
+              increment={handleGroupInc}
+              name="time"
+              value={formObject.time}
+            />
+            <Dropdown
+              onChange={handleInputChange}
+              name="unit"
+              value={formObject.unit}
+              options={["hours", "days", "weeks", "months", "eternity"]}
+            />
+            <label for="difficulty" >Difficulty</label>
+            <Dropdown
+              onChange={handleInputChange}
+              name="difficulty"
+              value={formObject.difficulty}
+              options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
+            />
+            <label for="minGroupSize" >Min Group Size</label>
+            <NumberInput
+              decrement={handleGroupDec}
+              increment={handleGroupInc}
+              name="minGroupSize"
+              placeholder="Min. Group Size:"
+              value={formObject.minGroupSize}
+            />
+            <label for="maxGroupSize" >Max Group Size</label>
+            <NumberInput
+              decrement={handleGroupDec}
+              increment={handleGroupInc}
+              name="maxGroupSize"
+              value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
+            />
+            <label for="price" >Price in $</label>
+            <NumberInput
+              decrement={handlePriceDec}
+              increment={handlePriceInc}
+              name="price"
+              value={formObject.price}
+            />
+            <Input
+              onChange={handleInputChange}
+              name="gearList"
+              placeholder="Gear Need:"
+              value={formObject.gearList}
+            />
+            <TagRow edit={true} tags={tagArr} filterTags={handleFilterTags}/>
+             <Dropdown
+             intro={'Select tags for your adventure'}
+              onChange={handleInputChange}
+              name="tags"
+              options={dropdownArr}
+              value={dropdownValue}
+            /> 
               <Input
                 onChange={onSubmit}
                 classes={"button adventure-image-upload"}

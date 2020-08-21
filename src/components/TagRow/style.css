@@ -1,6 +1,3 @@
-.tagDiv {
-    background-color:rgba(39, 36, 27, 90%);
-    color: rgba(243, 236, 216,100%);
-    border-radius: 5%;
-    margin: 0.1rem;
+.tagRow {
+    margin-bottom: 0.3rem;
 }
