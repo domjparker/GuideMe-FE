@@ -6,6 +6,7 @@
     display:none;
 }
 .reveal {
+    /* width: 60%; */
     border:none;
     position: absolute;
     top:10vh;
