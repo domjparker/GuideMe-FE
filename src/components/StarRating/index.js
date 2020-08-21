@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component';
  
-class App extends React.Component {
-  constructor() {
+function Star() {
     super();
  
     this.state = {
@@ -32,7 +31,9 @@ class App extends React.Component {
   }
 }
  
-ReactDOM.render(
-  <App />, 
-  document.getElementById('app')
-);
+// ReactDOM.render(
+//   <App />, 
+//   document.getElementById('app')
+// );
+
+export default Star
