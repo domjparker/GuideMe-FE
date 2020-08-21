@@ -8,7 +8,7 @@ import Cell from '../../components/Cell'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useParams } from 'react-router-dom'
-
+// import StarRating from '../../components/StarRating'
 
 function Adventures(){
     //tags that show what was searched
@@ -42,6 +42,7 @@ function Adventures(){
                         {(adventures.length)? adventures.map(adventure => 
                         <Cell key={adventure.hostId + " " + adventure._id} size={'medium-6 large-4'}>
                             <FlipCard key={adventure._id} location={adventure.location} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} hostId = {adventure.hostId._id}/>
+                            {/* <StarRating></StarRating> */}
                         </Cell>
                             ) : null}
                     </Gridx>
