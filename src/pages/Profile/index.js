@@ -1,6 +1,6 @@
 //PROFILE page where user info is displayed, edited, deleted depending on host status
-import React, { useState, useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'
@@ -11,14 +11,17 @@ import FlipCard from '../../components/FlipCard'
 import Adventure from '../../components/Adventure'
 import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
+import {loginContext} from '../../components/LoginContext'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 // import Messages from '../../components/Messages'
 // import Mailbox from '../../components/Mailbox' // COMMENTED OUT ON 8/20 @ 12:40AM
 
-
-
 function Profile(props) {
+    let history = useHistory()
+    const loginState = useContext(loginContext)
     //state holds user data pulled from database
     const [userData, setUserData] = useState({})
     //state holds user's hosted adventures as pulled from database
@@ -65,11 +68,27 @@ function Profile(props) {
 
     //delete this user account
     const handleDeleteUser = () => {
-        API.deleteUser().then(() => {
-            props.setLoginState()
-            setChange(!change)
-            return <Redirect to='/' />
-        }).catch(err => console.log(err))
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure you want to do this.',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: () => { 
+                    API.deleteUser().then(() => {
+                        API.logOutUser()
+                        loginState.changeLoginState(false)
+                    setChange(!change)
+                    history.push('/')
+                }).catch(err => console.log(err))}
+              },
+              {
+                label: 'No',
+                onClick: () => {}
+              }
+            ]
+          });
+    
     }
 
     //delete the adventure -- this method is passed into the FlipCard component because the delete button lives on the FlipCard
