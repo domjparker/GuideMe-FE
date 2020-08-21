@@ -19,8 +19,6 @@ import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 // import Messages from '../../components/Messages'
 // import Mailbox from '../../components/Mailbox' // COMMENTED OUT ON 8/20 @ 12:40AM
 
-
-
 function Profile(props) {
     let history = useHistory()
     const loginState = useContext(loginContext)
