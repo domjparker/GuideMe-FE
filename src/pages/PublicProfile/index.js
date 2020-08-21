@@ -18,15 +18,13 @@ function PublicProfile(props) {
     // handling showing of tags
     const [tagArr, setTagArr] = useState([])
     //state to check for changes in data to call useEffect and reload data
-    const [change, setChange] = useState(false)
-   
     //set up page with data
     useEffect(() => {
         //user info
         loadUserData()
         //pull up hosted adventures
         loadUserAdventures(props.userId)
-    }, [change])
+    }, [])
 
     //get the user data from database
     const loadUserData = async () => {

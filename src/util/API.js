@@ -42,7 +42,7 @@ export default {
     },
     //GET user by hostID
     getUserProfilebyId: (id) => {
-        return axios.get(`${prefix}/api/user/foreign/profile/` + id, {withCredentials:true})
+        return axios.get(`${prefix}/api/user/profile/` + id, {withCredentials:true})
     },
     //GET session data
     getSessionData : () => {

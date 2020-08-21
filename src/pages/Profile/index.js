@@ -41,7 +41,6 @@ function Profile(props) {
         //user info
         loadUserData()
         //get user id from session data to pull up hosted adventures
-        //TODO:check if host first and then pull up adventures? useEffect for that?
         API.getSessionData().then(res => {
             let id = res.data.id
             //pull up hosted adventures
