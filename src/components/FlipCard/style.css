@@ -98,3 +98,10 @@
         margin-left: 0;
     }
 }
+
+.publicProfileIcons {
+    color:rgba(243, 236, 216,100%);
+    display: inline-block;
+    margin-left: 1rem;
+
+}
