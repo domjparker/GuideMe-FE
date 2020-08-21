@@ -73,6 +73,10 @@ export default {
     deleteUser : () => {
         return axios.delete(`${prefix}/api/user/profile`, {withCredentials:true})
     },
+    //GET user Availability
+    getAvailability: () =>{
+        return axios.get(`${prefix}/api/user/availability/`, {withCredentials:true})  
+    },
     //GET user Availability by id
     getAvailabilityById: (id) =>{
         return axios.get(`${prefix}/api/user/availability/`+ id, {withCredentials:true})  
