@@ -43,8 +43,7 @@ export function NumberInput(props) {
       <div className="input-group-button">
         <input onClick={props.decrement} name={props.name} type="button" className="button" value="-" />
       </div>
-      <input name={props.name} className="input-group-field" type="number" min="0" value={props.value}  />
-      <div className="input-group-button">
+       <div className="input-group-button">
         <input onClick={props.increment} name={props.name} type="button" className="button" value="+" />
       </div>
     </div>

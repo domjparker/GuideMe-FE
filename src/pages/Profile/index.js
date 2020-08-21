@@ -13,8 +13,8 @@ import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
-import Messages from '../../components/Messages'
-import Mailbox from '../../components/Mailbox'
+// import Messages from '../../components/Messages'
+// import Mailbox from '../../components/Mailbox' // COMMENTED OUT ON 8/20 @ 12:40AM
 
 
 
@@ -79,8 +79,8 @@ function Profile(props) {
         let id = e.target.getAttribute('data-id')
         API.deleteAdventure(id)
             .then(() => {
-                setModalAdventure(false)
                 setChange(!change)
+                // setModalAdventure(false)
             })
             .catch(err => console.log(err))
     }
@@ -168,11 +168,11 @@ function Profile(props) {
                             <div className='createBtnColumn'>
                             {userData.host ?
                                 <Cell size={'medium-4'} >
-                                    <Btn className="profileIcons"icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
+                                    <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
                                 </Cell>
                                 :
                                 <Cell size={'medium-4'}>
-                                    <Btn classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
+                                    <Btn  className="profileIcons" icon={<i class="fas fa-map-marked-alt"></i>}classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
                                 </Cell>
                             }
                             <Cell size={'medium-4'}>

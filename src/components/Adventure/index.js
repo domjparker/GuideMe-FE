@@ -7,7 +7,6 @@ import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
 import './style.css'
-import ImageForm from '../ImageForm'
 import TagRow from '../TagRow'
 
 

@@ -1,12 +1,15 @@
+.copyright {
+    margin-bottom: 85px;
+}
 
 #Footer{
     padding:5px;
     background-color: rgba(225, 215, 205, 100%);
     color: black;
     position: relative;
-    bottom: 10vh;
+    bottom: 0;
     left: 0;
     width: auto;
     opacity: 0.9;
-    
+    height: auto;
   }
