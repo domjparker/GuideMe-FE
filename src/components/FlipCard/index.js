@@ -9,6 +9,7 @@ import API from '../../util/API'
 import TagRow from '../TagRow'
 import { useHistory } from 'react-router-dom'
 
+
 //this component takes ina  ton of adventure information
 function FlipCard(props) {
     let history = useHistory()
@@ -87,9 +88,11 @@ function FlipCard(props) {
                                     {/* Message Button */}
                                     {props.edit ? null : <Btn classes="button expanded" handleClick={(e) => {e.stopPropagation();handleOpenChat(props.hostId, props.host)}} text={'Contact host'}/>}
                                     {/* Update Button */}
-                                    {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update me'} /> : null}
+                                    {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update'} /> : null}
                                     {/* Delete Button */}
-                                    {props.delete ? <Btn data-id={props.id} className="editFlipcard"icon={<i class="far fa-trash-alt"></i>} classes={'alert button expanded'} handleClick={props.deleteClick} text={'delete me'} /> : null}
+                                    
+                                    {props.delete ? <Btn  data-id={props.id} className="editFlipcard"icon={<i class="far fa-trash-alt"></i>} classes={'alert button expanded'}  handleClick= { props.deleteClick} text={'delete me'} /> : null}
+                                   
                                 </Cell>
                                 
                             </Gridx>

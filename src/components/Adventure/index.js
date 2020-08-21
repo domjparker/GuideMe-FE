@@ -9,6 +9,7 @@ import Btn from '../Btn'
 import './style.css'
 import TagRow from '../TagRow'
 import { stateLocation } from '../StateLocations'
+import Loader from 'react-loader-spinner'
 
 
 function Adventure(props) {
@@ -24,6 +25,7 @@ function Adventure(props) {
     setImage(e.target.files[0]);
   };
 
+  const [loaderVisible, setLoaderVisible]=useState(false)
 
   // state to control input values
   const [formObject, setFormObject] = useState({
@@ -79,6 +81,7 @@ function Adventure(props) {
       setFormObject({ ...formObject, [name]: value })
     } else if (tagArr.indexOf(event.target.value) < 0) {
       //if this tag is not already in the tags array, then put it there
+      setDropdownValue(event.target.value)
       setTagArr([...tagArr, event.target.value])
     }
   }
@@ -120,6 +123,7 @@ function Adventure(props) {
   //handle form submit function
   async function handleFormSubmit(event) {
     event.preventDefault();
+    setLoaderVisible(true)
     // base url for Cloudinary query and preset needed to upload images
     const url = 'https://api.cloudinary.com/v1_1/yestoskydiving/image/upload';
     const preset = 'guidemeadventurepic';
@@ -178,6 +182,7 @@ function Adventure(props) {
     } catch (err) {
       console.error(err);
     }
+    setLoaderVisible(false)
   }
 
   return (
@@ -291,6 +296,7 @@ function Adventure(props) {
                 type="file"
                 text="Upload Image"
               />
+              <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
               <FormBtn
                 disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary && image)}
                 onClick={handleFormSubmit}>
