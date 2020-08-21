@@ -59,7 +59,7 @@ function ImageForm(props) {
       }
     
       setLoading(false);
-      setImage(image.data);
+      setImage(imageUrl);
       handleModalClose()
     } catch (err) {
       console.error(err);

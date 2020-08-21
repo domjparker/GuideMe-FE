@@ -151,8 +151,6 @@ function Adventure(props) {
       //add the edited object to database
       API.postNewAdventure(postObj)
         .then(data => {
-          //TODO: change this from alert to smth else
-          alert('Adventure created!')
           setFormObject({
             adventureName: '',
             hostId: '',
