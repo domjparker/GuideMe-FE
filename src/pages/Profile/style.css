@@ -1,13 +1,5 @@
-/* .profilePicture {
-    height: 15vh;
-    border-radius: 50%;
-    box-shadow: 0px 0px 15px whitesmoke;
-
-}*/
-
 .hero-section {
     background: 50% no-repeat;
-    /* background-size: cover; */
     text-align: center;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -34,11 +26,19 @@
 }
 .bannerName {
     position:relative;
-    top: -5vh;
+    top: -10vh;
 }
 .bannerNegate{
     top: 5vh;
 }
-.Matthew-Stuff{
-    padding:3px;
+
+
+.profileIcons{
+    color: rgb(39, 36, 36);
+}
+
+.createBtnColumn{
+position: absolute;
+right: 0;
+bottom:16vh;
 }

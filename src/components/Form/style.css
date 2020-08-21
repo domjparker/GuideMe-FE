@@ -9,9 +9,9 @@ button.button.success:hover {
 
 .form-group .form-control {
     border:none;
-    background:rgba(85, 91, 87, 100%);
+    background:rgb(254, 254, 254);
     border-radius: 5px;
-    color: white;
+    color: black;
 }
 
 .input-group-button .button {
@@ -22,11 +22,11 @@ button.button.success:hover {
 }
 
 .input-group-button:hover {
-    background:rgba(85, 91, 87, 70%);
+    background:rgba(85, 91, 87, 100%);
 }
 
 .select {
     border:none;
-    background:rgba(85, 91, 87, 100%);
+    background:rgb(254, 254, 254);
     border-radius: 5px;
 }
