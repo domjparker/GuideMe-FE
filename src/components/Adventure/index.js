@@ -42,9 +42,9 @@ function Adventure(props) {
   })
 
   // state to facilitate adventure image upload
-  const [modalAdventureImage, setModalAdventureImage] = useState(false)
-  const [typeOfUploadImage, setTypeOfUploadImage] = useState("")
-  const [modalTitle, setModalTitle] = useState('')
+  // const [modalAdventureImage, setModalAdventureImage] = useState(false)
+  // const [typeOfUploadImage, setTypeOfUploadImage] = useState("")
+  // const [modalTitle, setModalTitle] = useState('')
   //state to facilitate tags adding
   const [dropdownArr, setDropdownArr] = useState([])
   const [dropdownValue, setDropdownValue] = useState('')
