@@ -13,8 +13,8 @@ import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
-import Messages from '../../components/Messages'
-import Mailbox from '../../components/Mailbox'
+// import Messages from '../../components/Messages'
+// import Mailbox from '../../components/Mailbox' // COMMENTED OUT ON 8/20 @ 12:40AM
 
 
 
@@ -41,7 +41,6 @@ function Profile(props) {
         //user info
         loadUserData()
         //get user id from session data to pull up hosted adventures
-        //TODO:check if host first and then pull up adventures? useEffect for that?
         API.getSessionData().then(res => {
             let id = res.data.id
             //pull up hosted adventures
@@ -79,8 +78,8 @@ function Profile(props) {
         let id = e.target.getAttribute('data-id')
         API.deleteAdventure(id)
             .then(() => {
-                setModalAdventure(false)
                 setChange(!change)
+                // setModalAdventure(false)
             })
             .catch(err => console.log(err))
     }
@@ -141,9 +140,6 @@ function Profile(props) {
         setChange(!change)
     }
     //end of modals section =============================================================
-    const signOut = ()=> {
-        API.logOutUser()
-    }
 
     return (
         <>
@@ -165,23 +161,25 @@ function Profile(props) {
                             <p>{userData.bio}</p>
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
-                        <Cell size={"small-12 medium-6 "} className="createBtnColumn">
+                        <Cell size={"small-12 medium-6 "} >
+                            <div className='createBtnColumn'>
                             {userData.host ?
                                 <Cell size={'medium-4'} >
-                                    <Btn className="profileIcons"icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
+                                    <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
                                 </Cell>
                                 :
                                 <Cell size={'medium-4'}>
-                                    <Btn classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
+                                    <Btn  className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>}classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
                                 </Cell>
                             }
                             <Cell size={'medium-4'}>
-                                <Btn className="profileIcons" icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
+                                <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
                             </Cell>
                             <Cell size={'medium-4'}>
                                 {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
-                                <Btn className="profileIcons" icon={<i class="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
+                                <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
                             </Cell>
+                            </div>
                         </Cell >
 
 

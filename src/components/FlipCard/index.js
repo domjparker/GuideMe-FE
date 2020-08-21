@@ -7,9 +7,11 @@ import Btn from '../Btn'
 import PopupChat from '../../components/PopupChat'
 import API from '../../util/API'
 import TagRow from '../TagRow'
+import { useHistory } from 'react-router-dom'
 
 //this component takes ina  ton of adventure information
 function FlipCard(props) {
+    let history = useHistory()
     //flip effect is done in CSS with classes, this toggle between those classes
     const [mailbox, setMailbox] = useState([]);
     const [classToggle, setClassToggle] = useState('');
@@ -41,7 +43,10 @@ function FlipCard(props) {
         const { data } = await API.getMailbox();
         setMailbox(data.mailbox)
     }
-
+    const handleHostNameClick = (e) => {
+        e.stopPropagation()
+        history.push({pathname:'/public', state:{userId:props.hostId}})
+    }
     return (
         <>
             {/* TODO: needs a little better thought through layout */}
@@ -54,13 +59,12 @@ function FlipCard(props) {
                                     <h5>{props.title}</h5>
                                 </Cell>
                                 <Cell size={"small-12"}>
-                                    <h6><strong>{props.host}</strong></h6>
+                                    <h6 style={{display:'inline-block'}}><strong>{props.host}</strong></h6>
+                                    {!props.edit && <Btn className="publicProfileIcons" icon={<i className="far fa-user"></i>} classes={'button expanded'} handleClick={handleHostNameClick}/>}
                                     <p>{props.description}</p>
                                 </Cell>
                             </Gridx>
                             <Gridx classes={''}>
-                                
-
                                 <Cell size={"small-12 medium-12"}>
                                     <h6><strong>Details</strong></h6>
                                     <ul>
@@ -99,7 +103,7 @@ function FlipCard(props) {
                                 </div>
                                 <div className="card-section">
                                     <h4>{props.title}</h4>
-                                    <h5>{props.host}</h5>
+                                    <h5 onClick={handleHostNameClick}>{props.host}</h5>
                                     <p>{props.description}</p>
                                 </div>
                             </Cell>

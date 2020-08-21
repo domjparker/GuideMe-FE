@@ -90,6 +90,7 @@ function AdventureUpdate(props) {
     } else if (tagArr.indexOf(event.target.value) < 0) {
       //if this tag is not already in the tags array, then put it there
       setTagArr([...tagArr, event.target.value])
+      setDropdownValue(event.target.value)
     }
   }
   //tag handling

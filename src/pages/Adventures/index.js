@@ -1,6 +1,6 @@
 //ADVENTURES this page diplays all adventures subject to search filters
 
-import React, {useState, useEffect, Lazy, Suspense} from 'react'
+import React, {useState, useEffect} from 'react'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'
@@ -22,7 +22,7 @@ function Adventures(){
         loadAdventures(tag)
     }, [])
     //API call to adventures db
-    //TODO:here we need to implement the actual search functionality so not all adventures are alwasy shown
+    //Filter adventures based on tags matching search criteria
     const loadAdventures = async (criteria) => {
 
         const {data} = await API.getAllAdventures()

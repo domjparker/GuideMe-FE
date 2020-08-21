@@ -15,15 +15,15 @@ function Footer(props) {
                     <Cell size={'medium-6'}>
                         <h6 className="text-center">{"Built By:"}
                         <ul>
-                            <a href="https://github.com/domjparker" target="_blank" >Dominic Parker</a>
+                            <a href="https://github.com/domjparker" target="_blank" rel="noopener noreferrer" >Dominic Parker</a>
                             <br></br>
-                            <a href="https://github.com/maria-helbling" target="_blank" >Maria Helbling</a>
+                            <a href="https://github.com/maria-helbling" target="_blank"rel="noopener noreferrer" >Maria Helbling</a>
                             <br></br>
-                            <a href="https://github.com/MegaGrega" target="_blank" >Matthew Grega</a>
+                            <a href="https://github.com/MegaGrega" target="_blank" rel="noopener noreferrer">Matthew Grega</a>
                             <br></br>
-                            <a href="https://github.com/indyminhas" target="_blank" >Indy Minhas</a>
+                            <a href="https://github.com/indyminhas" target="_blank" rel="noopener noreferrer">Indy Minhas</a>
                             <br></br>
-                            <a href="https://github.com/AndrewBergstrom" target="_blank" >Andrew Bergstrom</a>
+                            <a href="https://github.com/AndrewBergstrom" target="_blank" rel="noopener noreferrer">Andrew Bergstrom</a>
                         </ul>   
                         </h6>
                     </Cell>
@@ -31,9 +31,9 @@ function Footer(props) {
                     <Cell size={'medium-6'}>
                         <h6 className="text-center">{"Built With:"}
                         <ul>
-                            <a href="https://socket.io/" target="_blank" >Socket.io</a>
+                            <a href="https://socket.io/" target="_blank" rel="noopener noreferrer">Socket.io</a>
                             <br></br>
-                            <a href="https://github.com/domjparker/GuideMe-FE" target="_blank"><i class="fa fa-github"></i></a>
+                            <a href="https://github.com/domjparker/GuideMe-FE" target="_blank" rel="noopener noreferrer"><i className="fa fa-github"></i></a>
                         </ul>
                         </h6>
                     </Cell>
