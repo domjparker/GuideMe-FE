@@ -53,7 +53,7 @@ export default {
         return axios.post(`${prefix}/api/user/login`, loginObj, {withCredentials:true} )
     },
     logOutUser : () => {
-        return axios.get(`${prefix}/api/user/logout`, {withCredentials:true} )
+        return axios.post(`${prefix}/api/user/logout`,{}, {withCredentials:true} )
     },
     //PUT profile picture
     updatePicture : (pictureObj) => {
