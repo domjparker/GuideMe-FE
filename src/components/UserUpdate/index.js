@@ -82,8 +82,6 @@ async function loadInitialData () {
     console.log(postObj)
      API.updateUser(postObj)
       .then(data => {
-        //TODO:use something other than an alert here
-        alert('UserUpdate created!')
         setFormObject({ 
           firstName: '', 
           lastName: '', 
