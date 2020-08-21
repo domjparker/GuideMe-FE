@@ -77,8 +77,8 @@ const renderLogIn = () => {
               {renderLogIn()}
             </loginContext.Provider>
           </Route>
-          <Route exact path='/publicprofile' >
-            <PublicProfile userId={"5f383bd9c7923728eccbf0bb"}/>
+          <Route exact path='/public' >
+            <PublicProfile/>
           </Route>
           <Route path='*'>
             <NotFound />

@@ -7,10 +7,14 @@ import Cell from '../../components/Cell'
 import TagRow from '../../components/TagRow'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
+import { useLocation } from 'react-router-dom'
 
 
 
 function PublicProfile(props) {
+    
+    let location = useLocation()
+    let userId = location.state.userId
     //state holds user data pulled from database
     const [userData, setUserData] = useState({})
     //state holds user's hosted adventures as pulled from database
@@ -23,12 +27,12 @@ function PublicProfile(props) {
         //user info
         loadUserData()
         //pull up hosted adventures
-        loadUserAdventures(props.userId)
+        loadUserAdventures(userId)
     }, [])
 
     //get the user data from database
     const loadUserData = async () => {
-        const { data } = await API.getUserProfilebyId(props.userId);
+        const { data } = await API.getUserProfilebyId(userId);
         setUserData(data);
         setTagArr(data.tags.map(tag=>tag.tagName))
     }
