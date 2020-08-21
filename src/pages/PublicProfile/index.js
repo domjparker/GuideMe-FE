@@ -10,7 +10,7 @@ import API from '../../util/API'
 
 
 
-function Profile(props) {
+function PublicProfile(props) {
     //state holds user data pulled from database
     const [userData, setUserData] = useState({})
     //state holds user's hosted adventures as pulled from database
@@ -85,4 +85,4 @@ function Profile(props) {
     )
 }
 
-export default Profile;
+export default PublicProfile;
