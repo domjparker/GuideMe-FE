@@ -77,7 +77,7 @@ const renderLogIn = () => {
               {renderLogIn()}
             </loginContext.Provider>
           </Route>
-          <Route exact path='/public' >
+          <Route exact path='/public'>
             <PublicProfile/>
           </Route>
           <Route path='*'>

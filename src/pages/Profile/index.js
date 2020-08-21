@@ -140,9 +140,6 @@ function Profile(props) {
         setChange(!change)
     }
     //end of modals section =============================================================
-    const signOut = ()=> {
-        API.logOutUser()
-    }
 
     return (
         <>
@@ -171,15 +168,15 @@ function Profile(props) {
                                 </Cell>
                                 :
                                 <Cell size={'medium-4'}>
-                                    <Btn  className="profileIcons" icon={<i class="fas fa-map-marked-alt"></i>}classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
+                                    <Btn  className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>}classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
                                 </Cell>
                             }
                             <Cell size={'medium-4'}>
-                                <Btn className="profileIcons" icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
+                                <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
                             </Cell>
                             <Cell size={'medium-4'}>
                                 {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
-                                <Btn className="profileIcons" icon={<i class="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
+                                <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
                             </Cell>
                             </div>
                         </Cell >

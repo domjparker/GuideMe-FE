@@ -1,6 +1,6 @@
 //ADVENTURES this page diplays all adventures subject to search filters
 
-import React, {useState, useEffect, Lazy, Suspense} from 'react'
+import React, {useState, useEffect} from 'react'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'

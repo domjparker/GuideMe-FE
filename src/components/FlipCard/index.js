@@ -7,7 +7,6 @@ import Btn from '../Btn'
 import PopupChat from '../../components/PopupChat'
 import API from '../../util/API'
 import TagRow from '../TagRow'
-import PublicProfile from '../../pages/PublicProfile'
 import { useHistory } from 'react-router-dom'
 
 //this component takes ina  ton of adventure information
@@ -61,7 +60,7 @@ function FlipCard(props) {
                                 </Cell>
                                 <Cell size={"small-12"}>
                                     <h6 style={{display:'inline-block'}}><strong>{props.host}</strong></h6>
-                                    {!props.edit && <Btn className="publicProfileIcons" icon={<i class="far fa-user"></i>} classes={'button expanded'} handleClick={handleHostNameClick}/>}
+                                    {!props.edit && <Btn className="publicProfileIcons" icon={<i className="far fa-user"></i>} classes={'button expanded'} handleClick={handleHostNameClick}/>}
                                     <p>{props.description}</p>
                                 </Cell>
                             </Gridx>
