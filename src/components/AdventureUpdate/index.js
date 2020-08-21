@@ -160,8 +160,8 @@ function AdventureUpdate(props) {
     }
     API.updateAdventure(postObj, props.id)
       .then(data => {
-        //TODO: make this something other than an alert
-        alert('Adventure updated!')
+        //TODO: do we really need a notification that the adventure has been updated?
+        // alert('Adventure updated!')
         setFormObject({
           adventureName: '',
           description: '',
