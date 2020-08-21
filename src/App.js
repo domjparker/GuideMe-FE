@@ -12,7 +12,7 @@ import Login from './pages/Login'
 import API from './util/API'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PublicProfile from './pages/PublicProfile'
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
 import { loginContext } from './components/LoginContext'
 

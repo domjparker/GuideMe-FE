@@ -1,5 +1,7 @@
 //Image upload component to update new image to database --at the moment member of Profile page component
 import React, { useState } from 'react';
+// , useEffect this was taken from inside curly braces above to get rid of warning in terminal.
+
 import axios from 'axios';
 import API from '../../util/API'
 import Btn from '../Btn'
