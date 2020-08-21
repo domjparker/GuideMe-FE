@@ -21,6 +21,10 @@
     
 }
 
-.userLink{
-color: coral;
+.loginLink{
+color: rgba(39, 36, 27, 100%);
+display:flex;
+justify-content: flex-end;
+margin-top: 1vh;
+
 }

@@ -32,7 +32,7 @@ function SignIn(props) {
       event.preventDefault();
       if (!loginObj.email) {
         //TODO:use something other than alert here please
-        alert("Fill out email!");
+       
         return;
       } else if (loginObj.password.length < 1) {
         //TODO:use something other than alert here please
@@ -53,17 +53,20 @@ function SignIn(props) {
     };
   
       return (
-        <div>
+        <div className='fillPage'>
           <p>
             Welcome Back!
           </p>
-          <form className="signin">
+          <form className="signin" onSubmit={handleFormSubmit}>
             <Input
               value={loginObj.email}
               name="email"
               onChange={handleInputChange}
               type="text"
               placeholder="Email"
+              required
+              
+              
             />
             <Input
               value={loginObj.password}
@@ -71,8 +74,10 @@ function SignIn(props) {
               onChange={handleInputChange}
               type="password"
               placeholder="Password"
+              required
             />
-            <FormBtn onClick={handleFormSubmit} children={'Sign in'}/>
+            
+            <FormBtn  children={'Sign in'}/>
           </form>
         </div>
       );
