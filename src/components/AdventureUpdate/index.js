@@ -6,6 +6,7 @@ import { Input, TextArea, FormBtn, Dropdown, NumberInput } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
+import TagRow from '../TagRow'
 import './style.css'
 
 
@@ -18,6 +19,12 @@ function AdventureUpdate(props) {
 
   //set initial state of the form Object.
   const [formObject, setFormObject] = useState({})
+  //state to facilitate tags adding
+  const [dropdownArr, setDropdownArr] = useState([])
+  const [dropdownValue, setDropdownValue] = useState('')
+  const [tagArr, setTagArr] = useState([])
+  const [allTags, setAllTags] = useState([])
+
   //checks for data when modal visibility setting changes
   useEffect(() => {
     loadInitialData();
@@ -32,8 +39,6 @@ function AdventureUpdate(props) {
   //populate update form with existing data of that adventure
   async function loadInitialData() {
     let { data } = await API.getAdventurebyId(props.id)
-    console.log(data)
-    console.log(data.duration)
     setFormObject({
       adventureName: data.adventureName,
       description: data.description,
@@ -46,14 +51,25 @@ function AdventureUpdate(props) {
       maxGroupSize: parseInt(data.maxGroupSize),
       price: parseInt(data.price),
       gearList: data.gearList,
-      tags: data.tags ? data.tags.map(tag => tag.tagName).join(", ") : [],
+      tags: data.tags ? data.tags.map(tag => tag = tag.tagName) : [],
       adventureImageUrl: data.adventureImageUrl
     })
-
+    //pre-load tags if some have already been chosen
+    if (data.tags) {
+      const x = data.tags.map(tag => tag.tagName)
+      setTagArr(x)
+    }
   }
 
-  const currentImageUrl = formObject.adventureImageUrl
-
+  useEffect(() => {
+    //get all tags for tags dropDown and grab just the names of the tags
+    API.getTags().then(result => {
+      let newArr = result.data
+      setAllTags(newArr)
+      newArr = newArr.map(item => item = item.tagName)
+      setDropdownArr(newArr)
+    }).catch(err => console.log(err))
+  }, [])
 
   //input field value controls
   function handleInputChange(event) {
@@ -66,9 +82,19 @@ function AdventureUpdate(props) {
     } else {
       value = event.target.value
     }
-    setFormObject({ ...formObject, [name]: value })
-  }
+    if (name !== 'tags') {
 
+      setFormObject({ ...formObject, [name]: value })
+    } else if (tagArr.indexOf(event.target.value) < 0) {
+      //if this tag is not already in the tags array, then put it there
+      setTagArr([...tagArr, event.target.value])
+    }
+  }
+  //tag handling
+  const handleFilterTags = (e) => {
+    let deletedTag = e.target.getAttribute('value')
+    setTagArr(tagArr.filter(tag => tag !== deletedTag))
+  }
   //===========handle incrementing for number input components=================
   const handleGroupDec = (e) => {
     let name = e.target.name
@@ -103,9 +129,11 @@ function AdventureUpdate(props) {
   async function handleFormSubmit(event) {
     event.preventDefault();
     let postObj = { ...formObject }
-    // if (postObj.tags.length) {postObj.tags=postObj.tags.split(', ')}
-    postObj.tags = []
+    //put tags array in here
+    postObj.tags = allTags.filter(tag => tagArr.indexOf(tag.tagName) > -1).map(tag => tag._id)
+    //set duration info in a format that is needed for database
     postObj.duration = { time: formObject.time, unit: formObject.unit }
+    //logic check for group sizing
     if (postObj.maxGroupSize < postObj.minGroupSize) postObj.maxGroupSize = postObj.minGroupSize
     // base url for Cloudinary query and preset needed to upload images
     if (image !== '') {
@@ -233,11 +261,13 @@ function AdventureUpdate(props) {
                 placeholder="Gear Need:"
                 value={formObject.gearList}
               />
-              <Input
+              <TagRow edit={true} tags={tagArr} filterTags={handleFilterTags} />
+              <Dropdown
+                intro={'Edit tags for your adventure'}
                 onChange={handleInputChange}
                 name="tags"
-                placeholder="Tags:"
-                value={formObject.tags}
+                options={dropdownArr}
+                value={dropdownValue}
               />
               <Input
                 onChange={onSubmit}

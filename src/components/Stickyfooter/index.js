@@ -1,14 +1,18 @@
 //the bottom nav bar on the bottom of your page
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './style.css'
 import { Link } from 'react-router-dom'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Mailbox from '../Mailbox'
+import Btn from '../Btn'
+
 // import PopupChat from '../PopupChat'
 import API from '../../util/API'
+import {loginContext} from '../LoginContext'
 
 function Stickyfooter(props) {
+    const loginState = useContext(loginContext)
     const [showMailbox, setShowMailbox] = useState(false)
 
     const handleMailboxOpen = () => {
@@ -19,6 +23,7 @@ function Stickyfooter(props) {
     }
     const signOut = ()=> {
         API.logOutUser()
+        loginState.changeLoginState(false)
     }
     return (<>
 

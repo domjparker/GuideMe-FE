@@ -11,6 +11,7 @@ import {loginContext} from '../LoginContext'
 
 function SignIn(props) {
   let history = useHistory();
+  //grab the value passed by context provider
   const loginState = useContext(loginContext)
   //set state of input field values  
   const [loginObj, setloginObj] = useState({email:'', password:''})
@@ -45,6 +46,7 @@ function SignIn(props) {
         loginState.changeLoginState(true)
         //upon successful login, send me to profile page
         //TODO:make this take me back to where i came from
+        // loginState.socket.emit('login', res.data.id)
         history.push("/profile")
       }
       ).catch(err=>console.log(err))
