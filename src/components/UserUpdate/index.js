@@ -35,7 +35,8 @@ async function loadInitialData () {
       email: data.email,
       bio:data.bio? data.bio:'',
       location:data.location? data.location:'',
-      tags:data.tags? data.tags.map(tag=>tag.tagName).join(", "):''
+      tags:data.tags? data.tags.map(tag=>tag.tagName).join(", "):'',
+      adventureImageUrl: data.adventureImageUrl
     })
 }
 //control input field changes
@@ -50,7 +51,7 @@ async function loadInitialData () {
     // add code here to post a new adventure to the api
     event.preventDefault();
     let postObj = {...formObject}
-    //TODO: Tags: you can only pick froma pre-defined list of tags!!! And here we just include the ids of the chosen ones
+    //TODO: Tags: you can only pick from a pre-defined list of tags!!! And here we just include the Ids of the chosen ones
     // postObj.tags.length? postObj.tags=postObj.tags.split(', ') : postObj.tags=[]
     postObj.tags=[]
     console.log(postObj)
