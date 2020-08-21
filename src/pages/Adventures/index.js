@@ -22,7 +22,7 @@ function Adventures(){
         loadAdventures(tag)
     }, [])
     //API call to adventures db
-    //TODO:here we need to implement the actual search functionality so not all adventures are alwasy shown
+    //Filter adventures based on tags matching search criteria
     const loadAdventures = async (criteria) => {
 
         const {data} = await API.getAllAdventures()

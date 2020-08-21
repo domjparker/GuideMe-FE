@@ -1,5 +1,5 @@
 //Image upload component to update new image to database --at the moment member of Profile page component
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import API from '../../util/API'
 import Btn from '../Btn'

@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import API from './util/API'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PublicProfile from './pages/PublicProfile'
 import io from "socket.io-client";
 
 import { loginContext } from './components/LoginContext'
@@ -75,6 +76,9 @@ const renderLogIn = () => {
             <loginContext.Provider value={loginState}>
               {renderLogIn()}
             </loginContext.Provider>
+          </Route>
+          <Route exact path='/publicprofile' >
+            <PublicProfile userId={"5f370812e15e5cd004305fa6"}/>
           </Route>
           <Route path='*'>
             <NotFound />
