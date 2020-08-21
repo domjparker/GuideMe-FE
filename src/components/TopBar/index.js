@@ -17,7 +17,12 @@ function TopBar(props) {
                         <Link to="/"><h6 className="text-left"><img className="fixingHeight" src={LOGO} alt="logo"></img></h6></Link>
                     </Cell>
                     <Cell size={'small-6'} id="pageTitle">
-                        <h1 className="text-center">{props.title}</h1>
+                        <h1 className="text-center ">{props.title}</h1>
+                    </Cell>
+                    <Cell size={'small-3'}>
+                        <h5>
+                        <Link to="/profile">SignUp/Login</Link>
+                        </h5>
                     </Cell>
                 </Gridx>
             </div>

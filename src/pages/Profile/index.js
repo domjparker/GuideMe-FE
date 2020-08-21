@@ -162,7 +162,8 @@ function Profile(props) {
                             <p>{userData.bio}</p>
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
-                        <Cell size={"small-12 medium-6 "} className="createBtnColumn">
+                        <Cell size={"small-12 medium-6 "} >
+                            <div className='createBtnColumn'>
                             {userData.host ?
                                 <Cell size={'medium-4'} >
                                     <Btn className="profileIcons"icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
@@ -179,6 +180,7 @@ function Profile(props) {
                                 {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
                                 <Btn className="profileIcons" icon={<i class="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
                             </Cell>
+                            </div>
                         </Cell >
 
 
