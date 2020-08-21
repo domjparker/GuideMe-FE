@@ -51,7 +51,8 @@ async function loadInitialData () {
       email: data.email,
       bio:data.bio? data.bio:'',
       location:data.location? data.location:'',
-      tags:data.tags? data.tags.map(tag=>tag.tagName) :[]
+      tags:data.tags? data.tags.map(tag=>tag.tagName).join(", "):'',
+      adventureImageUrl: data.adventureImageUrl
     })
 }
 //control input field changes
