@@ -51,12 +51,12 @@ function AdventureUpdate(props) {
       maxGroupSize: parseInt(data.maxGroupSize),
       price: parseInt(data.price),
       gearList: data.gearList,
-      tags: data.tags ? data.tags.map(tag =>tag=tag.tagName) : [],
+      tags: data.tags ? data.tags.map(tag => tag = tag.tagName) : [],
       adventureImageUrl: data.adventureImageUrl
     })
     //pre-load tags if some have already been chosen
     if (data.tags) {
-      const x=data.tags.map(tag=>tag.tagName)
+      const x = data.tags.map(tag => tag.tagName)
       setTagArr(x)
     }
   }
@@ -85,7 +85,7 @@ function AdventureUpdate(props) {
     if (name !== 'tags') {
 
       setFormObject({ ...formObject, [name]: value })
-    } else if (tagArr.indexOf(event.target.value)<0) {
+    } else if (tagArr.indexOf(event.target.value) < 0) {
       //if this tag is not already in the tags array, then put it there
       setTagArr([...tagArr, event.target.value])
     }
@@ -128,56 +128,57 @@ function AdventureUpdate(props) {
   // handle form submit function
   async function handleFormSubmit(event) {
     event.preventDefault();
+    let postObj = { ...formObject }
+    //put tags array in here
+    postObj.tags = allTags.filter(tag => tagArr.indexOf(tag.tagName) > -1).map(tag => tag._id)
+    //set duration info in a format that is needed for database
+    postObj.duration = { time: formObject.time, unit: formObject.unit }
+    //logic check for group sizing
+    if (postObj.maxGroupSize < postObj.minGroupSize) postObj.maxGroupSize = postObj.minGroupSize
     // base url for Cloudinary query and preset needed to upload images
-    const url = 'https://api.cloudinary.com/v1_1/yestoskydiving/image/upload';
-    const preset = 'guidemeadventurepic';
-    // create new FormData to hold image data
-    const formData = new FormData();
-    console.log("new FormData initiated")
-    // the intended image and the preset are appended to the FormData object
-    formData.append('file', image);
-    formData.append('upload_preset', preset);
-    try {
-      // axios call is made to cloudinary url in order to load the FormData object, and awaited response is assigned to variable 'res'
-      const res = await axios.post(url, formData);
-      console.log("axios calls has been made to cloudinary")
-      // from the response received back, the secure url for the image is assigned to variable imageUrl
-      const imageUrl = res.data.secure_url;
-      console.log("result from cloudinary = " + imageUrl)
-      setFormObject({ ...formObject, adventureImageUrl: imageUrl })
-      //make a copy of the state object for manipulation and add the imageUrl
-      let postObj = { ...formObject, adventureImageUrl: imageUrl }
-      //put tags array in here
-      postObj.tags = allTags.filter(tag => tagArr.indexOf(tag.tagName) > -1).map(tag => tag._id)
-      //set duration info in a format that is needed for database
-      postObj.duration = { time: formObject.time, unit: formObject.unit }
-      //logic check for group sizing
-      if (postObj.maxGroupSize < postObj.minGroupSize) postObj.maxGroupSize = postObj.minGroupSize
-      
-      API.updateAdventure(postObj, props.id)
-        .then(data => {
-          //TODO: make this something other than an alert
-          alert('Adventure updated!')
-          setFormObject({
-            adventureName: '',
-            description: '',
-            location: '',
-            itinerary: '',
-            time: 1,
-            unit: 'hours',
-            difficulty: '',
-            minGroupSize: '',
-            maxGroupSize: '',
-            price: '',
-            gearList: '',
-            tags: [],
-            adventureImageUrl: ''
-          })
-          handleModalClose();
-        }).catch(err => console.log(err))
-    } catch (err) {
-      console.error(err);
+    if (image !== '') {
+      const url = 'https://api.cloudinary.com/v1_1/yestoskydiving/image/upload';
+      const preset = 'guidemeadventurepic';
+      // create new FormData to hold image data
+      const formData = new FormData();
+      console.log("new FormData initiated")
+      // the intended image and the preset are appended to the FormData object
+      formData.append('file', image);
+      formData.append('upload_preset', preset);
+      try {
+        // axios call is made to cloudinary url in order to load the FormData object, and awaited response is assigned to variable 'res'
+        const res = await axios.post(url, formData);
+        console.log("axios calls has been made to cloudinary")
+        // from the response received back, the secure url for the image is assigned to variable imageUrl
+        const imageUrl = res.data.secure_url;
+        console.log("result from cloudinary = " + imageUrl)
+        // add imageUrl to postObject
+        postObj.adventureImageUrl = imageUrl
+      } catch (err) {
+        console.error(err);
+      }
     }
+    API.updateAdventure(postObj, props.id)
+      .then(data => {
+        //TODO: do we really need a notification that the adventure has been updated?
+        // alert('Adventure updated!')
+        setFormObject({
+          adventureName: '',
+          description: '',
+          location: '',
+          itinerary: '',
+          time: 1,
+          unit: 'hours',
+          difficulty: '',
+          minGroupSize: '',
+          maxGroupSize: '',
+          price: '',
+          gearList: '',
+          tags: [],
+          adventureImageUrl: ''
+        })
+        handleModalClose();
+      }).catch(err => console.log(err))
   }
 
   return (
