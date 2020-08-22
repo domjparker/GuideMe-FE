@@ -216,7 +216,7 @@ function AdventureUpdate(props) {
               />
               <label for="stateLocation" >State:</label>
               <Dropdown
-              intro={formObject.stateLocation}
+              // intro={formObject.stateLocation}
                 onChange={handleInputChange}
                 name="stateLocation"
                 value={formObject.stateLocation}
