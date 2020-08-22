@@ -4,6 +4,7 @@ import './style.css'
 import Wrapper from '../../components/Wrapper'
 import { useHistory } from 'react-router-dom'
 import API from '../../util/API'
+import { Dropdown } from '../../components/Form'
 
 function Homepage() {
     //tells the url what you searched for
@@ -35,12 +36,21 @@ function Homepage() {
                         <div className="callout">
                             {/* The search or host adventure form on home page */}
                             <div className="container searchBox">
-
-                                <select onChange={(e) => { setSearchTerm(e.target.value) }} className="findAdventure">
+                                <form>
+                                    
+                                    <Dropdown
+                                    intro={'Select tags for your adventure'}
+                                    onChange={handleInputChange}
+                                    name="tags"
+                                    options={}
+                                    value={dropdownValue}
+                                    /> 
+                                </form>
+                                {/* <select onChange={(e) => { setSearchTerm(e.target.value) }} className="findAdventure">
                                     <option>Adventure awaits</option>
                                     {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
                                 </select>
-                                <button onClick={handleSubmit} className="button searchAdventure" > Search</button>
+                                <button onClick={handleSubmit} className="button searchAdventure" > Search</button> */}
                             </div>
                             <button onClick={handleHostAdventureClick} className="button hostAdventure"> Host Adventure</button>
                         </div>
