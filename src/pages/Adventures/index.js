@@ -8,7 +8,7 @@ import Cell from '../../components/Cell'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useParams } from 'react-router-dom'
-// import StarRating from '../../components/StarRating'
+import StarRating from '../../components/StarRating'
 
 function Adventures(){
     //tags that show what was searched

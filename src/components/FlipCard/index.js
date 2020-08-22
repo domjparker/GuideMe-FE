@@ -7,6 +7,10 @@ import Btn from '../Btn'
 import PopupChat from '../../components/PopupChat'
 import API from '../../util/API'
 import TagRow from '../TagRow'
+// import StarRating from '../../components/StarRating'
+import FixedStarRatingComponent from 'react-star-rating-component';
+
+
 
 //this component takes ina  ton of adventure information
 function FlipCard(props) {
@@ -17,6 +21,7 @@ function FlipCard(props) {
         firstName: "",
         id: ""
     })
+    
     const [showMessage, setShowMessage] = useState(false);
 
     const handleClassToggle = () => {
@@ -52,10 +57,13 @@ function FlipCard(props) {
                             <Gridx classes={''}>
                                 <Cell size={"small-12 text-center details-heading"}>
                                     <h5>{props.title}</h5>
+                                    {/* <StarRating></StarRating> */}
+                                    <FixedStarRatingComponent></FixedStarRatingComponent>
                                 </Cell>
                                 <Cell size={"small-12"}>
                                     <h6><strong>{props.host}</strong></h6>
                                     <p>{props.description}</p>
+                                    
                                 </Cell>
                             </Gridx>
                             <Gridx classes={''}>

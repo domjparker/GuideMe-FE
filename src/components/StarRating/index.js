@@ -1,88 +1,54 @@
-// import React, { useState } from "react";
+import React from "react";
 // import ReactDOM from 'react-dom';
-// import StarRatingComponent from 'react-star-rating-component';
-// import API from '../../util/API'
-// import { Input, TextArea, FormBtn } from "../components/Form";
+import StarRatingComponent from 'react-star-rating-component';
 
+class App extends React.Component {
+    // static props = {
+    //     name= {String},
+    //     value={ Number },
+    //     starCount={ Number },
+    //     onStarClick= Function(nextValue, prevValue, name) ,
+    //     onStarHover={ Function(nextValue, prevValue, name) {}},
+    //     onStarHoverOut={ Function(nextValue, prevValue, name) {}},
+    //     renderStarIcon={ Function(nextValue, prevValue, name) {}},
+    //     renderStarIconHalf={ Function(nextValue, prevValue, name) {}},
+    //     starColor={ String },
+    //     emptyStarColor={ String },
+    //     editing={ Boolean },
+    // }
 
+    constructor() {
+        super();
 
-// function Star() {
-//     constructor() {
-//         super();
+        this.state = {
+            rating: 1
+        };
+    }
+    onStarClick(nextValue, prevValue, name) {
+        this.setState({rating: nextValue});
+      }
+     
+      render() {
+        const { rating } = this.state;
+        
+        return (                
+          <div>
+            <h6>Rating: {rating}</h6>
+            <StarRatingComponent 
+              name="rate1" 
+              starCount={5}
+              value={rating}
+              onStarClick={this.onStarClick.bind(this)}
+            />
+          </div>
+        );
+      }
+    }
 
-//         this.state = {
-//             rating: 1
-//         };
-//     }
-
-//     onStarClick(nextValue, prevValue, name) {
-//         this.setState({ rating: nextValue });
-//     }
-
-//     render() {
-//         const { rating } = this.state;
-
-//         const [starObj, setStarObj] = useState({ firstName: '', lastName: '' })
-
-
-//         const handleInputChange = event => {
-//             // Getting the value and name of the input which triggered the change
-//             let value = event.target.value;
-//             const name = event.target.name;
-//             // Updating the input's state
-//             if (name === 'firstName') value = value.toLowerCase()
-//             setStarObj({ ...starObj, [name]: value })
-//         };
-//         const handleFormSubmit = event => {
-//             event.preventDefault();
-//             API.postNewUser(starObj).then(res => console.log(res)).catch(err => console.log(err))
-//             //reset form to empty
-//             setStarObj({ firstName: '', lastName: '' })
-//         };
-
-//         return (
-//             <div>
-//                 <h2>Rate this Adventure: {rating}</h2>
-//                 <StarRatingComponent
-//                     name="rate1"
-//                     starCount={5}
-//                     value={rating}
-//                     onStarClick={this.onStarClick.bind(this)}
-//                 />
-//                 <form className="star" onSubmit={handleFormSubmit}>
-//                     <Input
-//                         value={starObj.firstName}
-//                         name="firstName"
-//                         onChange={handleInputChange}
-//                         type="text"
-//                         placeholder="First Name"
-//                         required
-//                     />
-//                     <Input
-//                         value={starObj.lastName}
-//                         name="lastName"
-//                         onChange={handleInputChange}
-//                         type="text"
-//                         placeholder="Last Name"
-//                         required
-//                     />
-//                     <TextArea
-//                         onChange={handleInputChange}
-//                         value={starObj.TextArea}
-//                         name="comment"
-//                         placeholder="Comment (Optional)"
-//                     />
-//                     <FormBtn children={'Submit'} />
-
-//                 </form>
-//             </div>
-//         );
-//     }
-// }
-
+  
 // ReactDOM.render(
-//     <Star />,
+//     <App />,
 //     document.getElementById('star')
 // );
 
-// export default Star
+export default App
