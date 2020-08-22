@@ -70,6 +70,7 @@ function FlipCard(props) {
                                     <h6><strong>Details</strong></h6>
                                     <ul>
                                         <li>Location: {props.location}</li>
+                                        <li>State: {props.stateLocation}</li>
                                         <li>Group size: {props.minGroupSize}-{props.maxGroupSize} </li>
                                         <li>Duration: {props.number} {props.unit} </li>
                                         <li>Difficulty: {props.difficulty} </li>
