@@ -7,13 +7,8 @@ import Btn from '../Btn'
 import PopupChat from '../../components/PopupChat'
 import API from '../../util/API'
 import TagRow from '../TagRow'
-<<<<<<< HEAD
-// import StarRating from '../../components/StarRating'
-import FixedStarRatingComponent from 'react-star-rating-component';
-
-=======
 import { useHistory } from 'react-router-dom'
->>>>>>> Dev
+
 
 
 //this component takes ina  ton of adventure information
@@ -55,6 +50,7 @@ function FlipCard(props) {
         e.stopPropagation()
         history.push({pathname:'/public', state:{userId:props.hostId}})
     }
+   
     return (
         <>
             {/* TODO: needs a little better thought through layout */}
@@ -65,8 +61,6 @@ function FlipCard(props) {
                             <Gridx classes={''}>
                                 <Cell size={"small-12 text-center details-heading"}>
                                     <h5>{props.title}</h5>
-                                    {/* <StarRating></StarRating> */}
-                                    <FixedStarRatingComponent></FixedStarRatingComponent>
                                 </Cell>
                                 <Cell size={"small-12"}>
                                     <h6 style={{display:'inline-block'}}><strong>{props.host}</strong></h6>
@@ -96,10 +90,11 @@ function FlipCard(props) {
                                 <Cell size={'small-12'}>
                                     {/* Message Button */}
                                     {props.edit ? null : <Btn classes="button expanded" handleClick={(e) => {e.stopPropagation();handleOpenChat(props.hostId, props.host)}} text={'Contact host'}/>}
+                                    {/* View Review Button */}
+                                    {/* {!props.edit && <Btn className="commentIcons" icon={<i className="far fa-comment"></i>} classes={'button expanded'} handleClick={(e) => {e.stopPropagation();handleClick(props.hostId, props.host)}}/>} */}
                                     {/* Update Button */}
                                     {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update'} /> : null}
                                     {/* Delete Button */}
-                                    
                                     {props.delete ? <Btn  data-id={props.id} className="editFlipcard"icon={<i class="far fa-trash-alt"></i>} classes={'alert button expanded'}  handleClick= { props.deleteClick} text={'delete me'} /> : null}
                                    
                                 </Cell>

@@ -18,6 +18,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 // import Messages from '../../components/Messages'
 // import Mailbox from '../../components/Mailbox' // COMMENTED OUT ON 8/20 @ 12:40AM
+// import Comment from '../../components/Comment'
 
 function Profile(props) {
     let history = useHistory()
@@ -219,6 +220,11 @@ function Profile(props) {
                                         </Cell>
                                     )) : null}
                                 </Gridx>
+                                {/* comment/review populate here */}
+                                {/* <Gridx>
+                                    <Comment />
+
+                                </Gridx> */}
                             </>
                         )}
                     {/* END Display tags and adventures related to user, if the user is a host */}

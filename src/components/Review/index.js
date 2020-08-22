@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import API from '../../util/API'
 import { Input, TextArea, FormBtn } from "../Form";
+// import StarRating from '../../components/StarRating'
 
-function Comment() {
+function Review() {
     
-    const [starObj, setStarObj] = useState({ firstName: '', lastName: '' })
+    const [reviewObj, setReviewObj] = useState({ title: '' })
 
     const handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
@@ -12,43 +13,37 @@ function Comment() {
         const name = event.target.name;
         // Updating the input's state
         if (name === 'name') value = value.toLowerCase()
-        setStarObj({ ...starObj, [name]: value })
+        setReviewObj({ ...reviewObj, [name]: value })
     };
     const handleFormSubmit = event => {
         event.preventDefault();
-        API.postNewUser(starObj).then(res => console.log(res)).catch(err => console.log(err))
+        API.createReview(reviewObj).then(res => console.log(res)).catch(err => console.log(err))
         //reset form to empty
-        setStarObj({ firstName: '', lastName: '' })
+        setReviewObj({ title: '' })
     };
     return (
         <div>
+            {/* <StarRating></StarRating> */}
+
             <form className="star" onSubmit={handleFormSubmit}>
                 <Input
-                    value={starObj.firstName}
+                    value={reviewObj.title}
                     name="firstName"
                     onChange={handleInputChange}
                     type="text"
-                    placeholder="First Name"
-                    required
-                />
-                <Input
-                    value={starObj.lastName}
-                    name="lastName"
-                    onChange={handleInputChange}
-                    type="text"
-                    placeholder="Last Name"
+                    placeholder="Review"
                     required
                 />
                 <TextArea
                     onChange={handleInputChange}
-                    value={starObj.TextArea}
+                    value={reviewObj.TextArea}
                     name="comment"
                     placeholder="Comment (Optional)"
                 />
-                <FormBtn children={'Submit'} />
+                <FormBtn children={'Submit Review'} />
             </form>
         </div>
     );
 }
 
-export default Comment
+export default Review
