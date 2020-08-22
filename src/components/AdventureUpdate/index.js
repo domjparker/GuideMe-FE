@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import API from "../../util/API";
 import axios from 'axios';
 import { Input, TextArea, FormBtn, Dropdown, NumberInput } from "../Form";
-import Cell from '../Cell'
-import Gridx from '../Gridx'
-import Btn from '../Btn'
-import TagRow from '../TagRow'
-import './style.css'
+import Cell from '../Cell';
+import Gridx from '../Gridx';
+import Btn from '../Btn';
+import TagRow from '../TagRow';
+import './style.css';
+import {stateLocation} from '../StateLocations';
+import Loader from 'react-loader-spinner'
 
 
 function AdventureUpdate(props) {
@@ -16,6 +18,8 @@ function AdventureUpdate(props) {
   const handleModalClose = () => {
     props.handleModalClose()
   }
+  //progress loader state
+  const [loaderVisible, setLoaderVisible]=useState(false)
 
   //set initial state of the form Object.
   const [formObject, setFormObject] = useState({})
@@ -43,6 +47,7 @@ function AdventureUpdate(props) {
       adventureName: data.adventureName,
       description: data.description,
       location: data.location,
+      stateLocation: data.stateLocation,
       itinerary: data.itinerary,
       time: data.duration ? parseInt(data.duration.time) : 1,
       unit: data.duration ? data.duration.unit : 'hours',
@@ -128,6 +133,7 @@ function AdventureUpdate(props) {
 
   // handle form submit function
   async function handleFormSubmit(event) {
+    setLoaderVisible(true)
     event.preventDefault();
     let postObj = { ...formObject }
     //put tags array in here
@@ -167,6 +173,7 @@ function AdventureUpdate(props) {
           adventureName: '',
           description: '',
           location: '',
+          stateLocation: '',
           itinerary: '',
           time: 1,
           unit: 'hours',
@@ -180,6 +187,7 @@ function AdventureUpdate(props) {
         })
         handleModalClose();
       }).catch(err => console.log(err))
+      setLoaderVisible(false)
   }
 
   return (
@@ -190,51 +198,64 @@ function AdventureUpdate(props) {
         <Gridx>
           <Cell size="">
             <form>
+            <label for="adventureName" >Adventure Name:</label>
               <Input
                 onChange={handleInputChange}
                 name="adventureName"
                 placeholder="Adventure:"
                 value={formObject.adventureName}
               />
+              <label for="description" >Description:</label>
               <TextArea
                 onChange={handleInputChange}
                 name="description"
                 placeholder="Description:"
                 value={formObject.description}
               />
+              <label for="location" >Location:</label>
               <Input
                 onChange={handleInputChange}
                 name="location"
                 placeholder="Location:"
                 value={formObject.location}
               />
+              <label for="stateLocation" >State:</label>
+              <Dropdown
+              // intro={formObject.stateLocation}
+                onChange={handleInputChange}
+                name="stateLocation"
+                value={formObject.stateLocation}
+                options={stateLocation}
+              />
+              <label for="itinerary" >Itinerary:</label>
               <TextArea
                 onChange={handleInputChange}
                 name="itinerary"
                 placeholder="Itinerary:"
                 value={formObject.itinerary}
               />
-              <label for="time" >Duration info</label>
+              <label for="time" >Duration info:</label>
               <NumberInput
                 decrement={handleGroupDec}
                 increment={handleGroupInc}
                 name="time"
                 value={formObject.time}
               />
+              <label for="unit" >Duration Units:</label>
               <Dropdown
                 onChange={handleInputChange}
                 name="unit"
                 value={formObject.unit}
                 options={["hours", "days", "weeks", "months", "eternity"]}
               />
-              <label for="difficulty" >Difficulty</label>
+              <label for="difficulty" >Difficulty Level:</label>
               <Dropdown
                 onChange={handleInputChange}
                 name="difficulty"
                 value={formObject.difficulty}
                 options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
               />
-              <label for="minGroupSize" >Min Group Size</label>
+              <label for="minGroupSize" >Min Group Size:</label>
               <NumberInput
                 decrement={handleGroupDec}
                 increment={handleGroupInc}
@@ -242,26 +263,28 @@ function AdventureUpdate(props) {
                 placeholder="Min. Group Size:"
                 value={formObject.minGroupSize}
               />
-              <label for="maxGroupSize" >Max Group Size</label>
+              <label for="maxGroupSize" >Max Group Size:</label>
               <NumberInput
                 decrement={handleGroupDec}
                 increment={handleGroupInc}
                 name="maxGroupSize"
                 value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
               />
-              <label for="price" >Price in $</label>
+              <label for="price" >Price in $:</label>
               <NumberInput
                 decrement={handlePriceDec}
                 increment={handlePriceInc}
                 name="price"
                 value={formObject.price}
               />
+              <label for="gearList" >Gear Needed:</label>
               <Input
                 onChange={handleInputChange}
                 name="gearList"
                 placeholder="Gear Need:"
                 value={formObject.gearList}
               />
+              <label for="tags" >Tags:</label>
               <TagRow edit={true} tags={tagArr} filterTags={handleFilterTags} />
               <Dropdown
                 intro={'Edit tags for your adventure'}
@@ -270,6 +293,7 @@ function AdventureUpdate(props) {
                 options={dropdownArr}
                 value={dropdownValue}
               />
+              <label for="image" >Adventure Image:</label>
               <Input
                 onChange={onSubmit}
                 classes={"button adventure-image-upload"}
@@ -281,6 +305,7 @@ function AdventureUpdate(props) {
                 onClick={handleFormSubmit}>
                 Update Adventure
                 </FormBtn>
+                <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
               {/* close modal */}
               <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
             </form>
