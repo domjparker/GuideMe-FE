@@ -6,11 +6,12 @@ import Btn from '../../components/Btn'
 import Wrapper from '../../components/Wrapper'
 import API from '../../util/API'
 import { Dropdown } from '../../components/Form'
+import {stateLocation} from '../../components/StateLocations'
 
 function Homepage() {
     //tells the url what you searched for
     let history = useHistory()
-    //serach input state
+    //search input state
     const [searchTerm, setSearchTerm] = useState('');
     const [tags, setTags] = useState([])
     //submit button click
@@ -27,7 +28,6 @@ function Homepage() {
     }
     //TODO:change this up to use components: Btn
     return (
-
         <>
             <Wrapper>
 
@@ -38,7 +38,13 @@ function Homepage() {
                             {/* The search or host adventure form on home page */}
                             <div className="container searchBox">
                                 <form>
-                                
+                                <Dropdown
+              intro={'Washington'}
+                onChange={handleInputChange}
+                name="stateLocation"
+                value={formObject.stateLocation}
+                options={stateLocation}
+              />
                                     <Dropdown
                                     intro={'Select tags for your adventure'}
                                     onChange={handleInputChange}
