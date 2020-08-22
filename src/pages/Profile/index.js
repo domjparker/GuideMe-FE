@@ -63,6 +63,10 @@ function Profile(props) {
         const { data } = await API.getAdventurebyHost(id);
         if (data.length > 0) {
             setAdventureData(data)
+
+            // else statement removes last adventure card
+        }else{
+            setAdventureData([])
         }
     }
 
