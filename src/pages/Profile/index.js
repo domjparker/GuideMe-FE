@@ -173,7 +173,7 @@ function Profile(props) {
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img style={{height: '15vh',width: '15vh', borderRadius: '50%'}} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <img style={{height: '20vh',width: '20vh', borderRadius: '50%'}} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                             <h2>{userData.firstName} {userData.lastName}</h2>
                             <p>{userData.location}</p>
                             <p>{userData.stateLocation}</p>
