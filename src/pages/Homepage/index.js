@@ -1,8 +1,9 @@
 //HOMEPAGE  this is the first page you arrive at
 import React, { useState, useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import './style.css'
+import Btn from '../../components/Btn'
 import Wrapper from '../../components/Wrapper'
-import { useHistory } from 'react-router-dom'
 import API from '../../util/API'
 
 function Homepage() {
@@ -40,9 +41,9 @@ function Homepage() {
                                     <option>Adventure awaits</option>
                                     {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
                                 </select>
-                                <button onClick={handleSubmit} className="button searchAdventure" > Search</button>
+                                <Btn onClick={handleSubmit} classes={'button searchAdventure'} text={"Search"} />
                             </div>
-                            <button onClick={handleHostAdventureClick} className="button hostAdventure"> Host Adventure</button>
+                            <Btn onClick={handleHostAdventureClick} classes={"button hostAdventure"} text={ "Host Adventure"}/>
                         </div>
                     </div>
                 </div>
