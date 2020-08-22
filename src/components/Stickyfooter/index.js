@@ -38,8 +38,8 @@ function Stickyfooter(props) {
                 <Cell size={'small-3'} id="messages">
                     <button className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
                 </Cell>
-                <Cell size={'small-3'} id="signout">
-                <Link to={'/profile'} ><i className="fas fa-sign-out-alt signout" onClick ={signOut} ></i></Link>
+                <Cell size={'small-3'}>
+                <Link to={'/community'} ><i className="fas fa-users community" onClick ={signOut} ></i></Link>
                 </Cell>
             </Gridx>
         </div>

@@ -75,8 +75,7 @@ function FlipCard(props) {
                                 <Cell size={"small-12 medium-12"}>
                                     <h6><strong>Details</strong></h6>
                                     <ul>
-                                        <li>Location: {props.location}</li>
-                                        <li>State: {props.stateLocation}</li>
+                                        <li>Location: {props.location} {', ' + props.stateLocation}</li>
                                         <li>Group size: {props.minGroupSize}-{props.maxGroupSize} </li>
                                         <li>Duration: {props.number} {props.unit} </li>
                                         <li>Difficulty: {props.difficulty} </li>
@@ -98,10 +97,10 @@ function FlipCard(props) {
                                      
                                      
                                     {/* Update Button */}
-                                    {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update'} /> : null}
+                                    {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update'} /> : null}
                                     {/* Delete Button */}
                                     
-                                    {props.delete ? <Btn  data-id={props.id} className="editFlipcard"icon={<i class="far fa-trash-alt"></i>} classes={'alert button expanded'}  handleClick= { props.deleteClick} text={'delete me'} /> : null}
+                                    {props.delete ? <Btn  data-id={props.id} className="editFlipcard"icon={<i className="far fa-trash-alt"></i>} classes={'alert button expanded'}  handleClick= { props.deleteClick} text={'delete me'} /> : null}
                                    
                                 </Cell>
 
@@ -116,7 +115,8 @@ function FlipCard(props) {
                                 </div>
                                 <div className="card-section">
                                     <h4>{props.title}</h4>
-                                    <h5 onClick={handleHostNameClick}>{props.host}</h5>
+                                    {!props.edit ? <h5 className='clickableHost' onClick={handleHostNameClick}>{props.host}</h5> :<h5 >{props.host}</h5> }
+                                    
                                     <p>{props.description}</p>
                                 </div>
                             </Cell>
