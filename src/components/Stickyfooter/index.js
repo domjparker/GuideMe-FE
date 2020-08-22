@@ -6,12 +6,8 @@ import Gridx from '../Gridx'
 import Cell from '../Cell'
 import Mailbox from '../Mailbox'
 
-// import PopupChat from '../PopupChat'
-import API from '../../util/API'
-import {loginContext} from '../LoginContext'
-
 function Stickyfooter(props) {
-    const loginState = useContext(loginContext)
+    
     const [showMailbox, setShowMailbox] = useState(false)
 
     const handleMailboxOpen = () => {

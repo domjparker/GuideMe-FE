@@ -14,15 +14,40 @@ function Community () {
     }, [])
 
     const loadFeed = async () =>{
-        const feedArr= await API.getFeed()
-        
+        // const feedArr= await API.getFeed()
+        const feedObj = {
+            targetId: [{
+                "_id" : "5f40b62fc2e880aacc0fee58",
+                "verified" : true,
+                "host" : true,
+                "hostedAdventures" : [],
+                "completedAdventures" : [],
+                "tags" : [],
+                "firstName" : "maria",
+                "lastName" : "maria",
+                "email" : "maria@maria.com",
+                "password" : "$2b$10$RB2dVKaXDr479Ag8d/rI2O7fVX2hkL3PuwXy5/oDJzXMC3QS.KvRy",
+                "mailbox" : [],
+                "availability" : [],
+                "__v" : 0,
+                "bio" : "Coolestest cool person just so cool, there is no one cooler ever on Earth. Yeah!",
+                "location" : "Woods",
+                "stateLocation" : "Washington",
+                "profilePictureUrl" : "https://res.cloudinary.com/yestoskydiving/image/upload/v1598126251/GuideMeProfilePic/df4lzacpzyornjoyl4lj.jpg"
+            }],
+            action:'newUser',
+            adventureId:'',
+            postImageUrl:'',
+            postText:''
+        }
+        convertFeedData(feedObj)
     }
 
     const convertFeedData = (feedObj) =>{
         console.log(feedObj)
         switch (feedObj.action){
             case 'newUser':
-                console.log('newUser')
+                setFeed([...feed, {profilePictureUrl:feedObj.targetId.profilePictureUrl, location:`${feedObj.targetId.location}, ${feedObj.targetId.stateLocation}`, text:``}])
                 break;
             case 'newGuide':
                 console.log('newGuide')

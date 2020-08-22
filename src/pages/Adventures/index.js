@@ -8,7 +8,6 @@ import Cell from '../../components/Cell'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useLocation } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
 import {stateLocation} from '../../components/StateLocations'
 
 function Adventures(){
