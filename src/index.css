@@ -16,6 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: rgba(59, 59, 59, 100%);
   background-color:  lightgray;
+  min-height: 100vh;
 }
 
 code {

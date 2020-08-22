@@ -1,6 +1,6 @@
 //PROFILE page where user info is displayed, edited, deleted depending on host status
-import React, { useState, useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'
@@ -11,14 +11,17 @@ import FlipCard from '../../components/FlipCard'
 import Adventure from '../../components/Adventure'
 import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
+import {loginContext} from '../../components/LoginContext'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
-import Messages from '../../components/Messages'
-import Mailbox from '../../components/Mailbox'
-
-
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+// import Messages from '../../components/Messages'
+// import Mailbox from '../../components/Mailbox' // COMMENTED OUT ON 8/20 @ 12:40AM
 
 function Profile(props) {
+    let history = useHistory()
+    const loginState = useContext(loginContext)
     //state holds user data pulled from database
     const [userData, setUserData] = useState({})
     //state holds user's hosted adventures as pulled from database
@@ -41,7 +44,6 @@ function Profile(props) {
         //user info
         loadUserData()
         //get user id from session data to pull up hosted adventures
-        //TODO:check if host first and then pull up adventures? useEffect for that?
         API.getSessionData().then(res => {
             let id = res.data.id
             //pull up hosted adventures
@@ -66,11 +68,27 @@ function Profile(props) {
 
     //delete this user account
     const handleDeleteUser = () => {
-        API.deleteUser().then(() => {
-            props.setLoginState()
-            setChange(!change)
-            return <Redirect to='/' />
-        }).catch(err => console.log(err))
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure you want to do this.',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: () => { 
+                    API.deleteUser().then(() => {
+                        API.logOutUser()
+                        loginState.changeLoginState(false)
+                    setChange(!change)
+                    history.push('/')
+                }).catch(err => console.log(err))}
+              },
+              {
+                label: 'No',
+                onClick: () => {}
+              }
+            ]
+          });
+    
     }
 
     //delete the adventure -- this method is passed into the FlipCard component because the delete button lives on the FlipCard
@@ -79,8 +97,8 @@ function Profile(props) {
         let id = e.target.getAttribute('data-id')
         API.deleteAdventure(id)
             .then(() => {
-                setModalAdventure(false)
                 setChange(!change)
+                // setModalAdventure(false)
             })
             .catch(err => console.log(err))
     }
@@ -141,9 +159,6 @@ function Profile(props) {
         setChange(!change)
     }
     //end of modals section =============================================================
-    const signOut = ()=> {
-        API.logOutUser()
-    }
 
     return (
         <>
@@ -158,29 +173,32 @@ function Profile(props) {
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img style={{height: '15vh',width: '15vh', borderRadius: '50%'}} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <img style={{height: '20vh',width: '20vh', borderRadius: '50%'}} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                             <h2>{userData.firstName} {userData.lastName}</h2>
                             <p>{userData.location}</p>
+                            <p>{userData.stateLocation}</p>
                             <p>{userData.bio}</p>
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
-                        <Cell size={"small-12 medium-6 "} className="createBtnColumn">
+                        <Cell size={"small-12 medium-6 "} >
+                            <div className='createBtnColumn'>
                             {userData.host ?
                                 <Cell size={'medium-4'} >
-                                    <Btn className="profileIcons"icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
+                                    <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
                                 </Cell>
                                 :
                                 <Cell size={'medium-4'}>
-                                    <Btn classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
+                                    <Btn  className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>}classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
                                 </Cell>
                             }
                             <Cell size={'medium-4'}>
-                                <Btn className="profileIcons" icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
+                                <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
                             </Cell>
                             <Cell size={'medium-4'}>
                                 {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
-                                <Btn className="profileIcons" icon={<i class="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
+                                <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
                             </Cell>
+                            </div>
                         </Cell >
 
 
@@ -197,7 +215,7 @@ function Profile(props) {
                                 <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
                                     {(adventureData) ? adventureData.map(adventure => (
                                         <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
+                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
 
                                         </Cell>
                                     )) : null}

@@ -7,12 +7,27 @@
     width: 100%;
     z-index: 1007;
     position: fixed;
+    min-height: 75px;
     top: 0;
     left: 0;
     background-color:rgba(225, 215, 205, 100%);
-    
+}
+
+.navText, .loginLink {
+    font-family: 'Gloria Hallelujah', cursive;   
 }
 
 .fixingHeight{
     height: 10vh;
+    font-size: 1.8rem;
+    min-height: 75px;
+    
+}
+
+.loginLink{
+color: rgba(39, 36, 27, 100%);
+display:flex;
+justify-content: flex-end;
+margin-top: 1vh;
+
 }

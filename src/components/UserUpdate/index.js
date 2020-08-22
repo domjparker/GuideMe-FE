@@ -7,6 +7,7 @@ import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
 import TagRow from '../TagRow'
+import {stateLocation} from '../StateLocations'
 
 function UserUpdate(props) {
   //handles bodal visibility state as input from parent element
@@ -21,6 +22,7 @@ function UserUpdate(props) {
   email: '', 
   bio: '',  
   location: '', 
+  stateLocation: '',
   tags: [] })
 //checks for data when modal visibility setting changes
 useEffect(() => {
@@ -52,6 +54,7 @@ async function loadInitialData () {
       bio:data.bio? data.bio:'',
       location:data.location? data.location:'',
       tags:data.tags? data.tags.map(tag=>tag.tagName):[],
+      stateLocation: data.stateLocation? data.stateLocation: '',
       adventureImageUrl: data.adventureImageUrl
     })
 }
@@ -59,7 +62,7 @@ async function loadInitialData () {
   function handleInputChange(event) {
     // add code to control the components here
     let name = event.target.name
-    let value=event.target.value
+    let value= event.target.value
     if (name !== 'tags') {
       setFormObject({ ...formObject, [name]: value })
     } else if (tagArr.indexOf(event.target.value)<0) {
@@ -88,7 +91,8 @@ async function loadInitialData () {
           lastName: '', 
           email: '', 
           bio: '',  
-          location: '', 
+          location: '',
+          stateLocation: '', 
           tags: []  })
          handleModalClose();
       }).catch(err=> console.log(err))
@@ -102,36 +106,50 @@ async function loadInitialData () {
       <Gridx>
         <Cell size="">
           <form>
+          <label for="firstName" >First Name:</label>
             <Input
               onChange={handleInputChange}
               name="firstName"
               placeholder="first name here"
               value={formObject.firstName}
             />
+            <label for="lastName" >Last Name:</label>
             <Input
               onChange={handleInputChange}
               name="lastName"
               placeholder="last name here"
               value={formObject.lastName}
             />
+            <label for="location" >Your Location:</label>
             <Input
               onChange={handleInputChange}
               name="location"
               placeholder="Location:"
               value={formObject.location}
             />
+            <label for="stateLocation" >State or US Territory:</label>
+            <Dropdown
+             intro={'Select your State or Territory'}
+              onChange={handleInputChange}
+              name="stateLocation"
+              options={stateLocation}
+              value={formObject.stateLocation}
+            />
+            <label for="email" >Email Address:</label>
             <Input
               onChange={handleInputChange}
               name="email"
               placeholder="email"
               value={formObject.email}
             />
+            <label for="bio" >Bio:</label>
             <TextArea
               onChange={handleInputChange}
               name="bio"
               placeholder="Bio:"
               value={formObject.bio}
             />
+            <label for="tags" >Tags:</label>
             <TagRow edit={true} tags={tagArr} filterTags={handleFilterTags}/>
              <Dropdown
              intro={'Select your skills'}

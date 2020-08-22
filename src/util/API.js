@@ -40,6 +40,10 @@ export default {
     getUserbyId: () => {
         return axios.get(`${prefix}/api/user/profile`, {withCredentials:true})
     },
+    //GET user by hostID
+    getUserProfilebyId: (id) => {
+        return axios.get(`${prefix}/api/user/profile/` + id, {withCredentials:true})
+    },
     //GET session data
     getSessionData : () => {
         return axios.get(`${prefix}/api/user/getSession`, {withCredentials:true})
