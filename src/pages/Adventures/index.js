@@ -17,36 +17,34 @@ function Adventures(){
     
     //list of relevant adventures
     const [adventures, setAdventures] = useState([])
+    const [searchTerm, setSearchTerm] = useState(tag);
+    const [tags, setTags] = useState([])
+    
     //load adventures on page load
-
     useEffect(() => {
-        loadAdventures(tag)
-    }, [])
+        loadAdventures(searchTerm)
+    }, [searchTerm])
+    
     //API call to adventures db
     //Filter adventures based on tags matching search criteria
     const loadAdventures = async (criteria) => {
-
         const {data} = await API.getAllAdventures()
         let adventureArr = [...data]
         if (criteria) {
             adventureArr=adventureArr.filter(adventure=> adventure.tags.map(tag=>tag=tag.tagName).indexOf(criteria)>=0)
         }
         setAdventures(adventureArr)
-
     }
-    //tells the url what you searched for
-    let history = useHistory()
-    //serach input state
-    const [searchTerm, setSearchTerm] = useState('');
-    const [tags, setTags] = useState([])
+
     //submit button click
     useEffect(() => {
         API.getTags().then(res => setTags(res.data)).catch(err => console.log(err))
     }, [])
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        history.push(`/adventures/${searchTerm.toLowerCase()}`)
-    }
+
+    //handle search btn click
+    // const handleSubmit = (event) => {
+    //     event.preventDefault()
+    // }
 
 
     return (
@@ -55,12 +53,11 @@ function Adventures(){
             <div className="callout">
                             {/* The search or host adventure form on home page */}
                             <div className="container searchBox">
-
-                                <select onChange={(e) => { setSearchTerm(e.target.value) }} className="findAdventure">
+                                <select onChange={(e) => { setSearchTerm(e.target.value)}} value={searchTerm} className="findAdventure">
                                     <option>Adventure awaits</option>
                                     {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
                                 </select>
-                                <button onClick={handleSubmit} className="button searchAdventure" > Search</button>
+                                {/* <button onClick={handleSubmit} className="button searchAdventure" > Search</button> */}
                             </div>
                         </div>
 

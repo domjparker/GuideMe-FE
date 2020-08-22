@@ -1,13 +1,28 @@
 //the top bar, displaying logo and page name
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import './style.css'
 import Gridx from '../Gridx'
 import Cell from '../Cell'
 import LOGO from '../../images/logot.png'
-
+import {loginContext} from '../LoginContext'
+import API from '../../util/API'
 
 function TopBar(props) {
+    const loginState = useContext(loginContext)
+
+    const renderSignInLogIn = () =>{
+        if (loginState.loggedIn) {
+            return <Link to={'/profile'} ><i className="fas fa-sign-out-alt signout" onClick ={signOut} ></i></Link>
+        } else {
+            return <Link to={"/profile"}><i className="fas fa-sign-in-alt signout" ></i></Link>
+        }
+    }
+
+    const signOut = ()=> {
+        API.logOutUser()
+        loginState.changeLoginState(false)
+    }
 
     return (
         <>
@@ -21,8 +36,7 @@ function TopBar(props) {
                     </Cell>
                     <Cell size={'small-2 text-right'}>
                         <h6>
-                        <Link className='loginLink'to="/profile">Sign in</Link>
-                        <Link className='loginLink'to="/profile">Sign up</Link>
+                        {renderSignInLogIn()}
                         </h6>
                     </Cell>
                 

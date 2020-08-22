@@ -28,3 +28,13 @@ justify-content: flex-end;
 margin-top: 1vh;
 
 }
+
+.signout {
+    padding-top: 0.8rem;
+    padding-right: 0.2rem;
+    color: rgba(39, 36, 27, 100%);
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+  }
