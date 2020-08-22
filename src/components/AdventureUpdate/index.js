@@ -9,6 +9,7 @@ import Btn from '../Btn';
 import TagRow from '../TagRow';
 import './style.css';
 import {stateLocation} from '../StateLocations';
+import Loader from 'react-loader-spinner'
 
 
 function AdventureUpdate(props) {
@@ -17,6 +18,8 @@ function AdventureUpdate(props) {
   const handleModalClose = () => {
     props.handleModalClose()
   }
+  //progress loader state
+  const [loaderVisible, setLoaderVisible]=useState(false)
 
   //set initial state of the form Object.
   const [formObject, setFormObject] = useState({})
@@ -130,6 +133,7 @@ function AdventureUpdate(props) {
 
   // handle form submit function
   async function handleFormSubmit(event) {
+    setLoaderVisible(true)
     event.preventDefault();
     let postObj = { ...formObject }
     //put tags array in here
@@ -183,6 +187,7 @@ function AdventureUpdate(props) {
         })
         handleModalClose();
       }).catch(err => console.log(err))
+      setLoaderVisible(false)
   }
 
   return (
@@ -300,6 +305,7 @@ function AdventureUpdate(props) {
                 onClick={handleFormSubmit}>
                 Update Adventure
                 </FormBtn>
+                <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
               {/* close modal */}
               <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
             </form>
