@@ -9,13 +9,13 @@ import TopBar from './components/TopBar'
 import Footer from './components/Footer'
 import NotFound from './pages/NotFound'
 import Login from './pages/Login'
+import Community from './pages/Community'
 import API from './util/API'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PublicProfile from './pages/PublicProfile'
 // import io from "socket.io-client";
-
 import { loginContext } from './components/LoginContext'
-import LoaderElement from './pages/Loader test';
+
 
 function App() {
 
@@ -56,6 +56,8 @@ const renderLogIn = () => {
    return <Login/>
   }
 }
+
+
   return (
     <Router>
       <>
@@ -69,7 +71,6 @@ const renderLogIn = () => {
           {/* keep an eye out for edge case. Might need to delete 'exact' */}
           <Route exact path='/adventures/:tag'>
             <Adventures />
-
           </Route>
           <Route exact path='/adventures/'>
             <Adventures />
@@ -80,8 +81,8 @@ const renderLogIn = () => {
           <Route exact path='/public'>
             <PublicProfile/>
           </Route>
-          <Route exact path='/loader'>
-            <LoaderElement/>
+          <Route exact path='/community'>
+            <Community/>
           </Route>
           <Route path='*'>
             <NotFound />
