@@ -2,6 +2,7 @@
 import React from 'react'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
+import { Link } from 'react-router-dom'
 
 
 function NotFound() {
@@ -18,8 +19,8 @@ function NotFound() {
                     <span><span claclassNamess="screen-reader-text">0</span></span>
                     <span>4</span>
                 </section>
-                <div class="link-container">
-                    <a target="blank" href="/" className="more-link">Back to the homepage</a>
+                <div className="link-container">
+                    <Link  to="/" target="blank" className="more-link" >Back to the homepage</Link>
                 </div>
 
             </Wrapper>
