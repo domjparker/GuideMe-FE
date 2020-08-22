@@ -63,7 +63,7 @@ const renderLogIn = () => {
       <>
         {/* useLocation to display page name */}
         <loginContext.Provider value={loginState}>
-          <TopBar title={page}/>
+        <TopBar title={page} />
         <Switch>
           <Route exact path='/'>
             <Homepage />
