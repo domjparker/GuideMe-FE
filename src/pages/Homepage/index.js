@@ -13,6 +13,7 @@ function Homepage() {
     let history = useHistory()
     //search input state
     const [searchTerm, setSearchTerm] = useState('');
+    const [searchTermState, setSearchTermState] = useState('');
     const [tags, setTags] = useState([])
     //submit button click
     useEffect(() => {
@@ -20,7 +21,8 @@ function Homepage() {
     }, [])
     const handleSubmit = (event) => {
         event.preventDefault()
-        history.push(`/adventures/${searchTerm.toLowerCase()}`)
+        // send the state of searchTerm and searchTermState to the adventures page
+        history.push({pathname:'/adventures', state:{tag:searchTerm.toLowerCase(), stateName:searchTermState}})
     }
 
     const handleHostAdventureClick = () => {
@@ -37,27 +39,15 @@ function Homepage() {
                         <div className="callout">
                             {/* The search or host adventure form on home page */}
                             <div className="container searchBox">
-                                <form>
-                                <Dropdown
-              intro={'Washington'}
-                onChange={handleInputChange}
-                name="stateLocation"
-                value={formObject.stateLocation}
-                options={stateLocation}
-              />
-                                    <Dropdown
-                                    intro={'Select tags for your adventure'}
-                                    onChange={handleInputChange}
-                                    name="tags"
-                                    options={tags}
-                                    value={dropdownValue}
-                                    /> 
-                                </form>
-                                {/* <select onChange={(e) => { setSearchTerm(e.target.value) }} className="findAdventure">
-                                    <option>Adventure awaits</option>
+                                <select onChange={(e) => { setSearchTerm(e.target.value) }} className="findAdventure">
+                                    <option>Activity</option>
                                     {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
                                 </select>
-                                <Btn onClick={handleSubmit} classes={'button searchAdventure'} text={"Search"} /> */}
+                                <select onChange={(e) => { setSearchTermState(e.target.value)}} value={searchTermState} className="findAdventure">
+                                    <option>Location</option>
+                                    {stateLocation ? stateLocation.map(state=> <option key={stateLocation.indexOf(state)} value={state}>{state}</option>) : null}
+                                </select>
+                                <Btn onClick={handleSubmit} classes={'button searchAdventure'} text={"Search"} />
                             </div>
                             <Btn onClick={handleHostAdventureClick} classes={"button hostAdventure"} text={ "Host Adventure"}/>
                         </div>
@@ -72,7 +62,7 @@ function Homepage() {
                         <p className="introduction"><strong>
                             An easy way to choose your own adventure.
                            
-                       <br /> If you’re the kind of traveler that loves finding those off the beaten path excursions:
+                       <br /> If you’re the kind of traveler that loves finding those off the beaten path excursions:</strong></p>
                       <div className="instructions">
                         <ul>
                             <li> On the homepage select the kind of activity you’re looking for from the ‘Adventure awaits’ drop down menu.
@@ -102,9 +92,6 @@ function Homepage() {
                            <h3> <strong>If you need to get back to the homepage from anywhere on the site, just click the logo on the top left.</strong></h3>
                             </ul>
                         </div>
-            
-                        </strong>
-                        </p>
                     </div>
                 </article>
 
