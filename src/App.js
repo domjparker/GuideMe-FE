@@ -58,6 +58,7 @@ const renderLogIn = () => {
     <Router>
       <>
         {/* useLocation to display page name */}
+        <loginContext.Provider value={loginState}>
         <TopBar title={page} />
         <Switch>
           <Route exact path='/'>
@@ -72,16 +73,13 @@ const renderLogIn = () => {
             <Adventures />
           </Route>
           <Route exact path='/profile'>
-            <loginContext.Provider value={loginState}>
               {renderLogIn()}
-            </loginContext.Provider>
           </Route>
           <Route path='*'>
             <NotFound />
           </Route>
         </Switch>
         <Footer />
-        <loginContext.Provider value={loginState}>
           <Stickyfooter />
         </loginContext.Provider>
 

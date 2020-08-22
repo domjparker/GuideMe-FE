@@ -13,8 +13,7 @@ import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
-import Messages from '../../components/Messages'
-import Mailbox from '../../components/Mailbox'
+
 
 
 
