@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StarRatingComponent from 'react-star-rating-component';
+import FixedStarRatingComponent from 'react-star-rating-component';
  
 class App extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class App extends React.Component {
     return (                
       <div>
         <h2>Ratings: {rating}</h2>
-        <StarRatingComponent 
+        <FixedStarRatingComponent 
           name="rate2" 
           editing={false}
           renderStarIcon={() => <i class="fa fa-star"></i>}

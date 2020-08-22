@@ -1,6 +1,6 @@
 //ADVENTURES this page diplays all adventures subject to search filters
 
-import React, {useState, useEffect, Lazy, Suspense} from 'react'
+import React, {useState, useEffect} from 'react'
 import './style.css'
 import Wrapper from '../../components/Wrapper'
 import Gridx from '../../components/Gridx'
@@ -8,7 +8,9 @@ import Cell from '../../components/Cell'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useParams } from 'react-router-dom'
-import StarRating from '../../components/StarRating'
+// import StarRating from '../../components/StarRating'
+import { useHistory } from 'react-router-dom'
+
 
 function Adventures(){
     //tags that show what was searched
@@ -22,7 +24,7 @@ function Adventures(){
         loadAdventures(tag)
     }, [])
     //API call to adventures db
-    //TODO:here we need to implement the actual search functionality so not all adventures are alwasy shown
+    //Filter adventures based on tags matching search criteria
     const loadAdventures = async (criteria) => {
 
         const {data} = await API.getAllAdventures()
@@ -31,11 +33,38 @@ function Adventures(){
             adventureArr=adventureArr.filter(adventure=> adventure.tags.map(tag=>tag=tag.tagName).indexOf(criteria)>=0)
         }
         setAdventures(adventureArr)
+
     }
+    //tells the url what you searched for
+    let history = useHistory()
+    //serach input state
+    const [searchTerm, setSearchTerm] = useState('');
+    const [tags, setTags] = useState([])
+    //submit button click
+    useEffect(() => {
+        API.getTags().then(res => setTags(res.data)).catch(err => console.log(err))
+    }, [])
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        history.push(`/adventures/${searchTerm.toLowerCase()}`)
+    }
+
 
     return (
         <>
             <Wrapper>
+            <div className="callout">
+                            {/* The search or host adventure form on home page */}
+                            <div className="container searchBox">
+
+                                <select onChange={(e) => { setSearchTerm(e.target.value) }} className="findAdventure">
+                                    <option>Adventure awaits</option>
+                                    {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
+                                </select>
+                                <button onClick={handleSubmit} className="button searchAdventure" > Search</button>
+                            </div>
+                        </div>
+
                 <div className="grid-container full">
                     <Gridx classes={'grid-margin-x grid-margin-y'}>
                         {/* This puts the adventures on the page, see FlipCard for more info */}
