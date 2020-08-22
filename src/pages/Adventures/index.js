@@ -9,7 +9,7 @@ import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-
+import {stateLocation} from '../../components/StateLocations'
 
 function Adventures(){
     //tags that show what was searched
@@ -18,45 +18,49 @@ function Adventures(){
     //list of relevant adventures
     const [adventures, setAdventures] = useState([])
     const [searchTerm, setSearchTerm] = useState(tag);
+    const [searchTermState, setSearchTermState] = useState('');
     const [tags, setTags] = useState([])
     
     
     //load adventures on page load
     useEffect(() => {
-        loadAdventures(searchTerm)
-    }, [searchTerm])
-    
-    //API call to adventures db
-    //Filter adventures based on tags matching search criteria
-    const loadAdventures = async (criteria) => {
-        const {data} = await API.getAllAdventures()
-        let adventureArr = [...data]
-        if (criteria) {
-            adventureArr=adventureArr.filter(adventure=> adventure.tags.map(tag=>tag=tag.tagName).indexOf(criteria)>=0)
-        }
-        setAdventures(adventureArr)
-    }
+        loadAdventures(searchTerm, searchTermState)
+    }, [searchTerm, searchTermState])
 
-    //submit button click
+    
+    //get all tags for dropdown
     useEffect(() => {
         API.getTags().then(res => setTags(res.data)).catch(err => console.log(err))
     }, [])
-
-
+    
+    //API call to adventures db
+    //Filter adventures based on tags and/or states matching search criteria
+    const loadAdventures = async (activity, state) => {
+        const {data} = await API.getAllAdventures()
+        let adventureArr = [...data]
+        if (activity) {
+            adventureArr=adventureArr.filter(adventure=> adventure.tags.map(tag=>tag=tag.tagName).indexOf(activity)>=0)
+        }
+        if (state) {
+            adventureArr=adventureArr.filter(adventure=> adventure.stateLocation.indexOf(state)>=0)
+        }
+        setAdventures(adventureArr)
+    }
 
     return (
         <>
             <Wrapper>
             <div className="calloutAdventures">
+                        <h3>Filter adventures by:</h3>
                             {/* The search or host adventure form on home page */}
                             <div className="container searchBoxAdventures">
                                 <select onChange={(e) => { setSearchTerm(e.target.value)}} value={searchTerm} className="findAdventureAdventure">
-                                    <option>Adventure awaits</option>
+                                    <option>Activity</option>
                                     {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
                                 </select>
-                                <select onChange={(e) => { setSearchTerm(e.target.value)}} value={searchTerm} className="findAdventureAdventure">
-                                    <option>Adventure awaits</option>
-                                    {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
+                                <select onChange={(e) => { setSearchTermState(e.target.value)}} value={searchTermState} className="findAdventureAdventure">
+                                    <option>Location</option>
+                                    {stateLocation ? stateLocation.map(state=> <option key={stateLocation.indexOf(state)} value={state}>{state}</option>) : null}
                                 </select>
                             </div>
                         </div>

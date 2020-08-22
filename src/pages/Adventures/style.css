@@ -4,6 +4,7 @@
     justify-content:center;
     border-radius: 10px;
     background-color: rgba(39, 36, 27, 95%);
+    color:rgba(243, 236, 216,100%);
   }
 
 
@@ -12,8 +13,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-.findAdventureAdventures{
+select .findAdventureAdventures{
   width: 100%;
    margin: 0.4rem;
-   
   }
