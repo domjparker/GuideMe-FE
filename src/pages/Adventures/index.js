@@ -13,8 +13,9 @@ import {stateLocation} from '../../components/StateLocations'
 function Adventures(){
     //tags that show what was searched
     let location = useLocation()
-    let tag =  location.state.tag
+    let tag = location.state.tag
     let stateName = location.state.stateName
+    
     //list of relevant adventures
     const [adventures, setAdventures] = useState([])
     const [searchTerm, setSearchTerm] = useState(tag);

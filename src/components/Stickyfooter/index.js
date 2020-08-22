@@ -32,7 +32,7 @@ function Stickyfooter(props) {
                     <button className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
                 </Cell>
                 <Cell size={'small-3'}>
-                <Link to={'/community'} ><i className="fas fa-users community" ></i></Link>
+                <Link to={'/community'} ><i className="fas fa-users community"  ></i></Link>
                 </Cell>
             </Gridx>
         </div>
