@@ -20,6 +20,7 @@ function Adventures(){
     const [searchTerm, setSearchTerm] = useState(tag);
     const [tags, setTags] = useState([])
     
+    
     //load adventures on page load
     useEffect(() => {
         loadAdventures(searchTerm)
@@ -41,23 +42,22 @@ function Adventures(){
         API.getTags().then(res => setTags(res.data)).catch(err => console.log(err))
     }, [])
 
-    //handle search btn click
-    // const handleSubmit = (event) => {
-    //     event.preventDefault()
-    // }
 
 
     return (
         <>
             <Wrapper>
-            <div className="callout">
+            <div className="calloutAdventures">
                             {/* The search or host adventure form on home page */}
-                            <div className="container searchBox">
-                                <select onChange={(e) => { setSearchTerm(e.target.value)}} value={searchTerm} className="findAdventure">
+                            <div className="container searchBoxAdventures">
+                                <select onChange={(e) => { setSearchTerm(e.target.value)}} value={searchTerm} className="findAdventureAdventure">
                                     <option>Adventure awaits</option>
                                     {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
                                 </select>
-                                {/* <button onClick={handleSubmit} className="button searchAdventure" > Search</button> */}
+                                <select onChange={(e) => { setSearchTerm(e.target.value)}} value={searchTerm} className="findAdventureAdventure">
+                                    <option>Adventure awaits</option>
+                                    {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
+                                </select>
                             </div>
                         </div>
 
