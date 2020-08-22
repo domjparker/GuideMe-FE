@@ -99,6 +99,7 @@ function Profile(props) {
             .then(() => {
                 setChange(!change)
                 // setModalAdventure(false)
+               
             })
             .catch(err => console.log(err))
     }
