@@ -14,11 +14,11 @@ function Adventures(){
     //tags that show what was searched
     let location = useLocation()
     let tag =  location.state.tag
-    
+    let stateName = location.state.stateName
     //list of relevant adventures
     const [adventures, setAdventures] = useState([])
     const [searchTerm, setSearchTerm] = useState(tag);
-    const [searchTermState, setSearchTermState] = useState('');
+    const [searchTermState, setSearchTermState] = useState(stateName);
     const [tags, setTags] = useState([])
     
     
