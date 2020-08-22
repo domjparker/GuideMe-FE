@@ -11,13 +11,15 @@ import Btn from '../../components/Btn'
 function Community() {
     const [feed, setFeed] = useState([])
     const [post, setPost] = useState('')
+    const [change, setChange] = useState(false)
     useEffect(() => {
         loadFeed()
-    }, [])
+    }, [change])
 
     //make API call for feed table
     const loadFeed = async () => {
-        // const feedArr= await API.getFeed()
+        const feedArr= await API.getFeed()
+        console.log(feedArr)
         const feedObj = {
             _id: "asdfasdfasdf",
             targetId: {
@@ -123,8 +125,19 @@ function Community() {
         }
     }
 
-    const handleSubmit = () => {
-
+    const handleSubmit = async () => {
+        const {data}=await API.getSessionData()
+        let postObj = {
+            //think of a way how to add the current user's id, maybe just from session data on the server side?
+            targetId:data.id,
+            action:'newPost',
+            adventureId:null,
+            postImageUrl:null,
+            postText:post
+        }
+        console.log(postObj)
+        API.postFeed(postObj).then(res=>console.log(res)).catch(err=>console.log(err))
+        setChange(!change)
     }
 
     return (
@@ -133,13 +146,12 @@ function Community() {
                 <div className="postTextArea grid-container fluid">
                     {/* The search or host adventure form on home page */}
                     {/* <form className="grid-container fluid"> */}
-                        <Gridx classes={""}>
+                        <Gridx classes={"grid-margin-x"}>
                             <Cell size='small-8'>
 
                                 <TextArea value={post} onChange={(e) => setPost(e.target.value)} placeholder={'Write something:'}></TextArea>
                             </Cell>
                             <Cell size='small-4'>
-
                                 <Btn onClick={handleSubmit} classes={'button searchAdventure'} text={"Post"} />
                             </Cell>
                         </Gridx>
