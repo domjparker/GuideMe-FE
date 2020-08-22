@@ -20,7 +20,7 @@ function NotFound() {
                     <span>4</span>
                 </section>
                 <div className="link-container">
-                    <Link  to="/" target="blank" className="more-link" >Back to the homepage</Link>
+                    <Link  to="/"  className="more-link" >Back to the homepage</Link>
                 </div>
 
             </Wrapper>
