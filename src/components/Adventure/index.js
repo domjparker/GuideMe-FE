@@ -24,7 +24,7 @@ function Adventure(props) {
   const onSubmit = e => {
     setImage(e.target.files[0]);
   };
-
+  //progress loader state
   const [loaderVisible, setLoaderVisible]=useState(false)
 
   // state to control input values
@@ -137,7 +137,9 @@ function Adventure(props) {
       // from the response received back, the secure url for the image is assigned to variable imageUrl
       const imageUrl = res.data.secure_url;
       console.log("result from cloudinary = " + imageUrl)
+
       setFormObject({ ...formObject, adventureImageUrl: imageUrl })
+
       //make a copy of the state object for manipulation and add the imageUrl
       let postObj = { ...formObject, adventureImageUrl: imageUrl }
 
@@ -152,8 +154,7 @@ function Adventure(props) {
       //handle tags
       postObj.tags = allTags.filter(tag => tagArr.indexOf(tag.tagName) > -1).map(tag => tag._id)
       console.log('postObj.adventureImageUrl = ' + postObj.adventureImageUrl)
-      console.log(postObj)
-      console.log(formObject)
+      
       //add the edited object to database
       API.postNewAdventure(postObj)
         .then(data => {
@@ -162,7 +163,7 @@ function Adventure(props) {
             hostId: '',
             description: '',
             location: '',
-            stateLocation: '',
+            stateLocation: 'Washington',
             itinerary: '',
             time: 1,
             unit: 'hours',
@@ -293,12 +294,12 @@ function Adventure(props) {
                 type="file"
                 text="Upload Image"
               />
-              <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
               <FormBtn
                 disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary && image)}
                 onClick={handleFormSubmit}>
                 Publish Adventure
                 </FormBtn>
+              <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
               {/* close modal button */}
               <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
             </form>
