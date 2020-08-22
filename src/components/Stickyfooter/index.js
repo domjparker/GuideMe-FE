@@ -20,10 +20,7 @@ function Stickyfooter(props) {
     const handleMailboxClose = () => {
         setShowMailbox(false)
     }
-    const signOut = ()=> {
-        API.logOutUser()
-        loginState.changeLoginState(false)
-    }
+    
     return (<>
 
         <div className="grid-container full" id="stickyFooter">
@@ -39,7 +36,7 @@ function Stickyfooter(props) {
                     <button className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
                 </Cell>
                 <Cell size={'small-3'}>
-                <Link to={'/community'} ><i className="fas fa-users community" onClick ={signOut} ></i></Link>
+                <Link to={'/community'} ><i className="fas fa-users community" ></i></Link>
                 </Cell>
             </Gridx>
         </div>
