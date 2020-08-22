@@ -50,6 +50,10 @@ function FlipCard(props) {
     }
     
 
+    const handleHostNameClick = (e) => {
+        e.stopPropagation()
+        history.push({pathname:'/public', state:{userId:props.hostId}})
+    }
     return (
         <>
             {/* TODO: needs a little better thought through layout */}
@@ -62,17 +66,17 @@ function FlipCard(props) {
                                     <h5>{props.title}</h5>
                                 </Cell>
                                 <Cell size={"small-12"}>
-                                    <h6><strong>{props.host}</strong></h6>
+                                    <h6 style={{display:'inline-block'}}><strong>{props.host}</strong></h6>
+                                    {!props.edit && <Btn className="publicProfileIcons" icon={<i className="far fa-user"></i>} classes={'button expanded'} handleClick={handleHostNameClick}/>}
                                     <p>{props.description}</p>
                                 </Cell>
                             </Gridx>
                             <Gridx classes={''}>
-
-
                                 <Cell size={"small-12 medium-12"}>
                                     <h6><strong>Details</strong></h6>
                                     <ul>
                                         <li>Location: {props.location}</li>
+                                        <li>State: {props.stateLocation}</li>
                                         <li>Group size: {props.minGroupSize}-{props.maxGroupSize} </li>
                                         <li>Duration: {props.number} {props.unit} </li>
                                         <li>Difficulty: {props.difficulty} </li>
@@ -94,9 +98,11 @@ function FlipCard(props) {
                                      
                                      
                                     {/* Update Button */}
-                                    {props.edit ? <Btn data-id={props.id} className="editFlipcard" icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update me'} /> : null}
+                                    {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i class="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update'} /> : null}
                                     {/* Delete Button */}
-                                    {props.delete ? <Btn data-id={props.id} className="editFlipcard" icon={<i class="far fa-trash-alt"></i>} classes={'alert button expanded'} handleClick={props.deleteClick} text={'delete me'} /> : null}
+                                    
+                                    {props.delete ? <Btn  data-id={props.id} className="editFlipcard"icon={<i class="far fa-trash-alt"></i>} classes={'alert button expanded'}  handleClick= { props.deleteClick} text={'delete me'} /> : null}
+                                   
                                 </Cell>
 
                             </Gridx>
@@ -110,7 +116,7 @@ function FlipCard(props) {
                                 </div>
                                 <div className="card-section">
                                     <h4>{props.title}</h4>
-                                    <h5>{props.host}</h5>
+                                    <h5 onClick={handleHostNameClick}>{props.host}</h5>
                                     <p>{props.description}</p>
                                 </div>
                             </Cell>

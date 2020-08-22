@@ -11,9 +11,11 @@ import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import API from './util/API'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import io from "socket.io-client";
+import PublicProfile from './pages/PublicProfile'
+// import io from "socket.io-client";
 
 import { loginContext } from './components/LoginContext'
+import LoaderElement from './pages/Loader test';
 
 function App() {
 
@@ -74,6 +76,12 @@ const renderLogIn = () => {
           </Route>
           <Route exact path='/profile'>
               {renderLogIn()}
+          </Route>
+          <Route exact path='/public'>
+            <PublicProfile/>
+          </Route>
+          <Route exact path='/loader'>
+            <LoaderElement/>
           </Route>
           <Route path='*'>
             <NotFound />

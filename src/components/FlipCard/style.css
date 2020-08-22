@@ -1,7 +1,7 @@
 
 .flipcard {
     margin: 10px;
-
+    bottom: 2vh;
 }
 
 .details-heading {
@@ -97,4 +97,11 @@
         margin-right: 0;
         margin-left: 0;
     }
+}
+
+.publicProfileIcons {
+    color:rgba(243, 236, 216,100%);
+    display: inline-block;
+    margin-left: 1rem;
+
 }
