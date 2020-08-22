@@ -100,5 +100,9 @@ export default {
     },
     updateMailbox: (converserObj) => {
         return axios.put(`${prefix}/api/user/mailbox/`,converserObj, {withCredentials:true})
+    },
+    //=====================FEED =============================
+    getFeed : () => {
+        return axios.get(`${prefix}/api/feed`, {withCredentials:true})
     }
 }
