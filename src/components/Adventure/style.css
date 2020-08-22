@@ -11,4 +11,9 @@
 }
 #adventureModal1{
     border-radius:20px;
+    height: 80vh;
+    overflow: scroll;
+    overflow-x: hidden;
 }
+
+
