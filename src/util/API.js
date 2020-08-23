@@ -77,6 +77,18 @@ export default {
     deleteUser : () => {
         return axios.delete(`${prefix}/api/user/profile`, {withCredentials:true})
     },
+    //GET user Availability
+    getAvailability: () =>{
+        return axios.get(`${prefix}/api/user/availability`, {withCredentials:true})  
+    },
+    //GET user Availability by id
+    getAvailabilityById: (id) =>{
+        return axios.get(`${prefix}/api/user/availability/`+ id, {withCredentials:true})  
+    },
+    // UPDATE user Availability
+    updateAvailability: (availObj) => {
+        return axios.put(`${prefix}/api/user/availability`,availObj, {withCredentials:true})
+    },
     //============TAGS==================
     //GET tag by id
     getTagbyId: (id) => {
@@ -100,6 +112,15 @@ export default {
     },
     updateMailbox: (converserObj) => {
         return axios.put(`${prefix}/api/user/mailbox/`,converserObj, {withCredentials:true})
+    },
+    //============BOOKING==================
+    // Get booking by adventure id
+    getBookingByAdventure: (id) =>{
+        return axios.get(`${prefix}/api/booking/adventure/` + id, {withCredentials:true})
+    },
+    //Update booking for logged in user
+    updateBooking: (bookingObj) =>{
+        return axios.post(`${prefix}/api/booking/`, bookingObj, {withCredentials:true})
     },
     //=====================FEED =============================
     //get the feed items
