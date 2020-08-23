@@ -53,8 +53,8 @@ async function loadInitialData () {
       email: data.email,
       bio:data.bio? data.bio:'',
       location:data.location? data.location:'',
+      tags:data.tags? data.tags.map(tag=>tag.tagName):[],
       stateLocation: data.stateLocation? data.stateLocation: '',
-      tags:data.tags? data.tags.map(tag=>tag.tagName).join(", "):'',
       adventureImageUrl: data.adventureImageUrl
     })
 }
@@ -68,6 +68,7 @@ async function loadInitialData () {
     } else if (tagArr.indexOf(event.target.value)<0) {
       //if this tag is not already in the tags array, then put it there
       setTagArr([...tagArr, event.target.value])
+      setDropdownValue(event.target.value)
     }
   }
 
@@ -92,7 +93,8 @@ async function loadInitialData () {
           bio: '',  
           location: '',
           stateLocation: '', 
-          tags: []  })
+          tags: [] 
+        })
          handleModalClose();
       }).catch(err=> console.log(err))
   }

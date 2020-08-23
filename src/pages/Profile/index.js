@@ -16,6 +16,8 @@ import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import AvailabilityUpdate from '../../components/AvailabilityUpdate'
+
 // import Messages from '../../components/Messages'
 // import Mailbox from '../../components/Mailbox' // COMMENTED OUT ON 8/20 @ 12:40AM
 
@@ -34,9 +36,11 @@ function Profile(props) {
     const [modalAdventure, setModalAdventure] = useState(false)
     const [modalAdventureUpdate, setModalAdventureUpdate] = useState({ visible: false, id: '' })
     const [modalUser, setModalUser] = useState(false)
+    const [modalAvailable, setModalAvailable] = useState(false)
     const [modalImage, setModalImage] = useState(false)
     const [picOrBanner, setPicOrBanner] = useState("")
     const [modalTitle, setModalTitle] = useState('')
+
     //modal states end ================================================
 
     //set up page with data
@@ -111,7 +115,9 @@ function Profile(props) {
     //become host button just currently updates status on database,this is what happens here
     const handleBecomeHost = () => {
         let hostObj = { host: true, verified: true }
+        let newGuideObj = { targetId: userData.id, action: "newGuide" , adventureId: null}
         API.updateUser(hostObj).then(() => setChange(!change)).catch(err => console.log(err))
+        API.postFeed(newGuideObj).then((res) => console.log(res)).catch(err => console.log(err))   
     }
 
     //start of modals section ============================================================
@@ -142,6 +148,10 @@ function Profile(props) {
         setPicOrBanner("profilePic")
         setModalTitle("Upload Profile Picture")
     }
+    const handleUpdateAvailClick = () => {
+        //update user info modal open
+        setModalAvailable(true);
+    }
     //methods to close the various modals
     const handleModalAdventureClose = () => {
         //create adventure modal close
@@ -161,6 +171,11 @@ function Profile(props) {
     const handleModalImageClose = () => {
         //update image modal close
         setModalImage(false)
+        setChange(!change)
+    }
+    const handleModalAvailClose = () => {
+        //update user modal close
+        setModalAvailable(false)
         setChange(!change)
     }
     //end of modals section =============================================================
@@ -203,7 +218,9 @@ function Profile(props) {
                                 {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
                                 <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
                             </Cell>
-                        
+                            <Cell size={'medium-4'}>
+                                <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
+                            </Cell>
                             </div>
                         </Cell >
                         <div>
@@ -224,7 +241,7 @@ function Profile(props) {
                                 <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
                                     {(adventureData) ? adventureData.map(adventure => (
                                         <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                            <FlipCard key={adventure._id} id={adventure._id} stateLocation={adventure.stateLocation} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
+                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
 
                                         </Cell>
                                     )) : null}
@@ -238,6 +255,7 @@ function Profile(props) {
                     <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
+                    <AvailabilityUpdate show ={modalAvailable} handleModalClose = {handleModalAvailClose}/>
                     {/* END Modals live here */}
 
                 </div>
