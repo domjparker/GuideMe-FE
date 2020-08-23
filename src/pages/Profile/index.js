@@ -11,7 +11,7 @@ import FlipCard from '../../components/FlipCard'
 import Adventure from '../../components/Adventure'
 import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
-import {loginContext} from '../../components/LoginContext'
+import { loginContext } from '../../components/LoginContext'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
 import { confirmAlert } from 'react-confirm-alert'; // Import
@@ -56,7 +56,7 @@ function Profile(props) {
     const loadUserData = async () => {
         const { data } = await API.getUserbyId();
         setUserData(data);
-        setTagArr(data.tags.map(tag=>tag.tagName))
+        setTagArr(data.tags.map(tag => tag.tagName))
     }
 
     //get the adventures data from database
@@ -66,7 +66,7 @@ function Profile(props) {
             setAdventureData(data)
 
             // else statement removes last adventure card
-        }else{
+        } else {
             setAdventureData([])
         }
     }
@@ -77,23 +77,24 @@ function Profile(props) {
             title: 'Confirm to submit',
             message: 'Are you sure you want to do this.',
             buttons: [
-              {
-                label: 'Yes',
-                onClick: () => { 
-                    API.deleteUser().then(() => {
-                        API.logOutUser()
-                        loginState.changeLoginState(false)
-                    setChange(!change)
-                    history.push('/')
-                }).catch(err => console.log(err))}
-              },
-              {
-                label: 'No',
-                onClick: () => {}
-              }
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        API.deleteUser().then(() => {
+                            API.logOutUser()
+                            loginState.changeLoginState(false)
+                            setChange(!change)
+                            history.push('/')
+                        }).catch(err => console.log(err))
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => { }
+                }
             ]
-          });
-    
+        });
+
     }
 
     //delete the adventure -- this method is passed into the FlipCard component because the delete button lives on the FlipCard
@@ -104,7 +105,7 @@ function Profile(props) {
             .then(() => {
                 setChange(!change)
                 // setModalAdventure(false)
-               
+
             })
             .catch(err => console.log(err))
     }
@@ -179,7 +180,7 @@ function Profile(props) {
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img style={{height: '20vh',width: '20vh', borderRadius: '50%'}} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <img style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                             <h2>{userData.firstName} {userData.lastName}</h2>
                             <p>{userData.location}</p>
                             <p>{userData.stateLocation}</p>
@@ -188,22 +189,22 @@ function Profile(props) {
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
                         <Cell size={"small-12 medium-6 "} >
                             <div className='createBtnColumn'>
-                            {userData.host ?
-                                <Cell size={'medium-4'} >
-                                    <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
-                                </Cell>
-                                :
+                                {userData.host ?
+                                    <Cell size={'medium-4'} >
+                                        <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
+                                    </Cell>
+                                    :
+                                    <Cell size={'medium-4'}>
+                                        <Btn className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>} classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
+                                    </Cell>
+                                }
                                 <Cell size={'medium-4'}>
-                                    <Btn  className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>}classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
+                                    <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
                                 </Cell>
-                            }
-                            <Cell size={'medium-4'}>
-                                <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
-                            </Cell>
-                            <Cell size={'medium-4'}>
-                                {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
-                                <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
-                            </Cell>
+                                <Cell size={'medium-4'}>
+                                    {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
+                                    <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>} classes={'alert button expanded'} handleClick={handleDeleteUser} text={' Account'} />
+                                </Cell>
                             </div>
                         </Cell >
 
@@ -228,8 +229,9 @@ function Profile(props) {
                                 </Gridx>
                                 {/* comment/review populate here */}
                                 <Gridx>
-                                    <Review />
-
+                                    <Cell>
+                                        <Review />
+                                    </Cell>
                                 </Gridx>
                             </>
                         )}
