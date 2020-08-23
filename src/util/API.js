@@ -79,7 +79,7 @@ export default {
     },
     //GET user Availability
     getAvailability: () =>{
-        return axios.get(`${prefix}/api/user/availability/`, {withCredentials:true})  
+        return axios.get(`${prefix}/api/user/availability`, {withCredentials:true})  
     },
     //GET user Availability by id
     getAvailabilityById: (id) =>{
@@ -87,7 +87,7 @@ export default {
     },
     // UPDATE user Availability
     updateAvailability: (availObj) => {
-        return axios.put(`${prefix}/api/user/availability/`,availObj, {withCredentials:true})
+        return axios.put(`${prefix}/api/user/availability`,availObj, {withCredentials:true})
     },
     //============TAGS==================
     //GET tag by id
