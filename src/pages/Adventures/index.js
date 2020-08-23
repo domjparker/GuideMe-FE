@@ -80,7 +80,8 @@ function Adventures() {
                 </div>
 
                 <div className="grid-container full">
-                    <Gridx classes={'grid-margin-x grid-margin-y'}>
+                    <Gridx classes={'grid-margin-x grid-margin-y flipCardContainer'}>
+                    
                         {/* This puts the adventures on the page, see FlipCard for more info */}
                         {(adventures.length)? adventures.map(adventure => 
                         <Cell key={adventure.hostId + " " + adventure._id} size={'medium-6 large-4'}>
