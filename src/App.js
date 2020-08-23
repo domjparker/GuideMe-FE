@@ -56,6 +56,14 @@ const renderLogIn = () => {
   }
 }
 
+const renderCommunityLogin = () => {
+  if (haveData && user.loggedIn) {
+    return <Community/>
+  } else if (haveData) {
+   return <Login/>
+  }
+}
+
 
   return (
     <Router>
@@ -81,7 +89,7 @@ const renderLogIn = () => {
             <PublicProfile/>
           </Route>
           <Route exact path='/community'>
-            <Community/>
+            {renderCommunityLogin()}
           </Route>
           <Route path='*'>
             <NotFound />
