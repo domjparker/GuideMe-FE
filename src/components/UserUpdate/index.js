@@ -93,7 +93,8 @@ async function loadInitialData () {
           bio: '',  
           location: '',
           stateLocation: '', 
-          tags: []  })
+          tags: [] 
+        })
          handleModalClose();
       }).catch(err=> console.log(err))
   }
