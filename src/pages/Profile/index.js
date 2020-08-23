@@ -229,7 +229,7 @@ function Profile(props) {
                                 </Gridx>
                                 {/* comment/review populate here */}
                                 <Gridx>
-                                    <Cell>
+                                    <Cell size={"medium-4"}>
                                         <Review />
                                     </Cell>
                                 </Gridx>

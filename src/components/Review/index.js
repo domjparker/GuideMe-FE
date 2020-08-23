@@ -52,41 +52,41 @@ function Review(props) {
             }).catch(err => console.log(err))
         setLoaderVisible(false)
 
-        return (
-            <div className={showHideModal} id="reviewModal1">
-                <h1>Leave a review</h1>
-                <p className="lead">Publish a review for the masses to enjoy. All fields are required</p>
-                <div className="grid-container fluid">
-                    <Gridx>
-                        <Cell size="">
-                            {/* <StarRating></StarRating> */}
-                            <form className="star" onSubmit={handleFormSubmit}>
-                                <Input
-                                    value={reviewObj.title}
-                                    name="title"
-                                    onChange={handleInputChange}
-                                    type="text"
-                                    placeholder="Review"
-                                    required
-                                />
-                                <TextArea
-                                    onChange={handleInputChange}
-                                    value={reviewObj.TextArea}
-                                    name="comment"
-                                    placeholder="Comment (Optional)"
-                                />
-                                <FormBtn
-                                    onClick={handleFormSubmit}>
-                                    Publish Review
-                               </FormBtn>
-                                <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
-                            </form>
-                        </Cell>
-                    </Gridx>
-                </div>
-            </div>
-        );
-    };    
-}
 
+    };
+    return (
+        <div className={showHideModal} id="reviewModal1">
+            <h1>Leave a review</h1>
+            <p className="lead">Publish a review for the masses to enjoy. All fields are required</p>
+            <div className="grid-container fluid">
+                <Gridx>
+                    <Cell size="">
+                        {/* <StarRating></StarRating> */}
+                        <form className="star" onSubmit={handleFormSubmit}>
+                            <Input
+                                value={reviewObj.title}
+                                name="title"
+                                onChange={handleInputChange}
+                                type="text"
+                                placeholder="Review"
+                                required
+                            />
+                            <TextArea
+                                onChange={handleInputChange}
+                                value={reviewObj.TextArea}
+                                name="comment"
+                                placeholder="Comment (Optional)"
+                            />
+                            <FormBtn
+                                onClick={handleFormSubmit}>
+                                Publish Review
+                               </FormBtn>
+                            <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
+                        </form>
+                    </Cell>
+                </Gridx>
+            </div>
+        </div>
+    );
+}
 export default Review

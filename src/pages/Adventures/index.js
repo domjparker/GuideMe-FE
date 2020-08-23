@@ -9,6 +9,9 @@ import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useLocation } from 'react-router-dom'
 import { stateLocation } from '../../components/StateLocations'
+import Btn from '../../components/Btn'
+import Review from '../../components/Review'
+
 
 
 
@@ -34,6 +37,11 @@ function Adventures() {
     const [searchTerm, setSearchTerm] = useState(tag);
     const [searchTermState, setSearchTermState] = useState(stateName);
     const [tags, setTags] = useState([])
+    const [modalCreateReview, setModalReview] = useState({ visible: false, id: '' })
+    //state to check for changes in data to call useEffect and reload data
+    const [change, setChange] = useState(false)
+
+
 
 
     //load adventures on page load
@@ -61,6 +69,18 @@ function Adventures() {
         setAdventures(adventureArr)
     }
 
+    // modal for review
+    const createReviewClick = () => {
+        setModalReview(true);
+    }
+    // close modal for review
+    const handleModalCreateReviewClose = () => {
+        //create adventure modal close
+        setModalReview(false)
+        setChange(!change)
+    }
+
+
     return (
         <>
             <Wrapper>
@@ -80,16 +100,21 @@ function Adventures() {
                 </div>
 
                 <div className="grid-container full">
+
                     <Gridx classes={'grid-margin-x grid-margin-y'}>
                         {/* This puts the adventures on the page, see FlipCard for more info */}
                         {(adventures.length) ? adventures.map(adventure =>
                             <Cell key={adventure.hostId + " " + adventure._id} size={'medium-6 large-4'}>
                                 <FlipCard key={adventure._id} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} tags={adventure.tags.map(item => item.tagName)} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} hostId={adventure.hostId._id} />
+                                <Btn className="reviewBtn" icon={<i className="fas fa-comments"></i>} classes={'button expanded'} handleClick={createReviewClick} text={'Reviews'} />
                             </Cell>
                         ) : null}
                     </Gridx>
+
+                    {/* Modal lives here */}
+                    <Review show={modalCreateReview.visible} handleModalClose={handleModalCreateReviewClose} id={modalCreateReview.id} />
                 </div>
-            </Wrapper>
+            </Wrapper >
         </>
     )
 }
