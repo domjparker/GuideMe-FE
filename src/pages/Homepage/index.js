@@ -1,6 +1,6 @@
 //HOMEPAGE  this is the first page you arrive at
 import React, { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import './style.css'
 import Btn from '../../components/Btn'
 import Wrapper from '../../components/Wrapper'
