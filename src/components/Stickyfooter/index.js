@@ -20,10 +20,7 @@ function Stickyfooter(props) {
     const handleMailboxClose = () => {
         setShowMailbox(false)
     }
-    const signOut = ()=> {
-        API.logOutUser()
-        loginState.changeLoginState(false)
-    }
+    
     return (<>
 
         <div className="grid-container full" id="stickyFooter">
