@@ -42,6 +42,7 @@ function Community() {
             userName: `${feedObj.targetId.firstName} ${feedObj.targetId.lastName}`,
             date: moment(feedObj.createdAt).format('LLL'),
             profilePictureUrl: feedObj.targetId.profilePictureUrl,
+            adventureImageUrl: feedObj.adventureId.adventureImageUrl
             userId: feedObj.targetId._id,
             id: feedObj._id
         }
