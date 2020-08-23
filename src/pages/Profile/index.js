@@ -111,7 +111,9 @@ function Profile(props) {
     //become host button just currently updates status on database,this is what happens here
     const handleBecomeHost = () => {
         let hostObj = { host: true, verified: true }
+        let newGuideObj = { targetId: userData.id, action: "newGuide" , adventureId: null}
         API.updateUser(hostObj).then(() => setChange(!change)).catch(err => console.log(err))
+        API.postFeed(newGuideObj).then((res) => res.status(204)).catch(err => console.log(err))   
     }
 
     //start of modals section ============================================================
