@@ -60,11 +60,11 @@ function Adventures() {
     const loadAdventures = async (activity, state) => {
         const { data } = await API.getAllAdventures()
         let adventureArr = [...data]
-        if (activity) {
-            adventureArr = adventureArr.filter(adventure => adventure.tags.map(tag => tag = tag.tagName).indexOf(activity) >= 0)
+        if (activity && activity !== 'Activity') {
+            adventureArr=adventureArr.filter(adventure=> adventure.tags.map(tag=>tag=tag.tagName).indexOf(activity)>=0)
         }
-        if (state) {
-            adventureArr = adventureArr.filter(adventure => adventure.stateLocation.indexOf(state) >= 0)
+        if (state && state !== 'Location') {
+            adventureArr=adventureArr.filter(adventure=> adventure.stateLocation.indexOf(state)>=0)
         }
         setAdventures(adventureArr)
     }
@@ -108,7 +108,7 @@ function Adventures() {
                                 <FlipCard key={adventure._id} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} tags={adventure.tags.map(item => item.tagName)} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} hostId={adventure.hostId._id} />
                                 <Btn className="reviewBtn" icon={<i className="fas fa-comments"></i>} classes={'button expanded'} handleClick={createReviewClick} text={'Reviews'} />
                             </Cell>
-                        ) : null}
+                         ) : <h3 style={{marginTop:"2vh"}}>I can't find any adventures meeting those search terms, please try again</h3>}
                     </Gridx>
 
                     {/* Modal lives here */}
