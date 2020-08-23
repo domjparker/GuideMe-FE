@@ -3,15 +3,17 @@ import './style.css'
 
 import API from '../../util/API'
 // import PopupChat from '../PopupChat'
-
+import io from "socket.io-client";
 
 function Messages(props) {
 
     const id = props.id
+
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
         loadMessages()
+
 
     }, [])
     const loadMessages = async () => {
@@ -28,7 +30,7 @@ function Messages(props) {
                 {
                     (messages.length > 0) ? messages.map(item =>
                         <div>
-                            <img className="sender-thumbnail" src={item.senderId.profilePictureUrl}></img>  {item.messageText}
+                            <img className="sender-thumbnail" src={item.senderId.profilePictureUrl} alt={item.senderId.firstName}></img>  {item.messageText}
                         </div>)
                         : null}
             </div>

@@ -1,0 +1,17 @@
+.feedContainer {
+    margin-top: 3vh;
+    margin-left: 2vw;
+    margin-right:2vw;
+}
+
+textarea.form-control{
+    width:100%
+}
+
+.postTextArea {
+    justify-content:center;
+    border-radius: 10px;
+    background-color: rgba(39, 36, 27, 95%);
+    color:rgba(243, 236, 216,100%);
+    padding-top: 5px;
+}

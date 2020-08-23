@@ -1,12 +1,18 @@
 //signin form -- member of the Login page component
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom'
 import "./style.css";
 import { Input, FormBtn } from "../Form"
 import API from '../../util/API'
+import {loginContext} from '../LoginContext'
+
+
+
 
 function SignIn(props) {
   let history = useHistory();
+  //grab the value passed by context provider
+  const loginState = useContext(loginContext)
   //set state of input field values  
   const [loginObj, setloginObj] = useState({email:'', password:''})
   //control form input field values
@@ -26,7 +32,7 @@ function SignIn(props) {
       event.preventDefault();
       if (!loginObj.email) {
         //TODO:use something other than alert here please
-        alert("Fill out email!");
+       
         return;
       } else if (loginObj.password.length < 1) {
         //TODO:use something other than alert here please
@@ -37,26 +43,30 @@ function SignIn(props) {
       }
       API.loginUser(loginObj).then(res=>{
         console.log(res)
-        props.logMeIn(true)
+        loginState.changeLoginState(true)
         //upon successful login, send me to profile page
         //TODO:make this take me back to where i came from
+        // loginState.socket.emit('login', res.data.id)
         history.push("/profile")
       }
       ).catch(err=>console.log(err))
     };
   
       return (
-        <div>
+        <div className='fillPage'>
           <p>
             Welcome Back!
           </p>
-          <form className="signin">
+          <form className="signin" onSubmit={handleFormSubmit}>
             <Input
               value={loginObj.email}
               name="email"
               onChange={handleInputChange}
               type="text"
               placeholder="Email"
+              required
+              
+              
             />
             <Input
               value={loginObj.password}
@@ -64,8 +74,10 @@ function SignIn(props) {
               onChange={handleInputChange}
               type="password"
               placeholder="Password"
+              required
             />
-            <FormBtn onClick={handleFormSubmit} children={'Sign in'}/>
+            
+            <FormBtn  children={'Sign in'}/>
           </form>
         </div>
       );

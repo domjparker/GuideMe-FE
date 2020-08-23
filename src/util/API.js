@@ -40,6 +40,10 @@ export default {
     getUserbyId: () => {
         return axios.get(`${prefix}/api/user/profile`, {withCredentials:true})
     },
+    //GET user by hostID
+    getUserProfilebyId: (id) => {
+        return axios.get(`${prefix}/api/user/profile/` + id, {withCredentials:true})
+    },
     //GET session data
     getSessionData : () => {
         return axios.get(`${prefix}/api/user/getSession`, {withCredentials:true})
@@ -51,6 +55,9 @@ export default {
     //POST user login
     loginUser : (loginObj) => {
         return axios.post(`${prefix}/api/user/login`, loginObj, {withCredentials:true} )
+    },
+    logOutUser : () => {
+        return axios.post(`${prefix}/api/user/logout`,{}, {withCredentials:true} )
     },
     //PUT profile picture
     updatePicture : (pictureObj) => {
@@ -69,6 +76,18 @@ export default {
     //DELETE userprofile
     deleteUser : () => {
         return axios.delete(`${prefix}/api/user/profile`, {withCredentials:true})
+    },
+    //GET user Availability
+    getAvailability: () =>{
+        return axios.get(`${prefix}/api/user/availability`, {withCredentials:true})  
+    },
+    //GET user Availability by id
+    getAvailabilityById: (id) =>{
+        return axios.get(`${prefix}/api/user/availability/`+ id, {withCredentials:true})  
+    },
+    // UPDATE user Availability
+    updateAvailability: (availObj) => {
+        return axios.put(`${prefix}/api/user/availability`,availObj, {withCredentials:true})
     },
     //============TAGS==================
     //GET tag by id
@@ -93,5 +112,23 @@ export default {
     },
     updateMailbox: (converserObj) => {
         return axios.put(`${prefix}/api/user/mailbox/`,converserObj, {withCredentials:true})
+    },
+    //============BOOKING==================
+    // Get booking by adventure id
+    getBookingByAdventure: (id) =>{
+        return axios.get(`${prefix}/api/booking/adventure/` + id, {withCredentials:true})
+    },
+    //Update booking for logged in user
+    updateBooking: (bookingObj) =>{
+        return axios.post(`${prefix}/api/booking/`, bookingObj, {withCredentials:true})
+    },
+    //=====================FEED =============================
+    //get the feed items
+    getFeed : () => {
+        return axios.get(`${prefix}/api/community/`, {withCredentials:true})
+    },
+    //make a post onto the feed
+    postFeed : (feedObj) => {
+        return axios.post(`${prefix}/api/community/`,feedObj, {withCredentials:true})
     }
 }

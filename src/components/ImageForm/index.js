@@ -1,9 +1,12 @@
 //Image upload component to update new image to database --at the moment member of Profile page component
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+// , useEffect this was taken from inside curly braces above to get rid of warning in terminal.
+
 import axios from 'axios';
 import API from '../../util/API'
 import Btn from '../Btn'
 import './style.css'
+import Loader from 'react-loader-spinner'
 
 // base url for Cloudinary query needed to upload images
 const url = 'https://api.cloudinary.com/v1_1/yestoskydiving/image/upload';
@@ -14,6 +17,10 @@ function ImageForm(props) {
   const handleModalClose = () => {
     props.handleModalClose()
   }
+
+    //progress loader state
+    const [loaderVisible, setLoaderVisible]=useState(false)
+
 
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,12 +34,12 @@ function ImageForm(props) {
     preset = 'guidemeprofilepic';
   } else if ( props.type === "bannerPic") { 
     preset = 'guidemebannerpic'
-  } else { 
-    preset = 'guidemeadventurepic'}
+  } 
 
   // on submit, a new FormData object is constructed
   const onSubmit = async () => {
-    console.log("we got here 1")
+    setLoaderVisible(true)
+    
     const formData = new FormData();
     // the intended image and the preset are appended to the FormData object
     formData.append('file', image);
@@ -41,10 +48,8 @@ function ImageForm(props) {
       setLoading(true);
       // axios call is made to cloudinary url in order to load the FormData object, and awaited response is assigned to variable 'res'
       const res = await axios.post(url, formData);
-      console.log("we got here 2")
       // from the response received back, the secure url for the image is assigned to variable imageUrl
       const imageUrl = res.data.secure_url;
-      console.log(imageUrl)
 
       // call the route w and the url content
       //IF base on the props.type this call depend of the props.type API.updateBanner(imageUrl)
@@ -55,39 +60,30 @@ function ImageForm(props) {
       else if (props.type === "bannerPic"){
         API.updateBanner({ profileBannerUrl: imageUrl })
         console.log("imageUrl was sent to backend profileBannerUrl")
-      }else{
-        console.log("No api calls!");
-        props.urlUpdate(imageUrl)
-       
       }
-      
-
+    
       setLoading(false);
-      setImage(image.data);
+      setImage(imageUrl);
       handleModalClose()
     } catch (err) {
       console.error(err);
     }
+    setLoaderVisible(false)
   };
 
   return (
     <div className={showHideModal} id="exampleModal1">
-      <h3>Upload {props.modalTitle}</h3>
-      <div className='container'>
-        <div className='file-field input-field'>
-          <div className='button small expanded '>
-            {/* <span>Browse</span> */}
+      <h3>{props.modalTitle}</h3>
+          <div className='button expanded'>
             <input type='file' name='image' onChange={onChange} />
           </div>
-        </div>
-        <div className='center'>
           <button onClick={onSubmit} className='button small expanded'>
             upload
           </button>
-        </div>
-      </div>
+          <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
       {/* close modal button */}
-      <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
+    <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
+    
     </div>
   )
 };

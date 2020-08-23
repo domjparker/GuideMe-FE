@@ -4,7 +4,8 @@ light beige (TEXT) rgba(243, 236, 216,100%)
 contrasting orange rgba(207, 162, 66, 100%)
 dark red for delete etc rgba(204, 75, 55, 100%)
 dark grey (TEXT) rgba(39, 36, 27, 100%)
-light gray rgba(85, 91, 87, 100%) */
+light gray rgba(85, 91, 87, 100%) 
+ground stone mustard anything with .reveal rgb(120, 105, 61);*/
 
 body {
   margin: 0;
@@ -15,6 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: rgba(59, 59, 59, 100%);
   background-color:  lightgray;
+  min-height: 100vh;
 }
 
 code {

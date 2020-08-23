@@ -1,15 +1,19 @@
 //HOMEPAGE  this is the first page you arrive at
 import React, { useState, useEffect } from 'react'
-import './style.css'
-import Wrapper from '../../components/Wrapper'
 import { useHistory } from 'react-router-dom'
+import './style.css'
+import Btn from '../../components/Btn'
+import Wrapper from '../../components/Wrapper'
 import API from '../../util/API'
+import { Dropdown } from '../../components/Form'
+import {stateLocation} from '../../components/StateLocations'
 
 function Homepage() {
     //tells the url what you searched for
     let history = useHistory()
-    //serach input state
+    //search input state
     const [searchTerm, setSearchTerm] = useState('');
+    const [searchTermState, setSearchTermState] = useState('');
     const [tags, setTags] = useState([])
     //submit button click
     useEffect(() => {
@@ -17,7 +21,8 @@ function Homepage() {
     }, [])
     const handleSubmit = (event) => {
         event.preventDefault()
-        history.push(`/adventures/${searchTerm.toLowerCase()}`)
+        // send the state of searchTerm and searchTermState to the adventures page
+        history.push({pathname:'/adventures', state:{tag:searchTerm.toLowerCase(), stateName:searchTermState}})
     }
 
     const handleHostAdventureClick = () => {
@@ -25,7 +30,6 @@ function Homepage() {
     }
     //TODO:change this up to use components: Btn
     return (
-
         <>
             <Wrapper>
 
@@ -35,18 +39,21 @@ function Homepage() {
                         <div className="callout">
                             {/* The search or host adventure form on home page */}
                             <div className="container searchBox">
-
                                 <select onChange={(e) => { setSearchTerm(e.target.value) }} className="findAdventure">
-                                    <option>Adventure awaits</option>
+                                    <option>Activity</option>
                                     {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
                                 </select>
-                                <button onClick={handleSubmit} className="button searchAdventure" > Search</button>
+                                <select onChange={(e) => { setSearchTermState(e.target.value)}} value={searchTermState} className="findAdventure">
+                                    <option>Location</option>
+                                    {stateLocation ? stateLocation.map(state=> <option key={stateLocation.indexOf(state)} value={state}>{state}</option>) : null}
+                                </select>
+                                <Btn onClick={handleSubmit} classes={'button searchAdventure'} text={"Search"} />
                             </div>
-                            <button onClick={handleHostAdventureClick} className="button hostAdventure"> Host Adventure</button>
+                            <Btn onClick={handleHostAdventureClick} classes={"button hostAdventure"} text={ "Host Adventure"}/>
                         </div>
                     </div>
                 </div>
-                {/* TODO: short intro */}
+               TODO: short intro
 
                 <article >
                     <div className="howToUse">
@@ -55,7 +62,7 @@ function Homepage() {
                         <p className="introduction"><strong>
                             An easy way to choose your own adventure.
                            
-                       <br /> If you’re the kind of traveler that loves finding those off the beaten path excursions:
+                       <br /> If you’re the kind of traveler that loves finding those off the beaten path excursions:</strong></p>
                       <div className="instructions">
                         <ul>
                             <li> On the homepage select the kind of activity you’re looking for from the ‘Adventure awaits’ drop down menu.
@@ -85,9 +92,6 @@ function Homepage() {
                            <h3> <strong>If you need to get back to the homepage from anywhere on the site, just click the logo on the top left.</strong></h3>
                             </ul>
                         </div>
-            
-                        </strong>
-                        </p>
                     </div>
                 </article>
 

@@ -1,0 +1,22 @@
+.calloutAdventures{ 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    border-radius: 10px;
+    background-color: rgba(39, 36, 27, 95%);
+    color:rgba(243, 236, 216,100%);
+  }
+.flipCardContainer{
+  margin-top: 10px;
+}
+
+.searchBoxAventures{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+select .findAdventureAdventures{
+  width: 100%;
+   margin: 0.4rem;
+  }
+
