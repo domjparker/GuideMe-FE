@@ -4,7 +4,7 @@ import "./style.css";
 import { Input, FormBtn } from "../Form"
 import API from '../../util/API'
 
-function SignUp() {
+function SignUp(props) {
   //signup iobject, holds values of the input fields
   const [signupObj, setSignupObj] = useState({ firstName: '', lastName: '', email: '', password: '' })
 
@@ -21,7 +21,10 @@ function SignUp() {
   // makes a POST request to database for new user
   const handleFormSubmit = event => {
     event.preventDefault();
-    API.postNewUser(signupObj).then(res => console.log(res)).catch(err => console.log(err))
+    API.postNewUser(signupObj).then(res => {
+      console.log(res)
+      props.changeAccordion()
+    }).catch(err => console.log(err))
     //reset form to empty
     setSignupObj({ firstName: '', lastName: '', email: '', password: '' })
   };
