@@ -76,9 +76,9 @@ const renderCommunityLogin = () => {
             <Homepage />
           </Route>
           {/* keep an eye out for edge case. Might need to delete 'exact' */}
-          <Route exact path='/adventures/:tag'>
+          {/* <Route exact path='/adventures/:tag'>
             <Adventures />
-          </Route>
+          </Route> */}
           <Route exact path='/adventures/'>
             <Adventures />
           </Route>

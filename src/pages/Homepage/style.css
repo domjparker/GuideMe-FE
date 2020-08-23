@@ -1,27 +1,25 @@
 
 .homepage {
-   
-    opacity: 0.9;
-    background: url("../../images/homepage.jpg") 50% no-repeat;
-    background-size: cover;
-    height: 60vh;
-    text-align: center;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
- 
-  }
+  opacity: 0.9;
+  background: url("../../images/lonelywanderer.jpg") 50% no-repeat;
+  background-size: cover;
+  height: 60vh;
+  text-align: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
  
   .hpTitle {
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Quicksand', cursive;
     margin:1rem;
     display: flex;
     justify-content: center;
-    color: rgba(243, 236, 216,100%);
-    text-shadow: 1px 1px 2px rgba(39, 36, 27, 100%);
+    color: rgba(19,131,242, 100%);
+    font-size: xx-large;
    
   }
   .callout{
@@ -32,27 +30,18 @@
     flex-wrap: wrap;
     justify-content:center;
     border-radius: 10px;
-    background-color: rgba(39, 36, 27, 100%);
+    background-color: rgba(235,240,235,50%);
   }
 
 
-.searchBox{
+.searchBox, .findAdventure{
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
 }
-.findAdventure  {
-  width: 60%;
-   margin: 0.4rem;
-   
-  }
   
   .searchAdventure{
-    max-width: 35%;
-    max-height: 60%;
-    margin-top: 0.5rem;
+    width:100%;
     border-radius: 5px;
-    color:rgba(39, 36, 27, 100%);
+    color:rgba(28,33,1,100%);
     background-color: rgba(225, 215, 205, 100%);
   }
 
@@ -61,9 +50,14 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    color:rgba(39, 36, 27, 100%);
-    background-color: rgba(207, 162, 66, 100%);
- 
+    color:rgba(28,33,1,100%);
+    background:none;
+  }
+
+  .hostAdventureDiv {
+    padding:0.2rem;
+    width:100%;
+    background-color: rgba(235,240,235,50%);
   }
  
   .searchAdventure :hover{
@@ -71,22 +65,18 @@
   }
 
   .firstChar {
-    color:rgba(86, 121, 4, 100%);
-    font-family: 'Gloria Hallelujah', cursive;
+    color:rgba(19,131,242, 100%);
     float: left;
     font-size: 55px;
     line-height: 60px;
     padding-top: 7px;
     padding-right: 3px;
     padding-left: 10px;
-    text-shadow: 1px 1px 2px rgb(5, 5, 5);
 
 }
 .introLine, .guideTitle{
   font-size: 27px;
-  color: rgb(86, 121, 4);
-  text-shadow: 1px 1px 2px rgba(5, 5, 5, 100%);
-  font-family: 'Gloria Hallelujah', cursive;
+  color: rgba(19,131,242, 100%);
   letter-spacing: 2px;
 }
 
@@ -95,13 +85,13 @@
 .instructions{
   margin-top: 20px;
 }
-.howToUse{
-  background-color: whitesmoke;
-  opacity: .8;
-}
+
 .introduction{
   margin: 10px;
   margin-top: 15px;
   
 }
 
+.howToUse {
+  margin-top:50px;
+}

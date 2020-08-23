@@ -3,7 +3,6 @@
 .error-container {
   text-align: center;
   font-size: 180px;
-  font-family: 'Catamaran', sans-serif;
   font-weight: 800;
   margin: 20px 15px;
 }
@@ -131,7 +130,6 @@
 }
 
 html, button, input, select, textarea {
-    font-family: 'Montserrat', Helvetica, sans-serif;
     color: #92a4ad;
 }
 .errorpage {
