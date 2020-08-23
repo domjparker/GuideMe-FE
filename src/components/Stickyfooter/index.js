@@ -29,14 +29,15 @@ function Stickyfooter(props) {
                 <Cell size={'small-3 text-left'} >
                     <Link to="/adventures"><i className="fas fa-search search"></i></Link>
                 </Cell>
-                <Cell size={'small-3 text-right' + (props.loggedIn ? ' loggedIn' : '')} id="profileIcon">
-                    <Link to={'/profile'} ><i className="fas fa-hiking hiking"></i></Link>
+                <Cell size={'small-3'}>
+                <Link to={'/community'} ><i className="fas fa-users community"  ></i></Link>
                 </Cell>
                 <Cell size={'small-3'} id="messages">
                     <button className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
                 </Cell>
-                <Cell size={'small-3'}>
-                <Link to={'/community'} ><i className="fas fa-users community"  ></i></Link>
+              
+                <Cell size={'small-3 text-right' + (props.loggedIn ? ' loggedIn' : '')} id="profileIcon">
+                    <Link to={'/profile'} ><i className="fas fa-hiking hiking"></i></Link>
                 </Cell>
             </Gridx>
         </div>
