@@ -9,6 +9,7 @@ import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useLocation } from 'react-router-dom'
 import { stateLocation } from '../../components/StateLocations'
+import Booking from '../../components/Booking'
 import Btn from '../../components/Btn'
 import Review from '../../components/Review'
 
@@ -30,7 +31,24 @@ function Adventures() {
         stateName = null
     }
 
+    // const [change, setChange] = useState(false)
+    const [modalBooking, setModalBooking] = useState(false)
+    const [bookingHostId, setBookingHostId] = useState()
+    const [bookingAdventuretId, setBookingAdventureId] = useState()
 
+    const handleModalBookingClose = () => {
+        //update user modal close
+        setModalBooking(false)
+        // setChange(!change)
+    }
+    const handleModalBookingOpen = (id, adventureId) => {
+        console.log(adventureId)
+        //update user modal close
+        setBookingHostId(id)
+        setBookingAdventureId(adventureId)
+        setModalBooking(true)
+        // setChange(!change)
+    }
 
     //list of relevant adventures
     const [adventures, setAdventures] = useState([])
@@ -114,7 +132,7 @@ function Adventures() {
                         {/* This puts the adventures on the page, see FlipCard for more info */}
                         {(adventures.length) ? adventures.map(adventure =>
                             <Cell key={adventure.hostId + " " + adventure._id} size={'medium-6 large-4'}>
-                                <FlipCard key={adventure._id} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} tags={adventure.tags.map(item => item.tagName)} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} hostId={adventure.hostId._id} />
+                                <FlipCard key={adventure._id} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} tags={adventure.tags.map(item => item.tagName)} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} hostId={adventure.hostId._id }bookingModalOpen = {handleModalBookingOpen} adventureId = {adventure._id}/>
                                 <Btn className="reviewBtn" icon={<i className="fas fa-comments"></i>} classes={'button expanded'} handleClick={(e) => {e.stopPropagation(); createReviewClick(adventure._id)}} text={'Reviews'} />
                             </Cell>
                          ) : <h3 style={{marginTop:"2vh"}}>I can't find any adventures meeting those search terms, please try again</h3>}
@@ -122,8 +140,13 @@ function Adventures() {
 
                     {/* Modal lives here */}
                     <Review show={modalCreateReview.visible} handleModalClose={handleModalCreateReviewClose} id={modalCreateReview.id} />
+                    <Booking show ={modalBooking} handleModalClose = {handleModalBookingClose} hostId = {bookingHostId} adventureId = {bookingAdventuretId}/>
+                    {/* END Modals live here */}
+
                 </div>
-            </Wrapper >
+
+                
+            </Wrapper>
         </>
     )
 }
