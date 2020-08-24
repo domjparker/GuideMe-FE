@@ -8,7 +8,7 @@ import Btn from '../Btn'
 
 function Review(props) {
 
-    let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+    let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
     const handleModalClose = () => {
         props.handleModalClose()
     }
@@ -37,9 +37,6 @@ function Review(props) {
     };
     const handleFormSubmit = event => {
         event.preventDefault();
-        console.log(props.id)
-        console.log (reviewObj)
-
         //add the edited object to database
         API.createReview(reviewObj)
             .then(data => {
@@ -49,7 +46,8 @@ function Review(props) {
 
     };
     return (
-        <div className={showHideModal} id="reviewModal1">
+        <div className={"overlay " + showHideModal}>
+        <div className={"modalBody"} id="exampleModal1">
             <h1>Leave a review</h1>
             <p className="lead">Publish a review for the masses to enjoy. All fields are required</p>
             <div className="grid-container fluid">
@@ -88,6 +86,7 @@ function Review(props) {
                     </Cell>
                 </Gridx>
             </div>
+        </div>
         </div>
     );
 }
