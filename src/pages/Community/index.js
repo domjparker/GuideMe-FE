@@ -50,15 +50,18 @@ function Community() {
         } else {
         newObj.location = '';  
         }
+        if (feedObj.postImageUrl) {
+            newObj.postImageUrl = `${feedObj.postImageUrl}`
+        } 
         switch (feedObj.action) {
             case 'newUser':
-                    newObj.text= ` joined GuideMe! Welcome, ${feedObj.targetId.firstName}, we wish you many story worthy adventures with us!`
+                    newObj.text= ` joined GuideMe! Welcome, ${feedObj.targetId.firstName}, we wish you many story-worthy adventures with us!`
                 break;
             case 'newGuide':
                 newObj.text= ` became a verified guide! Congrats, ${feedObj.targetId.firstName}, we look forward to going places with you!`
                 break;
             case 'newAdventure':
-                    newObj.text= ` published a new adventure! ${feedObj.adventureId.adventureName} sure sounds exciting!`
+                    newObj.text= ` published a new adventure! ${feedObj.adventureId.adventureName} sure sounds exciting!` 
                 break;
             case 'newReview':
                 console.log('newReview')
@@ -107,7 +110,7 @@ function Community() {
                 </div>
                 <Gridx classes={'feedContainer grid-margin-y'}>
 
-                    {feed && feed.map(item => <Post key={item.id} userId={item.userId} userName={item.userName} date={item.date} text={item.text} profilePictureUrl={item.profilePictureUrl} location={item.location} />)}
+                    {feed && feed.map(item => <Post key={item.id} userId={item.userId} userName={item.userName} date={item.date} text={item.text} profilePictureUrl={item.profilePictureUrl} location={item.location} postImageUrl={item.postImageUrl}/>)}
                 </Gridx>
             </Wrapper>
         </>
