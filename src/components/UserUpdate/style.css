@@ -1,21 +1,19 @@
-.reveal.d-block {
+.modal.d-block {
     display:block;
 }
-.reveal.d-none {
+.modal.d-none {
     display:none;
 }
-.reveal {
-    /* width: 60%; */
+.modal {
     border:none;
     position: fixed;
     top:10vh;
     left:0;
-    width:100vw;
+    width:100vw !important;
     height:80vh;
     background-color:rgba(235,240,235,60%);
 }
-.revealBody {
-    /* width: 60%; */
+.modalBody {
     border:none;
     width: 60vw;
     position: absolute;
@@ -33,12 +31,12 @@
     overflow:scroll;
     overflow-x: hidden;
 }
-.revealBody label {
+.modalBody label {
     color:  rgba(235,240,225,100%);
 }
 
 @media only screen and (max-width: 900px){
-    .revealBody {
+    .modalBody {
         width:90vw;
     }
 }

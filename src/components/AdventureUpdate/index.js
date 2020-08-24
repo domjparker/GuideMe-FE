@@ -14,7 +14,7 @@ import Loader from 'react-loader-spinner'
 
 function AdventureUpdate(props) {
   // modal show hide controls as passed in from parent
-  let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+  let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
   const handleModalClose = () => {
     props.handleModalClose()
   }
@@ -192,7 +192,7 @@ function AdventureUpdate(props) {
 
   return (
     <div className={'overlay ' + showHideModal}>
-    <div className={'revealBody'} id="adventureModal1">
+    <div className={'modalBody'} id="adventureModal1">
       <h1>Update your Adventure</h1>
       <p className="lead">You can update features here</p>
       <div className="grid-container fluid">
