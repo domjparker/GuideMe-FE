@@ -1,11 +1,10 @@
 .fixer{
     position:fixed;
+    width:25%;
     bottom:10vh;
     right: 0;
-    left:0;
-    margin-left:auto;
-    margin-right:auto;
     margin-bottom:0;
+    list-style: none;
   }
 
   /* Button used to open the chat form - fixed at the bottom of the page */
@@ -16,5 +15,15 @@
   border: none;
   cursor: pointer;
   position: relative;
-  width: 280px;
+  width: 100%;
+}
+
+.open-button:hover  {
+  background-color: rgba(57,66,14,100%);
+}
+
+@media only screen and (max-width: 900px){
+  .fixer{
+    width:100%
+  }
 }

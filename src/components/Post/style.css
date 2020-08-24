@@ -7,6 +7,7 @@
 .postBox {
     background-color: rgba(235,240,235,50%);
     padding-top: 10px;
+    padding-right: 10px;
     border-radius: 10px;
 }
 
