@@ -9,7 +9,7 @@ import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useLocation } from 'react-router-dom'
 import { stateLocation } from '../../components/StateLocations'
-
+import Booking from '../../components/Booking'
 
 
 function Adventures() {
@@ -27,7 +27,19 @@ function Adventures() {
         stateName = null
     }
 
+    // const [change, setChange] = useState(false)
+    const [modalBooking, setModalBooking] = useState(false)
 
+    const handleModalBookingClose = () => {
+        //update user modal close
+        setModalBooking(false)
+        // setChange(!change)
+    }
+    const handleModalBookingOpen = () => {
+        //update user modal close
+        setModalBooking(true)
+        // setChange(!change)
+    }
 
     //list of relevant adventures
     const [adventures, setAdventures] = useState([])
@@ -89,6 +101,10 @@ function Adventures() {
                             ) : <h3 style={{marginTop:"2vh"}}>I can't find any adventures meeting those search terms, please try again</h3>}
                     </Gridx>
                 </div>
+                 {/* Modals live here */}
+                <Booking show ={modalBooking} handleModalClose = {handleModalBookingClose}/>
+                {/* END Modals live here */}
+
             </Wrapper>
         </>
     )

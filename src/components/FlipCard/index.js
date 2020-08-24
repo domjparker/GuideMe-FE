@@ -9,6 +9,8 @@ import PopupChat from '../../components/PopupChat'
 import API from '../../util/API'
 import TagRow from '../TagRow'
 import { loginContext } from '../LoginContext'
+import Booking from '../Booking'
+
 
 //this component takes ina  ton of adventure information
 function FlipCard(props) {
@@ -30,6 +32,7 @@ function FlipCard(props) {
             setClassToggle('card--flipped')
         }
     }
+
     const handleOpenChat = async (id, name) => {
         await setConverser({
             firstName: name,
@@ -101,7 +104,7 @@ function FlipCard(props) {
                                     {/* Delete Button */}
                                     
                                     {props.delete ? <Btn  data-id={props.id} className="editFlipcard"icon={<i className="far fa-trash-alt"></i>} classes={'alert button expanded'}  handleClick= { props.deleteClick} text={'delete me'} /> : null}
-                                   
+                                    
                                 </Cell>
 
                             </Gridx>
