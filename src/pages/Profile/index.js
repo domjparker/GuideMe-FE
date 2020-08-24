@@ -161,6 +161,7 @@ function Profile(props) {
         //create adventure modal close
         setModalAdventure(false)
         setChange(!change)
+        
     }
     const handleModalAdventureUpdateClose = () => {
         //update adventure modal close
@@ -175,7 +176,8 @@ function Profile(props) {
     const handleModalImageClose = () => {
         //update image modal close
         setModalImage(false)
-        setChange(!change)
+        setTimeout(function(){ setChange(!change) }, 100);
+
     }
     const handleModalAvailClose = () => {
         //update user modal close
