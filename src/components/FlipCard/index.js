@@ -125,7 +125,7 @@ function FlipCard(props) {
                     </div>
                 </div>
             </div>
-            {(showMessage === false) ? null : <PopupChat name={converser.firstName} id={converser.id} hide={hideMessage} mailbox={mailbox} handleOpen={handleMailboxOpen} />}
+            {(showMessage === false) ? null : <PopupChat name={converser.firstName} id={converser.id}  hide={hideMessage} email={props.hostEmail} mailbox={mailbox} handleOpen={handleMailboxOpen} />}
         </>
     )
 }
