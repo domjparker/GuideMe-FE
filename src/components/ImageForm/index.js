@@ -76,7 +76,7 @@ function ImageForm(props) {
     <div className={showHideModal} id="exampleModal1">
       <h3>{props.modalTitle}</h3>
           <div className='button expanded'>
-            <Input type='file' name='image' onChange={onChange} value={image}/>
+            <Input type='file' name='image' onChange={onChange} />
           </div>
           <FormBtn onClick={onSubmit} >Upload</FormBtn>
           <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
