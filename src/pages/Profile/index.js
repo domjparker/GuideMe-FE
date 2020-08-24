@@ -103,6 +103,7 @@ function Profile(props) {
 
     }
 
+
     //delete the adventure -- this method is passed into the FlipCard component because the delete button lives on the FlipCard
     const handleDeleteAdventure = (e) => {
         e.stopPropagation()
@@ -119,7 +120,7 @@ function Profile(props) {
     //become host button just currently updates status on database,this is what happens here
     const handleBecomeHost = () => {
         let hostObj = { host: true, verified: true }
-        let newGuideObj = { targetId: userData.id, action: "newGuide" , adventureId: null, postImageUrl: null}
+        let newGuideObj = { targetId: userData.id, action: "newGuide", adventureId: null, postImageUrl: null }
         API.updateUser(hostObj).then(() => setChange(!change)).catch(err => console.log(err))
         API.postFeed(newGuideObj).then((res) => console.log(res)).catch(err => console.log(err))
     }
@@ -186,8 +187,8 @@ function Profile(props) {
     }
     //review block conditional rendering
     const renderViewReview = (info) => {
-        if (info)  {    
-                return <ViewReview idArr={info.map(item=>item._id)} targetUser={'you'}/> 
+        if (info) {
+            return <ViewReview idArr={info.map(item => item._id)} targetUser={'you'} />
         }
     }
     //end of modals section =============================================================
@@ -199,13 +200,13 @@ function Profile(props) {
                     <Gridx classes={'hero-section'} >
                         <Cell size="small-12 bannerdiv">
                             {/* When user clicks on their profile banner picture, a modal is activated to that they can update it */}
-                            <img className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl ? userData.profileBannerUrl : "https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?cs=srgb&dl=pexels-veeterzy-38136.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
+                            <img className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl } alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
                         </Cell>
                     </Gridx>
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <img style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl } alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                             <div className="detailsDiv">
 
                                 <h2 className="userName"><strong>{userData.firstName} {userData.lastName}</strong></h2>
@@ -218,14 +219,14 @@ function Profile(props) {
                         <Cell size={"small-12 medium-6 "} >
                             <div className='createBtnColumn'>
                                 {userData.host ?
-                                <>
-                                    <Cell size={'medium-4'} >
-                                        <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
-                                    </Cell>
-                                <Cell size={'medium-4'}>
-                                    <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
-                                </Cell>
-                                </>
+                                    <>
+                                        <Cell size={'medium-4'} >
+                                            <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
+                                        </Cell>
+                                        <Cell size={'medium-4'}>
+                                            <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
+                                        </Cell>
+                                    </>
                                     :
                                     <Cell size={'medium-4'}>
                                         <Btn className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>} classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
@@ -256,9 +257,12 @@ function Profile(props) {
                             <>
 
                             <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
+                                <Cell size={'small-12'}>
+                                    <h3 className="reviewTitle">Your posted adventures</h3>
+                                </Cell>
                                 {(adventureData) ? adventureData.map(adventure => (
                                     <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                        <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
+                                        <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl } title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
                                     </Cell>
                                 )) : null}
                             </Gridx>
@@ -267,7 +271,7 @@ function Profile(props) {
                         )}
                     <br></br>
                             <Gridx>
-                                   {(adventureData) ? renderViewReview(adventureData):console.log('nodata')}
+                                   {(adventureData.length>0) ? renderViewReview(adventureData):console.log('nodata')}
                             </Gridx>
                     {/* END Display tags and adventures related to user, if the user is a host */}
 
@@ -287,3 +291,6 @@ function Profile(props) {
 }
 
 export default Profile;
+
+
+

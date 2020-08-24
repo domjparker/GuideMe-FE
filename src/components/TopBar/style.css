@@ -22,14 +22,14 @@
     
 }
 
-#logo {
+.logo {
     background-color: rgba(235,240,235,50%);
-    border-radius: 10px;
+    border-radius: 0px 10px 10px 0px;
     
 }
 .loginCell {
     background-color: rgba(235,240,235,50%);
-    border-radius: 10px;
+    border-radius: 10px 0px 0px 10px;
     align-content: center;
 }
 
@@ -52,3 +52,9 @@ margin-top: 1vh;
 .signoutDiv {
     height:100%;
 }
+
+.fillTopBar {
+    background-color: rgba(235,240,235,50%);
+    border-radius:0px;
+}
+
