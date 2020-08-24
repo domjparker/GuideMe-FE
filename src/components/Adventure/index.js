@@ -25,7 +25,7 @@ function Adventure(props) {
     setImage(e.target.files[0]);
   };
   //progress loader state
-  const [loaderVisible, setLoaderVisible]=useState(false)
+  const [loaderVisible, setLoaderVisible] = useState(false)
 
   // state to control input values
   const [formObject, setFormObject] = useState({
@@ -154,7 +154,7 @@ function Adventure(props) {
       //handle tags
       postObj.tags = allTags.filter(tag => tagArr.indexOf(tag.tagName) > -1).map(tag => tag._id)
       console.log('postObj.adventureImageUrl = ' + postObj.adventureImageUrl)
-      
+
       //add the edited object to database
       API.postNewAdventure(postObj)
         .then(data => {
@@ -184,127 +184,168 @@ function Adventure(props) {
   }
 
   return (
-    <div className={showHideModal} id="adventureModal1">
-      <h1>Create an Adventure</h1>
-      <p className="lead">Publish an adventure for the masses to enjoy. All fields are required</p>
-      <div className="grid-container fluid">
-        <Gridx>
-          <Cell size="">
-            <form>
-              <label for="adventureName" >Adventure Name:</label>
-              <Input
-                onChange={handleInputChange}
-                name="adventureName"
-                placeholder="Adventure:"
-                value={formObject.adventureName}
-              />
-              <label for="description" >Description:</label>
-              <TextArea
-                onChange={handleInputChange}
-                name="description"
-                placeholder="Description:"
-                value={formObject.description}
-              />
-              <label for="location" >Location:</label>
-              <Input
-                onChange={handleInputChange}
-                name="location"
-                placeholder="Location:"
-                value={formObject.location}
-              />
-              <label for="stateLocation" >State:</label>
-              <Dropdown
-              intro={'Washington'}
-                onChange={handleInputChange}
-                name="stateLocation"
-                value={formObject.stateLocation}
-                options={stateLocation}
-              />
-              <label for="itinerary" >Itinerary:</label>
-              <TextArea
-                onChange={handleInputChange}
-                name="itinerary"
-                placeholder="Itinerary:"
-                value={formObject.itinerary}
-              />
-              <label for="time" >Duration Info:</label>
-              <NumberInput
-                decrement={handleGroupDec}
-                increment={handleGroupInc}
-                name="time"
-                value={formObject.time}
-              />
-              <label for="unit" >Duration Units:</label>
-              <Dropdown
-                onChange={handleInputChange}
-                name="unit"
-                value={formObject.unit}
-                options={["hours", "days", "weeks", "months", "eternity"]}
-              />
-              <label for="difficulty" >Difficulty Level:</label>
-              <Dropdown
-                onChange={handleInputChange}
-                name="difficulty"
-                value={formObject.difficulty}
-                options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
-              />
-              <label for="minGroupSize" >Min Group Size:</label>
-              <NumberInput
-                decrement={handleGroupDec}
-                increment={handleGroupInc}
-                name="minGroupSize"
-                placeholder="Min. Group Size:"
-                value={formObject.minGroupSize}
-              />
-              <label for="maxGroupSize" >Max Group Size:</label>
-              <NumberInput
-                decrement={handleGroupDec}
-                increment={handleGroupInc}
-                name="maxGroupSize"
-                value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
-              />
-              <label for="price" >Price in $:</label>
-              <NumberInput
-                decrement={handlePriceDec}
-                increment={handlePriceInc}
-                name="price"
-                value={formObject.price}
-              />
-              <label for="gearList" >Gear Needed:</label>
-              <Input
-                onChange={handleInputChange}
-                name="gearList"
-                placeholder="Gear Need:"
-                value={formObject.gearList}
-              />
-              <label for="tags" >Tags:</label>
-              <TagRow edit={true} tags={tagArr} filterTags={handleFilterTags} />
-              <Dropdown
-                intro={'Select tags for your adventure'}
-                onChange={handleInputChange}
-                name="tags"
-                options={dropdownArr}
-                value={dropdownValue}
-              />
-              <label for="image" >Adventure Image:</label>
-              <Input
-                onChange={onSubmit}
-                classes={"button adventure-image-upload"}
-                name="image"
-                type="file"
-                text="Upload Image"
-              />
-              <FormBtn
-                disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary && image)}
-                onClick={handleFormSubmit}>
-                Publish Adventure
+    <div className={'overlay ' + showHideModal}>
+      <div className={'revealBody'} id="adventureModal1">
+        <h1>Create an Adventure</h1>
+        <p className="lead">Publish an adventure for the masses to enjoy. All fields are required</p>
+        <div className="grid-container fluid">
+          <Gridx>
+            <Cell size="">
+              <form>
+                <Gridx>
+                  <Cell size={'small-12'}>
+                <label for="adventureName" >Adventure Name:</label>
+                <Input
+                  onChange={handleInputChange}
+                  name="adventureName"
+                  placeholder="Adventure:"
+                  value={formObject.adventureName}
+                />
+                  </Cell>
+                  <Cell size={'small-12'}>
+
+                <label for="description" >Description:</label>
+                <TextArea
+                  onChange={handleInputChange}
+                  name="description"
+                  placeholder="Description:"
+                  value={formObject.description}
+                />
+                  </Cell>
+                </Gridx>
+                <Gridx>
+                  <Cell size={'small-12 medium-6'}>
+                <label for="location" >Location:</label>
+                <Input
+                  onChange={handleInputChange}
+                  name="location"
+                  placeholder="Location:"
+                  value={formObject.location}
+                />
+                  </Cell>
+                  <Cell size={'small-12 medium-6'}>
+                    <br/>
+                <Dropdown
+                  intro={'Washington'}
+                  onChange={handleInputChange}
+                  name="stateLocation"
+                  value={formObject.stateLocation}
+                  options={stateLocation}
+                />
+                  </Cell>
+                  <Cell size={'small-12'}>
+                <label for="itinerary" >Itinerary:</label>
+                <TextArea
+                  onChange={handleInputChange}
+                  name="itinerary"
+                  placeholder="Itinerary:"
+                  value={formObject.itinerary}
+                />
+                  </Cell>
+                </Gridx>
+                <Gridx classes={'grid-margin-x'}>
+                <Cell size={'small-12'}>
+                <label for="difficulty" >Difficulty Level:</label>
+                <Dropdown
+                  onChange={handleInputChange}
+                  name="difficulty"
+                  value={formObject.difficulty}
+                  options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
+                />
+                </Cell>
+                <Cell size={'small-12'}>
+                <label for="gearList" >Gear Needed:</label>
+                <Input
+                  onChange={handleInputChange}
+                  name="gearList"
+                  placeholder="Gear Need:"
+                  value={formObject.gearList}
+                />
+                </Cell>
+                  <Cell size={'small-6'}>
+                <label for="time" >Duration Info:</label>
+                <NumberInput
+                  decrement={handleGroupDec}
+                  increment={handleGroupInc}
+                  name="time"
+                  value={formObject.time}
+                />
+                  </Cell>
+                  <Cell size={'small-6'}>
+                    <br/>
+                <Dropdown
+                  onChange={handleInputChange}
+                  name="unit"
+                  value={formObject.unit}
+                  options={["hours", "days", "weeks", "months", "eternity"]}
+                />
+                  </Cell>
+                </Gridx>
+                <Gridx classes={'grid-margin-x'}>
+                  <Cell size={'small-6'}> 
+                <label for="minGroupSize" >Min group size:</label>
+                <NumberInput
+                  decrement={handleGroupDec}
+                  increment={handleGroupInc}
+                  name="minGroupSize"
+                  placeholder="Min. Group Size:"
+                  value={formObject.minGroupSize}
+                />
+                  </Cell>
+                  <Cell size={'small-6'}>
+                <label for="maxGroupSize" >Max group size:</label>
+                <NumberInput
+                  decrement={handleGroupDec}
+                  increment={handleGroupInc}
+                  name="maxGroupSize"
+                  value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
+                />
+                  </Cell>
+                </Gridx>
+                <label for="price" >Price in $:</label>
+                <NumberInput
+                  decrement={handlePriceDec}
+                  increment={handlePriceInc}
+                  name="price"
+                  value={formObject.price}
+                />
+                
+                <label for="tags" >Tags:</label>
+                <TagRow edit={true} tags={tagArr} filterTags={handleFilterTags} />
+                <Dropdown
+                  intro={'Select tags for your adventure'}
+                  onChange={handleInputChange}
+                  name="tags"
+                  options={dropdownArr}
+                  value={dropdownValue}
+                />
+                <label for="image" >Adventure Image:</label>
+                <Input
+                  onChange={onSubmit}
+                  classes={"button adventure-image-upload"}
+                  name="image"
+                  type="file"
+                  text="Upload Image"
+                />
+                <Gridx>
+                  <Cell size={'small-6'}>
+
+                <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
+                  </Cell>
+                  <Cell size={'small-6'}>
+                <FormBtn
+                  disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary && image)}
+                  onClick={handleFormSubmit}>
+                  Publish Adventure
                 </FormBtn>
-              <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
-              {/* close modal button */}
-              <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
-            </form>
-          </Cell>
-        </Gridx>
+                  </Cell>
+                </Gridx>
+                {/* close modal button */}
+                <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
+              </form>
+            </Cell>
+          </Gridx>
+        </div>
       </div>
     </div>
   );
