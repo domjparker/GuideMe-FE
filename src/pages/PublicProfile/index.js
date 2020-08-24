@@ -53,16 +53,18 @@ function PublicProfile(props) {
                     <Gridx classes={'hero-section'} >
                         <Cell size="small-12 bannerdiv">
                             {/* When user clicks on their profile banner picture, a modal is activated to that they can update it */}
-                            <img className="bannerimage" src={userData.profileBannerUrl ? userData.profileBannerUrl : "https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?cs=srgb&dl=pexels-veeterzy-38136.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
+                            <img className="bannerimage" src={userData.profileBannerUrl} alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
                         </Cell>
                     </Gridx>
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img style={{height: '15vh',width: '15vh', borderRadius: '50%'}} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
-                            <h2>{userData.firstName} {userData.lastName}</h2>
-                            <p>{userData.location}</p>
+                            <img style={{height: '15vh',width: '15vh', borderRadius: '50%'}} src={userData.profilePictureUrl} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <div className="detailsDiv">
+                            <h2 className="userName"><strong>{userData.firstName} {userData.lastName}</strong></h2>
+                            <p className="locationProfile">{userData.location}</p>
                             <p>{userData.bio}</p>
+                            </div>
                         </Cell>
                     </Gridx>
 

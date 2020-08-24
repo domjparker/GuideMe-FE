@@ -7,6 +7,7 @@ import API from '../../util/API'
 import Btn from '../Btn'
 import './style.css'
 import Loader from 'react-loader-spinner'
+import {FormBtn, Input} from '../Form'
 
 // base url for Cloudinary query needed to upload images
 const url = 'https://api.cloudinary.com/v1_1/yestoskydiving/image/upload';
@@ -75,11 +76,9 @@ function ImageForm(props) {
     <div className={showHideModal} id="exampleModal1">
       <h3>{props.modalTitle}</h3>
           <div className='button expanded'>
-            <input type='file' name='image' onChange={onChange} />
+            <Input type='file' name='image' onChange={onChange} value={image}/>
           </div>
-          <button onClick={onSubmit} className='button small expanded'>
-            upload
-          </button>
+          <FormBtn onClick={onSubmit} >Upload</FormBtn>
           <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
       {/* close modal button */}
     <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
