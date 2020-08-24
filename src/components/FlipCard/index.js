@@ -97,7 +97,7 @@ function FlipCard(props) {
                                     {(loginState.loggedIn)?
                                     props.edit ? null : <Btn classes="button expanded" handleClick={(e) => { e.stopPropagation(); handleOpenChat(props.hostId, props.host) }} text={'Contact host'} />
                                     :<Btn classes="button expanded" text={'Log In or Sign Up to Contact Host'}handleClick={(e) => { e.stopPropagation(); goToLogin()}}></Btn>}
-                                     
+                                     {(!props.edit)&&<Btn classes= "button expanded" handleClick={(e) => { e.stopPropagation(); props.bookingModalOpen(props.hostId) }} text={'Book Adventure'}></Btn>}
                                      
                                     {/* Update Button */}
                                     {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update'} /> : null}

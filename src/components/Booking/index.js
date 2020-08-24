@@ -12,7 +12,7 @@ import 'react-calendar/dist/Calendar.css';
 
 function Booking(props) {
     let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
-    const [newDate, setNewDate] = useState(new Date())
+    const [newDate, setNewDate] = useState()
     const [dateArr, setDateArr] = useState([])
 
     useEffect(() => {
@@ -22,8 +22,9 @@ function Booking(props) {
     // Loads Availability 
     async function loadInitialData() {
         // TODO: CHANGE THIS TO grab availability of host
-        let { data } = await API.getAvailability()
-        var tempArray = data.availability.filter(pastDateCancel).map(objectTranslate)
+        let { data } = await API.getAvailabilityById(props.hostId)
+        var tempArray = data.availability.map(objectTranslate)
+        console.log(tempArray)
         setDateArr(tempArray)
     }
     // Checks if the Date has already passed
@@ -51,8 +52,8 @@ function Booking(props) {
 
     async function handleFormSubmit(event) {
         event.preventDefault();
-        const postArr = dateArr.filter(newDate)
-        console.log(postArr)
+        // const postArr = dateArr.filter(newDate)
+        console.log(dateArr)
         // await API.updateAvailability({availability: postArr})
         handleModalClose()
      
@@ -60,7 +61,8 @@ function Booking(props) {
 
     return (
         <>
-            <div className={showHideModal} id="exampleModal1">
+            <div className={'overlay ' + showHideModal}>
+            <div className={'revealBody'} id="adventureModal1">
                 <h1>Book Your Adventure</h1>
                 <p className="lead">Availabile Bookings Listed in Green</p>
                 <div className="grid-container fluid">
@@ -69,7 +71,7 @@ function Booking(props) {
 
                             <form>
                                 {/* The function for titleClassName determines which date to display as green */}
-                                <Calendar calendarType="ISO 8601" onChange={calendarOnChange} value={newDate} tileClassName={({ date }) => dateArr.map(index => new Date(index).getDate()).includes(date.getDate()) && dateArr.map(index => new Date(index).getMonth()).includes(date.getMonth()) ? 'selectedAvailable' : null} tileDisabled={({ date, view }) => new Date(date) < new Date()} />
+                                <Calendar calendarType="ISO 8601" onChange={calendarOnChange} value={newDate} tileClassName={({ date }) => dateArr.map(index => new Date(index).getDate()).includes(date.getDate()) && dateArr.map(index => new Date(index).getMonth()).includes(date.getMonth()) ? 'selectedAvailable' : null} tileDisabled={({ date }) => !dateArr.map(index => new Date(index).getDate() + " " + new Date(index).getMonth()).includes(date.getDate() + " " + date.getMonth())} />
                                 <FormBtn
                                     onClick={handleFormSubmit}>
                                     Book Adventure
@@ -80,6 +82,7 @@ function Booking(props) {
                         </Cell>
                     </Gridx>
                 </div>
+            </div>
             </div>
         </>
     )

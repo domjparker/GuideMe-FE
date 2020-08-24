@@ -80,7 +80,8 @@ function AvailabilityUpdate(props) {
   // && date.getDate() === new Date(dateArr[0]).getDate()
   // date.getMonth()=== new Date(dateArr[0]).getMonth()
   return (
-    <div className={showHideModal} id="exampleModal1">
+    <div className={'overlay ' + showHideModal}>
+    <div className={'revealBody'} id="adventureModal1">
       <h1>Update your Availability</h1>
       <p className="lead">Current Available Days</p>
       <div className="grid-container fluid">
@@ -90,7 +91,7 @@ function AvailabilityUpdate(props) {
           
             <form>
             {/* The function for titleClassName determines which date to display as green */}
-            <Calendar calendarType = "ISO 8601" onChange = {calendarOnChange} value={newDate} tileClassName = {({ date, view }) =>  dateArr.map(index=>new Date(index).getDate()).includes(date.getDate())&& dateArr.map(index=>new Date(index).getMonth()).includes(date.getMonth())? 'selectedAvailable' : null} tileDisabled = {({date, view }) => new Date(date)< new Date()}/>
+            <Calendar calendarType = "ISO 8601" onChange = {calendarOnChange} value={newDate} tileClassName = {({ date, view }) =>  dateArr.map(index => new Date(index).getDate() + " " + new Date(index).getMonth()).includes(date.getDate() + " " + date.getMonth())? 'selectedAvailable' : null} tileDisabled = {({date, view }) => new Date(date)< new Date()}/>
               <FormBtn
                 onClick={handleFormSubmit}>
                 Submit Availability Changes
@@ -102,6 +103,7 @@ function AvailabilityUpdate(props) {
           </Cell>
         </Gridx>
       </div>
+    </div>
     </div>
   );
 }
