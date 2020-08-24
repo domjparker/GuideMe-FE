@@ -98,11 +98,11 @@ function Community() {
                     {/* The search or host adventure form on home page */}
                     
                         <Gridx classes={"grid-margin-x"}>
-                            <Cell size='small-8'>
+                            <Cell size='small-12 medium-8'>
 
                                 <TextArea value={post} onChange={(e) => setPost(e.target.value)} placeholder={'Write something:'}></TextArea>
                             </Cell>
-                            <Cell size='small-4'>
+                            <Cell size='small-12 medium-4'>
                                 <Btn onClick={handleSubmit} classes={'button searchAdventure'} text={"Post"} />
                             </Cell>
                         </Gridx>

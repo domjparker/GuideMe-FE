@@ -13,13 +13,11 @@ function Post(props) {
                     <Gridx classes={'align-center'}>
                         <Cell size={'small-3 postImage text-center'}>
                             <img className="poster-thumbnail" src={props.profilePictureUrl} alt={props.firstName} />
-                            <p className='text-center'>{props.date}</p>
+                            <p className='text-center dateInfo'>{props.date}</p>
                         </Cell>
-                        <Cell size={'small-6 postContent'}>
+                        <Cell size={'small-9 postContent'}>
                             <p className='lead'><Link to={{ pathname: '/public', state: { userId: props.userId } }}>{props.userName}</Link>{props.text}</p>
-                            <p className='text-right'>{props.location}</p>
-                        </Cell>
-                        <Cell size={'small-3 adventureImage text-center'}>
+                            <p className='text-right locationInfo'>{props.location}</p>
                         </Cell>
                     </Gridx>
                 </Cell>
@@ -34,12 +32,10 @@ function Post(props) {
                             <img className="poster-thumbnail" src={props.profilePictureUrl} alt={props.firstName} />
                             <p className='text-center'>{props.date}</p>
                         </Cell>
-                        <Cell size={'small-6 postContent'}>
+                        <Cell size={'small-9 postContent'}>
                             <p className='lead'><Link to={{ pathname: '/public', state: { userId: props.userId } }}>{props.userName}</Link>{props.text}</p>
-                            <p className='text-right'>{props.location}</p>
-                        </Cell>
-                        <Cell size={'small-3 adventureImage text-center'}>
                             <img className="adventureImage" src={props.postImageUrl} alt="new adventure image" />
+                            <p className='text-right locationInfo'>{props.location}</p>
                         </Cell>
                     </Gridx>
                 </Cell>

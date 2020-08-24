@@ -54,9 +54,6 @@ function SignIn(props) {
   
       return (
         <div className='fillPage'>
-          <p>
-            Welcome Back!
-          </p>
           <form className="signin" onSubmit={handleFormSubmit}>
             <Input
               value={loginObj.email}

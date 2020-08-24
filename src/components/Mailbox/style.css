@@ -1,6 +1,29 @@
 .fixer{
     position:fixed;
+    width:25%;
     bottom:10vh;
     right: 0;
-    margin:0;
+    margin-bottom:0;
+    list-style: none;
   }
+
+  /* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+  background-color: rgba(57,66,14,80%);
+  color: rgba(235,240,225,100%);
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+}
+
+.open-button:hover  {
+  background-color: rgba(57,66,14,100%);
+}
+
+@media only screen and (max-width: 900px){
+  .fixer{
+    width:100%
+  }
+}

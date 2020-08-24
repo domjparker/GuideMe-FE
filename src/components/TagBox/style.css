@@ -1,9 +1,9 @@
 .tagBox {
-    background-color: rgba(207, 162, 66, 80%);
-    color: rgba(39, 36, 27, 100%);
+    background-color: rgba(19,131,242, 90%);
+    color: rgba(235,240,225,100%);
     margin: 0px 2px;
-    padding: 0.2rem 0.3rem;
-    border-radius: 5px;
+    padding: 0.2rem 0.7rem;
+    border-radius: 10px;
     height:30px;
 }
 
