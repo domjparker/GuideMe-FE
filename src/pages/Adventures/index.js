@@ -117,7 +117,7 @@ function Adventures() {
                                 <FlipCard key={adventure._id} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} tags={adventure.tags.map(item => item.tagName)} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} hostId={adventure.hostId._id} />
                                 <Btn className="reviewBtn" icon={<i className="fas fa-comments"></i>} classes={'button expanded'} handleClick={(e) => {e.stopPropagation(); createReviewClick(adventure._id)}} text={'Reviews'} />
                             </Cell>
-                         ) : <h3 style={{marginTop:"2vh"}}>I can't find any adventures meeting those search terms, please try again</h3>}
+                         ) : <h3 className="noAdventures" style={{marginTop:"2vh"}}>I can't find any adventures meeting those search terms, please try again</h3>}
                     </Gridx>
 
                     {/* Modal lives here */}
