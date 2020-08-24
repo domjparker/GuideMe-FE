@@ -16,6 +16,7 @@
   .hpTitle {
     font-family: 'Quicksand', cursive;
     margin:1rem;
+    margin-top:10vh;
     display: flex;
     justify-content: center;
     color: rgba(19,131,242, 100%);
