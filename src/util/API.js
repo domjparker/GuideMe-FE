@@ -130,5 +130,11 @@ export default {
     //make a post onto the feed
     postFeed : (feedObj) => {
         return axios.post(`${prefix}/api/community/`,feedObj, {withCredentials:true})
-    }
+    },
+
+//========NODEMAILER
+nodemailerMailBox : (emailObj) => {
+    return axios.post(`${prefix}/api/user/emailsender/`, emailObj , {withCredentials:true})
+},
+
 }

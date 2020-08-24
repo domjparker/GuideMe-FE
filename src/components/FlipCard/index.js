@@ -66,16 +66,16 @@ function FlipCard(props) {
                         <div className=" grid-container">
                             <Gridx classes={''}>
                                 <Cell size={"small-12 text-center details-heading"}>
-                                    <h5>{props.title}</h5>
+                                    <h4><strong>{props.title}</strong></h4>
                                 </Cell>
-                                <Cell size={"small-12"}>
+                                <Cell size={"small-12 padding-flip"}>
                                     <h6 style={{display:'inline-block'}}><strong>{props.host}</strong></h6>
                                     {!props.edit && <Btn className="publicProfileIcons" icon={<i className="far fa-user"></i>} classes={'button expanded'} handleClick={handleHostNameClick}/>}
                                     <p>{props.description}</p>
                                 </Cell>
                             </Gridx>
                             <Gridx classes={''}>
-                                <Cell size={"small-12 medium-12"}>
+                                <Cell size={"small-12 medium-12 resources padding-flip"}>
                                     <h6><strong>Details</strong></h6>
                                     <ul>
                                         <li>Location: {props.location} {', ' + props.stateLocation}</li>
@@ -85,7 +85,7 @@ function FlipCard(props) {
                                     </ul>
                                 </Cell>
 
-                                <Cell size={"small-12 medium-12"}>
+                                <Cell size={"small-12 medium-12 padding-flip"}>
                                     <h6><strong>Itinerary</strong></h6>
                                     <p>{props.itinerary}</p>
                                 </Cell>
@@ -117,7 +117,7 @@ function FlipCard(props) {
                                     <img src={props.img} alt={props.title} />
                                 </div>
                                 <div className="card-section">
-                                    <h4>{props.title}</h4>
+                                    <h4 className="flipCardTitle"><strong>{props.title}</strong></h4>
                                     {!props.edit ? <h5 className='clickableHost' onClick={handleHostNameClick}>{props.host}</h5> :<h5 >{props.host}</h5> }
                                     
                                     <p>{props.description}</p>
@@ -128,7 +128,7 @@ function FlipCard(props) {
                     </div>
                 </div>
             </div>
-            {(showMessage === false) ? null : <PopupChat name={converser.firstName} id={converser.id} hide={hideMessage} mailbox={mailbox} handleOpen={handleMailboxOpen} />}
+            {(showMessage === false) ? null : <PopupChat name={converser.firstName} id={converser.id}  hide={hideMessage} email={props.hostEmail} mailbox={mailbox} handleOpen={handleMailboxOpen} />}
         </>
     )
 }

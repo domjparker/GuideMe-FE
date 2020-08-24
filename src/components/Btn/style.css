@@ -1,19 +1,19 @@
 button.button {
-    background-color: rgba(207, 162, 66, 100%);
-    color: rgba(39, 36, 27, 100%);
+    background-color: rgba(57,66,14,100%);
+    color: rgba(235,240,225,100%);
     border-radius: 5px;
 }
 
 button.button:hover {
-    background-color: rgba(207, 162, 66, 70%);
+    background-color: rgba(28,33,1,100%);
 }
 
 button.button.alert {
-    background-color: rgba(204, 75, 55, 100%);
-    color: rgba(39, 36, 27, 100%);
+    background-color: rgba(255,103,0,100%);
+    color: rgba(28,33,1,100%);
 }
 
 button.button.alert {
-    background-color: rgba(204, 75, 55, 100%);
-    color: rgba(39, 36, 27, 100%);
+    background-color: rgba(255,103,0,100%);
+    color: rgba(28,33,1,100%);
 }
