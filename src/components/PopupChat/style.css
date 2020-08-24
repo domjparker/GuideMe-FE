@@ -30,7 +30,7 @@ display: none;
 }
 
 .chatTitle {
-  color: rgba(255,103,0,100%)
+  color: rgba(255,103,0,100%);
 }
 
 /* When the textarea gets focus, do something */
