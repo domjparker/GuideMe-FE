@@ -13,7 +13,7 @@ import 'react-calendar/dist/Calendar.css';
 function AvailabilityUpdate(props) {
   //handles bodal visibility state as input from parent element
   let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
-  const [newDate, setNewDate] = useState(new Date())
+  const [newDate, setNewDate] = useState()
   const [dateArr, setDateArr] = useState([])
   const [dateStringArr, setDateStringArr] = useState([])
   const [bookedDateArr, setBookedDateArr] = useState([])
@@ -114,7 +114,7 @@ function notBookedDates(entry) {
           
             <form>
             {/* The function for titleClassName determines which date to display as green */}
-            <Calendar calendarType = "ISO 8601" onChange = {calendarOnChange} value={newDate} tileClassName = {({ date, view }) =>  (dateArr.map(index => new Date(index).getDate() + " " + new Date(index).getMonth()).includes(date.getDate() + " " + date.getMonth())? 'selectedAvailable' : null) || (bookedDateArr.map(index => new Date(index.startDate).getDate() + " " + new Date(index.startDate).getMonth()).includes(date.getDate() + " " + date.getMonth())? 'bookedAvailable' : null) }  tileDisabled = {({date, view }) => (new Date(date)< new Date())||bookedDateArr.map(index => new Date(index.startDate).getDate() + " " + new Date(index.startDate).getMonth()).includes(date.getDate() + " " + date.getMonth())}/>
+            <Calendar calendarType = "ISO 8601" onClickDay = {calendarOnChange} value={newDate} tileClassName = {({ date, view }) =>  (dateArr.map(index => new Date(index).getDate() + " " + new Date(index).getMonth()).includes(date.getDate() + " " + date.getMonth())? 'selectedAvailable' : null) || (bookedDateArr.map(index => new Date(index.startDate).getDate() + " " + new Date(index.startDate).getMonth()).includes(date.getDate() + " " + date.getMonth())? 'bookedAvailable' : null) }  tileDisabled = {({date, view }) => (new Date(date)< new Date())||bookedDateArr.map(index => new Date(index.startDate).getDate() + " " + new Date(index.startDate).getMonth()).includes(date.getDate() + " " + date.getMonth())}/>
               <FormBtn
                 onClick={handleFormSubmit}>
                 Submit Availability Changes

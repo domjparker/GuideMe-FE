@@ -67,6 +67,7 @@ function Booking(props) {
 
     // Handles Calendar State
     function calendarOnChange(event) {
+        console.log(dateArr)
         // console.log(event)
         setNewDate(event)
     }
@@ -138,7 +139,7 @@ function Booking(props) {
 
                                 <form>
                                     {/* The function for titleClassName determines which date to display as green */}
-                                    <Calendar calendarType="ISO 8601" onClickDay={calendarOnChange} value={newDate} tileClassName={({ date }) => dateArr.map(index => new Date(index).getDate()).includes(date.getDate()) && dateArr.map(index => new Date(index).getMonth()).includes(date.getMonth()) ? 'selectedAvailable' : null} tileDisabled={({ date }) => !dateArr.map(index => new Date(index).getDate() + " " + new Date(index).getMonth()).includes(date.getDate() + " " + date.getMonth())} />
+                                    <Calendar calendarType="ISO 8601" onClickDay={calendarOnChange} value={newDate} tileClassName={({ date }) => (dateArr.map(index => new Date(index).getDate() + " " + new Date(index).getMonth()).includes(date.getDate() + " " + date.getMonth())? 'selectedAvailable' : null) ? 'selectedAvailable' : null} tileDisabled={({ date }) => !dateArr.map(index => new Date(index).getDate() + " " + new Date(index).getMonth()).includes(date.getDate() + " " + date.getMonth())} />
                                     <FormBtn
                                         onClick={handleFormSubmit}>
                                         Book Adventure
