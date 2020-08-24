@@ -10,39 +10,46 @@ function ViewReview(props) {
     const [review, setReview] = useState([])
 
     useEffect(() => {
-        console.log(props.idArr)
         loadReview()
-    })
+        console.log('first props', props.idArr)
+    },[])
 
-    //make API call for review table
-    const loadReview = async () => {
-         let arr = []
-         props.idArr.forEach(async (element) => {
-            const { data } = await API.getReview(element)
-            console.log(data)
-            let newObj = convertReviewData(data)
-            arr.push(newObj)
+    // //make API call for review table
+
+    const loadReview =  () => {
+        console.log(props)
+        console.log(props.idArr)
+          props.idArr.forEach((element) => {
+             getReviewElements (element)
         });
-        setReview(arr)
         
     }
+    async function getReviewElements (element) {
+        console.log("we got here")
+        const { data } = await API.getReview(element)
+            console.log(data)
 
-    const convertReviewData = (viewReviewObj) => {
-
-        let newObj = {
-            date: moment(viewReviewObj.createdAt).format('LLL'),
-            userId: viewReviewObj.userId,
-            id: viewReviewObj.adventure_id
-        }
-        
-        return newObj
     }
+
+    // const convertReviewData = (viewReviewObj) => {
+
+    //     let newObj = {
+    //         date: moment(viewReviewObj.createdAt).format('LLL'),
+    //         // profilePictureUrl: viewReviewObj.userId.profilePictureUrl,
+    //         userId: viewReviewObj._Id,
+    //         id: viewReviewObj.adventure_id,
+    //         // title: adventure.adventureName,
+    //         body: '',
+    //         rating: '',
+    //     }
+    //     return newObj
+    // }
 
 
     return (
         <>
             <Gridx classes={'reviewContainer grid-margin-y'}>
-                {review && review.map(item => <Post key={item.id} userId={item.userId} userName={item.userName} date={item.date}/>)}
+                <p>hello</p>
             </Gridx>
         </>
     )

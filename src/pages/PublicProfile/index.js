@@ -8,7 +8,7 @@ import TagRow from '../../components/TagRow'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useLocation } from 'react-router-dom'
-import ViewReview from '../../components/ViewReview'
+// import ViewReview from '../../components/ViewReview'
 
 
 
@@ -81,9 +81,9 @@ function PublicProfile(props) {
                                         </Cell>
                                     )) : null}
                                 </Gridx>
-                                <Gridx>
+                                {/* <Gridx>
                                     <ViewReview/>
-                                </Gridx>
+                                </Gridx> */}
                             </>
                         )}
                     {/* END Display tags and adventures related to user, if the user is a host */}

@@ -119,11 +119,7 @@ function Profile(props) {
     //become host button just currently updates status on database,this is what happens here
     const handleBecomeHost = () => {
         let hostObj = { host: true, verified: true }
-<<<<<<< HEAD
-        let newGuideObj = { targetId: userData.id, action: "newGuide", adventureId: null }
-=======
         let newGuideObj = { targetId: userData.id, action: "newGuide" , adventureId: null, postImageUrl: null}
->>>>>>> Dev
         API.updateUser(hostObj).then(() => setChange(!change)).catch(err => console.log(err))
         API.postFeed(newGuideObj).then((res) => console.log(res)).catch(err => console.log(err))
     }
@@ -204,12 +200,6 @@ function Profile(props) {
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
                             <img style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
-<<<<<<< HEAD
-                            <h2>{userData.firstName} {userData.lastName}</h2>
-                            <p>{userData.location}, {userData.stateLocation} </p>
-
-                            <p>{userData.bio}</p>
-=======
                             <div className="detailsDiv">
 
                                 <h2 className="userName"><strong>{userData.firstName} {userData.lastName}</strong></h2>
@@ -217,7 +207,6 @@ function Profile(props) {
 
                                 <p>{userData.bio}</p>
                             </div>
->>>>>>> Dev
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
                         <Cell size={"small-12 medium-6 "} >
@@ -258,14 +247,6 @@ function Profile(props) {
                     {(userData.host === false) ? null
                         : (
                             <>
-<<<<<<< HEAD
-=======
-
-                                <Gridx classes="grid-margin-x grid-margin-y">
-                                    {(adventureData) ? adventureData.map(adventure => (
-                                        <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
->>>>>>> Dev
 
                             <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
                                 {(adventureData) ? adventureData.map(adventure => (
@@ -276,7 +257,7 @@ function Profile(props) {
                             </Gridx>
                             <br></br>
                             <Gridx>
-                                   <ViewReview idArr={adventureData.map(adventure=>adventure._id)}/> 
+                                   <ViewReview idArr={(adventureData)? adventureData:[]}/> 
                             </Gridx>
                             </>
                         )}
@@ -288,10 +269,6 @@ function Profile(props) {
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
                     <AvailabilityUpdate show={modalAvailable} handleModalClose={handleModalAvailClose} />
-<<<<<<< HEAD
-
-=======
->>>>>>> Dev
                     {/* END Modals live here */}
 
                 </div>
