@@ -8,7 +8,7 @@ import TagRow from '../../components/TagRow'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useLocation } from 'react-router-dom'
-// import ViewReview from '../../components/ViewReview'
+import ViewReview from '../../components/ViewReview'
 
 
 
@@ -43,6 +43,12 @@ function PublicProfile(props) {
         const { data } = await API.getAdventurebyHost(id);
         if (data.length > 0) {
             setAdventureData(data)
+        }
+    }
+    //review block conditional rendering
+    const renderViewReview = (info) => {
+        if (info)  {    
+                return <ViewReview idArr={info.map(item=>item._id)} targetUser={`${userData.firstName} ${userData.lastName}`}/> 
         }
     }
 
@@ -81,11 +87,13 @@ function PublicProfile(props) {
                                         </Cell>
                                     )) : null}
                                 </Gridx>
-                                {/* <Gridx>
-                                    <ViewReview/>
-                                </Gridx> */}
+
                             </>
                         )}
+                         <br></br>
+                            <Gridx>
+                                   {(adventureData) ? renderViewReview(adventureData):console.log('nodata')}
+                            </Gridx>
                     {/* END Display tags and adventures related to user, if the user is a host */}
                 </div>
             </Wrapper>

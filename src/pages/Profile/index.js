@@ -182,8 +182,12 @@ function Profile(props) {
         setModalAvailable(false)
         setChange(!change)
     }
-
-
+    //review block conditional rendering
+    const renderViewReview = (info) => {
+        if (info)  {    
+                return <ViewReview idArr={info.map(item=>item._id)} targetUser={'you'}/> 
+        }
+    }
     //end of modals section =============================================================
 
     return (
@@ -256,12 +260,13 @@ function Profile(props) {
                                     </Cell>
                                 )) : null}
                             </Gridx>
-                            <br></br>
-                            <Gridx>
-                                   <ViewReview idArr={(adventureData)? adventureData:[]}/> 
-                            </Gridx>
+                            
                             </>
                         )}
+                    <br></br>
+                            <Gridx>
+                                   {(adventureData) ? renderViewReview(adventureData):console.log('nodata')}
+                            </Gridx>
                     {/* END Display tags and adventures related to user, if the user is a host */}
 
                     {/* Modals live here */}
