@@ -117,7 +117,7 @@ function PublicProfile(props) {
                         )}
                          <br></br>
                             <Gridx>
-                                   {(adventureData) ? renderViewReview(adventureData):console.log('nodata')}
+                                   {(adventureData.length>0) ? renderViewReview(adventureData):console.log('nodata')}
                             </Gridx>
                     {/* END Display tags and adventures related to user, if the user is a host */}
                     <Booking show ={modalBooking} handleModalClose = {handleModalBookingClose} hostId = {bookingHostId} adventureId = {bookingAdventuretId}/>
