@@ -61,12 +61,16 @@ function PopupChat(props) {
         const messageObj = {
             name: props.name,
             recieverId: props.id,
+            email:props.email,
             messageText: messageText
         }
         if (props.mailbox.map(function (e) { return e.converser._id; }).indexOf(props.id) !== -1) {
             console.log("They are in the mailbox")
         } else {
+
             console.log("They are not in the mailbox")
+            API.nodemailerMailBox(messageObj)
+
             updateMail()
         }
         API.sendMessage(messageObj)
