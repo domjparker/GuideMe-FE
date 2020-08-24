@@ -2,5 +2,19 @@
     position:fixed;
     bottom:10vh;
     right: 0;
-    margin:0;
+    left:0;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:0;
   }
+
+  /* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+  background-color: rgba(57,66,14,80%);
+  color: rgba(235,240,225,100%);
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  width: 280px;
+}

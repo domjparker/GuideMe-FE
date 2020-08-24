@@ -27,10 +27,6 @@ function Homepage() {
         history.push({pathname:'/adventures', state:{tag:searchTerm.toLowerCase(), stateName:searchTermState}})
     }
 
-    const handleHostAdventureClick = () => {
-        history.push('/profile')
-    }
-    //TODO:change this up to use components: Btn
     return (
         <>
             <Wrapper>

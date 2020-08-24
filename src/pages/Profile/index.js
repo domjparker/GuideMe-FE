@@ -11,7 +11,7 @@ import FlipCard from '../../components/FlipCard'
 import Adventure from '../../components/Adventure'
 import AdventureUpdate from '../../components/AdventureUpdate'
 import UserUpdate from '../../components/UserUpdate'
-import {loginContext} from '../../components/LoginContext'
+import { loginContext } from '../../components/LoginContext'
 import API from '../../util/API'
 import ImageForm from '../../components/ImageForm'
 import { confirmAlert } from 'react-confirm-alert'; // Import
@@ -59,7 +59,7 @@ function Profile(props) {
     const loadUserData = async () => {
         const { data } = await API.getUserbyId();
         setUserData(data);
-        setTagArr(data.tags.map(tag=>tag.tagName))
+        setTagArr(data.tags.map(tag => tag.tagName))
     }
 
     //get the adventures data from database
@@ -69,7 +69,7 @@ function Profile(props) {
             setAdventureData(data)
 
             // else statement removes last adventure card
-        }else{
+        } else {
             setAdventureData([])
         }
     }
@@ -77,26 +77,27 @@ function Profile(props) {
     //delete this user account
     const handleDeleteUser = () => {
         confirmAlert({
-            title: 'Confirm to submit',
-            message: 'Are you sure you want to do this.',
+            title: 'Do you want to delete your account?',
+            message: 'This action permanently deletes your account and all related data.',
             buttons: [
-              {
-                label: 'Yes',
-                onClick: () => { 
-                    API.deleteUser().then(() => {
-                        API.logOutUser()
-                        loginState.changeLoginState(false)
-                    setChange(!change)
-                    history.push('/')
-                }).catch(err => console.log(err))}
-              },
-              {
-                label: 'No',
-                onClick: () => {}
-              }
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        API.deleteUser().then(() => {
+                            API.logOutUser()
+                            loginState.changeLoginState(false)
+                            setChange(!change)
+                            history.push('/')
+                        }).catch(err => console.log(err))
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => { }
+                }
             ]
-          });
-    
+        });
+
     }
 
     //delete the adventure -- this method is passed into the FlipCard component because the delete button lives on the FlipCard
@@ -107,7 +108,7 @@ function Profile(props) {
             .then(() => {
                 setChange(!change)
                 // setModalAdventure(false)
-               
+
             })
             .catch(err => console.log(err))
     }
@@ -115,9 +116,9 @@ function Profile(props) {
     //become host button just currently updates status on database,this is what happens here
     const handleBecomeHost = () => {
         let hostObj = { host: true, verified: true }
-        let newGuideObj = { targetId: userData.id, action: "newGuide" , adventureId: null}
+        let newGuideObj = { targetId: userData.id, action: "newGuide", adventureId: null }
         API.updateUser(hostObj).then(() => setChange(!change)).catch(err => console.log(err))
-        API.postFeed(newGuideObj).then((res) => console.log(res)).catch(err => console.log(err))   
+        API.postFeed(newGuideObj).then((res) => console.log(res)).catch(err => console.log(err))
     }
 
     //start of modals section ============================================================
@@ -193,41 +194,44 @@ function Profile(props) {
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img style={{height: '20vh',width: '20vh', borderRadius: '50%'}} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
-                            <h2>{userData.firstName} {userData.lastName}</h2>
-                            <p>{userData.location}, {userData.stateLocation} </p>
-                            
-                            <p>{userData.bio}</p>
+                            <img style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <div className="detailsDiv">
+
+                                <h2 className="userName"><strong>{userData.firstName} {userData.lastName}</strong></h2>
+                                <p className="locationProfile">{userData.location}, {userData.stateLocation} </p>
+
+                                <p>{userData.bio}</p>
+                            </div>
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
                         <Cell size={"small-12 medium-6 "} >
                             <div className='createBtnColumn'>
-                            {userData.host ?
-                                <Cell size={'medium-4'} >
-                                    <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
-                                </Cell>
-                                :
+                                {userData.host ?
+                                    <Cell size={'medium-4'} >
+                                        <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
+                                    </Cell>
+                                    :
+                                    <Cell size={'medium-4'}>
+                                        <Btn className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>} classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
+                                    </Cell>
+                                }
                                 <Cell size={'medium-4'}>
-                                    <Btn  className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>}classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
+                                    <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
                                 </Cell>
-                            }
-                            <Cell size={'medium-4'}>
-                                <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
-                            </Cell>
-                            <Cell size={'medium-4'}>
-                                {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
-                                <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
-                            </Cell>
-                            <Cell size={'medium-4'}>
-                                <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
-                            </Cell>
+                                <Cell size={'medium-4'}>
+                                    {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
+                                    <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>} classes={'alert button expanded'} handleClick={handleDeleteUser} text={' Account'} />
+                                </Cell>
+                                <Cell size={'medium-4'}>
+                                    <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
+                                </Cell>
                             </div>
                         </Cell >
                         <div>
                             <Gridx classes="grid-margin-x grid-margin-y">
-                                    <TagRow tags={tagArr} />
-                                </Gridx>
-                                </div>
+                                <TagRow tags={tagArr} />
+                            </Gridx>
+                        </div>
 
 
 
@@ -237,8 +241,8 @@ function Profile(props) {
                     {(userData.host === false) ? null
                         : (
                             <>
-                                
-                                <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
+
+                                <Gridx classes="grid-margin-x grid-margin-y">
                                     {(adventureData) ? adventureData.map(adventure => (
                                         <Cell key={adventure._id} size={'medium-6 large-4'}>
                                             <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
@@ -255,7 +259,7 @@ function Profile(props) {
                     <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
-                    <AvailabilityUpdate show ={modalAvailable} handleModalClose = {handleModalAvailClose}/>
+                    <AvailabilityUpdate show={modalAvailable} handleModalClose={handleModalAvailClose} />
                     {/* END Modals live here */}
 
                 </div>
