@@ -101,10 +101,12 @@ function FlipCard(props) {
                                 <Cell size={'small-12'}>
                                     {/* Message Button */}
                                     {(loginState.loggedIn)?
-                                    props.edit ? null : <Btn classes="button expanded" handleClick={(e) => { e.stopPropagation(); handleOpenChat(props.hostId, props.host) }} text={'Contact host'} />
-                                    :<Btn classes="button expanded" text={'Log In or Sign Up to Contact Host'}handleClick={(e) => { e.stopPropagation(); goToLogin()}}></Btn>}
-                                     {(!props.edit)&&<Btn classes= "button expanded" handleClick={(e) => { e.stopPropagation(); props.bookingModalOpen(props.hostId, props.adventureId) }} text={'Book Adventure'}></Btn>}
-                                     
+                                    props.edit ? null : 
+                                    <>
+                                    <Btn classes="button expanded" handleClick={(e) => { e.stopPropagation(); handleOpenChat(props.hostId, props.host) }} text={'Contact host'} />
+                                    <Btn classes= "button expanded" handleClick={(e) => { e.stopPropagation(); props.bookingModalOpen(props.hostId, props.adventureId) }} text={'Book Adventure'}></Btn>
+                                    </>
+                                    :<Btn classes="button expanded" text={'Log In to Contact Host or Book Adventure'}handleClick={(e) => { e.stopPropagation(); goToLogin()}}></Btn>}
                                     {/* Update Button */}
                                     {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update'} /> : null}
                                     {/* Delete Button */}

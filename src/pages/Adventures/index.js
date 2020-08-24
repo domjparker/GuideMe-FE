@@ -140,11 +140,12 @@ function Adventures() {
 
                     {/* Modal lives here */}
                     <Review show={modalCreateReview.visible} handleModalClose={handleModalCreateReviewClose} id={modalCreateReview.id} />
-                </div>
-                 {/* Modals live here */}
-                <Booking show ={modalBooking} handleModalClose = {handleModalBookingClose} hostId = {bookingHostId} adventureId = {bookingAdventuretId}/>
-                {/* END Modals live here */}
+                    <Booking show ={modalBooking} handleModalClose = {handleModalBookingClose} hostId = {bookingHostId} adventureId = {bookingAdventuretId}/>
+                    {/* END Modals live here */}
 
+                </div>
+
+                
             </Wrapper>
         </>
     )

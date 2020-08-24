@@ -104,7 +104,7 @@ function notBookedDates(entry) {
 
   return (
     <div className={'overlay ' + showHideModal}>
-    <div className={'revealBody'} id="adventureModal1">
+    <div className={'modalBody'} id="adventureModal1">
       <h1>Update your Availability</h1>
       <p className="lead">Current Available Days</p>
       <div className="grid-container fluid">

@@ -11,7 +11,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 function Booking(props) {
-    let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+    let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
     const [newDate, setNewDate] = useState()
     const [dateArr, setDateArr] = useState([])
     const [bookedDateArr, setBookedDateArr] = useState([])
@@ -129,7 +129,7 @@ function Booking(props) {
     return (
         <>
             <div className={'overlay ' + showHideModal}>
-                <div className={'revealBody'} id="adventureModal1">
+                <div className={'modalBody'} id="adventureModal1">
                     <h1>Book Your Adventure</h1>
                     <p className="lead">Availabile Bookings Listed in Green</p>
                     <div className="grid-container fluid">

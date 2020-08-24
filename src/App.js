@@ -23,7 +23,7 @@ function App() {
   let page = 'Find your way'
   //use context for this
   const [user, setuser] = useState({
-    loggedIn:false
+    loggedIn:false,
   })
 
   //this state is just used to make the App wait 
