@@ -7,10 +7,10 @@
 .modal {
     border:none;
     position: fixed;
-    top:10vh;
+    top:0;
     left:0;
     width:100vw !important;
-    height:80vh;
+    height:100vh;
     background-color:rgba(235,240,235,60%);
 }
 .modalBody {

@@ -65,7 +65,7 @@ function ImageForm(props) {
     
       setLoading(false);
       setImage(imageUrl);
-      handleModalClose()
+      props.handleModalClose()
     } catch (err) {
       console.error(err);
     }

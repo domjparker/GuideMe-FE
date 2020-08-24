@@ -13,25 +13,18 @@ function TopBar(props) {
     let history = useHistory()
     //sret the title to location
     const location=useLocation()
+    let fillTopBar 
     let title;
     switch(location.pathname) {
-        case '/' :
-        title= ''
-        break;
+        
         case '/adventures':
-        title=''
-        break;
-        case '/profile':
-        title= ''
+        fillTopBar=' fillTopBar'
         break;
         case '/community':
-        title=''
-        break;
-        case '/public':
-        title=''
+        fillTopBar=' fillTopBar'
         break;
         default:
-        title='Lost in the Woods'
+        fillTopBar=''
 
 
     }
@@ -58,14 +51,14 @@ function TopBar(props) {
     return (
         <>
             <div className="grid-container full" id="topBar">
-                <Gridx classes={'grid-padding-x'}>
-                    <Cell size={'small-3 medium-2'} id="logo">
+                <Gridx classes={''}>
+                    <Cell size={'small-3 medium-2 logo' + fillTopBar} id="">
                         <Link to="/"><h6 className="text-center"><img className="fixingHeight" src={LOGO} alt="logo"></img></h6></Link>
                     </Cell>
-                    <Cell size={'small-6 medium-8'} id="pageTitle">
+                    <Cell size={'small-6 medium-8' + fillTopBar} id="pageTitle">
                         <h1 className="text-center navText">{title}</h1>
                     </Cell>
-                    <Cell size={'small-3 medium-2 loginCell'}>
+                    <Cell size={'small-3 medium-2 loginCell' + fillTopBar}>
                         {renderSignInLogIn()}
                     </Cell>
                 

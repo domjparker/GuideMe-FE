@@ -23,7 +23,6 @@ function ViewReview(props) {
         
         let element=  props.idArr[counter]
         let data = await getReviewElements(element)
-        console.log(data)
         if (data[0]) newArr.push(convertReviewData(data[0]))
            
         if (counter < props.idArr.length-1 ) {
