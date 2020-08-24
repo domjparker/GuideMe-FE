@@ -16,7 +16,7 @@ function TopBar(props) {
     let title;
     switch(location.pathname) {
         case '/' :
-        title= 'GuideMe'
+        title= ''
         break;
         case '/adventures':
         title='Explore adventures'

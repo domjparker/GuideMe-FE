@@ -9,47 +9,28 @@ display: none;
   display: block;
   
 }
-/* Button used to open the chat form - fixed at the bottom of the page */
 
-.open-button {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: relative;
-  width: 280px;
-}
 
 /* The popup chat - hidden by default */
 .chat-popup {
   /* display: none; */
   position: fixed;
   bottom: 10vh;
-  right: 0px;
-  border: 3px solid #f1f1f1;
+  right: 0;
   z-index: 9;
-  max-height: 80vh;
+  max-height: 60vh;
 }
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 300px;
+  color: rgba(235,240,225,100%);
+  width: 25vw;
   padding: 10px;
-  background-color: white;
+  background-color: rgba(57,66,14,80%);
 }
 
-/* Full-width textarea */
-.form-container textarea {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-  resize: none;
-  min-height: 3vh;
-  max-height: 5vh;
+.chatTitle {
+  color: rgba(255,103,0,100%)
 }
 
 /* When the textarea gets focus, do something */
@@ -58,24 +39,15 @@ display: none;
   outline: none;
 }
 
-/* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
+ button.button.chatButton {
+  background-color: rgba(255,103,0,100%);
 }
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
+@media only screen and (max-width: 900px){
+  .chat-popup{
+    width:100%
+  }
+  .form-container {
+    width:100%;
+  }
 }

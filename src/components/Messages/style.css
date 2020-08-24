@@ -1,7 +1,8 @@
 .messageBox {
-  max-height: 40vh;
+  max-height: 50vh;
   overflow: scroll;
   overflow-x: hidden;
+  margin-bottom: 10px;
 }
 .messageBox::-webkit-scrollbar {
   display: none;
@@ -9,6 +10,6 @@
 
 .sender-thumbnail {
     border-radius: 50%;
-    width: 50px;
+    width: 30px;
     height: auto;
 };

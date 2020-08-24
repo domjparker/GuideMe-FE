@@ -1,6 +1,7 @@
-.accordion {
-    background-color: #eee;
-    color: #444;
+
+  .accordion {
+    background-color: rgba(235,240,235,100%);
+    color: #1C2101;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -15,10 +16,13 @@
     background-color: #ccc; 
   }
   
+  .accordion.true {
+    background-color: #39420E;
+    color: rgba(235,240,225,100%);
+  }
   .panel {
     padding: 0 18px;
+    display: none;
     background-color: white;
-    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
   }

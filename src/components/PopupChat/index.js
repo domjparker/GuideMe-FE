@@ -25,12 +25,8 @@ function PopupChat(props) {
         if (socket) {
             // const messageHolder = []
             API.getSessionData().then(res => {
-                console.log("THIS HAPPENED")
                 socket.emit('login', res.data.id)
                 socket.on('text', (obj) => {
-                    console.log(obj)
-                    console.log(obj.messageText)
-                    // messageHolder.push(obj.messageText)
                     setSocketAppend(socketAppend + "\n" + obj.messageText)
                 })
 
@@ -86,15 +82,13 @@ function PopupChat(props) {
     return (
         <>
             <div onClick={(e) => e.stopPropagation()} className={"chat-popup " + showHide} id="myForm">
-                <form action="/action_page.php" className="form-container" onSubmit={sendMessages}>
-                    <h1>{props.name}</h1>
+                <form className="form-container" onSubmit={sendMessages}>
+                    <h5 className="chatTitle">{props.name}</h5>
                     <Messages id={props.id} />
                     <div>{socketAppend}</div>
-
-                    <label for="msg"><b>Message</b></label>
                     <textarea placeholder="Type message.." name="msg" value={messageText} onChange={handleInputChange} required></textarea>
-                    <button type="submit" className="btn">Send</button>
-                    <button type="button" className="btn cancel" onClick={handleCloseChat}>Close </button>
+                    <button type="submit" className="button chatButton">Send</button>
+                    <button type="button" className="close-button" onClick={handleCloseChat}>X </button>
                 </form>
             </div>
         </>

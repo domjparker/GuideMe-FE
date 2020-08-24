@@ -11,7 +11,9 @@ textarea.form-control{
 .postTextArea {
     justify-content:center;
     border-radius: 10px;
-    background-color: rgba(39, 36, 27, 95%);
-    color:rgba(243, 236, 216,100%);
-    padding-top: 5px;
+    background-color: rgba(235,240,235,100%);
+    color:rgba(28,33,1,100%);
+    padding-top: 15px;
+    
 }
+
