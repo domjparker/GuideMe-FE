@@ -29,8 +29,8 @@ function Adventure(props) {
 
   // state to control input values
   const [formObject, setFormObject] = useState({
-    adventureName: 'New Adventure',
-    hostId: '',
+    adventureName: 'New Adventure', 
+    hostId: '', 
     description: 'Very interesting adventure',
     location: 'Unknown',
     stateLocation: 'Washington',

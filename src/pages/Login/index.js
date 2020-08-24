@@ -31,4 +31,4 @@ const [signup, setSignup] = useState(false)
 
 }
 
-export default Login
+export default Login;

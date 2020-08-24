@@ -17,6 +17,8 @@ import ImageForm from '../../components/ImageForm'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import AvailabilityUpdate from '../../components/AvailabilityUpdate'
+import ViewReview from '../../components/ViewReview'
+
 
 // import Messages from '../../components/Messages'
 // import Mailbox from '../../components/Mailbox' // COMMENTED OUT ON 8/20 @ 12:40AM
@@ -40,6 +42,7 @@ function Profile(props) {
     const [modalImage, setModalImage] = useState(false)
     const [picOrBanner, setPicOrBanner] = useState("")
     const [modalTitle, setModalTitle] = useState('')
+
 
     //modal states end ================================================
 
@@ -179,6 +182,8 @@ function Profile(props) {
         setModalAvailable(false)
         setChange(!change)
     }
+
+
     //end of modals section =============================================================
 
     return (
@@ -228,6 +233,7 @@ function Profile(props) {
                                 </Cell>
                             </div>
                         </Cell >
+
                         <div>
                             <Gridx classes="grid-margin-x grid-margin-y">
                                 <TagRow tags={tagArr} />
@@ -243,14 +249,17 @@ function Profile(props) {
                         : (
                             <>
 
-                                <Gridx classes="grid-margin-x grid-margin-y">
-                                    {(adventureData) ? adventureData.map(adventure => (
-                                        <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.duration.time} unit={adventure.duration.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
-
-                                        </Cell>
-                                    )) : null}
-                                </Gridx>
+                            <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
+                                {(adventureData) ? adventureData.map(adventure => (
+                                    <Cell key={adventure._id} size={'medium-6 large-4'}>
+                                        <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
+                                    </Cell>
+                                )) : null}
+                            </Gridx>
+                            <br></br>
+                            <Gridx>
+                                   <ViewReview idArr={(adventureData)? adventureData:[]}/> 
+                            </Gridx>
                             </>
                         )}
                     {/* END Display tags and adventures related to user, if the user is a host */}
@@ -264,6 +273,7 @@ function Profile(props) {
                     {/* END Modals live here */}
 
                 </div>
+                {/* </> */}
             </Wrapper>
         </>
     )

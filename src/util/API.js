@@ -113,6 +113,19 @@ export default {
     updateMailbox: (converserObj) => {
         return axios.put(`${prefix}/api/user/mailbox/`,converserObj, {withCredentials:true})
     },
+
+    // ==========Reviews/Comments=================
+    getReview: (id) =>{
+        return axios.get(`${prefix}/api/review/` + id, {withCredentials:true})  
+    },
+    deleteReview: (id) =>{
+        return axios.delete(`${prefix}/api/review/` + id, {withCredentials:true})  
+    },
+    createReview: (reviewObj) =>{
+        return axios.post(`${prefix}/api/review/`,reviewObj, {withCredentials:true})  
+    },
+    
+
     //============BOOKING==================
     // Get booking by adventure id
     getBookingByAdventure: (id) =>{
