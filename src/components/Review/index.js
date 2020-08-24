@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from '../../util/API'
 import { Input, TextArea, FormBtn } from "../Form";
 import Cell from '../Cell'
 import Gridx from '../Gridx'
 import Btn from '../Btn'
 
-// import StarRating from '../../components/StarRating'
 
 function Review(props) {
 
@@ -14,43 +13,38 @@ function Review(props) {
         props.handleModalClose()
     }
 
-    //progress loader state
-    const [loaderVisible, setLoaderVisible] = useState(false)
+    
 
     // state to control input values
-    const [formObject, setFormObject] = useState({
+    const [reviewObj, setReviewObj] = useState({
         title: 'New Review',
-        comment: ''
+        body: '',
+        rating: 3,
+       
     })
+    useEffect(()=>{
+    setReviewObj({...reviewObj, adventureId:props.id})
+    },[props.show])
 
-    const [reviewObj, setReviewObj] = useState({ title: '' })
+
 
     const handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         let value = event.target.value;
         const name = event.target.name;
         // Updating the input's state
-        if (name === 'name') value = value.toLowerCase()
         setReviewObj({ ...reviewObj, [name]: value })
     };
     const handleFormSubmit = event => {
         event.preventDefault();
-        setLoaderVisible(true)
-
-        API.createReview(reviewObj).then(res => console.log(res)).catch(err => console.log(err))
-        //reset form to empty
-        setReviewObj({ title: '' })
+        console.log(props.id)
+        console.log (reviewObj)
 
         //add the edited object to database
         API.createReview(reviewObj)
             .then(data => {
-                setFormObject({
-                    title: '',
-                    comment: '',
-                })
                 handleModalClose();
             }).catch(err => console.log(err))
-        setLoaderVisible(false)
 
 
     };
@@ -61,7 +55,6 @@ function Review(props) {
             <div className="grid-container fluid">
                 <Gridx>
                     <Cell size="">
-                        {/* <StarRating></StarRating> */}
                         <form className="star" onSubmit={handleFormSubmit}>
                             <Input
                                 value={reviewObj.title}
@@ -71,10 +64,19 @@ function Review(props) {
                                 placeholder="Review"
                                 required
                             />
+                            <Input
+                                value={reviewObj.rating}
+                                name="rating"
+                                onChange={handleInputChange}
+                                type="number"
+                                placeholder="Rating"
+                                required
+                            />
+
                             <TextArea
                                 onChange={handleInputChange}
                                 value={reviewObj.TextArea}
-                                name="comment"
+                                name="body"
                                 placeholder="Comment (Optional)"
                             />
                             <FormBtn

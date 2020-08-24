@@ -17,10 +17,11 @@ import ImageForm from '../../components/ImageForm'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import AvailabilityUpdate from '../../components/AvailabilityUpdate'
+import ViewReview from '../../components/ViewReview'
+
 
 // import Messages from '../../components/Messages'
 // import Mailbox from '../../components/Mailbox' // COMMENTED OUT ON 8/20 @ 12:40AM
-import Review from '../../components/Review'
 
 function Profile(props) {
     let history = useHistory()
@@ -41,6 +42,7 @@ function Profile(props) {
     const [modalImage, setModalImage] = useState(false)
     const [picOrBanner, setPicOrBanner] = useState("")
     const [modalTitle, setModalTitle] = useState('')
+
 
     //modal states end ================================================
 
@@ -117,9 +119,9 @@ function Profile(props) {
     //become host button just currently updates status on database,this is what happens here
     const handleBecomeHost = () => {
         let hostObj = { host: true, verified: true }
-        let newGuideObj = { targetId: userData.id, action: "newGuide" , adventureId: null}
+        let newGuideObj = { targetId: userData.id, action: "newGuide", adventureId: null }
         API.updateUser(hostObj).then(() => setChange(!change)).catch(err => console.log(err))
-        API.postFeed(newGuideObj).then((res) => console.log(res)).catch(err => console.log(err))   
+        API.postFeed(newGuideObj).then((res) => console.log(res)).catch(err => console.log(err))
     }
 
     //start of modals section ============================================================
@@ -180,6 +182,8 @@ function Profile(props) {
         setModalAvailable(false)
         setChange(!change)
     }
+
+
     //end of modals section =============================================================
 
     return (
@@ -198,7 +202,7 @@ function Profile(props) {
                             <img style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl ? userData.profilePictureUrl : "https://images.pexels.com/photos/1761282/pexels-photo-1761282.jpeg?cs=srgb&dl=pexels-jake-colvin-1761282.jpg&fm=jpg"} alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                             <h2>{userData.firstName} {userData.lastName}</h2>
                             <p>{userData.location}, {userData.stateLocation} </p>
-                            
+
                             <p>{userData.bio}</p>
                         </Cell>
                         {/* CRUD buttons for user and adventure, all except delete btn, open a modal */}
@@ -220,24 +224,17 @@ function Profile(props) {
                                     {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
                                     <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>} classes={'alert button expanded'} handleClick={handleDeleteUser} text={' Account'} />
                                 </Cell>
-                            }
-                            <Cell size={'medium-4'}>
-                                <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
-                            </Cell>
-                            <Cell size={'medium-4'}>
-                                {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
-                                <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>}classes={'alert button expanded'} handleClick={handleDeleteUser} text= {' Account'} />
-                            </Cell>
-                            <Cell size={'medium-4'}>
-                                <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
-                            </Cell>
+                                <Cell size={'medium-4'}>
+                                    <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
+                                </Cell>
                             </div>
                         </Cell >
+
                         <div>
                             <Gridx classes="grid-margin-x grid-margin-y">
-                                    <TagRow tags={tagArr} />
-                                </Gridx>
-                                </div>
+                                <TagRow tags={tagArr} />
+                            </Gridx>
+                        </div>
 
 
 
@@ -247,21 +244,18 @@ function Profile(props) {
                     {(userData.host === false) ? null
                         : (
                             <>
-                                
-                                <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
-                                    {(adventureData) ? adventureData.map(adventure => (
-                                        <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
 
-                                        </Cell>
-                                    )) : null}
-                                </Gridx>
-                                {/* comment/review populate here */}
-                                <Gridx>
-                                    <Cell size={"medium-4"}>
-                                        <Review />
+                            <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
+                                {(adventureData) ? adventureData.map(adventure => (
+                                    <Cell key={adventure._id} size={'medium-6 large-4'}>
+                                        <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
                                     </Cell>
-                                </Gridx>
+                                )) : null}
+                            </Gridx>
+                            <br></br>
+                            <Gridx>
+                                   <ViewReview idArr={adventureData.map(adventure=>adventure._id)}/> 
+                            </Gridx>
                             </>
                         )}
                     {/* END Display tags and adventures related to user, if the user is a host */}
@@ -271,10 +265,12 @@ function Profile(props) {
                     <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
                     <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
                     <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
-                    <AvailabilityUpdate show ={modalAvailable} handleModalClose = {handleModalAvailClose}/>
+                    <AvailabilityUpdate show={modalAvailable} handleModalClose={handleModalAvailClose} />
+
                     {/* END Modals live here */}
 
                 </div>
+                {/* </> */}
             </Wrapper>
         </>
     )

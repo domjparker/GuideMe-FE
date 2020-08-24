@@ -56,10 +56,7 @@ function FlipCard(props) {
         history.push({pathname:'/public', state:{userId:props.hostId}})
     }
 
-    // const handleReviewClick = (e) => {
-    //     e.stopPropagation()
-    //     history.push({pathname;'/review', state;{userId:props.hostId}})
-    // }
+    
    
     return (
         <>
