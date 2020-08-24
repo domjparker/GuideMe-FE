@@ -14,7 +14,7 @@ import Loader from 'react-loader-spinner'
 
 function Adventure(props) {
   // this state dictates whether form is visible, the values are passed in from parent element
-  let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+  let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
   const handleModalClose = () => {
     props.handleModalClose()
   }
@@ -29,8 +29,8 @@ function Adventure(props) {
 
   // state to control input values
   const [formObject, setFormObject] = useState({
-    adventureName: 'New Adventure',
-    hostId: '',
+    adventureName: 'New Adventure', 
+    hostId: '', 
     description: 'Very interesting adventure',
     location: 'Unknown',
     stateLocation: 'Washington',
@@ -185,7 +185,7 @@ function Adventure(props) {
 
   return (
     <div className={'overlay ' + showHideModal}>
-      <div className={'revealBody'} id="adventureModal1">
+      <div className={'modalBody'} id="adventureModal1">
         <h1>Create an Adventure</h1>
         <p className="lead">Publish an adventure for the masses to enjoy. All fields are required</p>
         <div className="grid-container fluid">

@@ -35,7 +35,7 @@ position: absolute;
 right: 0;
 top:10vh;
 padding:10px;
-border-radius: 10px;
+border-radius: 0px 0px 0px 10px;
 background-color: rgba(235,240,235,100%);
 }
 

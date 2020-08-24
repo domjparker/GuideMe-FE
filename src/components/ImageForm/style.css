@@ -1,11 +1,2 @@
-.reveal.d-block {
-    display:block;
-}
+/* all reveal logic lives in updateUser component */
 
-.reveal.d-none {
-    display:none;
-}
-
-#exampleModal1{
-    /* border-radius: 5px; */
-}
