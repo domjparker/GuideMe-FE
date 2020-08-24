@@ -13,10 +13,10 @@ import 'react-calendar/dist/Calendar.css';
 function AvailabilityUpdate(props) {
   //handles bodal visibility state as input from parent element
   let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
-  const [newDate, setNewDate] = useState(new Date())
+  const [newDate, setNewDate] = useState()
   const [dateArr, setDateArr] = useState([])
   const [dateStringArr, setDateStringArr] = useState([])
-  const tempArr = []
+  const [bookedDateArr, setBookedDateArr] = useState([])
   //handles form object data
 
   //checks for data when modal visibility setting changes
@@ -32,13 +32,37 @@ function AvailabilityUpdate(props) {
   //populate update form with existing data of that adventure
   async function loadInitialData() {
     let { data } = await API.getAvailability()
-    var tempArray = data.availability.map(objectTranslate)
+    var filteredAvailableArray = data.availability.filter(notBookedDates)
+    var filteredBookedAray = data.availability.filter(bookedDates)
+    console.log(filteredBookedAray)
+    console.log(filteredAvailableArray)
+    var tempArray = filteredAvailableArray.map(objectTranslate)
     setDateArr(tempArray)
+    setBookedDateArr(filteredBookedAray)
     var stringyTempArray = tempArray.map(item => item = item.toString())
-   setDateStringArr(stringyTempArray)
-    
-    
+    setDateStringArr(stringyTempArray)
+
   }
+  
+  function bookedDates(entry) {
+    if (("adventureId" in entry) === true) {
+        return true
+    }
+    else {
+        return false
+    }
+}
+
+// Filters Out Dates that are not booked
+function notBookedDates(entry) {
+    console.log("adventureId" in entry)
+    if (("adventureId" in entry) === false) {
+        return true
+    }
+    else {
+        return false
+    }
+}
   function objectTranslate (entry){
     var dataStartDate = entry.startDate
     return new Date(dataStartDate)
@@ -70,16 +94,17 @@ function AvailabilityUpdate(props) {
   }
   async function handleFormSubmit(event) {
     event.preventDefault();
-    const postArr = dateArr.map(createAvailObj)
-    console.log("THIS IS POST")
+    const selectedDateArr = dateArr.map(createAvailObj)
+    var postArr = selectedDateArr.concat(bookedDateArr)
     console.log(postArr)
     await API.updateAvailability({availability: postArr})
     handleModalClose()
-    
-   
+ 
   }
+
   return (
-    <div className={showHideModal} id="exampleModal1">
+    <div className={'overlay ' + showHideModal}>
+    <div className={'modalBody'} id="adventureModal1">
       <h1>Update your Availability</h1>
       <p className="lead">Current Available Days</p>
       <div className="grid-container fluid">
@@ -88,7 +113,8 @@ function AvailabilityUpdate(props) {
           <TagRow edit={true} tags={dateStringArr} filterTags={handleFilterDates}></TagRow>
           
             <form>
-              <Calendar calendarType = "ISO 8601" onChange = {calendarOnChange} value={newDate}/>
+            {/* The function for titleClassName determines which date to display as green */}
+            <Calendar calendarType = "ISO 8601" onClickDay = {calendarOnChange} value={newDate} tileClassName = {({ date, view }) =>  (dateArr.map(index => new Date(index).getDate() + " " + new Date(index).getMonth()).includes(date.getDate() + " " + date.getMonth())? 'selectedAvailable' : null) || (bookedDateArr.map(index => new Date(index.startDate).getDate() + " " + new Date(index.startDate).getMonth()).includes(date.getDate() + " " + date.getMonth())? 'bookedAvailable' : null) }  tileDisabled = {({date, view }) => (new Date(date)< new Date())||bookedDateArr.map(index => new Date(index.startDate).getDate() + " " + new Date(index.startDate).getMonth()).includes(date.getDate() + " " + date.getMonth())}/>
               <FormBtn
                 onClick={handleFormSubmit}>
                 Submit Availability Changes
@@ -100,6 +126,7 @@ function AvailabilityUpdate(props) {
           </Cell>
         </Gridx>
       </div>
+    </div>
     </div>
   );
 }
