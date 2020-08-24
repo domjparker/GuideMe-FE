@@ -89,6 +89,9 @@ export default {
     updateAvailability: (availObj) => {
         return axios.put(`${prefix}/api/user/availability`,availObj, {withCredentials:true})
     },
+    updateAvailabilityBooking: (availObj) => {
+        return axios.put(`${prefix}/api/user/availability/booking`,availObj, {withCredentials:true})
+    },
     //============TAGS==================
     //GET tag by id
     getTagbyId: (id) => {
@@ -119,7 +122,7 @@ export default {
         return axios.get(`${prefix}/api/booking/adventure/` + id, {withCredentials:true})
     },
     //Update booking for logged in user
-    updateBooking: (bookingObj) =>{
+    createBooking: (bookingObj) =>{
         return axios.post(`${prefix}/api/booking/`, bookingObj, {withCredentials:true})
     },
     //=====================FEED =============================

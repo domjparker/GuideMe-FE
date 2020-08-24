@@ -1,3 +1,6 @@
 .selectedAvailable{
     background:green !important;
 }
+.bookedAvailable{
+    background:red !important;
+}
