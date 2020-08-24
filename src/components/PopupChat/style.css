@@ -26,11 +26,12 @@ display: none;
   color: rgba(235,240,225,100%);
   width: 25vw;
   padding: 10px;
-  background-color: rgba(57,66,14,80%);
+  background-color: rgba(57,66,14,90%);
 }
 
 .chatTitle {
   color: rgba(255,103,0,100%);
+  font-weight:bolder;
 }
 
 /* When the textarea gets focus, do something */

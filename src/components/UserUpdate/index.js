@@ -11,7 +11,7 @@ import { stateLocation } from '../StateLocations'
 
 function UserUpdate(props) {
   //handles bodal visibility state as input from parent element
-  let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+  let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
   const handleModalClose = () => {
     props.handleModalClose()
   }
@@ -103,7 +103,7 @@ function UserUpdate(props) {
 
   return (
     <div className={"overlay " + showHideModal}>
-      <div className={"revealBody"} id="exampleModal1">
+      <div className={"modalBody"} id="exampleModal1">
         <h1>Update profile</h1>
         <div className="grid-container fluid">
           <Gridx>
