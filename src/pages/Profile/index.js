@@ -80,26 +80,54 @@ function Profile(props) {
     //delete this user account
     const handleDeleteUser = () => {
         confirmAlert({
-            title: 'Do you want to delete your account?',
-            message: 'This action permanently deletes your account and all related data.',
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => {
-                        API.deleteUser().then(() => {
-                            API.logOutUser()
-                            loginState.changeLoginState(false)
-                            setChange(!change)
-                            history.push('/')
-                        }).catch(err => console.log(err))
-                    }
-                },
-                {
-                    label: 'No',
-                    onClick: () => { }
-                }
-            ]
+            childrenElement: () =>
+                <div className='alertBox'>
+                    <h1>Do you want to delete your account? </h1>
+                    <h3>This action permanently deletes your account and all related data.</h3>
+                    <div>
+                        <Btn
+                            className='confirmDelete'
+                            text='Yes'
+                            onClick={
+                                API.deleteUser().then(() => {
+                                    API.logOutUser()
+                                    loginState.changeLoginState(false)
+                                    setChange(!change)
+                                    history.push('/')
+                                }).catch(err => console.log(err))
+                            }
+                        />
+                        <Btn
+                            className='confirmDelete'
+                            text='No'
+                            onClick={
+                                () => { }
+                            }
+                        />
+                    </div>
+
+                </div>
+
+
+            // buttons: [
+            //     {
+            //         label: 'Yes',
+            //         onClick: () => {
+            //             API.deleteUser().then(() => {
+            //                 API.logOutUser()
+            //                 loginState.changeLoginState(false)
+            //                 setChange(!change)
+            //                 history.push('/')
+            //             }).catch(err => console.log(err))
+            //         }
+            //     },
+            //     {
+            //         label: 'No',
+            //         onClick: () => { }
+            //     }
+            // ]
         });
+
 
     }
 
@@ -119,7 +147,7 @@ function Profile(props) {
     //become host button just currently updates status on database,this is what happens here
     const handleBecomeHost = () => {
         let hostObj = { host: true, verified: true }
-        let newGuideObj = { targetId: userData.id, action: "newGuide" , adventureId: null, postImageUrl: null}
+        let newGuideObj = { targetId: userData.id, action: "newGuide", adventureId: null, postImageUrl: null }
         API.updateUser(hostObj).then(() => setChange(!change)).catch(err => console.log(err))
         API.postFeed(newGuideObj).then((res) => console.log(res)).catch(err => console.log(err))
     }
@@ -212,14 +240,14 @@ function Profile(props) {
                         <Cell size={"small-12 medium-6 "} >
                             <div className='createBtnColumn'>
                                 {userData.host ?
-                                <>
-                                    <Cell size={'medium-4'} >
-                                        <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
-                                    </Cell>
-                                <Cell size={'medium-4'}>
-                                    <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
-                                </Cell>
-                                </>
+                                    <>
+                                        <Cell size={'medium-4'} >
+                                            <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
+                                        </Cell>
+                                        <Cell size={'medium-4'}>
+                                            <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
+                                        </Cell>
+                                    </>
                                     :
                                     <Cell size={'medium-4'}>
                                         <Btn className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>} classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
@@ -249,17 +277,17 @@ function Profile(props) {
                         : (
                             <>
 
-                            <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
-                                {(adventureData) ? adventureData.map(adventure => (
-                                    <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                        <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
-                                    </Cell>
-                                )) : null}
-                            </Gridx>
-                            <br></br>
-                            <Gridx>
-                                   <ViewReview idArr={(adventureData)? adventureData:[]}/> 
-                            </Gridx>
+                                <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
+                                    {(adventureData) ? adventureData.map(adventure => (
+                                        <Cell key={adventure._id} size={'medium-6 large-4'}>
+                                            <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
+                                        </Cell>
+                                    )) : null}
+                                </Gridx>
+                                <br></br>
+                                <Gridx>
+                                    <ViewReview idArr={(adventureData) ? adventureData : []} />
+                                </Gridx>
                             </>
                         )}
                     {/* END Display tags and adventures related to user, if the user is a host */}
@@ -280,3 +308,17 @@ function Profile(props) {
 }
 
 export default Profile;
+
+
+
+// .react-confirm-alert-body {
+//     font-family: Arial, Helvetica, sans-serif;
+//     width: 400px;
+//     padding: 30px;
+//     text-align: left;
+//     background: #39420e;
+//     border-radius: 10px;
+//     box-shadow: 0 20px 75px rgba(0, 0, 0, 0.13);
+//     color: #f5f7f5;
+//     opacity: 0.89;
+//   }
