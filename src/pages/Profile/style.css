@@ -57,7 +57,7 @@ background-color: rgba(235,240,235,100%);
     border:none;
     width: 300px;
     position: absolute;
-    max-height: 78vh;
+    max-height: 60vh;
     top:50%;
     left: 50%;
     transform:translate(-50%, -50%);
@@ -70,9 +70,7 @@ background-color: rgba(235,240,235,100%);
     color: #f5f7f5;
     
 }
-.confirmDelete{
-    
-}
+
 
 /*  border:none;
     width: 60vw;

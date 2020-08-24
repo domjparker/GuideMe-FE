@@ -80,56 +80,37 @@ function Profile(props) {
     //delete this user account
     const handleDeleteUser = () => {
         confirmAlert({
-            childrenElement: () =>
-                <div className='alertBox'>
-                    <h1>Do you want to delete your account? </h1>
-                    <h3>This action permanently deletes your account and all related data.</h3>
-                    <div>
-                        <Btn
-                            className='confirmDelete'
-                            text='Yes'
-                            onClick={
-                                API.deleteUser().then(() => {
-                                    API.logOutUser()
-                                    loginState.changeLoginState(false)
-                                    setChange(!change)
-                                    history.push('/')
-                                }).catch(err => console.log(err))
-                            }
-                        />
-                        <Btn
-                            className='confirmDelete'
-                            text='No'
-                            onClick={
-                                () => { }
-                            }
-                        />
-                    </div>
-
-                </div>
-
-
-            // buttons: [
-            //     {
-            //         label: 'Yes',
-            //         onClick: () => {
-            //             API.deleteUser().then(() => {
-            //                 API.logOutUser()
-            //                 loginState.changeLoginState(false)
-            //                 setChange(!change)
-            //                 history.push('/')
-            //             }).catch(err => console.log(err))
-            //         }
-            //     },
-            //     {
-            //         label: 'No',
-            //         onClick: () => { }
-            //     }
-            // ]
-        });
-
+            title: 'Confirm to submit',                        // Title dialog
+            message: 'Are you sure to do this.',               // Message dialog
+            confirmLabel: <Btn
+            classes='confirmDelete'
+            text='Yes'
+            handleClick={
+                API.deleteUser().then(() => {
+                    API.logOutUser()
+                    loginState.changeLoginState(false)
+                    setChange(!change)
+                    history.push('/')
+                }).catch(err => console.log(err))
+            }
+        />,                           // Text button confirm
+            cancelLabel: <Btn
+            classes='confirmDelete'
+            text='No'
+            handleClick={
+                () => { }
+            }
+        />  ,                             // Text button cancel
+  
+                    
+          
+           
+            
+          
+        })
 
     }
+
 
     //delete the adventure -- this method is passed into the FlipCard component because the delete button lives on the FlipCard
     const handleDeleteAdventure = (e) => {
@@ -210,8 +191,12 @@ function Profile(props) {
         setModalAvailable(false)
         setChange(!change)
     }
-
-
+    //review block conditional rendering
+    const renderViewReview = (info) => {
+        if (info) {
+            return <ViewReview idArr={info.map(item => item._id)} targetUser={'you'} />
+        }
+    }
     //end of modals section =============================================================
 
     return (
@@ -284,12 +269,13 @@ function Profile(props) {
                                         </Cell>
                                     )) : null}
                                 </Gridx>
-                                <br></br>
-                                <Gridx>
-                                    <ViewReview idArr={(adventureData) ? adventureData : []} />
-                                </Gridx>
+
                             </>
                         )}
+                    <br></br>
+                    <Gridx>
+                        {(adventureData) ? renderViewReview(adventureData) : console.log('nodata')}
+                    </Gridx>
                     {/* END Display tags and adventures related to user, if the user is a host */}
 
                     {/* Modals live here */}
@@ -311,14 +297,3 @@ export default Profile;
 
 
 
-// .react-confirm-alert-body {
-//     font-family: Arial, Helvetica, sans-serif;
-//     width: 400px;
-//     padding: 30px;
-//     text-align: left;
-//     background: #39420e;
-//     border-radius: 10px;
-//     box-shadow: 0 20px 75px rgba(0, 0, 0, 0.13);
-//     color: #f5f7f5;
-//     opacity: 0.89;
-//   }

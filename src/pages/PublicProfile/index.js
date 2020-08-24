@@ -8,7 +8,9 @@ import TagRow from '../../components/TagRow'
 import FlipCard from '../../components/FlipCard'
 import API from '../../util/API'
 import { useLocation } from 'react-router-dom'
-// import ViewReview from '../../components/ViewReview'
+import ViewReview from '../../components/ViewReview'
+import Booking from '../../components/Booking'
+
 
 
 
@@ -45,6 +47,32 @@ function PublicProfile(props) {
             setAdventureData(data)
         }
     }
+    //review block conditional rendering
+    const renderViewReview = (info) => {
+        if (info)  {    
+                return <ViewReview idArr={info.map(item=>item._id)} targetUser={`${userData.firstName} ${userData.lastName}`}/> 
+        }
+    }
+
+    //BOOKING MODAL
+    // const [change, setChange] = useState(false)
+    const [modalBooking, setModalBooking] = useState(false)
+    const [bookingHostId, setBookingHostId] = useState()
+    const [bookingAdventuretId, setBookingAdventureId] = useState()
+
+    const handleModalBookingClose = () => {
+        //update user modal close
+        setModalBooking(false)
+        // setChange(!change)
+    }
+    const handleModalBookingOpen = (id, adventureId) => {
+        console.log(adventureId)
+        //update user modal close
+        setBookingHostId(id)
+        setBookingAdventureId(adventureId)
+        setModalBooking(true)
+        // setChange(!change)
+    }
 
     return (
         <>
@@ -77,16 +105,19 @@ function PublicProfile(props) {
                                 <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
                                     {(adventureData) ? adventureData.map(adventure => (
                                         <Cell key={adventure._id} size={'medium-6 large-4'}>
-                                            <FlipCard key={adventure._id} id={adventure._id} stateLocation={adventure.stateLocation} delete={false} edit={false} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
+                                            <FlipCard key={adventure._id} id={adventure._id} stateLocation={adventure.stateLocation} delete={false} edit={false} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} bookingModalOpen = {handleModalBookingOpen} adventureId = {adventure._id}hostId={adventure.hostId._id }/>
                                         </Cell>
                                     )) : null}
                                 </Gridx>
-                                {/* <Gridx>
-                                    <ViewReview/>
-                                </Gridx> */}
+
                             </>
                         )}
+                         <br></br>
+                            <Gridx>
+                                   {(adventureData) ? renderViewReview(adventureData):console.log('nodata')}
+                            </Gridx>
                     {/* END Display tags and adventures related to user, if the user is a host */}
+                    <Booking show ={modalBooking} handleModalClose = {handleModalBookingClose} hostId = {bookingHostId} adventureId = {bookingAdventuretId}/>
                 </div>
             </Wrapper>
         </>
