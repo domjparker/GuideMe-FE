@@ -12,7 +12,7 @@ import 'react-calendar/dist/Calendar.css';
 
 function AvailabilityUpdate(props) {
   //handles bodal visibility state as input from parent element
-  let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+  let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
   const [newDate, setNewDate] = useState(new Date())
   const [dateArr, setDateArr] = useState([])
   const [dateStringArr, setDateStringArr] = useState([])

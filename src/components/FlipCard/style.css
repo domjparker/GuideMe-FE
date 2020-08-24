@@ -105,7 +105,8 @@
 }
 
 .clickableHost {
-    color: rgba(255,103,0,100%)
+    color: rgba(255,103,0,100%);
+    display:inline-block;
 }
 
 .clickableHost:hover {

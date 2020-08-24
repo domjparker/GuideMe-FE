@@ -12,6 +12,7 @@ import { loginContext } from '../LoginContext'
 import Booking from '../Booking'
 
 
+
 //this component takes ina  ton of adventure information
 function FlipCard(props) {
     let history = useHistory()
@@ -23,6 +24,7 @@ function FlipCard(props) {
         firstName: "",
         id: ""
     })
+    
     const [showMessage, setShowMessage] = useState(false);
 
     const handleClassToggle = () => {
@@ -51,12 +53,14 @@ function FlipCard(props) {
     const goToLogin = () => {
         history.push('/profile')
     }
-    
 
     const handleHostNameClick = (e) => {
         e.stopPropagation()
         history.push({pathname:'/public', state:{userId:props.hostId}})
     }
+
+    
+   
     return (
         <>
             {/* TODO: needs a little better thought through layout */}
@@ -64,6 +68,7 @@ function FlipCard(props) {
                 <div className="card__inner">
                     <div className="card__back">
                         <div className=" grid-container">
+
                             <Gridx classes={''}>
                                 <Cell size={"small-12 text-center details-heading"}>
                                     <h4><strong>{props.title}</strong></h4>
@@ -74,6 +79,7 @@ function FlipCard(props) {
                                     <p>{props.description}</p>
                                 </Cell>
                             </Gridx>
+
                             <Gridx classes={''}>
                                 <Cell size={"small-12 medium-12 resources padding-flip"}>
                                     <h6><strong>Details</strong></h6>
@@ -89,8 +95,8 @@ function FlipCard(props) {
                                     <h6><strong>Itinerary</strong></h6>
                                     <p>{props.itinerary}</p>
                                 </Cell>
-
                             </Gridx>
+
                             <Gridx classes={''}>
                                 <Cell size={'small-12'}>
                                     {/* Message Button */}
@@ -102,15 +108,15 @@ function FlipCard(props) {
                                     {/* Update Button */}
                                     {props.edit ? <Btn data-id={props.id} className="editFlipcard"icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={props.editClick} text={'update'} /> : null}
                                     {/* Delete Button */}
-                                    
                                     {props.delete ? <Btn  data-id={props.id} className="editFlipcard"icon={<i className="far fa-trash-alt"></i>} classes={'alert button expanded'}  handleClick= { props.deleteClick} text={'delete me'} /> : null}
-                                    
                                 </Cell>
-
                             </Gridx>
+
                         </div>
                     </div>
+                    
                     <div className="card__front">
+
                         <Gridx classes={""}>
                             <Cell size={"small-12"}>
                                 <div className="card-section">
@@ -119,12 +125,12 @@ function FlipCard(props) {
                                 <div className="card-section">
                                     <h4 className="flipCardTitle"><strong>{props.title}</strong></h4>
                                     {!props.edit ? <h5 className='clickableHost' onClick={handleHostNameClick}>{props.host}</h5> :<h5 >{props.host}</h5> }
-                                    
                                     <p>{props.description}</p>
                                 </div>
                             </Cell>
                             {!props.edit && <TagRow tags={props.tags} />}
                         </Gridx>
+
                     </div>
                 </div>
             </div>

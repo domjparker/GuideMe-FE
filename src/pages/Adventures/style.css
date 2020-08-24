@@ -1,9 +1,11 @@
 .calloutAdventures{ 
     display: flex;
     flex-wrap: wrap;
+    padding: 5px;
     justify-content:center;
     background-color: rgba(235,240,235,100%);
     color:rgba(28,33,1,100%);
+    margin-top:10vh;
   }
 .flipCardContainer{
   margin-top: 10px;
