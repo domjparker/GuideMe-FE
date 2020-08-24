@@ -212,9 +212,14 @@ function Profile(props) {
                         <Cell size={"small-12 medium-6 "} >
                             <div className='createBtnColumn'>
                                 {userData.host ?
+                                <>
                                     <Cell size={'medium-4'} >
                                         <Btn className="profileIcons" icon={<i className="fas plusSign fa-plus"></i>} classes={'button expanded'} handleClick={handleCreateAdventureClick} text={'Adventure'} />
                                     </Cell>
+                                <Cell size={'medium-4'}>
+                                    <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
+                                </Cell>
+                                </>
                                     :
                                     <Cell size={'medium-4'}>
                                         <Btn className="profileIcons" icon={<i className="fas fa-map-marked-alt"></i>} classes={'button expanded'} handleClick={handleBecomeHost} text={'Become a guide'} />
@@ -224,11 +229,7 @@ function Profile(props) {
                                     <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateUserClick} text={'Account'} />
                                 </Cell>
                                 <Cell size={'medium-4'}>
-                                    {/* TODO:create a modal that asks "are you sure?" for the delete account button */}
                                     <Btn className="profileIcons" icon={<i className="far fa-trash-alt"></i>} classes={'alert button expanded'} handleClick={handleDeleteUser} text={' Account'} />
-                                </Cell>
-                                <Cell size={'medium-4'}>
-                                    <Btn className="profileIcons" icon={<i className="fas fa-pencil-alt"></i>} classes={'button expanded'} handleClick={handleUpdateAvailClick} text={'Availability'} />
                                 </Cell>
                             </div>
                         </Cell >

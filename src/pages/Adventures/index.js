@@ -85,17 +85,26 @@ function Adventures() {
         <>
             <Wrapper>
                 <div className="calloutAdventures">
-                    <h3>Filter adventures by:</h3>
                     {/* The search or host adventure form on home page */}
                     <div className="container searchBoxAdventures">
+                    <Gridx>
+                        <Cell size={"small-12"}>
+
+                    <h3>Filter adventures by:</h3>
+                        </Cell>
+                                    <Cell size={'small-6'}>
                         <select onChange={(e) => { setSearchTerm(e.target.value) }} value={searchTerm} className="findAdventureAdventure">
                             <option>Activity</option>
                             {tags ? tags.map(tag => <option key={tag._id} value={tag.tagName}>{tag.tagName}</option>) : null}
                         </select>
+                        </Cell>
+                        <Cell size={'small-6'}>
                         <select onChange={(e) => { setSearchTermState(e.target.value) }} value={searchTermState} className="findAdventureAdventure">
                             <option>Location</option>
                             {stateLocation ? stateLocation.map(state => <option key={stateLocation.indexOf(state)} value={state}>{state}</option>) : null}
                         </select>
+                        </Cell>
+                        </Gridx>
                     </div>
                 </div>
 

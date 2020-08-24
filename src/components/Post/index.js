@@ -16,8 +16,12 @@ function Post(props) {
                             <p className='text-center dateInfo'>{props.date}</p>
                         </Cell>
                         <Cell size={'small-9 postContent'}>
-                            <p className='lead'><Link to={{ pathname: '/public', state: { userId: props.userId } }}>{props.userName}</Link>{props.text}</p>
+                          
+
+                            <p className=''><Link to={{ pathname: '/public', state: { userId: props.userId } }}>{props.userName}</Link>{props.text}</p>
+                               
                             <p className='text-right locationInfo'>{props.location}</p>
+                            
                         </Cell>
                     </Gridx>
                 </Cell>
@@ -33,9 +37,9 @@ function Post(props) {
                             <p className='text-center'>{props.date}</p>
                         </Cell>
                         <Cell size={'small-9 postContent'}>
-                            <p className='lead'><Link to={{ pathname: '/public', state: { userId: props.userId } }}>{props.userName}</Link>{props.text}</p>
+                            <p className=''><Link to={{ pathname: '/public', state: { userId: props.userId } }}>{props.userName}</Link>{props.text}</p>
                             <img className="adventureImage" src={props.postImageUrl} alt="new adventure image" />
-                            <p className='text-right locationInfo'>{props.location}</p>
+                            <p className='text-right align-self-bottom locationInfo'>{props.location}</p>
                         </Cell>
                     </Gridx>
                 </Cell>
