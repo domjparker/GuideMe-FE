@@ -103,6 +103,9 @@ function PublicProfile(props) {
                                     <TagRow tags={tagArr} />
                                 </Gridx>
                                 <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
+                                <Cell size={'small-12'}>
+                                    <h3 className="reviewTitle">{userData.firstName + " " + userData.lastName + "'s posted adventures"}</h3>
+                                </Cell>
                                     {(adventureData) ? adventureData.map(adventure => (
                                         <Cell key={adventure._id} size={'medium-6 large-4'}>
                                             <FlipCard key={adventure._id} id={adventure._id} stateLocation={adventure.stateLocation} delete={false} edit={false} location={adventure.location} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} bookingModalOpen = {handleModalBookingOpen} adventureId = {adventure._id}hostId={adventure.hostId._id }/>

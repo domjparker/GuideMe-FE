@@ -254,6 +254,9 @@ function Profile(props) {
                             <>
 
                             <Gridx classes="Matthew-Stuff grid-margin-x grid-margin-y">
+                                <Cell size={'small-12'}>
+                                    <h3 className="reviewTitle">Your posted adventures</h3>
+                                </Cell>
                                 {(adventureData) ? adventureData.map(adventure => (
                                     <Cell key={adventure._id} size={'medium-6 large-4'}>
                                         <FlipCard key={adventure._id} id={adventure._id} delete={true} deleteClick={handleDeleteAdventure} edit={true} editClick={handleUpdateAdventureClick} location={adventure.location} stateLocation={adventure.stateLocation} number={adventure.number} unit={adventure.unit} difficulty={adventure.difficulty} maxGroupSize={adventure.maxGroupSize} minGroupSize={adventure.minGroupSize} itinerary={adventure.itinerary} img={adventure.adventureImageUrl ? adventure.adventureImageUrl : "https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1525041.jpg&fm=jpg"} title={adventure.adventureName} host={adventure.hostId.firstName + " " + adventure.hostId.lastName} description={adventure.description} />
