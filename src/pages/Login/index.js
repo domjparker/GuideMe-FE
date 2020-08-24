@@ -17,6 +17,7 @@ const [signup, setSignup] = useState(false)
         <>
         
         <div className ='loginBackground'>
+            <div className='loginForm'>
             {/* see components for more info  */}
             <button className={'accordion ' + signin} onClick={accordionClick}>Sign In</button>
             <div className='panel' style={signin?{display:'block'}:{display:'none'}}>
@@ -25,6 +26,7 @@ const [signup, setSignup] = useState(false)
             <button className={'accordion ' + signup} onClick={accordionClick}>Sign Up</button>
             <div className='panel' style={signup?{display:'block'}:{display:'none'}}>
             <SignUp changeAccordion={accordionClick}/>
+            </div>
         </div>
         </div>
         
