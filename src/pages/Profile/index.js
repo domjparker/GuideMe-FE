@@ -80,34 +80,26 @@ function Profile(props) {
     //delete this user account
     const handleDeleteUser = () => {
         confirmAlert({
-            title: 'Confirm to submit',                        // Title dialog
-            message: 'Are you sure to do this.',               // Message dialog
-            confirmLabel: <Btn
-            classes='confirmDelete'
-            text='Yes'
-            handleClick={
-                API.deleteUser().then(() => {
-                    API.logOutUser()
-                    loginState.changeLoginState(false)
-                    setChange(!change)
-                    history.push('/')
-                }).catch(err => console.log(err))
-            }
-        />,                           // Text button confirm
-            cancelLabel: <Btn
-            classes='confirmDelete'
-            text='No'
-            handleClick={
-                () => { }
-            }
-        />  ,                             // Text button cancel
-  
-                    
-          
-           
-            
-          
-        })
+            title: 'Do you want to delete your account?',
+            message: 'This action permanently deletes your account and all related data.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        API.deleteUser().then(() => {
+                            API.logOutUser()
+                            loginState.changeLoginState(false)
+                            setChange(!change)
+                            history.push('/')
+                        }).catch(err => console.log(err))
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => { }
+                }
+            ]
+        });
 
     }
 
