@@ -13,7 +13,7 @@ function PopupChat(props) {
 
 
     useEffect(() => {
-        setSocket(io.connect("http://localhost:3001"))
+        setSocket(io.connect("https://guidemebe.herokuapp.com/"))
     }, []);
     useEffect(() => {
 
