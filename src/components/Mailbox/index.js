@@ -18,7 +18,16 @@ function Mailbox(props) {
 
     const handleMailboxOpen = async (e) => {
         const { data } = await API.getMailbox();
-        setMailbox(data.mailbox)
+        const filteredMailbox = data.mailbox.filter(undefinedMail)
+        setMailbox(filteredMailbox)
+    }
+    function undefinedMail (user){
+        console.log(user)
+        if(user.converser === null){
+            return false
+        }else{
+            return true
+        }
     }
     const handleOpenChat = async (id, name)=> {
         await setConverser({
