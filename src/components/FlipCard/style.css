@@ -86,16 +86,6 @@
     color: rgba(255,103,0,100%);
 
 }
-@media screen and (max-width: 39.9375em) {
-    .grid-container {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    .flipcard {
-        margin-right: 0;
-        margin-left: 0;
-    }
-}
 
 .publicProfileIcons {
     color:rgba(255,103,0,100%);
@@ -112,4 +102,15 @@
 .clickableHost:hover {
     font-weight: bolder;
     
+}
+
+@media screen and (max-width: 39.9375em) {
+    .grid-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .flipcard {
+        margin-right: 0;
+        margin-left: 0;
+    }
 }
