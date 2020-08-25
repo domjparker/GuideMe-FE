@@ -44,7 +44,7 @@ display: none;
   background-color: rgba(255,103,0,100%);
 }
 
-@media only screen and (max-width: 900px){
+@media screen and (max-width: 63.9375em){
   .chat-popup{
     width:100%
   }
