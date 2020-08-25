@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import Wrapper from '../../components/Wrapper'
 import SignUp from '../../components/SignUp'
 import SignIn from '../../components/SignIn'
+import './style.css'
 
 function Login (props) {
 const [signin, setSignin] = useState(true)
@@ -14,20 +15,24 @@ const [signup, setSignup] = useState(false)
 
     return (
         <>
-        <Wrapper>
+        
+        <div className ='loginBackground'>
+            <div className='loginForm'>
             {/* see components for more info  */}
-            <button className={'accordion'} onClick={accordionClick}>Sign In</button>
+            <button className={'accordion ' + signin} onClick={accordionClick}>Sign In</button>
             <div className='panel' style={signin?{display:'block'}:{display:'none'}}>
             <SignIn logMeIn={props.loginSuccess}/>
             </div>
-            <button className={'accordion'} onClick={accordionClick}>Sign Up</button>
+            <button className={'accordion ' + signup} onClick={accordionClick}>Sign Up</button>
             <div className='panel' style={signup?{display:'block'}:{display:'none'}}>
             <SignUp changeAccordion={accordionClick}/>
             </div>
-        </Wrapper>
+        </div>
+        </div>
+        
         </>
     )
 
 }
 
-export default Login
+export default Login;

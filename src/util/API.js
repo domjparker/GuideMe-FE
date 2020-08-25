@@ -89,6 +89,9 @@ export default {
     updateAvailability: (availObj) => {
         return axios.put(`${prefix}/api/user/availability`,availObj, {withCredentials:true})
     },
+    updateAvailabilityBooking: (availObj) => {
+        return axios.put(`${prefix}/api/user/availability/booking`,availObj, {withCredentials:true})
+    },
     //============TAGS==================
     //GET tag by id
     getTagbyId: (id) => {
@@ -113,13 +116,26 @@ export default {
     updateMailbox: (converserObj) => {
         return axios.put(`${prefix}/api/user/mailbox/`,converserObj, {withCredentials:true})
     },
+
+    // ==========Reviews/Comments=================
+    getReview: (id) =>{
+        return axios.get(`${prefix}/api/review/` + id, {withCredentials:true})  
+    },
+    deleteReview: (id) =>{
+        return axios.delete(`${prefix}/api/review/` + id, {withCredentials:true})  
+    },
+    createReview: (reviewObj) =>{
+        return axios.post(`${prefix}/api/review/`,reviewObj, {withCredentials:true})  
+    },
+    
+
     //============BOOKING==================
     // Get booking by adventure id
     getBookingByAdventure: (id) =>{
         return axios.get(`${prefix}/api/booking/adventure/` + id, {withCredentials:true})
     },
     //Update booking for logged in user
-    updateBooking: (bookingObj) =>{
+    createBooking: (bookingObj) =>{
         return axios.post(`${prefix}/api/booking/`, bookingObj, {withCredentials:true})
     },
     //=====================FEED =============================
@@ -130,5 +146,11 @@ export default {
     //make a post onto the feed
     postFeed : (feedObj) => {
         return axios.post(`${prefix}/api/community/`,feedObj, {withCredentials:true})
-    }
+    },
+
+//========NODEMAILER
+nodemailerMailBox : (emailObj) => {
+    return axios.post(`${prefix}/api/user/emailsender/`, emailObj , {withCredentials:true})
+},
+
 }

@@ -14,7 +14,7 @@ import Loader from 'react-loader-spinner'
 
 function AdventureUpdate(props) {
   // modal show hide controls as passed in from parent
-  let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+  let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
   const handleModalClose = () => {
     props.handleModalClose()
   }
@@ -191,13 +191,16 @@ function AdventureUpdate(props) {
   }
 
   return (
-    <div className={showHideModal} id="adventureModal1">
+    <div className={'overlay ' + showHideModal}>
+    <div className={'modalBody'} id="adventureModal1">
       <h1>Update your Adventure</h1>
       <p className="lead">You can update features here</p>
       <div className="grid-container fluid">
         <Gridx>
           <Cell size="">
             <form>
+            <Gridx>
+            <Cell size={'small-12'}>
             <label for="adventureName" >Adventure Name:</label>
               <Input
                 onChange={handleInputChange}
@@ -205,6 +208,8 @@ function AdventureUpdate(props) {
                 placeholder="Adventure:"
                 value={formObject.adventureName}
               />
+              </Cell>
+              <Cell size={'small-12'}>
               <label for="description" >Description:</label>
               <TextArea
                 onChange={handleInputChange}
@@ -212,6 +217,10 @@ function AdventureUpdate(props) {
                 placeholder="Description:"
                 value={formObject.description}
               />
+               </Cell>
+                </Gridx>
+                <Gridx>
+                  <Cell size={'small-12 medium-6'}>
               <label for="location" >Location:</label>
               <Input
                 onChange={handleInputChange}
@@ -219,7 +228,9 @@ function AdventureUpdate(props) {
                 placeholder="Location:"
                 value={formObject.location}
               />
-              <label for="stateLocation" >State:</label>
+               </Cell>
+                  <Cell size={'small-12 medium-6'}>
+                    <br/>
               <Dropdown
               // intro={formObject.stateLocation}
                 onChange={handleInputChange}
@@ -227,6 +238,8 @@ function AdventureUpdate(props) {
                 value={formObject.stateLocation}
                 options={stateLocation}
               />
+              </Cell>
+                  <Cell size={'small-12'}>
               <label for="itinerary" >Itinerary:</label>
               <TextArea
                 onChange={handleInputChange}
@@ -234,6 +247,28 @@ function AdventureUpdate(props) {
                 placeholder="Itinerary:"
                 value={formObject.itinerary}
               />
+              </Cell>
+                </Gridx>
+                <Gridx classes={'grid-margin-x'}>
+                <Cell size={'small-12'}>
+                <label for="difficulty" >Difficulty Level:</label>
+              <Dropdown
+                onChange={handleInputChange}
+                name="difficulty"
+                value={formObject.difficulty}
+                options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
+              />
+               </Cell>
+                <Cell size={'small-12'}>
+                <label for="gearList" >Gear Needed:</label>
+              <Input
+                onChange={handleInputChange}
+                name="gearList"
+                placeholder="Gear Need:"
+                value={formObject.gearList}
+              />
+              </Cell>
+                  <Cell size={'small-6'}>
               <label for="time" >Duration info:</label>
               <NumberInput
                 decrement={handleGroupDec}
@@ -241,20 +276,19 @@ function AdventureUpdate(props) {
                 name="time"
                 value={formObject.time}
               />
-              <label for="unit" >Duration Units:</label>
+               </Cell>
+                  <Cell size={'small-6'}>
+                    <br/>
               <Dropdown
                 onChange={handleInputChange}
                 name="unit"
                 value={formObject.unit}
                 options={["hours", "days", "weeks", "months", "eternity"]}
               />
-              <label for="difficulty" >Difficulty Level:</label>
-              <Dropdown
-                onChange={handleInputChange}
-                name="difficulty"
-                value={formObject.difficulty}
-                options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
-              />
+              </Cell>
+                </Gridx>
+                <Gridx classes={'grid-margin-x'}>
+                  <Cell size={'small-6'}> 
               <label for="minGroupSize" >Min Group Size:</label>
               <NumberInput
                 decrement={handleGroupDec}
@@ -263,6 +297,8 @@ function AdventureUpdate(props) {
                 placeholder="Min. Group Size:"
                 value={formObject.minGroupSize}
               />
+              </Cell>
+                  <Cell size={'small-6'}>
               <label for="maxGroupSize" >Max Group Size:</label>
               <NumberInput
                 decrement={handleGroupDec}
@@ -270,6 +306,8 @@ function AdventureUpdate(props) {
                 name="maxGroupSize"
                 value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
               />
+               </Cell>
+                </Gridx>
               <label for="price" >Price in $:</label>
               <NumberInput
                 decrement={handlePriceDec}
@@ -277,13 +315,7 @@ function AdventureUpdate(props) {
                 name="price"
                 value={formObject.price}
               />
-              <label for="gearList" >Gear Needed:</label>
-              <Input
-                onChange={handleInputChange}
-                name="gearList"
-                placeholder="Gear Need:"
-                value={formObject.gearList}
-              />
+              
               <label for="tags" >Tags:</label>
               <TagRow edit={true} tags={tagArr} filterTags={handleFilterTags} />
               <Dropdown
@@ -301,17 +333,24 @@ function AdventureUpdate(props) {
                 type={"file"}
                 text={"Update Image"}
               />
+              <Gridx>
+                  <Cell size={'small-6'}>
+                    <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
+                  </Cell>
+                  <Cell size={'small-6'}>
               <FormBtn
                 onClick={handleFormSubmit}>
                 Update Adventure
                 </FormBtn>
-                <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
+                </Cell>
+                </Gridx>
               {/* close modal */}
               <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
             </form>
           </Cell>
         </Gridx>
       </div>
+    </div>
     </div>
   );
 }

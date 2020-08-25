@@ -1,10 +1,11 @@
 .calloutAdventures{ 
     display: flex;
     flex-wrap: wrap;
+    padding: 5px;
     justify-content:center;
-    border-radius: 10px;
-    background-color: rgba(39, 36, 27, 95%);
-    color:rgba(243, 236, 216,100%);
+    background-color: rgba(235,240,235,100%);
+    color:rgba(28,33,1,100%);
+    margin-top:10vh;
   }
 .flipCardContainer{
   margin-top: 10px;
@@ -20,3 +21,7 @@ select .findAdventureAdventures{
    margin: 0.4rem;
   }
 
+.noAdventures{
+  text-align: center;
+  margin-left: 0 !important;
+}

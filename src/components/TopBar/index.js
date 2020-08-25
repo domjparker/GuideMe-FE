@@ -7,31 +7,24 @@ import Cell from '../Cell'
 import LOGO from '../../images/logot.png'
 import {loginContext} from '../LoginContext'
 import API from '../../util/API'
-import {useLocation} from 'react-router-dom'
+import {useLocation, useHistory} from 'react-router-dom'
 
 function TopBar(props) {
-    
+    let history = useHistory()
     //sret the title to location
     const location=useLocation()
+    let fillTopBar 
     let title;
     switch(location.pathname) {
-        case '/' :
-        title= 'GuideMe'
-        break;
+        
         case '/adventures':
-        title='Explore adventures'
-        break;
-        case '/profile':
-        title= 'Profile'
+        fillTopBar=' fillTopBar'
         break;
         case '/community':
-        title='Community'
-        break;
-        case '/public':
-        title='Profile'
+        fillTopBar=' fillTopBar'
         break;
         default:
-        title='Lost in the Woods'
+        fillTopBar=''
 
 
     }
@@ -40,31 +33,33 @@ function TopBar(props) {
     const loginState = useContext(loginContext)
     const renderSignInLogIn = () =>{
         if (loginState.loggedIn) {
-            return <Link to={'/profile'} ><i className="fas fa-sign-out-alt signout" onClick ={signOut} ></i></Link>
+            return <div className='text-center signoutDiv' ><i className="fas fa-sign-out-alt signout" onClick ={signOut} > </i></div>
         } else {
-            return <Link to={"/profile"}><i className="fas fa-sign-in-alt signout" ></i></Link>
+            return <div className='text-center signoutDiv' ><i className="fas fa-sign-in-alt signout"onClick ={reDirect} ></i></div>
         }
     }
 
     const signOut = ()=> {
         API.logOutUser()
         loginState.changeLoginState(false)
+        history.push('/')
+    }
+    const reDirect = () => {
+        history.push('/profile')
     }
 
     return (
         <>
             <div className="grid-container full" id="topBar">
-                <Gridx>
-                    <Cell size={'small-3'} id="logo">
-                        <Link to="/"><h6 className="text-left"><img className="fixingHeight" src={LOGO} alt="logo"></img></h6></Link>
+                <Gridx classes={''}>
+                    <Cell size={'small-3 medium-2 logo' + fillTopBar} id="">
+                        <Link to="/"><h6 className="text-center"><img className="fixingHeight" src={LOGO} alt="logo"></img></h6></Link>
                     </Cell>
-                    <Cell size={'small-6'} id="pageTitle">
+                    <Cell size={'small-6 medium-8' + fillTopBar} id="pageTitle">
                         <h1 className="text-center navText">{title}</h1>
                     </Cell>
-                    <Cell size={'small-2 text-right'}>
-                        <h6>
+                    <Cell size={'small-3 medium-2 loginCell' + fillTopBar}>
                         {renderSignInLogIn()}
-                        </h6>
                     </Cell>
                 
                 </Gridx>

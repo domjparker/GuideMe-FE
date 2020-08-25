@@ -1,43 +1,60 @@
 
 #topBar.grid-container {
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(39, 36, 27, 100%); 
-    height: 10vh;
+
+    /* border-bottom: 1px solid rgba(39, 36, 27, 100%);  */
+    height: 6vh;
+    /* border-bottom: 1px solid rgba(57,66,14,100%); */
     width: 100%;
     z-index: 1007;
     position: fixed;
     min-height: 75px;
     top: 0;
     left: 0;
-    background-color:rgba(225, 215, 205, 100%);
+    /* background-color: rgba(235,240,235,100%); */
+    /* background-color: rgba(235,240,235,50%); */
 }
 
-.navText, .loginLink {
-    font-family: 'Gloria Hallelujah', cursive;   
-}
 
 .fixingHeight{
-    height: 10vh;
+    height: 6vh;
     font-size: 1.8rem;
     min-height: 75px;
     
 }
 
+.logo {
+    background-color: rgba(235,240,235,50%);
+    border-radius: 0px 10px 10px 0px;
+    
+}
+.loginCell {
+    background-color: rgba(235,240,235,50%);
+    border-radius: 10px 0px 0px 10px;
+    align-content: center;
+}
+
 .loginLink{
-color: rgba(39, 36, 27, 100%);
+color: rgba(28,33,1,100%);
 display:flex;
 justify-content: flex-end;
 margin-top: 1vh;
-
 }
 
 .signout {
-    padding-top: 0.8rem;
-    padding-right: 0.2rem;
-    color: rgba(39, 36, 27, 100%);
-    font-size: 1.2rem;
-    display: flex;
+    padding-top: 2rem;
+    color: rgba(28,33,1,100%);
+    font-size: 1.5rem;
+    display: inline-block;
     justify-content: flex-end;
     align-self: center;
   }
+
+.signoutDiv {
+    height:100%;
+}
+
+.fillTopBar {
+    background-color: rgba(235,240,235,50%);
+    border-radius:0px;
+}
+

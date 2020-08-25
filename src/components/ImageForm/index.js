@@ -7,13 +7,14 @@ import API from '../../util/API'
 import Btn from '../Btn'
 import './style.css'
 import Loader from 'react-loader-spinner'
+import {FormBtn, Input} from '../Form'
 
 // base url for Cloudinary query needed to upload images
 const url = 'https://api.cloudinary.com/v1_1/yestoskydiving/image/upload';
 
 function ImageForm(props) {
   //handles visibility of this form
-  let showHideModal = props.show ? 'reveal d-block' : 'reveal d-none'
+  let showHideModal = props.show ? 'modal d-block' : 'modal d-none'
   const handleModalClose = () => {
     props.handleModalClose()
   }
@@ -64,7 +65,7 @@ function ImageForm(props) {
     
       setLoading(false);
       setImage(imageUrl);
-      handleModalClose()
+      props.handleModalClose()
     } catch (err) {
       console.error(err);
     }
@@ -72,18 +73,16 @@ function ImageForm(props) {
   };
 
   return (
-    <div className={showHideModal} id="exampleModal1">
+    <div className={'overlay ' + showHideModal}>
+      <div className={'modalBody'} id="adventureModal1">
       <h3>{props.modalTitle}</h3>
-          <div className='button expanded'>
             <input type='file' name='image' onChange={onChange} />
-          </div>
-          <button onClick={onSubmit} className='button small expanded'>
-            upload
-          </button>
+          <FormBtn onClick={onSubmit} >Upload</FormBtn>
           <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
       {/* close modal button */}
     <Btn classes={"close-button"} handleClick={handleModalClose} aria-label={"Close modal"} type={"button"} text={<span aria-hidden="true">&times;</span>} />
     
+    </div>
     </div>
   )
 };

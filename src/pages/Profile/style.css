@@ -12,14 +12,11 @@
             justify-content: center;
 }
 
-.hero-section .hero-section-text {
-    color: rgba(243, 236, 216,100%);
-}
-
 .bannerimage {
     width: 100%;
 
 }
+
 .bannerdiv {
     overflow:hidden;
     height:30vh;
@@ -29,14 +26,28 @@
     top: -10vh;
 }
 
-
-
 .profileIcons{
-    color: rgb(39, 36, 36);
+    color: rgba(28,33,1,100%);
 }
 
 .createBtnColumn{
 position: absolute;
 right: 0;
 top:10vh;
+padding:10px;
+border-radius: 0px 0px 0px 10px;
+background-color: rgba(235,240,235,100%);
 }
+
+.detailsDiv {
+    padding: 10px 10px;
+}
+
+.userName {
+    color:rgba(19,131,242, 100%);
+}
+
+.locationProfile {
+    font-size: 0.8rem;
+}
+

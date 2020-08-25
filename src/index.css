@@ -1,25 +1,35 @@
-/* colors used on this site:
-dark beige rgba(225, 215, 205, 100%)
-light beige (TEXT) rgba(243, 236, 216,100%)
-contrasting orange rgba(207, 162, 66, 100%)
-dark red for delete etc rgba(204, 75, 55, 100%)
-dark grey (TEXT) rgba(39, 36, 27, 100%)
-light gray rgba(85, 91, 87, 100%) 
-ground stone mustard anything with .reveal rgb(120, 105, 61);*/
+/* new colors
+accent blue #1383F2  rgba(19,131,242, 100%)
+accent orange #FF6700 rgba(255,103,0,100%)
+sticky footer #39420E rgba(57,66,14,100%)
+mint cream rgba(235,240,235,100%)
+text dark #1C2101 rgba(28,33,1,100%)
+text light rgba(235,240,225,100%) */
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: rgba(59, 59, 59, 100%);
-  background-color:  lightgray;
-  min-height: 100vh;
+  color: rgba(28, 33, 1, 100%);
+  background-color:  white;
+  min-height: 90vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a {
+  color: rgba(255,103,0,100%)
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+

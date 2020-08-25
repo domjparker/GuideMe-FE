@@ -31,9 +31,6 @@ function SignUp(props) {
 
   return (
     <div>
-      <p>
-        Hello {signupObj.firstName} {signupObj.lastName}
-      </p>
       <form className="signup" onSubmit={handleFormSubmit}>
         <Input
           value={signupObj.firstName}

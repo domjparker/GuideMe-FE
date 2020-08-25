@@ -1,6 +1,6 @@
 #stickyFooter{
   padding:5px;
-  background-color: hsl(45, 18%, 13%);
+  background-color: rgba(57,66,14,100%);
   position: fixed;
   bottom: 0;
   left: 0;
@@ -14,17 +14,16 @@
   padding-top: 1rem;
   display: flex;
   justify-content:space-around;
-  color: rgba(243, 236, 216,100%);
+  color: rgba(235,240,225,100%);
 }
 #messages{
   display: flex;
   justify-content:space-around;
 }
 .messageBtn{
-  color:rgba(243, 236, 216,100%);
+  color: rgba(235,240,225,100%);
   padding-top: 0.8rem;
   padding-right: 1rem;
-  color: rgba(243, 236, 216,100%);
   font-size: 1.5rem;
   display: flex;
   justify-content: space-around;
@@ -32,7 +31,7 @@
 .hiking {
   padding-top: 0.8rem;
   padding-right: 1rem;
-  color: rgba(243, 236, 216,100%);
+  color: rgba(235,240,225,100%);
   font-size: 1.5rem;
   display: flex;
   justify-content: space-around;
@@ -40,20 +39,20 @@
 #logofooter {
   display: flex;
   justify-content:space-around;
-  color: rgba(243, 236, 216,100%);
+  color: rgba(235,240,225,100%);
   padding-top: 1rem;
   padding-left: 1rem
-}
-.loggedIn .fas {
-  color: darkgreen;
-  font-size: 3rem;
 }
 
 .community {
   padding-top: 0.8rem;
   padding-right: 1rem;
-  color: rgba(243, 236, 216,100%);
+  color: rgba(235,240,225,100%);
   font-size: 1.5rem;
   display: flex;
   justify-content: space-around;
+}
+
+.currentTab {
+  background-color:rgba(57,66,14,85%);
 }
