@@ -6,7 +6,9 @@
     background-color: rgba(235,240,235,100%);
     color:rgba(28,33,1,100%);
     margin-top:10vh;
+    margin-bottom: 5vh;
   }
+  
 .flipCardContainer{
   margin-top: 10px;
 }
