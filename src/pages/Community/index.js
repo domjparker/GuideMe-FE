@@ -22,15 +22,15 @@ function Community() {
     const loadFeed = async () => {
 
         const {data}= await API.getFeed()
-        console.log(data)
+
         let feedArr=[...data]
         let arr=[]
         
         feedArr.forEach(item=>{
             let newObj = convertFeedData(item)
-            console.log("Last object", newObj)
+
             arr.push(newObj)
-            console.log('feed so far', arr)
+
         })
 
         setFeed(arr)
@@ -86,7 +86,7 @@ function Community() {
         }
         setPost('')
         API.postFeed(postObj).then(res=>{
-            console.log(res)
+
             setChange(!change)
         }).catch(err=>console.log(err))
         

@@ -42,11 +42,10 @@ function SignIn(props) {
       return;
       }
       API.loginUser(loginObj).then(res=>{
-        console.log(res)
+
         loginState.changeLoginState(true)
         //upon successful login, send me to profile page
-        //TODO:make this take me back to where i came from
-        // loginState.socket.emit('login', res.data.id)
+
         history.push("/profile")
       }
       ).catch(err=>console.log(err))
@@ -61,9 +60,7 @@ function SignIn(props) {
               onChange={handleInputChange}
               type="text"
               placeholder="Email"
-              required
-              
-              
+              required             
             />
             <Input
               value={loginObj.password}

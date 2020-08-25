@@ -11,12 +11,7 @@ function PopupChat(props) {
     const [socket, setSocket] = useState()
     const [socketAppend, setSocketAppend] = useState([])
 
-    // if(socket){
-    //     console.log(2)
 
-    // }
-
-    // }
     useEffect(() => {
         setSocket(io.connect("http://localhost:3001"))
     }, []);
@@ -66,10 +61,9 @@ function PopupChat(props) {
             messageText: messageText
         }
         if (props.mailbox.map(function (e) { return e.converser._id; }).indexOf(props.id) !== -1) {
-            console.log("They are in the mailbox")
+
         } else {
 
-            console.log("They are not in the mailbox")
             API.nodemailerMailBox(messageObj)
 
             updateMail()
