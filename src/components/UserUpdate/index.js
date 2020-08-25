@@ -85,7 +85,7 @@ function UserUpdate(props) {
     event.preventDefault();
     let postObj = { ...formObject }
     postObj.tags = allTags.filter(tag => tagArr.indexOf(tag.tagName) > -1).map(tag => tag._id)
-    console.log(postObj)
+
     API.updateUser(postObj)
       .then(data => {
         setFormObject({

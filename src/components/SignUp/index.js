@@ -22,7 +22,7 @@ function SignUp(props) {
   const handleFormSubmit = event => {
     event.preventDefault();
     API.postNewUser(signupObj).then(res => {
-      console.log(res)
+
       props.changeAccordion()
     }).catch(err => console.log(err))
     //reset form to empty

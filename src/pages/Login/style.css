@@ -14,7 +14,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   position: absolute;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 40em)  {
   .loginBackground {
     margin-left: 10vw;
   margin-right:10vw}
@@ -24,7 +24,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 64em) {
   .loginBackground {
     margin-left: 20vw;
   margin-right:20vw}

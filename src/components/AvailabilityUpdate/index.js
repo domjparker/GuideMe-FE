@@ -34,8 +34,7 @@ function AvailabilityUpdate(props) {
     let { data } = await API.getAvailability()
     var filteredAvailableArray = data.availability.filter(notBookedDates)
     var filteredBookedAray = data.availability.filter(bookedDates)
-    console.log(filteredBookedAray)
-    console.log(filteredAvailableArray)
+
     var tempArray = filteredAvailableArray.map(objectTranslate)
     setDateArr(tempArray)
     setBookedDateArr(filteredBookedAray)
@@ -55,7 +54,7 @@ function AvailabilityUpdate(props) {
 
 // Filters Out Dates that are not booked
 function notBookedDates(entry) {
-    console.log("adventureId" in entry)
+
     if (("adventureId" in entry) === false) {
         return true
     }
@@ -71,12 +70,11 @@ function notBookedDates(entry) {
     setNewDate(event)
   }
   function addDate (event){
-    console.log(dateArr)
-    console.log(newDate)
+
     if(dateStringArr.includes(newDate.toString())){
       alert("That date is already added")
     }else{
-      console.log("we got here")
+
       setDateArr([...dateArr, newDate])
       setDateStringArr([...dateStringArr, newDate.toString()])
     }
@@ -96,7 +94,6 @@ function notBookedDates(entry) {
     event.preventDefault();
     const selectedDateArr = dateArr.map(createAvailObj)
     var postArr = selectedDateArr.concat(bookedDateArr)
-    console.log(postArr)
     await API.updateAvailability({availability: postArr})
     handleModalClose()
  

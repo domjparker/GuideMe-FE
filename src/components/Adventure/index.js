@@ -126,17 +126,15 @@ function Adventure(props) {
     const preset = 'guidemeadventurepic';
     // create new FormData to hold image data
     const formData = new FormData();
-    console.log("new FormData initiated")
+
     // the intended image and the preset are appended to the FormData object
     formData.append('file', image);
     formData.append('upload_preset', preset);
     try {
       // axios call is made to cloudinary url in order to load the FormData object, and awaited response is assigned to variable 'res'
       const res = await axios.post(url, formData);
-      console.log("axios calls has been made to cloudinary")
       // from the response received back, the secure url for the image is assigned to variable imageUrl
       const imageUrl = res.data.secure_url;
-      console.log("result from cloudinary = " + imageUrl)
 
       setFormObject({ ...formObject, adventureImageUrl: imageUrl })
 
@@ -153,7 +151,6 @@ function Adventure(props) {
       if (postObj.maxGroupSize < postObj.minGroupSize) postObj.maxGroupSize = postObj.minGroupSize
       //handle tags
       postObj.tags = allTags.filter(tag => tagArr.indexOf(tag.tagName) > -1).map(tag => tag._id)
-      console.log('postObj.adventureImageUrl = ' + postObj.adventureImageUrl)
 
       //add the edited object to database
       API.postNewAdventure(postObj)

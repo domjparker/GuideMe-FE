@@ -22,9 +22,9 @@ function Booking(props) {
 
     // Loads Availability 
     async function loadInitialData() {
-        // TODO: CHANGE THIS TO grab availability of host
+
         let { data } = await API.getAvailabilityById(props.hostId)
-        console.log(data)
+
         var filteredAvailableArray = data.availability.filter(notBookedDates)
         var filteredBookedAray = data.availability.filter(bookedDates)
         var mappedArray = filteredAvailableArray.map(objectTranslate)
@@ -43,7 +43,7 @@ function Booking(props) {
 
     // Filters Out Dates that are not booked
     function notBookedDates(entry) {
-        console.log("adventureId" in entry)
+
         if (("adventureId" in entry) === false) {
             return true
         }
@@ -67,8 +67,8 @@ function Booking(props) {
 
     // Handles Calendar State
     function calendarOnChange(event) {
-        console.log(dateArr)
-        // console.log(event)
+
+
         setNewDate(event)
     }
     function selectedDate(index) {
@@ -112,7 +112,7 @@ function Booking(props) {
             notBookedArr.push(bookedArr[0])
             notBookedArr.push()
             const FinalAvailArray = notBookedArr.concat(bookedDateArr)
-            console.log(FinalAvailArray)
+
             await API.updateAvailabilityBooking({
                 availability: FinalAvailArray,
                 id: props.hostId

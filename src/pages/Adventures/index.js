@@ -24,7 +24,7 @@ function Adventures() {
 
     //tags that show what was searched
     if (location.state) {
-        console.log(location)
+
         tag = location.state.tag
         stateName = location.state.stateName
     } else {
@@ -43,7 +43,7 @@ function Adventures() {
         // setChange(!change)
     }
     const handleModalBookingOpen = (id, adventureId) => {
-        console.log(adventureId)
+
         //update user modal close
         setBookingHostId(id)
         setBookingAdventureId(adventureId)

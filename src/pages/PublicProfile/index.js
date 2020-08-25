@@ -66,7 +66,7 @@ function PublicProfile(props) {
         // setChange(!change)
     }
     const handleModalBookingOpen = (id, adventureId) => {
-        console.log(adventureId)
+
         //update user modal close
         setBookingHostId(id)
         setBookingAdventureId(adventureId)
