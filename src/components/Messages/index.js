@@ -15,14 +15,13 @@ function Messages(props) {
         loadMessages()
 
 
-    }, [])
+    }, [props])
     const loadMessages = async () => {
         const { data } = await API.getSentMessage(id)
         setMessages(data)
+       
     }
-    {/* socket.on('chat-message', data =>{
-                    
-        }) */}
+
     return (
 
         <div className="messageBox">
