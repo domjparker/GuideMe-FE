@@ -23,4 +23,5 @@ select .findAdventureAdventures{
 
 .noAdventures{
   text-align: center;
+  margin-left: 0 !important;
 }

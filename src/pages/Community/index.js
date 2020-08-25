@@ -44,6 +44,7 @@ function Community() {
             profilePictureUrl: feedObj.targetId.profilePictureUrl,
             userId: feedObj.targetId._id,
             id: feedObj._id
+            // postText: feedObj.postText
         }
         if (feedObj.targetId.stateLocation) {
         newObj.location = `${feedObj.targetId.location}, ${feedObj.targetId.stateLocation}` 
@@ -64,7 +65,7 @@ function Community() {
                     newObj.text= ` published a new adventure! ${feedObj.adventureId.adventureName} sure sounds exciting!` 
                 break;
             case 'newReview':
-
+                 newObj.text= ` just left a review about ${feedObj.adventureId.adventureName}! -- "${feedObj.postText}."` 
                 break;
             default:
                     newObj.text= `: ${feedObj.postText}`
