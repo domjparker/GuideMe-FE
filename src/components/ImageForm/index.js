@@ -56,16 +56,16 @@ function ImageForm(props) {
       //IF base on the props.type this call depend of the props.type API.updateBanner(imageUrl)
       if (props.type === "profilePic") {
         API.updatePicture({ profilePictureUrl: imageUrl })
-        console.log("imageUrl was sent to backend profilePictureUrl")
+
       }
       else if (props.type === "bannerPic"){
         API.updateBanner({ profileBannerUrl: imageUrl })
-        console.log("imageUrl was sent to backend profileBannerUrl")
+
       }
     
       setLoading(false);
       setImage(imageUrl);
-      handleModalClose()
+      props.handleModalClose()
     } catch (err) {
       console.error(err);
     }

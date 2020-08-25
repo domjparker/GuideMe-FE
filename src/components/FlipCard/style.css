@@ -86,7 +86,7 @@
     color: rgba(255,103,0,100%);
 
 }
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 39.9375em) {
     .grid-container {
         padding-left: 0;
         padding-right: 0;

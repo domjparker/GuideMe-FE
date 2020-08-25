@@ -16,17 +16,8 @@ function Stickyfooter(props) {
             case '/adventures':
             setCurrentTab({adventures:true})
             break;
-            // case '/profile':
-            //     setCurrentTab({profile:true})
-            // break;
-            // case '/community':
-            //     setCurrentTab({community:true})
-            // break;
-            // case '/public':
-            
-            // break;
             default:
-            console.log('whaaat?')
+
         }    
     }, [location.pathname])
     

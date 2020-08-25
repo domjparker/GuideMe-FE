@@ -33,7 +33,21 @@ function Review(props) {
         let value = event.target.value;
         const name = event.target.name;
         // Updating the input's state
-        setReviewObj({ ...reviewObj, [name]: value })
+        if (name !== "rating") {
+
+            setReviewObj({ ...reviewObj, [name]: value })
+        } else {
+            if (value>5) {
+                setReviewObj({ ...reviewObj, [name]: 5 })
+                
+            } else if (value<1){
+                setReviewObj({ ...reviewObj, [name]: 1 })
+                
+            } else{
+                setReviewObj({ ...reviewObj, [name]: value })
+
+            }
+        }
     };
     const handleFormSubmit = event => {
         event.preventDefault();
