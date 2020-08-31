@@ -1,68 +1,97 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  # GuideMe
+### Deployed link: https://guidemedimma.herokuapp.com/
+  ## Project Creators: 
+  ### Dominic, Matt, Maria, Indy, Andrew
+---
+  
+  ## Project Description:
+  ### GuideMe redefines traveling as we know it. Our goal was to create a streamlined service that connects modern day travelers with guides who can provide unique experiences. 
 
-## Available Scripts
+  ![](public/guideme.jpg)
+---
+ 
+  ## Table of Contents
+  1. [Installation](#Installation)
+  2. [Usage](#Usage)
+  3. [Contributing](#Contributing)
+  4. [Links](#Links)
+  5. [Email](#Contact)
+  
+  ---
 
-In the project directory, you can run:
+  ## Installation:
+  ## Developers please see the package.json file and then run NPM install on your command line.
 
-### `npm start`
+  ---      
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  ## Usage:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+  * Starting on the home page anyone can search for an activity using the dropdown. Alternatively anyone can  choose a state and search for any adventure in that state. 
+    * After running the search from the main page you will be taken to the adventures page, and you will see adventures populate below. Each adventure is a flipcard so by clicking one, you will find more details on the back side of the card. 
+    * If you would like to book that adventure simply click the log in to book adventure. From there you will be redirected to log in or create an account.
+  * Now that you're logged in you have a few options 
+    * You can edit your account, click on your profile picture or banner/background picture to change it.
+    * You  can edit your account: add your location, a little bio and be sure to include some of your interests (tags). 
+    ![](public/profileupdate.jpg)
 
-### `npm test`
+  * Once logged in,you can return to the adventure page and book an activity. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  * If you are a guide, on your profile page you will see a button that says 'become a guide'. By selecting that your profile page display a new button that says '+ adventure'. Click that to create an adventure you would like to take people on. 
 
-### `npm run build`
+  ![](public/guideprofile.jpg)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ![](public/adventureform.jpg)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+* Now that you have updated your profile, and added an adventure it's time to set your availability. Simply click the edit availability button on profile page and make your own schedule. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  ![](public/calendar.jpg)
 
-### `npm run eject`
+* Your account is set up! Head on over to the community page and see what the new happenings are. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  ![](public/communitypage.jpg)
+  ---
+ 
+ ## Contributing:
+ ## Please contact anyone from the Dev Team.
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ ## Links
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  * linkedIn: 
+    * Andrew Bergstrom: https://www.linkedin.com/in/andrew-bergstrom-74a79aa4/ 
+    * Maria Helbling: https://www.linkedin.com/in/mariahelblingprofile/
+    * Matthew Grega: https://www.linkedin.com/in/matthew-grega-2047221b1/
+    * Indy Minhas: https://www.linkedin.com/in/inderjit-minhas-021879141/
+    * Dominic Parker:  https://www.linkedin.com/in/dominic-j-parker/
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+        
+  * Github:
+    * GuideMe: https://github.com/domjparker/GuideMe-FE
+    * Andrew Bergstrom: https://github.com/AndrewBergstrom 
+    * Maria Helbling:https://github.com/maria-helbling
+    * Matthew Grega:https://github.com/MegaGrega
+    * Indy Minhas: https://github.com/indyminhas
+    * Dominic Parker: https://github.com/domjparker
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  ---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  ## Contact
+ 
+  ## If you have any questions, contact the author directly at: 
+  ### Andrew.Bergstrom88@gmail.com 
+  ### dominic.j.parker@gmail.com
+  ### mkmgrega@gmail.com
+  ### iminhas@live.com
+  ### mariahelbling@outlook.com
 
-### Code Splitting
+---
+### 
+  [Back to the top](#GuideMe)
+### or check out the app: https://guidemedimma.herokuapp.com/
+  
+  
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
