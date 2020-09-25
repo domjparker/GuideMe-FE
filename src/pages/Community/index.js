@@ -104,7 +104,7 @@ function Community() {
                                 <TextArea value={post} onChange={(e) => setPost(e.target.value)} placeholder={'Write something:'}></TextArea>
                             </Cell>
                             <Cell size='small-12 medium-4'>
-                                <Btn onClick={handleSubmit} classes={'button searchAdventure'} text={"Post"} />
+                                <Btn onClick={handleSubmit} disabled={!post} classes={'button searchAdventure'} text={"Post"} />
                             </Cell>
                         </Gridx>
                     
