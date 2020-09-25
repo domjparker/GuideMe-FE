@@ -23,7 +23,7 @@ function Review(props) {
        
     })
     useEffect(()=>{
-    setReviewObj({...reviewObj, adventureId:props.id})
+    setReviewObj({...reviewObj, adventureId:props.id, hostId: props.hostId})
     },[props.show])
 
 
