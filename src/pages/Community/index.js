@@ -63,9 +63,12 @@ function Community() {
                 break;
             case 'newAdventure':
                     newObj.text= ` published a new adventure! ${feedObj.adventureId.adventureName} sure sounds exciting!` 
+                    console.log(feedObj.adventureId)
                 break;
             case 'newReview':
-                 newObj.text= ` just left a review about ${feedObj.adventureId.adventureName}! -- "${feedObj.postText}."` 
+                newObj.userName = feedObj.adventureId.adventureName
+                 newObj.text= ` just got a review from ${feedObj.targetId.firstName} ${feedObj.targetId.lastName}! -- "${feedObj.postText}."` 
+                 newObj.userId = feedObj.adventureId.hostId
                 break;
             default:
                     newObj.text= `: ${feedObj.postText}`
