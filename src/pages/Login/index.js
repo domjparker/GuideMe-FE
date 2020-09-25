@@ -3,15 +3,18 @@ import React, {useState} from 'react'
 import Wrapper from '../../components/Wrapper'
 import SignUp from '../../components/SignUp'
 import SignIn from '../../components/SignIn'
+import SuccessModal from '../../components/SuccessModal'
 import './style.css'
 
 function Login (props) {
+const [modalSuccess, setModalSuccess] = useState(false)
 const [signin, setSignin] = useState(true)
 const [signup, setSignup] = useState(false)
     const accordionClick = () =>{
         setSignin(!signin)
         setSignup(!signup)
     }
+    const handleSuccessModalClose = ()=>setModalSuccess(false)
 
     return (
         <>
@@ -25,11 +28,12 @@ const [signup, setSignup] = useState(false)
             </div>
             <button className={'accordion ' + signup} onClick={accordionClick}>Sign Up</button>
             <div className='panel' style={signup?{display:'block'}:{display:'none'}}>
-            <SignUp changeAccordion={accordionClick}/>
+            <SignUp changeAccordion={accordionClick} openModal={()=>setModalSuccess(true)}/>
             </div>
         </div>
         </div>
-        
+        <SuccessModal show={modalSuccess} handleModalClose={handleSuccessModalClose} text={"Sign Up Success, please log in."}/>
+
         </>
     )
 
