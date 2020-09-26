@@ -185,6 +185,7 @@ function AdventureUpdate(props) {
           tags: [],
           adventureImageUrl: ''
         })
+        props.openModal();
         handleModalClose();
       }).catch(err => console.log(err))
       setLoaderVisible(false)
