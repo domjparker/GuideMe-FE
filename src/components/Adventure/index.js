@@ -197,7 +197,7 @@ function Adventure(props) {
                     <Input
                       onChange={handleInputChange}
                       name="adventureName"
-                      placeholder="Adventure Name:"
+                      placeholder="Adventure Name"
                       value={formObject.adventureName}
                     />
                   </Cell>
@@ -206,7 +206,7 @@ function Adventure(props) {
                     <TextArea
                       onChange={handleInputChange}
                       name="description"
-                      placeholder="Description:"
+                      placeholder="Description"
                       value={formObject.description}
                     />
                   </Cell>
@@ -217,7 +217,7 @@ function Adventure(props) {
                     <Input
                       onChange={handleInputChange}
                       name="location"
-                      placeholder="Location:"
+                      placeholder="Location"
                       value={formObject.location}
                     />
                   </Cell>
@@ -235,7 +235,7 @@ function Adventure(props) {
                     <TextArea
                       onChange={handleInputChange}
                       name="itinerary"
-                      placeholder="Itinerary:"
+                      placeholder="Itinerary"
                       value={formObject.itinerary}
                     />
                   </Cell>
@@ -255,7 +255,7 @@ function Adventure(props) {
                     <Input
                       onChange={handleInputChange}
                       name="gearList"
-                      placeholder="Gear Needed:"
+                      placeholder="Gear Needed"
                       value={formObject.gearList}
                     />
                   </Cell>
