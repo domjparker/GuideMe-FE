@@ -65,7 +65,7 @@ function FlipCard(props) {
         <>
             {/* TODO: needs a little better thought through layout */}
             <div className={"flipcard " + classToggle} onClick={handleClassToggle}>
-                <div className="card__inner">
+                <div title="Flip Card" className="card__inner">
                     <div className="card__back">
                         <div className=" grid-container">
 

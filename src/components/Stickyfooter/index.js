@@ -37,16 +37,16 @@ function Stickyfooter(props) {
             <Gridx>
                 {(showMailbox === false) ? null : <Mailbox close={handleMailboxClose} />}
                 <Cell size={'small-3 text-left' + (currentTab.adventures ? ' currentTab' : '')} >
-                    <Link to="/adventures"><i className="fas fa-search search"></i></Link>
+                    <Link title="Adventure Search" to="/adventures"><i className="fas fa-search search"></i></Link>
                 </Cell>
                 <Cell size={'small-3 text-right' + (props.loggedIn ? ' loggedIn' : '')} id="profileIcon">
-                    <Link to={'/profile'} ><i className="fas fa-hiking hiking"></i></Link>
+                    <Link title="Your Profile" to={'/profile'} ><i className="fas fa-hiking hiking"></i></Link>
                 </Cell>
                 <Cell size={'small-3'}>
-                    <Link to={'/community'} ><i className="fas fa-users community"  ></i></Link>
+                    <Link title="Community Wall" to={'/community'} ><i className="fas fa-users community"  ></i></Link>
                 </Cell>
                 <Cell size={'small-3'} id="messages">
-                    <button className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
+                    <button title="Messages" className="messageBtn" onClick={handleMailboxOpen}><i className="far fa-envelope"></i></button>
                 </Cell>
             </Gridx>
         </div>
