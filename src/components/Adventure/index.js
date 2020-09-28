@@ -29,19 +29,19 @@ function Adventure(props) {
 
   // state to control input values
   const [formObject, setFormObject] = useState({
-    adventureName: 'New Adventure', 
-    hostId: '', 
-    description: 'Very interesting adventure',
-    location: 'Unknown',
-    stateLocation: 'Washington',
-    itinerary: 'Itinerary here',
+    adventureName: '',
+    hostId: '',
+    description: '',
+    location: '',
+    stateLocation: '',
+    itinerary: '',
     time: 1,
-    unit: 'hours',
+    unit: 'Hours',
     difficulty: 'Easy',
     minGroupSize: 1,
     maxGroupSize: 1,
     price: 50,
-    gearList: 'No specialty gear needed',
+    gearList: '',
     tags: [],
     adventureImageUrl: ''
   })
@@ -160,13 +160,13 @@ function Adventure(props) {
             hostId: '',
             description: '',
             location: '',
-            stateLocation: 'Washington',
+            stateLocation: '',
             itinerary: '',
             time: 1,
-            unit: 'hours',
+            unit: 'Hours',
             difficulty: 'Easy',
             minGroupSize: 1,
-            maxGroupSize: 2,
+            maxGroupSize: 1,
             price: 50,
             gearList: '',
             tags: [],
@@ -191,112 +191,110 @@ function Adventure(props) {
               <form>
                 <Gridx>
                   <Cell size={'small-12'}>
-                <label for="adventureName" >Adventure Name:</label>
-                <Input
-                  onChange={handleInputChange}
-                  name="adventureName"
-                  placeholder="Adventure:"
-                  value={formObject.adventureName}
-                />
+                    <label for="adventureName" >Adventure Name:</label>
+                    <Input
+                      onChange={handleInputChange}
+                      name="adventureName"
+                      placeholder="Adventure Name:"
+                      value={formObject.adventureName}
+                    />
                   </Cell>
                   <Cell size={'small-12'}>
-
-                <label for="description" >Description:</label>
-                <TextArea
-                  onChange={handleInputChange}
-                  name="description"
-                  placeholder="Description:"
-                  value={formObject.description}
-                />
+                    <label for="description" >Description:</label>
+                    <TextArea
+                      onChange={handleInputChange}
+                      name="description"
+                      placeholder="Description:"
+                      value={formObject.description}
+                    />
                   </Cell>
                 </Gridx>
                 <Gridx>
                   <Cell size={'small-12 medium-6'}>
-                <label for="location" >Location:</label>
-                <Input
-                  onChange={handleInputChange}
-                  name="location"
-                  placeholder="Location:"
-                  value={formObject.location}
-                />
+                    <label for="location" >Location:</label>
+                    <Input
+                      onChange={handleInputChange}
+                      name="location"
+                      placeholder="Location:"
+                      value={formObject.location}
+                    />
                   </Cell>
                   <Cell size={'small-12 medium-6'}>
-                    <br/>
-                <Dropdown
-                  intro={'Washington'}
-                  onChange={handleInputChange}
-                  name="stateLocation"
-                  value={formObject.stateLocation}
-                  options={stateLocation}
-                />
+                    <label for="stateLocation" >State:</label>
+                    <Dropdown
+                      onChange={handleInputChange}
+                      name="stateLocation"
+                      value={formObject.stateLocation}
+                      options={stateLocation}
+                    />
                   </Cell>
                   <Cell size={'small-12'}>
-                <label for="itinerary" >Itinerary:</label>
-                <TextArea
-                  onChange={handleInputChange}
-                  name="itinerary"
-                  placeholder="Itinerary:"
-                  value={formObject.itinerary}
-                />
+                    <label for="itinerary" >Itinerary:</label>
+                    <TextArea
+                      onChange={handleInputChange}
+                      name="itinerary"
+                      placeholder="Itinerary:"
+                      value={formObject.itinerary}
+                    />
                   </Cell>
                 </Gridx>
                 <Gridx classes={'grid-margin-x'}>
-                <Cell size={'small-12'}>
-                <label for="difficulty" >Difficulty Level:</label>
-                <Dropdown
-                  onChange={handleInputChange}
-                  name="difficulty"
-                  value={formObject.difficulty}
-                  options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
-                />
-                </Cell>
-                <Cell size={'small-12'}>
-                <label for="gearList" >Gear Needed:</label>
-                <Input
-                  onChange={handleInputChange}
-                  name="gearList"
-                  placeholder="Gear Need:"
-                  value={formObject.gearList}
-                />
-                </Cell>
-                  <Cell size={'small-6'}>
-                <label for="time" >Duration Info:</label>
-                <NumberInput
-                  decrement={handleGroupDec}
-                  increment={handleGroupInc}
-                  name="time"
-                  value={formObject.time}
-                />
+                  <Cell size={'small-12'}>
+                    <label for="difficulty" >Difficulty Level:</label>
+                    <Dropdown
+                      onChange={handleInputChange}
+                      name="difficulty"
+                      value={formObject.difficulty}
+                      options={["Easy", "Intermediate", "Hard", "Extreme", "Death wish"]}
+                    />
+                  </Cell>
+                  <Cell size={'small-12'}>
+                    <label for="gearList" >Gear Needed:</label>
+                    <Input
+                      onChange={handleInputChange}
+                      name="gearList"
+                      placeholder="Gear Needed:"
+                      value={formObject.gearList}
+                    />
                   </Cell>
                   <Cell size={'small-6'}>
-                    <br/>
-                <Dropdown
-                  onChange={handleInputChange}
-                  name="unit"
-                  value={formObject.unit}
-                  options={["hours", "days", "weeks", "months", "eternity"]}
-                />
+                    <label for="time" >Duration Info:</label>
+                    <NumberInput
+                      decrement={handleGroupDec}
+                      increment={handleGroupInc}
+                      name="time"
+                      value={formObject.time}
+                    />
+                  </Cell>
+                  <Cell size={'small-6'}>
+                    <br />
+                    <Dropdown
+                      onChange={handleInputChange}
+                      name="unit"
+                      value={formObject.unit}
+                      options={["Hours", "Days", "Weeks", "Months", "Eternity"]}
+                    />
                   </Cell>
                 </Gridx>
                 <Gridx classes={'grid-margin-x'}>
-                  <Cell size={'small-6'}> 
-                <label for="minGroupSize" >Min group size:</label>
-                <NumberInput
-                  decrement={handleGroupDec}
-                  increment={handleGroupInc}
-                  name="minGroupSize"
-                  placeholder="Min. Group Size:"
-                  value={formObject.minGroupSize}
-                />
+                  <Cell size={'small-6'}>
+                    <label for="minGroupSize" >Min group size:</label>
+                    <NumberInput
+                      decrement={handleGroupDec}
+                      increment={handleGroupInc}
+                      name="minGroupSize"
+                      placeholder="Min. Group Size:"
+                      value={formObject.minGroupSize}
+                    />
                   </Cell>
                   <Cell size={'small-6'}>
-                <label for="maxGroupSize" >Max group size:</label>
-                <NumberInput
-                  decrement={handleGroupDec}
-                  increment={handleGroupInc}
-                  name="maxGroupSize"
-                  value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
-                />
+                    <label for="maxGroupSize" >Max group size:</label>
+                    <NumberInput
+                      decrement={handleGroupDec}
+                      increment={handleGroupInc}
+                      name="maxGroupSize"
+                      value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
+                    />
                   </Cell>
                 </Gridx>
                 <label for="price" >Price in $:</label>
@@ -306,7 +304,7 @@ function Adventure(props) {
                   name="price"
                   value={formObject.price}
                 />
-                
+
                 <label for="tags" >Tags:</label>
                 <TagRow edit={true} tags={tagArr} filterTags={handleFilterTags} />
                 <Dropdown
@@ -327,13 +325,13 @@ function Adventure(props) {
                 <Gridx>
                   <Cell size={'small-6'}>
 
-                <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
+                    <Loader type="TailSpin" color="#CFA242" height={50} width={50} visible={loaderVisible} />
                   </Cell>
                   <Cell size={'small-6'}>
-                <FormBtn
-                  disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary && image)}
-                  onClick={handleFormSubmit}>
-                  Publish Adventure
+                    <FormBtn
+                      disabled={!(formObject.adventureName && formObject.description && formObject.location && formObject.itinerary && image)}
+                      onClick={handleFormSubmit}>
+                      Publish Adventure
                 </FormBtn>
                   </Cell>
                 </Gridx>
