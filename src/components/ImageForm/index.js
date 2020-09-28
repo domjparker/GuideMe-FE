@@ -65,11 +65,13 @@ function ImageForm(props) {
     
       setLoading(false);
       setImage(imageUrl);
-      props.handleModalClose()
+      props.handleModalClose();
     } catch (err) {
       console.error(err);
     }
-    setLoaderVisible(false)
+    setLoaderVisible(false);
+    setImage('');
+
   };
 
   return (
