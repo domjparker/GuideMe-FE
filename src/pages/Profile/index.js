@@ -219,13 +219,13 @@ function Profile(props) {
                     <Gridx classes={'hero-section'} >
                         <Cell size="small-12 bannerdiv">
                             {/* When user clicks on their profile banner picture, a modal is activated to that they can update it */}
-                            <img className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl } alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
+                            <img title="Update Banner Pic" className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl } alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
                         </Cell>
                     </Gridx>
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl } alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <img title="Update Profile Pic" style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl } alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                             <div className="detailsDiv">
 
                                 <h2 className="userName"><strong>{userData.firstName} {userData.lastName}</strong></h2>

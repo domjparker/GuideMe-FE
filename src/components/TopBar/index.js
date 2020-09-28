@@ -33,9 +33,9 @@ function TopBar(props) {
     const loginState = useContext(loginContext)
     const renderSignInLogIn = () =>{
         if (loginState.loggedIn) {
-            return <div className='text-center signoutDiv' ><i className="fas fa-sign-out-alt signout" onClick ={signOut} > </i></div>
+            return <div className='text-center signoutDiv' ><i title="Sign Out" className="fas fa-sign-out-alt signout" onClick ={signOut} > </i></div>
         } else {
-            return <div className='text-center signoutDiv' ><i className="fas fa-sign-in-alt signout"onClick ={reDirect} ></i></div>
+            return <div className='text-center signoutDiv' ><i title="Sign In" className="fas fa-sign-in-alt signout"onClick ={reDirect} ></i></div>
         }
     }
 
@@ -53,7 +53,7 @@ function TopBar(props) {
             <div className="grid-container full" id="topBar">
                 <Gridx classes={''}>
                     <Cell size={'small-3 medium-2 logo' + fillTopBar} id="">
-                        <Link to="/"><h6 className="text-center"><img className="fixingHeight" src={LOGO} alt="logo"></img></h6></Link>
+                        <Link title="Home" to="/"><h6 className="text-center"><img className="fixingHeight" src={LOGO} alt="logo"></img></h6></Link>
                     </Cell>
                     <Cell size={'small-6 medium-8' + fillTopBar} id="pageTitle">
                         <h1 className="text-center navText">{title}</h1>
