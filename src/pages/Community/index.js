@@ -63,7 +63,7 @@ function Community() {
                 break;
             case 'newAdventure':
                     newObj.text= ` published a new adventure! ${feedObj.adventureId.adventureName} sure sounds exciting!` 
-                    console.log(feedObj.adventureId)
+
                 break;
             case 'newReview':
                 newObj.userName = feedObj.adventureId.adventureName

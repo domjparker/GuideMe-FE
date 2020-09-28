@@ -23,7 +23,7 @@ function PopupChat(props) {
                 socket.emit('login', res.data.id)
                 socket.on('text', (obj) => {
                     setSocketAppend(socketAppend.push(obj))
-                    console.log(socketAppend)
+
                 })
 
             })

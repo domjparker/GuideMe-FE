@@ -22,7 +22,7 @@ function Mailbox(props) {
         setMailbox(filteredMailbox)
     }
     function undefinedMail (user){
-        console.log(user)
+
         if(user.converser === null){
             return false
         }else{
