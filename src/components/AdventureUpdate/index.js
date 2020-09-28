@@ -50,7 +50,7 @@ function AdventureUpdate(props) {
       stateLocation: data.stateLocation,
       itinerary: data.itinerary,
       time: data.duration ? parseInt(data.duration.time) : 1,
-      unit: data.duration ? data.duration.unit : 'hours',
+      unit: data.duration ? data.duration.unit : 'Hours',
       difficulty: data.difficulty,
       minGroupSize: parseInt(data.minGroupSize),
       maxGroupSize: parseInt(data.maxGroupSize),
@@ -176,7 +176,7 @@ function AdventureUpdate(props) {
           stateLocation: '',
           itinerary: '',
           time: 1,
-          unit: 'hours',
+          unit: 'Hours',
           difficulty: '',
           minGroupSize: '',
           maxGroupSize: '',
@@ -206,7 +206,7 @@ function AdventureUpdate(props) {
               <Input
                 onChange={handleInputChange}
                 name="adventureName"
-                placeholder="Adventure:"
+                placeholder="Adventure Name"
                 value={formObject.adventureName}
               />
               </Cell>
@@ -215,7 +215,7 @@ function AdventureUpdate(props) {
               <TextArea
                 onChange={handleInputChange}
                 name="description"
-                placeholder="Description:"
+                placeholder="Description"
                 value={formObject.description}
               />
                </Cell>
@@ -226,12 +226,12 @@ function AdventureUpdate(props) {
               <Input
                 onChange={handleInputChange}
                 name="location"
-                placeholder="Location:"
+                placeholder="Location"
                 value={formObject.location}
               />
                </Cell>
                   <Cell size={'small-12 medium-6'}>
-                    <br/>
+              <label for="stateLocation" >State:</label>
               <Dropdown
               // intro={formObject.stateLocation}
                 onChange={handleInputChange}
@@ -245,7 +245,7 @@ function AdventureUpdate(props) {
               <TextArea
                 onChange={handleInputChange}
                 name="itinerary"
-                placeholder="Itinerary:"
+                placeholder="Itinerary"
                 value={formObject.itinerary}
               />
               </Cell>
@@ -265,7 +265,7 @@ function AdventureUpdate(props) {
               <Input
                 onChange={handleInputChange}
                 name="gearList"
-                placeholder="Gear Need:"
+                placeholder="Gear Needed"
                 value={formObject.gearList}
               />
               </Cell>
@@ -284,7 +284,7 @@ function AdventureUpdate(props) {
                 onChange={handleInputChange}
                 name="unit"
                 value={formObject.unit}
-                options={["hours", "days", "weeks", "months", "eternity"]}
+                options={["Hours", "Days", "Weeks", "Months", "Eternity"]}
               />
               </Cell>
                 </Gridx>
@@ -295,7 +295,7 @@ function AdventureUpdate(props) {
                 decrement={handleGroupDec}
                 increment={handleGroupInc}
                 name="minGroupSize"
-                placeholder="Min. Group Size:"
+                placeholder="Min. Group Size"
                 value={formObject.minGroupSize}
               />
               </Cell>
@@ -305,6 +305,7 @@ function AdventureUpdate(props) {
                 decrement={handleGroupDec}
                 increment={handleGroupInc}
                 name="maxGroupSize"
+                placeholder="Max. Group Size"
                 value={Math.max(formObject.maxGroupSize, formObject.minGroupSize)}
               />
                </Cell>
