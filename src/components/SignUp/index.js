@@ -22,14 +22,16 @@ function SignUp(props) {
   const handleFormSubmit = event => {
     event.preventDefault();
     API.postNewUser(signupObj).then(res => {
-
+      props.openModal()
       props.changeAccordion()
+      
     }).catch(err => console.log(err))
     //reset form to empty
     setSignupObj({ firstName: '', lastName: '', email: '', password: '' })
   };
 
   return (
+    <>
     <div>
       <form className="signup" onSubmit={handleFormSubmit}>
         <Input
@@ -67,7 +69,10 @@ function SignUp(props) {
         <FormBtn children={'Sign Up'} />
 
       </form>
+    
+
     </div>
+      </>
   );
 }
 

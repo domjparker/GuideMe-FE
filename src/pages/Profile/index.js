@@ -18,6 +18,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import AvailabilityUpdate from '../../components/AvailabilityUpdate'
 import ViewReview from '../../components/ViewReview'
+import SuccessModal from '../../components/SuccessModal'
 
 
 // import Messages from '../../components/Messages'
@@ -42,7 +43,9 @@ function Profile(props) {
     const [modalImage, setModalImage] = useState(false)
     const [picOrBanner, setPicOrBanner] = useState("")
     const [modalTitle, setModalTitle] = useState('')
+    const [modalSuccess, setModalSuccess] = useState(false)
 
+    const handleSuccessModalClose = ()=>setModalSuccess(false)
 
     //modal states end ================================================
 
@@ -108,13 +111,29 @@ function Profile(props) {
     const handleDeleteAdventure = (e) => {
         e.stopPropagation()
         let id = e.target.getAttribute('data-id')
-        API.deleteAdventure(id)
-            .then(() => {
-                setChange(!change)
-                // setModalAdventure(false)
+        confirmAlert({
+            title: 'Do you want to delete your adventure?',
+            message: 'This action permanently deletes your adventure and all related data.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        API.deleteAdventure(id)
+                        .then(() => {
+                            setChange(!change)
+                            // setModalAdventure(false)
+            
+                        })
+                        .catch(err => console.log(err))
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => { }
+                }
+            ]
+        });
 
-            })
-            .catch(err => console.log(err))
     }
 
     //become host button just currently updates status on database,this is what happens here
@@ -200,13 +219,13 @@ function Profile(props) {
                     <Gridx classes={'hero-section'} >
                         <Cell size="small-12 bannerdiv">
                             {/* When user clicks on their profile banner picture, a modal is activated to that they can update it */}
-                            <img className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl } alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
+                            <img title="Update Banner Pic" className="bannerimage" onClick={handleUpdateBannerPicClick} src={userData.profileBannerUrl } alt={userData.firstName + " " + userData.lastName + "'s profile banner pic"}></img>
                         </Cell>
                     </Gridx>
                     <Gridx classes={'bannerName'}>
                         {/* User data section */}
                         <Cell size={"small-12 medium-6"}>
-                            <img style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl } alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
+                            <img title="Update Profile Pic" style={{ height: '20vh', width: '20vh', borderRadius: '50%' }} onClick={handleUpdateProfilePicClick} src={userData.profilePictureUrl } alt={userData.firstName + " " + userData.lastName + "'s profile pic"} type="profilePic" />
                             <div className="detailsDiv">
 
                                 <h2 className="userName"><strong>{userData.firstName} {userData.lastName}</strong></h2>
@@ -277,10 +296,11 @@ function Profile(props) {
 
                     {/* Modals live here */}
                     <ImageForm show={modalImage} className="imageModals" handleModalClose={handleModalImageClose} type={picOrBanner} modalTitle={modalTitle} />
-                    <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} />
-                    <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} />
-                    <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} />
+                    <Adventure show={modalAdventure} handleModalClose={handleModalAdventureClose} openModal={()=>setModalSuccess(true)} />
+                    <UserUpdate show={modalUser} handleModalClose={handleModalUserClose} openModal={()=>setModalSuccess(true)}/>
+                    <AdventureUpdate show={modalAdventureUpdate.visible} handleModalClose={handleModalAdventureUpdateClose} id={modalAdventureUpdate.id} openModal={()=>setModalSuccess(true)}/>
                     <AvailabilityUpdate show={modalAvailable} handleModalClose={handleModalAvailClose} />
+                    <SuccessModal show={modalSuccess} handleModalClose={handleSuccessModalClose} text={""}/>
                     {/* END Modals live here */}
 
                 </div>

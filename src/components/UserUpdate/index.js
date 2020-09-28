@@ -97,6 +97,7 @@ function UserUpdate(props) {
           stateLocation: '',
           tags: []
         })
+        props.openModal();
         handleModalClose();
       }).catch(err => console.log(err))
   }
