@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import API from '../../util/API'
 import Gridx from '../../components/Gridx'
-import moment from 'moment'
 import Post from '../../components/Post'
 import Cell from '../Cell'
 import './style.css'
@@ -23,13 +22,18 @@ function ViewReview(props) {
         
         let element=  props.idArr[counter]
         let data = await getReviewElements(element)
-        if (data[0]) newArr.push(convertReviewData(data[0]))
+
+        if (data[0]) {
+            data.forEach(item => {
+                newArr.push(convertReviewData(item))    
+            });
+        }
            
         if (counter < props.idArr.length-1 ) {
             counter++
             return loadReview()
         } else {
-           return setReview(newArr )    
+           return setReview(newArr)    
         }
         
     }
