@@ -59,6 +59,11 @@ function UserUpdate(props) {
       stateLocation: data.stateLocation ? data.stateLocation : '',
       adventureImageUrl: data.adventureImageUrl
     })
+     //pre-load tags if some have already been chosen
+     if (data.tags) {
+      const x = data.tags.map(tag => tag.tagName)
+      setTagArr(x)
+    }
   }
   //control input field changes
   function handleInputChange(event) {
