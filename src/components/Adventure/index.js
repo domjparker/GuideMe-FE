@@ -172,7 +172,9 @@ function Adventure(props) {
             tags: [],
             adventureImageUrl: ''
           })
+          props.openModal();
           handleModalClose();
+          
         }).catch(err => console.log(err))
     } catch (err) {
       console.error(err);
