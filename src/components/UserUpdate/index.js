@@ -151,7 +151,7 @@ function UserUpdate(props) {
                     />
                   </Cell>
                   <Cell size={'medium-6'}>
-                    <br/>
+                  <label for="stateLocation" >Your State:</label>
                     <Dropdown
                       intro={'State'}
                       onChange={handleInputChange}
@@ -166,7 +166,7 @@ function UserUpdate(props) {
                 <TextArea
                   onChange={handleInputChange}
                   name="bio"
-                  placeholder="Bio:"
+                  placeholder="Bio"
                   value={formObject.bio}
                 />
                 <label for="tags" >Tags:</label>
