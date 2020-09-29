@@ -22,7 +22,6 @@ function Mailbox(props) {
         setMailbox(filteredMailbox)
     }
     function undefinedMail (user){
-        console.log(user)
         if(user.converser === null){
             return false
         }else{
@@ -46,15 +45,13 @@ return (
             <ul className="fixer">
                 <Btn className="open-button" onClick={props.close} text="Close"/>
                 {
-                    (mailbox.length > 0) ? mailbox.map(item => <li><button className="open-button" onClick={()=>handleOpenChat(item.converser._id, item.converser.firstName)}>{item.converser.firstName}</button></li>): null
+                    (mailbox.length > 0) ? mailbox.map(item => <li key={item.converser._id} ><button className="open-button" key={item.converser._id} onClick={()=>handleOpenChat(item.converser._id, item.converser.firstName)}>{item.converser.firstName}</button></li>): null
                 }
 
             </ul>
             : <PopupChat name={converser.firstName} id={converser.id} hide={hideMessage} mailbox = {mailbox} handleOpen={handleMailboxOpen} />}
     </>
 )
-
-
 
 }
 

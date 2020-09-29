@@ -1,37 +1,38 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './style.css'
-
 import API from '../../util/API'
-// import PopupChat from '../PopupChat'
-import io from "socket.io-client";
 
 function Messages(props) {
 
     const id = props.id
-
+    const messagesEnfRef = useRef(null)
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
         loadMessages()
+        
+    }, [props.socketMessages])
 
-
-    }, [props])
+    //grab the converstaion from the database
     const loadMessages = async () => {
-        const { data } = await API.getSentMessage(id)
-        setMessages(data)
-       
+            const { data } = await API.getSentMessage(id)
+            setMessages(data)
+            scrollToBottom()
+    }
+
+    const scrollToBottom = () =>{
+        messagesEnfRef.current.scrollIntoView({behavior:'smooth'})
     }
 
     return (
-
         <div className="messageBox">
             <div>
-                {
-                    (messages.length > 0) ? messages.map(item =>
-                        <div>
-                            <img className="sender-thumbnail" src={item.senderId.profilePictureUrl} alt={item.senderId.firstName}></img>  {item.messageText}
-                        </div>)
-                        : null}
+                {(messages.length > 0) ? messages.map(item =>
+                    <div key={item._id}>
+                        <img className="sender-thumbnail" src={item.senderId.profilePictureUrl} alt={item.senderId.firstName}></img>  {item.messageText}
+                    </div>)
+                    : null}
+                <div ref={messagesEnfRef}/>
             </div>
         </div>
     )
