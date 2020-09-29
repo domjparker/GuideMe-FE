@@ -22,10 +22,10 @@ function PopupChat(props) {
             API.getSessionData().then(res => {
                 socket.emit('login', res.data.id)
                 socket.on('text', (obj) => {
-                    setSocketAppend(socketAppend.push(obj))
-                    console.log(socketAppend)
+                    let arr = [...socketAppend]
+                    arr.push(obj)
+                    setSocketAppend(arr)
                 })
-
             })
         }
 
@@ -68,8 +68,11 @@ function PopupChat(props) {
 
             updateMail()
         }
-        API.sendMessage(messageObj)
+        await API.sendMessage(messageObj)
         socket.emit('sendText', messageObj)
+        let arr = [...socketAppend]
+        arr.push(messageObj)
+        setSocketAppend(arr)
         setMessageText("")
     }
     let showHide = chatBox ? "visible" : "invisible";
@@ -79,7 +82,7 @@ function PopupChat(props) {
             <div onClick={(e) => e.stopPropagation()} className={"chat-popup " + showHide} id="myForm">
                 <form className="form-container" onSubmit={sendMessages}>
                     <h5 className="chatTitle">{props.name}</h5>
-                    <Messages id={props.id} socketMessages = {socketAppend}/>
+                    <Messages id={props.id} socketMessages={socketAppend}/>
                     <textarea placeholder="Type message.." name="msg" value={messageText} onChange={handleInputChange} required></textarea>
                     <button type="submit" className="button chatButton">Send</button>
                     <button type="button" className="close-button" onClick={handleCloseChat}>X </button>
