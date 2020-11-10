@@ -3,9 +3,9 @@
   ## Project Creators: 
   ### Dominic, Matt, Maria, Indy, Andrew
 ---
-  
+
   ## Project Description:
-  ### GuideMe redefines traveling as we know it. Our goal was to create a streamlined service that connects modern day travelers with guides who can provide unique experiences. 
+  GuideMe redefines traveling as we know it. Our goal was to create a streamlined service that connects modern day travelers with guides who can provide unique experiences. 
 
   ![](public/guideme.jpg)
 ---
